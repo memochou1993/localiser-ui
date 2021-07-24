@@ -20,7 +20,7 @@
             <q-form
               autofocus
               class="q-gutter-md"
-              @submit="() => {}"
+              @submit="submit"
             >
               <q-input
                 v-model="state.email"
@@ -53,10 +53,14 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie';
 import {
   computed,
   reactive,
 } from 'vue';
+import {
+  token,
+} from '@/actions';
 
 export default {
   name: 'Login',
@@ -66,9 +70,26 @@ export default {
       password: '',
     });
     const isValid = computed(() => !!state.email && !!state.password);
+    const reset = () => {
+      state.email = '';
+      state.password = '';
+    };
+    const submit = async () => {
+      try {
+        const { data } = await token.fetch({
+          email: state.email,
+          password: state.password,
+        });
+        Cookie.set('token', Buffer.from(data.token, 'base64'));
+        reset();
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     return {
       state,
       isValid,
+      submit,
     };
   },
 };
