@@ -40,7 +40,7 @@
                 <q-btn
                   :disable="!isValid"
                   color="primary"
-                  label="Sign In"
+                  label="Log in"
                   type="submit"
                 />
               </div>

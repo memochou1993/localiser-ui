@@ -2,9 +2,12 @@
   <q-layout
     view="hhh lpr fff"
   >
-    <q-header>
+    <q-header
+      elevated
+    >
       <q-toolbar>
         <q-btn
+          v-if="isAuthenticated"
           dense
           flat
           icon="mdi-menu"
@@ -20,32 +23,9 @@
       v-if="isAuthenticated"
       v-model="state.drawer"
       :width="240"
-      class="bg-primary"
       show-if-above
     >
-      <q-list>
-        <q-item
-          class="text-caption text-white"
-          clickable
-          href="https://github.com/quasarframework/"
-          tag="a"
-        >
-          <q-item-section
-            avatar
-          >
-            <q-icon
-              name="mdi-file-table-outline"
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label
-              class="text-body2"
-            >
-              Projects
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
+      <TheMenu />
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -61,15 +41,19 @@ import {
 import {
   useStore,
 } from 'vuex';
+import TheMenu from '@/components/TheMenu.vue';
 
 export default {
   name: 'LayoutDefault',
+  components: {
+    TheMenu,
+  },
   setup() {
     const store = useStore();
     const state = reactive({
-      drawer: true,
+      drawer: false,
     });
-    const isAuthenticated = computed(() => !!store.state.token);
+    const isAuthenticated = computed(() => store.getters.isAuthenticated);
     const toggleDrawer = () => {
       state.drawer = !state.drawer;
     };

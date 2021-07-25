@@ -19,6 +19,22 @@ const routes = [
     },
   },
   {
+    path: '/projects',
+    name: 'project',
+    component: () => import(/* webpackChunkName: "projects" */ '@/views/Project.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import(/* webpackChunkName: "logout" */ '@/views/Logout.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: {
       name: 'home',
