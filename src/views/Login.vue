@@ -59,12 +59,20 @@ import {
   reactive,
 } from 'vue';
 import {
+  useStore,
+} from 'vuex';
+import {
+  useRouter,
+} from 'vue-router';
+import {
   token,
 } from '@/actions';
 
 export default {
   name: 'Login',
   setup() {
+    const store = useStore();
+    const router = useRouter();
     const state = reactive({
       email: '',
       password: '',
@@ -80,7 +88,9 @@ export default {
           email: state.email,
           password: state.password,
         });
-        Cookie.set('token', Buffer.from(data.token, 'base64'));
+        Cookie.set('token', Buffer.from(data.token).toString('base64'));
+        store.commit('setToken', data.token);
+        router.push({ name: 'home' });
         reset();
       } catch (err) {
         console.debug(err);
