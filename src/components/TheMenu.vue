@@ -16,12 +16,13 @@
           :key="i"
         >
           <q-separator
-            v-show="item.separator"
+            v-show="item.separated"
           />
           <q-item
             v-close-popup
             :to="item.to"
             clickable
+            style="min-height: 40px"
           >
             <q-item-section>
               <q-item-label>
@@ -47,18 +48,25 @@ import {
 
 const items = [
   {
+    name: 'Profile',
+    to: {
+      name: 'project',
+    },
+    separated: false,
+  },
+  {
     name: 'Projects',
     to: {
       name: 'project',
     },
-    separator: false,
+    separated: false,
   },
   {
     name: 'Log out',
     to: {
       name: 'logout',
     },
-    separator: true,
+    separated: true,
   },
 ];
 

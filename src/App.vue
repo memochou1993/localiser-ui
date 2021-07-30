@@ -7,14 +7,19 @@
       elevated
     >
       <q-toolbar>
-        <q-toolbar-title
-          v-text="'Localiser'"
-        />
+        <q-toolbar-title>
+          <span
+            class="q-px-md"
+            v-text="'Localiser'"
+          />
+        </q-toolbar-title>
         <TheMenu />
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <router-view />
+      <router-view
+        class="q-my-xl"
+      />
     </q-page-container>
   </q-layout>
 </template>
@@ -23,7 +28,7 @@
 import TheMenu from '@/components/TheMenu.vue';
 
 export default {
-  name: 'LayoutDefault',
+  name: 'App',
   components: {
     TheMenu,
   },

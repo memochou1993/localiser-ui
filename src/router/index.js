@@ -3,17 +3,11 @@ import store from '@/store';
 
 const routes = [
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
-    meta: {
-      requiresGuest: true,
-    },
-  },
-  {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+    redirect: {
+      name: 'project',
+    },
     meta: {
       requiresAuth: true,
     },
@@ -21,9 +15,17 @@ const routes = [
   {
     path: '/projects',
     name: 'project',
-    component: () => import(/* webpackChunkName: "projects" */ '@/views/Project.vue'),
+    component: () => import(/* webpackChunkName: "project" */ '@/views/Project.vue'),
     meta: {
       requiresAuth: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
+    meta: {
+      requiresGuest: true,
     },
   },
   {
