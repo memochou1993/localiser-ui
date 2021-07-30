@@ -1,46 +1,56 @@
 <template>
-  <q-list>
-    <template
-      v-for="(item, i) in items"
-      :key="i"
-    >
-      <q-separator
-        v-show="item.separator"
-      />
-      <q-item
-        :to="item.to"
-        class="text-caption"
-        clickable
+  <div
+    v-if="isAuthenticated"
+  >
+    <q-btn
+      flat
+      icon="mdi-menu"
+      round
+    />
+    <q-menu>
+      <q-list
+        style="min-width: 160px"
       >
-        <q-item-section
-          avatar
+        <template
+          v-for="(item, i) in items"
+          :key="i"
         >
-          <q-icon
-            :name="item.icon"
+          <q-separator
+            v-show="item.separator"
           />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label
-            class="text-body2"
+          <q-item
+            v-close-popup
+            :to="item.to"
+            clickable
           >
-            <span
-              v-text="item.name"
-            />
-          </q-item-label>
-        </q-item-section>
-      </q-item>
-    </template>
-  </q-list>
+            <q-item-section>
+              <q-item-label>
+                <span
+                  v-text="item.name"
+                />
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </template>
+      </q-list>
+    </q-menu>
+  </div>
 </template>
 
 <script>
+import {
+  computed,
+} from 'vue';
+import {
+  useStore,
+} from 'vuex';
+
 const items = [
   {
     name: 'Projects',
     to: {
       name: 'project',
     },
-    icon: 'mdi-file-outline',
     separator: false,
   },
   {
@@ -48,7 +58,6 @@ const items = [
     to: {
       name: 'logout',
     },
-    icon: 'mdi-logout-variant',
     separator: true,
   },
 ];
@@ -56,8 +65,11 @@ const items = [
 export default {
   name: 'TheMenu',
   setup() {
+    const store = useStore();
+    const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
       items,
+      isAuthenticated,
     };
   },
 };
