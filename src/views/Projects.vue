@@ -20,8 +20,8 @@
           >
             <q-list>
               <template
-                v-for="(project, i) in projects"
-                :key="i"
+                v-for="(project) in projects"
+                :key="project.id"
               >
                 <q-separator
                   spaced
@@ -43,18 +43,22 @@
                       v-show="project.description"
                       caption
                       class="q-mb-sm"
-                    >
-                      A new project
-                    </q-item-label>
+                      v-text="project.description"
+                    />
                     <q-item-label>
-                      <q-chip
-                        class="q-ma-none"
-                        color="red"
-                        dense
-                        label="en"
-                        outline
-                        square
-                      />
+                      <template
+                        v-for="(language) in project.languages"
+                        :key="language.id"
+                      >
+                        <q-chip
+                          :label="language.name"
+                          class="q-ma-none q-mr-sm cursor-pointer"
+                          color="red"
+                          dense
+                          outline
+                          square
+                        />
+                      </template>
                     </q-item-label>
                   </q-item-section>
                 </q-item>
