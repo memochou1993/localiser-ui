@@ -15,34 +15,42 @@
             class="text-h6 text-weight-regular q-mb-md"
             v-text="'Keys'"
           />
-          <template
-            v-for="(key) in state.keys"
-            :key="key.id"
-          >
-            <q-separator
-              spaced
-            />
-            <div
-              class="row"
+          <q-list>
+            <template
+              v-for="(key) in state.keys"
+              :key="key.id"
             >
-              <div
-                class="col-3"
+              <q-separator
+                spaced
+              />
+              <q-item
+                class="q-pa-none"
               >
-                <div
-                  class="full-height flex items-center"
-                  v-text="key.name"
-                />
-              </div>
-              <div
-                class="col-9"
-              >
-                <ValueList
-                  :languages="state.project.languages"
-                  :values="key.values"
-                />
-              </div>
-            </div>
-          </template>
+                <q-item-section>
+                  <div
+                    class="row"
+                  >
+                    <div
+                      class="col-3"
+                    >
+                      <div
+                        class="full-height flex items-center"
+                        v-text="key.name"
+                      />
+                    </div>
+                    <div
+                      class="col-9"
+                    >
+                      <ValueList
+                        :languages="state.project.languages"
+                        :values="key.values"
+                      />
+                    </div>
+                  </div>
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-list>
           <q-separator
             spaced
           />

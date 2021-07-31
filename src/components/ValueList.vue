@@ -4,7 +4,9 @@
       v-for="(language, i) in languages"
       :key="i"
     >
-      <q-item>
+      <q-item
+        class="q-pa-none"
+      >
         <q-item-section>
           <div
             class="row"
