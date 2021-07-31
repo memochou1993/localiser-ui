@@ -13,7 +13,7 @@
         >
           <span
             class="text-h6 text-weight-regular q-mb-md"
-            v-text="'Projects'"
+            v-text="'My Projects'"
           />
           <q-list>
             <template

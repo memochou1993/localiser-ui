@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="state.project"
     class="row justify-center"
   >
     <div
@@ -13,7 +14,7 @@
         >
           <span
             class="text-h6 text-weight-regular q-mb-md"
-            v-text="'Keys'"
+            v-text="state.project.name"
           />
           <q-list>
             <template
@@ -31,10 +32,9 @@
                     class="row"
                   >
                     <div
-                      class="col-3 q-px-md"
+                      class="col-3 full-height flex items-center q-px-md"
                     >
-                      <div
-                        class="full-height flex items-center"
+                      <span
                         v-text="key.name"
                       />
                     </div>

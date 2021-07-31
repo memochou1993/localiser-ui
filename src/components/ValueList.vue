@@ -12,15 +12,14 @@
             class="row"
           >
             <div
-              class="col-6 q-px-md"
+              class="col-3 full-height flex items-center q-px-md"
             >
               <span
-                class="full-height flex items-center"
                 v-text="language.name"
               />
             </div>
             <div
-              class="col-6 q-px-md"
+              class="col-9 full-height flex items-center q-px-md"
             >
               <template
                 v-for="(value) in values"
@@ -28,8 +27,16 @@
               >
                 <span
                   v-if="value.id === language.id"
-                  class="full-height flex items-center"
+                  class="text-secondary"
                   v-text="value.text"
+                />
+              </template>
+              <template
+                v-if="values.length < 1"
+              >
+                <span
+                  class="text-warning"
+                  v-text="'Empty'"
                 />
               </template>
             </div>
