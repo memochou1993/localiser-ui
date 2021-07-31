@@ -12,7 +12,7 @@
             class="row"
           >
             <div
-              class="col-6"
+              class="col-6 q-px-md"
             >
               <span
                 class="full-height flex items-center"
@@ -20,7 +20,7 @@
               />
             </div>
             <div
-              class="col-6"
+              class="col-6 q-px-md"
             >
               <template
                 v-for="(value) in values"

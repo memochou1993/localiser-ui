@@ -31,7 +31,7 @@
                     class="row"
                   >
                     <div
-                      class="col-3"
+                      class="col-3 q-px-md"
                     >
                       <div
                         class="full-height flex items-center"
