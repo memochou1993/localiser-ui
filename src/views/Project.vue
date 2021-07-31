@@ -11,7 +11,7 @@
         <q-card-section
           class="q-pa-md"
         >
-          <div
+          <span
             class="text-h6 text-weight-regular q-mb-md"
             v-text="'Keys'"
           />
@@ -19,6 +19,9 @@
             v-for="(key) in state.keys"
             :key="key.id"
           >
+            <q-separator
+              spaced
+            />
             <div
               class="row"
             >
@@ -26,21 +29,23 @@
                 class="col-3"
               >
                 <div
-                  class="full-height flex items-center text-weight-regular"
+                  class="full-height flex items-center"
                   v-text="key.name"
                 />
               </div>
               <div
                 class="col-9"
               >
-                <KeyTable
-                  :columns="columns"
-                  :rows="state.rows"
+                <ValueList
+                  :languages="state.project.languages"
                   :values="key.values"
                 />
               </div>
             </div>
           </template>
+          <q-separator
+            spaced
+          />
         </q-card-section>
       </q-card>
     </div>
@@ -59,39 +64,24 @@ import {
   key,
 } from '@/actions';
 import {
-  KeyTable,
+  ValueList,
 } from '@/components';
-
-const columns = [
-  {
-    align: 'left',
-    name: 'language',
-  },
-  {
-    align: 'left',
-    name: 'value',
-  },
-];
 
 export default {
   name: 'Project',
   components: {
-    KeyTable,
+    ValueList,
   },
   setup() {
     const route = useRoute();
     const state = reactive({
       project: null,
       keys: null,
-      rows: null,
     });
     const { projectId } = route.params;
     (async () => {
       const { data } = await project.show(projectId);
       state.project = data;
-      state.rows = state.project.languages.map((language) => ({
-        language,
-      }));
     })();
     (async () => {
       const { data } = await key.index(projectId);
@@ -99,7 +89,6 @@ export default {
     })();
     return {
       state,
-      columns,
     };
   },
 };
