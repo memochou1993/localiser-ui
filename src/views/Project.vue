@@ -33,45 +33,11 @@
               <div
                 class="col-9"
               >
-                <q-table
+                <KeyTable
                   :columns="columns"
                   :rows="state.rows"
-                  flat
-                  hide-bottom
-                  hide-header
-                  row-key="name"
-                >
-                  <template
-                    #body="props"
-                  >
-                    <q-tr
-                      :props="props"
-                    >
-                      <q-td
-                        key="language"
-                        :props="props"
-                      >
-                        <span
-                          v-text="props.row.language.name"
-                        />
-                      </q-td>
-                      <q-td
-                        key="value"
-                        :props="props"
-                      >
-                        <template
-                          v-for="(value) in key.values"
-                          :key="value.id"
-                        >
-                          <span
-                            v-if="value.language.id === props.row.language.id"
-                            v-text="value.text"
-                          />
-                        </template>
-                      </q-td>
-                    </q-tr>
-                  </template>
-                </q-table>
+                  :values="key.values"
+                />
               </div>
             </div>
           </template>
@@ -92,6 +58,9 @@ import {
   project,
   key,
 } from '@/actions';
+import {
+  KeyTable,
+} from '@/components';
 
 const columns = [
   {
@@ -106,6 +75,9 @@ const columns = [
 
 export default {
   name: 'Project',
+  components: {
+    KeyTable,
+  },
   setup() {
     const route = useRoute();
     const state = reactive({
@@ -113,15 +85,16 @@ export default {
       keys: null,
       rows: null,
     });
+    const { projectId } = route.params;
     (async () => {
-      const { data } = await project.show(route.params.projectId);
+      const { data } = await project.show(projectId);
       state.project = data;
       state.rows = state.project.languages.map((language) => ({
         language,
       }));
     })();
     (async () => {
-      const { data } = await key.index(route.params.projectId);
+      const { data } = await key.index(projectId);
       state.keys = data;
     })();
     return {
