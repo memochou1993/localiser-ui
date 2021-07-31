@@ -4,6 +4,10 @@
       v-for="(language, i) in languages"
       :key="i"
     >
+      <q-separator
+        v-show="i > 0"
+        spaced
+      />
       <q-item
         class="q-pa-none"
       >
@@ -43,17 +47,13 @@
           </div>
         </q-item-section>
       </q-item>
-      <q-separator
-        v-show="i < languages.length - 1"
-        spaced
-      />
     </template>
   </q-list>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'ValueList',
   props: {
     languages: {
       type: Array,

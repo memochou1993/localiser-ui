@@ -17,10 +17,11 @@
           />
           <q-list>
             <template
-              v-for="(project) in projects"
+              v-for="(project, i) in projects"
               :key="project.id"
             >
               <q-separator
+                v-show="i === 0"
                 spaced
               />
               <q-item>
@@ -59,10 +60,10 @@
                   </q-item-label>
                 </q-item-section>
               </q-item>
+              <q-separator
+                spaced
+              />
             </template>
-            <q-separator
-              spaced
-            />
           </q-list>
         </q-card-section>
       </q-card>

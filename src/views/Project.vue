@@ -16,43 +16,9 @@
             class="text-h6 text-weight-regular q-mb-md"
             v-text="state.project.name"
           />
-          <q-list>
-            <template
-              v-for="(key) in state.keys"
-              :key="key.id"
-            >
-              <q-separator
-                spaced
-              />
-              <q-item
-                class="q-pa-none"
-              >
-                <q-item-section>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col-3 full-height flex items-center q-px-md"
-                    >
-                      <span
-                        v-text="key.name"
-                      />
-                    </div>
-                    <div
-                      class="col-9"
-                    >
-                      <ValueList
-                        :languages="state.project.languages"
-                        :values="key.values"
-                      />
-                    </div>
-                  </div>
-                </q-item-section>
-              </q-item>
-            </template>
-          </q-list>
-          <q-separator
-            spaced
+          <KeyList
+            :keys="state.keys"
+            :languages="state.project.languages"
           />
         </q-card-section>
       </q-card>
@@ -72,13 +38,13 @@ import {
   key,
 } from '@/actions';
 import {
-  ValueList,
+  KeyList,
 } from '@/components';
 
 export default {
   name: 'Project',
   components: {
-    ValueList,
+    KeyList,
   },
   setup() {
     const route = useRoute();
