@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import TheMenu from '@/components/TheMenu.vue';
+import TheMenu from './TheMenu.vue';
 
 export default {
   name: 'TheHeader',

@@ -20,7 +20,9 @@ import {
 import {
   useStore,
 } from 'vuex';
-import TheHeader from '@/components/TheHeader.vue';
+import {
+  TheHeader,
+} from '@/components';
 
 export default {
   name: 'App',
