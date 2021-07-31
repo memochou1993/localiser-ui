@@ -1,7 +1,5 @@
 <template>
-  <div
-    v-if="isAuthenticated"
-  >
+  <div>
     <q-btn
       flat
       icon="mdi-menu"
@@ -39,25 +37,18 @@
 </template>
 
 <script>
-import {
-  computed,
-} from 'vue';
-import {
-  useStore,
-} from 'vuex';
-
 const items = [
   {
     name: 'Profile',
     to: {
-      name: 'project',
+      name: 'projects',
     },
     separated: false,
   },
   {
     name: 'Projects',
     to: {
-      name: 'project',
+      name: 'projects',
     },
     separated: false,
   },
@@ -73,11 +64,8 @@ const items = [
 export default {
   name: 'TheMenu',
   setup() {
-    const store = useStore();
-    const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
       items,
-      isAuthenticated,
     };
   },
 };

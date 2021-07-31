@@ -2,7 +2,9 @@
   <q-layout
     view="hhh lpr fff"
   >
-    <TheHeader />
+    <TheHeader
+      :show-menu="isAuthenticated"
+    />
     <q-page-container>
       <router-view
         class="q-my-xl"
@@ -12,6 +14,12 @@
 </template>
 
 <script>
+import {
+  computed,
+} from 'vue';
+import {
+  useStore,
+} from 'vuex';
 import TheHeader from '@/components/TheHeader.vue';
 
 export default {
@@ -20,8 +28,10 @@ export default {
     TheHeader,
   },
   setup() {
+    const store = useStore();
+    const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
-      //
+      isAuthenticated,
     };
   },
 };

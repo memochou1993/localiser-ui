@@ -10,7 +10,9 @@
           v-text="'Localiser'"
         />
       </q-toolbar-title>
-      <TheMenu />
+      <TheMenu
+        v-if="showMenu"
+      />
     </q-toolbar>
   </q-header>
 </template>
@@ -22,6 +24,12 @@ export default {
   name: 'TheHeader',
   components: {
     TheMenu,
+  },
+  props: {
+    showMenu: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup() {
     return {
