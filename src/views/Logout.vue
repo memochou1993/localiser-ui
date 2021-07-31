@@ -19,16 +19,18 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    Cookie.remove('token');
-    store.commit('setToken', null);
     (async () => {
       try {
         await token.destroy();
       } catch (err) {
         console.debug(err);
+      } finally {
+        Cookie.remove('token');
+        store.commit('setToken', null);
+        store.commit('setProjects', null);
+        router.push({ name: 'login' });
       }
     })();
-    router.push({ name: 'login' });
   },
 };
 </script>

@@ -6,7 +6,7 @@ const routes = [
     path: '/',
     name: 'home',
     redirect: {
-      name: 'project',
+      name: 'projects',
     },
     meta: {
       requiresAuth: true,
@@ -21,7 +21,7 @@ const routes = [
     },
   },
   {
-    path: '/projects/:project',
+    path: '/projects/:projectId',
     name: 'project',
     component: () => import(/* webpackChunkName: "project" */ '@/views/Project.vue'),
     meta: {

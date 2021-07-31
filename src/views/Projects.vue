@@ -34,7 +34,7 @@
                       class="q-mb-sm"
                     >
                       <router-link
-                        :to="{ name: 'project', params: { project: project.id } }"
+                        :to="{ name: 'project', params: { projectId: project.id } }"
                         class="text-secondary underline-none underline-hover"
                         v-text="project.name"
                       />

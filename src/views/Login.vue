@@ -8,7 +8,7 @@
       <q-card>
         <q-card-section
           horizontal
-          style="height: 400px"
+          style="height: 400px;"
         >
           <q-img
             class="col-6"
@@ -88,8 +88,9 @@ export default {
           email: state.email,
           password: state.password,
         });
-        Cookie.set('token', Buffer.from(data.token).toString('base64'));
-        store.commit('setToken', data.token);
+        const encoded = Buffer.from(data.token).toString('base64');
+        Cookie.set('token', encoded);
+        store.commit('setToken', encoded);
         router.push({ name: 'home' });
         reset();
       } catch (err) {

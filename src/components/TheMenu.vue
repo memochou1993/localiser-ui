@@ -7,7 +7,7 @@
     />
     <q-menu>
       <q-list
-        style="min-width: 160px"
+        style="min-width: 160px;"
       >
         <template
           v-for="(item, i) in items"
@@ -20,7 +20,7 @@
             v-close-popup
             :to="item.to"
             clickable
-            style="min-height: 40px"
+            style="min-height: 40px;"
           >
             <q-item-section>
               <q-item-label>
