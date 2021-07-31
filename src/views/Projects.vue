@@ -71,22 +71,27 @@
 </template>
 
 <script>
+import {
+  computed,
+} from 'vue';
+import {
+  useStore,
+} from 'vuex';
+import {
+  project,
+} from '@/actions';
 
 export default {
   name: 'Projects',
   setup() {
-    const projects = [
-      {
-        id: 1,
-        name: 'My Project',
-        description: '',
-      },
-      {
-        id: 2,
-        name: 'My Project 2',
-        description: '',
-      },
-    ];
+    const store = useStore();
+    const projects = computed(() => store.state.projects);
+    if (!projects.value) {
+      (async () => {
+        const { data } = await project.index();
+        store.commit('setProjects', data);
+      })();
+    }
     return {
       projects,
     };

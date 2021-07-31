@@ -20,7 +20,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     Cookie.remove('token');
-    store.commit('setToken', '');
+    store.commit('setToken', null);
     (async () => {
       try {
         await token.destroy();
