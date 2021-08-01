@@ -69,16 +69,31 @@ export default {
     const isLoaded = computed(() => !!state.project && !!state.keys);
     const { projectId } = route.params;
     (async () => {
-      const { data } = await actions.project.show(projectId);
-      state.project = data;
+      try {
+        const { data } = await actions.project.show(projectId);
+        state.project = data;
+      } catch (err) {
+        console.debug(err);
+      }
     })();
     (async () => {
-      const { data } = await actions.key.index(projectId);
-      state.keys = data;
+      try {
+        const { data } = await actions.key.index(projectId);
+        state.keys = data;
+      } catch (err) {
+        console.debug(err);
+      }
     })();
-    const createValue = async (payload) => {
-      const { data } = await actions.value.store(payload);
-      console.log(data);
+    const createValue = async ({ keyId, languageId, text }) => {
+      try {
+        const { data } = await actions.value.store({ keyId, languageId, text });
+        state.keys.find((key) => key.id === keyId).values.push({
+          ...data,
+          language: { id: languageId },
+        });
+      } catch (err) {
+        console.debug(err);
+      }
     };
     return {
       state,

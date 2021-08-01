@@ -12,7 +12,7 @@
         :key-id="keyId"
         :language="language"
         :on-create="onCreate"
-        :values="values"
+        :value="values.find((value) => value.language.id === language.id)"
       />
     </template>
   </q-list>

@@ -65,8 +65,12 @@ export default {
     const isLoaded = computed(() => !!projects.value);
     if (!projects.value) {
       (async () => {
-        const { data } = await project.index();
-        store.commit('setProjects', data);
+        try {
+          const { data } = await project.index();
+          store.commit('setProjects', data);
+        } catch (err) {
+          console.debug(err);
+        }
       })();
     }
     return {

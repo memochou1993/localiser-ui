@@ -17,80 +17,63 @@
         <div
           class="col-9 full-height flex items-center"
         >
-          <template
-            v-for="(value) in values"
-            :key="value.id"
+          <span
+            v-if="value && !!value.text"
+            class="text-secondary q-px-md"
+            v-text="value.text"
+          />
+          <div
+            v-else
+            style="width: 100%"
           >
-            <template
-              v-if="value.language.id === language.id"
-            >
-              <span
-                v-if="value.text === null"
-                class="text-warning q-px-md cursor-pointer"
-                v-text="'Empty'"
-              />
-              <span
-                v-else
-                class="text-secondary q-px-md"
-                v-text="value.text"
-              />
-            </template>
-          </template>
-          <template
-            v-if="values.length < 1"
-          >
+            <span
+              v-if="!state.createForm"
+              class="text-warning q-px-md cursor-pointer"
+              @click="state.createForm = true"
+              v-text="'Empty'"
+            />
             <div
-              style="width: 100%"
+              v-else
+              class="q-pl-md q-py-xs"
             >
-              <span
-                v-if="!state.editForm"
-                class="text-warning q-px-md cursor-pointer"
-                @click="state.editForm = true"
-                v-text="'Empty'"
-              />
-              <div
-                v-else
-                class="q-pl-md q-py-xs"
+              <q-card
+                bordered
+                class="q-px-sm"
+                flat
               >
-                <q-card
-                  bordered
-                  class="q-px-sm"
-                  flat
-                >
-                  <q-input
-                    v-model="state.value"
-                    autofocus
-                    autogrow
-                    borderless
-                    dense
-                    input-style="max-height: 6rem"
-                    type="textarea"
-                    @keyup.enter.stop
-                  />
-                </q-card>
-                <div
-                  class="q-gutter-sm q-mt-xs"
-                >
-                  <q-btn
-                    class="q-mr-xs"
-                    color="primary"
-                    icon="mdi-check"
-                    size="sm"
-                    unelevated
-                    @click="create({ languageId: language.id })"
-                  />
-                  <q-btn
-                    class="q-mr-xs"
-                    icon="mdi-close"
-                    outline
-                    size="sm"
-                    unelevated
-                    @click="close"
-                  />
-                </div>
+                <q-input
+                  v-model="state.text"
+                  autofocus
+                  autogrow
+                  borderless
+                  dense
+                  input-style="max-height: 6rem"
+                  type="textarea"
+                  @keyup.enter.stop
+                />
+              </q-card>
+              <div
+                class="q-gutter-sm q-mt-xs"
+              >
+                <q-btn
+                  class="q-mr-xs"
+                  color="primary"
+                  icon="mdi-check"
+                  size="sm"
+                  unelevated
+                  @click="create({ languageId: language.id })"
+                />
+                <q-btn
+                  class="q-mr-xs"
+                  icon="mdi-close"
+                  outline
+                  size="sm"
+                  unelevated
+                  @click="reset"
+                />
               </div>
             </div>
-          </template>
+          </div>
         </div>
       </div>
     </q-item-section>
@@ -117,18 +100,18 @@ export default {
       type: Function,
       default: () => {},
     },
-    values: {
-      type: Array,
-      default: () => [],
+    value: {
+      type: Object,
+      default: () => {},
     },
   },
   setup(props) {
     const state = reactive({
-      editForm: false,
+      createForm: false,
       text: null,
     });
-    const close = () => {
-      state.editForm = false;
+    const reset = () => {
+      state.createForm = false;
       state.text = null;
     };
     const create = ({ languageId }) => {
@@ -137,12 +120,12 @@ export default {
         languageId,
         text: state.text,
       });
-      close();
+      reset();
     };
     return {
       state,
       create,
-      close,
+      reset,
     };
   },
 };
