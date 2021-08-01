@@ -9,7 +9,9 @@
         spaced
       />
       <ValueItem
+        :key-id="keyId"
         :language="language"
+        :on-create="onCreate"
         :values="values"
       />
     </template>
@@ -25,9 +27,17 @@ export default {
     ValueItem,
   },
   props: {
+    keyId: {
+      type: Number,
+      required: true,
+    },
     languages: {
       type: Array,
       default: () => [],
+    },
+    onCreate: {
+      type: Function,
+      default: () => {},
     },
     values: {
       type: Array,

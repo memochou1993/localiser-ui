@@ -21,11 +21,20 @@
             v-for="(value) in values"
             :key="value.id"
           >
-            <span
-              v-if="value.id === language.id"
-              class="text-secondary q-px-md"
-              v-text="value.text"
-            />
+            <template
+              v-if="value.language.id === language.id"
+            >
+              <span
+                v-if="value.text === null"
+                class="text-warning q-px-md cursor-pointer"
+                v-text="'Empty'"
+              />
+              <span
+                v-else
+                class="text-secondary q-px-md"
+                v-text="value.text"
+              />
+            </template>
           </template>
           <template
             v-if="values.length < 1"
@@ -68,6 +77,7 @@
                     icon="mdi-check"
                     size="sm"
                     unelevated
+                    @click="create({ languageId: language.id })"
                   />
                   <q-btn
                     class="q-mr-xs"
@@ -95,8 +105,16 @@ import {
 export default {
   name: 'ValueList',
   props: {
+    keyId: {
+      type: Number,
+      required: true,
+    },
     language: {
       type: Object,
+      default: () => {},
+    },
+    onCreate: {
+      type: Function,
       default: () => {},
     },
     values: {
@@ -104,17 +122,26 @@ export default {
       default: () => [],
     },
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       editForm: false,
-      value: null,
+      text: null,
     });
     const close = () => {
       state.editForm = false;
-      state.value = null;
+      state.text = null;
+    };
+    const create = ({ languageId }) => {
+      props.onCreate({
+        keyId: props.keyId,
+        languageId,
+        text: state.text,
+      });
+      close();
     };
     return {
       state,
+      create,
       close,
     };
   },

@@ -27,6 +27,7 @@
           <KeyList
             v-if="isLoaded"
             :keys="state.keys"
+            :on-create="createValue"
             :languages="state.project.languages"
           />
           <AppSkeleton
@@ -47,10 +48,7 @@ import {
 import {
   useRoute,
 } from 'vue-router';
-import {
-  project,
-  key,
-} from '@/actions';
+import * as actions from '@/actions';
 import {
   AppSkeleton,
   KeyList,
@@ -71,16 +69,21 @@ export default {
     const isLoaded = computed(() => !!state.project && !!state.keys);
     const { projectId } = route.params;
     (async () => {
-      const { data } = await project.show(projectId);
+      const { data } = await actions.project.show(projectId);
       state.project = data;
     })();
     (async () => {
-      const { data } = await key.index(projectId);
+      const { data } = await actions.key.index(projectId);
       state.keys = data;
     })();
+    const createValue = async (payload) => {
+      const { data } = await actions.value.store(payload);
+      console.log(data);
+    };
     return {
       state,
       isLoaded,
+      createValue,
     };
   },
 };

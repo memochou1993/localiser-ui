@@ -27,7 +27,9 @@
               class="col-9"
             >
               <ValueList
+                :key-id="key.id"
                 :languages="languages"
+                :on-create="onCreate"
                 :values="key.values"
               />
             </div>
@@ -54,10 +56,17 @@ export default {
       type: Array,
       default: () => [],
     },
+    onCreate: {
+      type: Function,
+      default: () => {},
+    },
     languages: {
       type: Array,
       default: () => [],
     },
+  },
+  setup() {
+    //
   },
 };
 </script>
