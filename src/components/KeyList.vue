@@ -19,7 +19,7 @@
               class="col-3 full-height flex items-center"
             >
               <span
-                class="q-px-md"
+                class="q-px-md break-word"
                 v-text="key.name"
               />
             </div>

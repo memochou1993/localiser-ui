@@ -7,19 +7,19 @@
         class="row"
       >
         <div
-          class="col-3 full-height flex items-center"
+          class="col-4 full-height flex items-center"
         >
           <span
-            class="q-px-md"
+            class="q-px-md break-word"
             v-text="language.name"
           />
         </div>
         <div
-          class="col-9 full-height flex items-center"
+          class="col-8 full-height flex items-center"
         >
           <span
             v-if="value && !!value.text"
-            class="text-secondary q-px-md"
+            class="text-secondary q-px-md break-word"
             v-text="value.text"
           />
           <div
