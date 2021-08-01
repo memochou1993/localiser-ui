@@ -16,9 +16,10 @@
             class="row"
           >
             <div
-              class="col-3 full-height flex items-center q-px-md"
+              class="col-3 full-height flex items-center"
             >
               <span
+                class="q-px-md"
                 v-text="key.name"
               />
             </div>
