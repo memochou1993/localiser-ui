@@ -33,9 +33,9 @@
               <ValueEditForm
                 :key-id="keyId"
                 :on-edit-value="editValue"
-                :on-close="() => setEditForm(false)"
                 :value-id="value.id"
                 :value-text="value.text"
+                @close="setEditForm(false)"
               />
             </div>
           </div>
@@ -57,7 +57,7 @@
                 :key-id="keyId"
                 :language-id="language.id"
                 :on-create-value="createValue"
-                :on-close="() => setCreateForm(false)"
+                @close="setCreateForm(false)"
               />
             </div>
           </div>

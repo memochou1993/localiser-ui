@@ -35,7 +35,7 @@
       icon="mdi-close"
       outline
       size="sm"
-      @click="onClose"
+      @click="$emit('close')"
     />
   </div>
 </template>
@@ -56,10 +56,6 @@ export default {
       type: Function,
       default: () => {},
     },
-    onClose: {
-      type: Function,
-      default: () => {},
-    },
     valueId: {
       type: Number,
       required: true,
@@ -69,6 +65,9 @@ export default {
       default: '',
     },
   },
+  emits: [
+    'close',
+  ],
   setup(props) {
     const text = ref(props.valueText);
     return {
