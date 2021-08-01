@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="state.project"
     class="row justify-center"
   >
     <div
@@ -10,15 +9,29 @@
         class="q-pa-md"
       >
         <q-card-section
-          class="q-pa-md"
+          class="q-pb-none"
         >
           <span
+            v-if="isLoaded"
             class="text-h6 text-weight-regular q-mb-md"
             v-text="state.project.name"
           />
+          <AppSkeleton
+            v-else
+            width="25%"
+          />
+        </q-card-section>
+        <q-card-section
+          class="q-pa-md"
+        >
           <KeyList
+            v-if="isLoaded"
             :keys="state.keys"
             :languages="state.project.languages"
+          />
+          <AppSkeleton
+            v-else
+            :count="5"
           />
         </q-card-section>
       </q-card>
@@ -28,6 +41,7 @@
 
 <script>
 import {
+  computed,
   reactive,
 } from 'vue';
 import {
@@ -38,12 +52,14 @@ import {
   key,
 } from '@/actions';
 import {
+  AppSkeleton,
   KeyList,
 } from '@/components';
 
 export default {
   name: 'Project',
   components: {
+    AppSkeleton,
     KeyList,
   },
   setup() {
@@ -52,6 +68,7 @@ export default {
       project: null,
       keys: null,
     });
+    const isLoaded = computed(() => !!state.project && !!state.keys);
     const { projectId } = route.params;
     (async () => {
       const { data } = await project.show(projectId);
@@ -63,6 +80,7 @@ export default {
     })();
     return {
       state,
+      isLoaded,
     };
   },
 };

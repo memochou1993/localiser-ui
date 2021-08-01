@@ -1,3 +1,4 @@
+export { default as AppSkeleton } from './AppSkeleton.vue';
 export { default as KeyList } from './KeyList.vue';
 export { default as TheHeader } from './TheHeader.vue';
 

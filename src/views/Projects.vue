@@ -9,13 +9,24 @@
         class="q-pa-md"
       >
         <q-card-section
-          class="q-pa-md"
+          class="q-pb-none"
         >
           <span
+            v-if="isLoaded"
             class="text-h6 text-weight-regular q-mb-md"
             v-text="'My Projects'"
           />
-          <q-list>
+          <AppSkeleton
+            v-else
+            width="25%"
+          />
+        </q-card-section>
+        <q-card-section
+          class="q-pa-md"
+        >
+          <q-list
+            v-if="isLoaded"
+          >
             <template
               v-for="(project, i) in projects"
               :key="project.id"
@@ -65,6 +76,10 @@
               />
             </template>
           </q-list>
+          <AppSkeleton
+            v-else
+            :count="5"
+          />
         </q-card-section>
       </q-card>
     </div>
@@ -81,12 +96,19 @@ import {
 import {
   project,
 } from '@/actions';
+import {
+  AppSkeleton,
+} from '@/components';
 
 export default {
   name: 'Projects',
+  components: {
+    AppSkeleton,
+  },
   setup() {
     const store = useStore();
     const projects = computed(() => store.state.projects);
+    const isLoaded = computed(() => !!projects.value);
     if (!projects.value) {
       (async () => {
         const { data } = await project.index();
@@ -95,6 +117,7 @@ export default {
     }
     return {
       projects,
+      isLoaded,
     };
   },
 };
