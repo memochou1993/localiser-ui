@@ -28,7 +28,7 @@
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="onCreateValue({ keyId, languageId, text })"
+      @click="onEditValue({ keyId, valueId, text })"
     />
     <q-btn
       class="q-mr-xs"
@@ -46,26 +46,30 @@ import {
 } from 'vue';
 
 export default {
-  name: 'ValueCreateForm',
+  name: 'ValueFormEdit',
   props: {
     keyId: {
       type: Number,
       required: true,
     },
-    languageId: {
+    onEditValue: {
+      type: Function,
+      default: () => {},
+    },
+    valueId: {
       type: Number,
       required: true,
     },
-    onCreateValue: {
-      type: Function,
-      default: () => {},
+    valueText: {
+      type: String,
+      default: '',
     },
   },
   emits: [
     'close',
   ],
-  setup() {
-    const text = ref(null);
+  setup(props) {
+    const text = ref(props.valueText);
     return {
       text,
     };

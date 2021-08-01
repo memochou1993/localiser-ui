@@ -24,7 +24,7 @@
             <template
               v-if="value"
             >
-              <ValueEditForm
+              <ValueFormEdit
                 v-if="state.editForm"
                 :key-id="keyId"
                 :on-edit-value="editValue"
@@ -42,7 +42,7 @@
             <template
               v-else
             >
-              <ValueCreateForm
+              <ValueFormCreate
                 v-if="state.createForm"
                 :key-id="keyId"
                 :language-id="language.id"
@@ -67,14 +67,14 @@
 import {
   reactive,
 } from 'vue';
-import ValueCreateForm from './ValueCreateForm.vue';
-import ValueEditForm from './ValueEditForm.vue';
+import ValueFormCreate from './ValueFormCreate.vue';
+import ValueFormEdit from './ValueFormEdit.vue';
 
 export default {
   name: 'ValueList',
   components: {
-    ValueCreateForm,
-    ValueEditForm,
+    ValueFormCreate,
+    ValueFormEdit,
   },
   props: {
     keyId: {
