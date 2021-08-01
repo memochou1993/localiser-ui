@@ -11,7 +11,7 @@
       <ValueItem
         :key-id="keyId"
         :language="language"
-        :on-create="onCreate"
+        :on-create-value="onCreateValue"
         :value="values.find((value) => value.language.id === language.id)"
       />
     </template>
@@ -35,7 +35,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    onCreate: {
+    onCreateValue: {
       type: Function,
       default: () => {},
     },

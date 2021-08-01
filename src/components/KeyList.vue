@@ -29,7 +29,7 @@
               <ValueList
                 :key-id="key.id"
                 :languages="languages"
-                :on-create="onCreate"
+                :on-create-value="onCreateValue"
                 :values="key.values"
               />
             </div>
@@ -56,7 +56,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    onCreate: {
+    onCreateValue: {
       type: Function,
       default: () => {},
     },

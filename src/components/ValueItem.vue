@@ -34,44 +34,14 @@
             />
             <div
               v-else
-              class="q-pl-md q-py-xs"
+              class="q-pl-md"
             >
-              <q-card
-                bordered
-                class="q-px-sm"
-                flat
-              >
-                <q-input
-                  v-model="state.text"
-                  autofocus
-                  autogrow
-                  borderless
-                  dense
-                  input-style="max-height: 6rem"
-                  type="textarea"
-                  @keyup.enter.stop
-                />
-              </q-card>
-              <div
-                class="q-gutter-sm q-mt-xs"
-              >
-                <q-btn
-                  class="q-mr-xs"
-                  color="primary"
-                  icon="mdi-check"
-                  size="sm"
-                  unelevated
-                  @click="create({ languageId: language.id })"
-                />
-                <q-btn
-                  class="q-mr-xs"
-                  icon="mdi-close"
-                  outline
-                  size="sm"
-                  unelevated
-                  @click="reset"
-                />
-              </div>
+              <ValueCreateForm
+                :key-id="keyId"
+                :language-id="language.id"
+                :on-create-value="onCreateValue"
+                :on-reset="reset"
+              />
             </div>
           </div>
         </div>
@@ -84,9 +54,13 @@
 import {
   reactive,
 } from 'vue';
+import ValueCreateForm from './ValueCreateForm.vue';
 
 export default {
   name: 'ValueList',
+  components: {
+    ValueCreateForm,
+  },
   props: {
     keyId: {
       type: Number,
@@ -96,7 +70,7 @@ export default {
       type: Object,
       default: () => {},
     },
-    onCreate: {
+    onCreateValue: {
       type: Function,
       default: () => {},
     },
@@ -105,26 +79,15 @@ export default {
       default: () => {},
     },
   },
-  setup(props) {
+  setup() {
     const state = reactive({
       createForm: false,
-      text: null,
     });
     const reset = () => {
       state.createForm = false;
-      state.text = null;
-    };
-    const create = ({ languageId }) => {
-      props.onCreate({
-        keyId: props.keyId,
-        languageId,
-        text: state.text,
-      });
-      reset();
     };
     return {
       state,
-      create,
       reset,
     };
   },

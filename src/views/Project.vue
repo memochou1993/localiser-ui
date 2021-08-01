@@ -27,7 +27,7 @@
           <KeyList
             v-if="isLoaded"
             :keys="state.keys"
-            :on-create="createValue"
+            :on-create-value="createValue"
             :languages="state.project.languages"
           />
           <AppSkeleton
