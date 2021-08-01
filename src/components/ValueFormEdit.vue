@@ -1,27 +1,21 @@
 <template>
-  <div
-    class="q-pb-xs"
+  <q-card
+    bordered
+    class="q-mb-md q-px-sm"
+    flat
   >
-    <q-card
-      bordered
-      class="q-my-xs q-px-sm"
-      flat
-    >
-      <q-input
-        v-model="text"
-        autofocus
-        autogrow
-        borderless
-        dense
-        input-style="max-height: 6rem"
-        type="textarea"
-        @keyup.enter.stop
-      />
-    </q-card>
-  </div>
-  <div
-    class="q-my-xs"
-  >
+    <q-input
+      v-model="text"
+      autofocus
+      autogrow
+      borderless
+      dense
+      input-style="max-height: 6rem;"
+      type="textarea"
+      @keyup.enter.stop
+    />
+  </q-card>
+  <div>
     <q-btn
       class="q-mr-xs"
       color="primary"

@@ -18,43 +18,54 @@
           class="col-8 flex items-center"
         >
           <div
+            class="q-px-md cursor-pointer break-word"
             style="width: 100%"
-            class="q-px-md break-word"
           >
             <template
               v-if="value"
             >
-              <ValueFormEdit
-                v-if="state.editForm"
-                :key-id="keyId"
-                :on-edit-value="editValue"
-                :value-id="value.id"
-                :value-text="value.text"
-                @close="setEditForm(false)"
-              />
-              <span
-                v-else
-                :class="[value.text ? 'text-secondary' : 'text-warning', 'cursor-pointer']"
+              <div
+                :class="[value.text ? 'text-secondary' : 'text-warning']"
                 @click="setEditForm(true)"
                 v-text="value.text || 'Empty'"
               />
+              <q-menu
+                v-if="state.editForm"
+                :offset="[-16, 0]"
+                class="q-pa-md"
+                style="width: 300px;"
+              >
+                <ValueFormEdit
+                  :key-id="keyId"
+                  :on-edit-value="editValue"
+                  :value-id="value.id"
+                  :value-text="value.text"
+                  @close="setEditForm(false)"
+                />
+              </q-menu>
             </template>
             <template
               v-else
             >
-              <ValueFormCreate
-                v-if="state.createForm"
-                :key-id="keyId"
-                :language-id="language.id"
-                :on-create-value="createValue"
-                @close="setCreateForm(false)"
-              />
-              <span
-                v-else
-                class="text-warning cursor-pointer"
+              <div
+                class="text-warning"
                 @click="setCreateForm(true)"
                 v-text="'Empty'"
               />
+              <q-menu
+                v-if="state.createForm"
+                :offset="[-16, 0]"
+                class="q-pa-md"
+                style="width: 300px;"
+              >
+                <ValueFormCreate
+                  v-if="state.createForm"
+                  :key-id="keyId"
+                  :language-id="language.id"
+                  :on-create-value="createValue"
+                  @close="setCreateForm(false)"
+                />
+              </q-menu>
             </template>
           </div>
         </div>
