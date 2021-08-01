@@ -16,7 +16,7 @@
             class="row"
           >
             <div
-              class="col-3 full-height flex items-center"
+              class="col-3 flex items-center"
             >
               <span
                 class="q-px-md break-word"

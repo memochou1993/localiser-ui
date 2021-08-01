@@ -7,59 +7,55 @@
         class="row"
       >
         <div
-          class="col-4 full-height flex items-center"
+          class="col-4 flex items-center"
         >
           <span
-            class="q-px-md break-word"
+            class="q-px-md"
             v-text="language.name"
           />
         </div>
         <div
-          class="col-8 full-height flex items-center"
+          class="col-8 flex items-center"
         >
           <div
-            v-if="value && !!value.text"
+            style="width: 100%"
+            class="q-px-md break-word"
           >
-            <span
-              v-if="!state.editForm"
-              class="text-secondary q-px-md cursor-pointer break-word"
-              @click="setEditForm(true)"
-              v-text="value.text"
-            />
-            <div
-              v-else
-              class="q-pl-md"
+            <template
+              v-if="value"
             >
               <ValueEditForm
+                v-if="state.editForm"
                 :key-id="keyId"
                 :on-edit-value="editValue"
                 :value-id="value.id"
                 :value-text="value.text"
                 @close="setEditForm(false)"
               />
-            </div>
-          </div>
-          <div
-            v-else
-            style="width: 100%"
-          >
-            <span
-              v-if="!state.createForm"
-              class="text-warning q-px-md cursor-pointer break-word"
-              @click="setCreateForm(true)"
-              v-text="'Empty'"
-            />
-            <div
+              <span
+                v-else
+                :class="[value.text ? 'text-secondary' : 'text-warning', 'cursor-pointer']"
+                @click="setEditForm(true)"
+                v-text="value.text || 'Empty'"
+              />
+            </template>
+            <template
               v-else
-              class="q-pl-md"
             >
               <ValueCreateForm
+                v-if="state.createForm"
                 :key-id="keyId"
                 :language-id="language.id"
                 :on-create-value="createValue"
                 @close="setCreateForm(false)"
               />
-            </div>
+              <span
+                v-else
+                class="text-warning cursor-pointer"
+                @click="setCreateForm(true)"
+                v-text="'Empty'"
+              />
+            </template>
           </div>
         </div>
       </div>
