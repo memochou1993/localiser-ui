@@ -12,11 +12,11 @@ export default createStore({
     },
   },
   mutations: {
-    setToken(state, value) {
-      state.token = value;
+    setToken(state, v) {
+      state.token = v;
     },
-    setProjects(state, value) {
-      state.projects = value;
+    setProjects(state, v) {
+      state.projects = v;
     },
   },
   actions: {

@@ -103,11 +103,11 @@ export default {
       createForm: false,
       editForm: false,
     });
-    const setCreateForm = (value) => {
-      state.createForm = value;
+    const setCreateForm = (v) => {
+      state.createForm = v;
     };
-    const setEditForm = (value) => {
-      state.editForm = value;
+    const setEditForm = (v) => {
+      state.editForm = v;
     };
     const createValue = (data) => {
       props.onCreateValue(data);
