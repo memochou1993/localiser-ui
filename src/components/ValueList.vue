@@ -2,7 +2,7 @@
   <q-list>
     <template
       v-for="(language, i) in languages"
-      :key="i"
+      :key="language.id"
     >
       <q-separator
         v-show="i > 0"
