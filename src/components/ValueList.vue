@@ -12,6 +12,7 @@
         :key-id="keyId"
         :language="language"
         :on-create-value="onCreateValue"
+        :on-edit-value="onEditValue"
         :value="values.find((value) => value.language.id === language.id)"
       />
     </template>
@@ -36,6 +37,10 @@ export default {
       default: () => [],
     },
     onCreateValue: {
+      type: Function,
+      default: () => {},
+    },
+    onEditValue: {
       type: Function,
       default: () => {},
     },

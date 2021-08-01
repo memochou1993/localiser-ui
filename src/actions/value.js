@@ -11,6 +11,16 @@ const store = ({
   }).then(({ data }) => resolve(data)).catch((err) => reject(err));
 });
 
+const update = ({
+  valueId,
+  text,
+}) => new Promise((resolve, reject) => {
+  axios.patch(`/api/values/${valueId}`, {
+    text,
+  }).then(({ data }) => resolve(data)).catch((err) => reject(err));
+});
+
 export default {
   store,
+  update,
 };

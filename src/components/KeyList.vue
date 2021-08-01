@@ -30,6 +30,7 @@
                 :key-id="key.id"
                 :languages="languages"
                 :on-create-value="onCreateValue"
+                :on-edit-value="onEditValue"
                 :values="key.values"
               />
             </div>
@@ -57,6 +58,10 @@ export default {
       default: () => [],
     },
     onCreateValue: {
+      type: Function,
+      default: () => {},
+    },
+    onEditValue: {
       type: Function,
       default: () => {},
     },

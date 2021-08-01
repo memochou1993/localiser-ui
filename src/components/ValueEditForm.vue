@@ -28,7 +28,7 @@
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="onCreateValue({ keyId, languageId, text })"
+      @click="onEditValue({ keyId, valueId, text })"
     />
     <q-btn
       class="q-mr-xs"
@@ -52,11 +52,7 @@ export default {
       type: Number,
       required: true,
     },
-    languageId: {
-      type: Number,
-      required: true,
-    },
-    onCreateValue: {
+    onEditValue: {
       type: Function,
       default: () => {},
     },
@@ -64,9 +60,17 @@ export default {
       type: Function,
       default: () => {},
     },
+    valueId: {
+      type: Number,
+      required: true,
+    },
+    valueText: {
+      type: String,
+      default: '',
+    },
   },
-  setup() {
-    const text = ref(null);
+  setup(props) {
+    const text = ref(props.valueText);
     return {
       text,
     };

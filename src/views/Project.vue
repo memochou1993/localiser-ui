@@ -28,6 +28,7 @@
             v-if="isLoaded"
             :keys="state.keys"
             :on-create-value="createValue"
+            :on-edit-value="editValue"
             :languages="state.project.languages"
           />
           <AppSkeleton
@@ -95,10 +96,21 @@ export default {
         console.debug(err);
       }
     };
+    const editValue = async ({ keyId, valueId, text }) => {
+      try {
+        const { data } = await actions.value.update({ valueId, text });
+        state.keys
+          .find((key) => key.id === keyId).values
+          .find((value) => value.id === valueId).text = data.text;
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     return {
       state,
       isLoaded,
       createValue,
+      editValue,
     };
   },
 };
