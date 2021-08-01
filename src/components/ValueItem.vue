@@ -7,19 +7,17 @@
         class="row"
       >
         <div
-          class="col-4 flex items-center"
+          class="col-4 flex items-center q-px-md"
         >
           <span
-            class="q-px-md"
             v-text="language.name"
           />
         </div>
         <div
-          class="col-8 flex items-center"
+          class="col-8 flex items-center q-px-md"
         >
           <div
-            class="q-px-md cursor-pointer break-word"
-            style="width: 100%"
+            class="full-width cursor-pointer break-word"
           >
             <template
               v-if="value"
@@ -31,7 +29,7 @@
               />
               <q-menu
                 v-if="state.editForm"
-                :offset="[-16, 0]"
+                :offset="[0, 0]"
                 class="q-pa-md"
                 style="width: 300px;"
               >
@@ -54,7 +52,7 @@
               />
               <q-menu
                 v-if="state.createForm"
-                :offset="[-16, 0]"
+                :offset="[0, 0]"
                 class="q-pa-md"
                 style="width: 300px;"
               >

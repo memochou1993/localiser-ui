@@ -16,10 +16,10 @@
             class="row"
           >
             <div
-              class="col-3 flex items-center"
+              class="col-3 flex items-center q-px-md"
             >
               <span
-                class="q-px-md break-word"
+                class="break-word"
                 v-text="key.name"
               />
             </div>
