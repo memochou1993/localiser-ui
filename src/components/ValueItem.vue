@@ -47,7 +47,7 @@
               v-else
             >
               <div
-                class="text-warning q-px-md q-py-sm"
+                class="text-warning q-pr-md q-py-sm"
                 @click="setCreateForm(true)"
                 v-text="'Empty'"
               />

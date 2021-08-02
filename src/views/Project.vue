@@ -71,7 +71,7 @@ export default {
     const { projectId } = route.params;
     (async () => {
       try {
-        const { data } = await actions.project.show(projectId);
+        const { data } = await actions.project.show({ projectId });
         state.project = data;
       } catch (err) {
         console.debug(err);
@@ -79,7 +79,7 @@ export default {
     })();
     (async () => {
       try {
-        const { data } = await actions.key.index(projectId);
+        const { data } = await actions.key.index({ projectId });
         state.keys = data;
       } catch (err) {
         console.debug(err);
