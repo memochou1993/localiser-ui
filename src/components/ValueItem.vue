@@ -34,7 +34,7 @@
                 class="q-pa-md shadow-4"
                 fit
               >
-                <ValueFormEdit
+                <ValueEditor
                   :key-id="keyId"
                   :on-edit-value="editValue"
                   :value-id="value.id"
@@ -57,7 +57,7 @@
                 class="q-pa-md shadow-4"
                 fit
               >
-                <ValueFormCreate
+                <ValueCreator
                   v-if="state.createForm"
                   :key-id="keyId"
                   :language-id="language.id"
@@ -77,14 +77,14 @@
 import {
   reactive,
 } from 'vue';
-import ValueFormCreate from './ValueFormCreate.vue';
-import ValueFormEdit from './ValueFormEdit.vue';
+import ValueCreator from './ValueCreator.vue';
+import ValueEditor from './ValueEditor.vue';
 
 export default {
   name: 'ValueList',
   components: {
-    ValueFormCreate,
-    ValueFormEdit,
+    ValueCreator,
+    ValueEditor,
   },
   props: {
     keyId: {

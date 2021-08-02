@@ -19,11 +19,11 @@
     <q-btn
       class="q-mr-xs"
       color="primary"
-      :disable="text === valueText"
+      :disable="!text"
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="onEditValue({ keyId, valueId, text })"
+      @click="onCreateValue({ keyId, languageId, text })"
     />
     <q-btn
       class="q-mr-xs"
@@ -41,30 +41,26 @@ import {
 } from 'vue';
 
 export default {
-  name: 'ValueFormEdit',
+  name: 'ValueCreator',
   props: {
     keyId: {
       type: Number,
       required: true,
     },
-    onEditValue: {
-      type: Function,
-      default: () => {},
-    },
-    valueId: {
+    languageId: {
       type: Number,
       required: true,
     },
-    valueText: {
-      type: String,
-      default: '',
+    onCreateValue: {
+      type: Function,
+      default: () => {},
     },
   },
   emits: [
     'close',
   ],
-  setup(props) {
-    const text = ref(props.valueText);
+  setup() {
+    const text = ref(null);
     return {
       text,
     };
