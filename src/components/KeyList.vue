@@ -26,7 +26,7 @@
             <div
               class="col-9"
             >
-              <ValueList
+              <LanguageList
                 :key-id="key.id"
                 :languages="languages"
                 :on-create-value="onCreateValue"
@@ -46,12 +46,12 @@
 </template>
 
 <script>
-import ValueList from './ValueList.vue';
+import LanguageList from './LanguageList.vue';
 
 export default {
   name: 'KeyList',
   components: {
-    ValueList,
+    LanguageList,
   },
   props: {
     keys: {

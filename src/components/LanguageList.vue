@@ -23,7 +23,7 @@
 import ValueItem from './ValueItem.vue';
 
 export default {
-  name: 'ValueList',
+  name: 'LanguageList',
   components: {
     ValueItem,
   },
