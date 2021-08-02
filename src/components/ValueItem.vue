@@ -24,14 +24,14 @@
               v-if="value"
             >
               <div
-                :class="[value.text ? 'text-info' : 'text-warning', 'q-px-md q-py-sm']"
+                :class="[value.text ? 'text-info' : 'text-warning', 'q-pr-md q-py-sm']"
                 @click="setEditForm(true)"
                 v-text="value.text || 'Empty'"
               />
               <q-menu
                 v-if="state.editForm"
                 :offset="[0, 0]"
-                class="q-pa-md"
+                class="q-pa-md shadow-4"
                 fit
               >
                 <ValueFormEdit
@@ -54,7 +54,7 @@
               <q-menu
                 v-if="state.createForm"
                 :offset="[0, 0]"
-                class="q-pa-md"
+                class="q-pa-md shadow-4"
                 fit
               >
                 <ValueFormCreate

@@ -6,7 +6,7 @@
       class="col-10 col-sm-8"
     >
       <q-card
-        class="q-pa-md"
+        class="q-pa-md shadow-4"
       >
         <q-card-section
           class="q-pb-none"
