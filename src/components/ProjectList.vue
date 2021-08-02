@@ -16,7 +16,7 @@
           >
             <router-link
               :to="{ name: 'project', params: { projectId: project.id } }"
-              class="text-secondary underline-none underline-hover"
+              class="text-info underline-none underline-hover"
               v-text="project.name"
             />
           </div>

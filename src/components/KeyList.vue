@@ -1,13 +1,13 @@
 <template>
-  <q-list>
+  <q-list
+    bordered
+    class="rounded-borders q-py-sm"
+    style="background: #fafafa;"
+  >
     <template
       v-for="(key, i) in keys"
       :key="key.id"
     >
-      <q-separator
-        v-show="i === 0"
-        spaced
-      />
       <q-item
         class="q-pa-none"
       >
@@ -16,10 +16,10 @@
             class="row"
           >
             <div
-              class="col-3 flex items-center q-px-md"
+              class="col-3 flex items-center"
             >
               <span
-                class="break-word"
+                class="q-px-md q-py-sm break-word"
                 v-text="key.name"
               />
             </div>
@@ -38,6 +38,7 @@
         </q-item-section>
       </q-item>
       <q-separator
+        v-show="i < keys.length - 1"
         spaced
       />
     </template>

@@ -7,14 +7,15 @@
         class="row"
       >
         <div
-          class="col-4 flex items-center q-px-md"
+          class="col-4 flex items-center"
         >
           <span
+            class="q-px-md q-py-sm"
             v-text="language.name"
           />
         </div>
         <div
-          class="col-8 flex items-center q-px-md"
+          class="col-8 flex items-center"
         >
           <div
             class="full-width cursor-pointer break-word"
@@ -23,7 +24,7 @@
               v-if="value"
             >
               <div
-                :class="[value.text ? 'text-secondary' : 'text-warning']"
+                :class="[value.text ? 'text-info' : 'text-warning', 'q-px-md q-py-sm']"
                 @click="setEditForm(true)"
                 v-text="value.text || 'Empty'"
               />
@@ -31,7 +32,7 @@
                 v-if="state.editForm"
                 :offset="[0, 0]"
                 class="q-pa-md"
-                style="width: 300px;"
+                fit
               >
                 <ValueFormEdit
                   :key-id="keyId"
@@ -46,7 +47,7 @@
               v-else
             >
               <div
-                class="text-warning"
+                class="text-warning q-px-md q-py-sm"
                 @click="setCreateForm(true)"
                 v-text="'Empty'"
               />
@@ -54,7 +55,7 @@
                 v-if="state.createForm"
                 :offset="[0, 0]"
                 class="q-pa-md"
-                style="width: 300px;"
+                fit
               >
                 <ValueFormCreate
                   v-if="state.createForm"
