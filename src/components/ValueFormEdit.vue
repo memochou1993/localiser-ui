@@ -19,6 +19,7 @@
     <q-btn
       class="q-mr-xs"
       color="primary"
+      :disable="text === valueText"
       icon="mdi-check"
       size="sm"
       unelevated

@@ -1,6 +1,5 @@
 @import './quasar.variables.sass'
 @import '~quasar-styl'
-// @import '~quasar-addon-styl'
 
 body
   background-color: #eeeeee
@@ -9,6 +8,12 @@ body
 .q-field--labeled .q-field__prefix,
 .q-field--labeled .q-field__suffix
   padding-bottom: 0
+
+.disabled,
+.disabled *,
+[disabled],
+[disabled] *
+  cursor: default !important
 
 .underline-none
   text-decoration: none
