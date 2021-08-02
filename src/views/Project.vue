@@ -22,11 +22,32 @@
           />
         </q-card-section>
         <q-card-section
+          class="q-pb-xs"
+        >
+          <q-card
+            v-if="isLoaded"
+            bordered
+            class="q-px-md"
+            flat
+          >
+            <q-input
+              v-model="state.keyword"
+              autofocus
+              borderless
+              dense
+              placeholder="Search"
+            />
+          </q-card>
+          <AppSkeleton
+            v-else
+          />
+        </q-card-section>
+        <q-card-section
           class="q-pa-md"
         >
           <KeyList
             v-if="isLoaded"
-            :keys="state.keys"
+            :keys="state.keys.filter(filter)"
             :on-create-value="createValue"
             :on-edit-value="editValue"
             :languages="state.project.languages"
@@ -66,6 +87,7 @@ export default {
     const state = reactive({
       project: null,
       keys: null,
+      keyword: '',
     });
     const isLoaded = computed(() => !!state.project && !!state.keys);
     const { projectId } = route.params;
@@ -105,11 +127,13 @@ export default {
         console.debug(err);
       }
     };
+    const filter = (k) => k.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
       isLoaded,
       createValue,
       editValue,
+      filter,
     };
   },
 };
