@@ -88,10 +88,8 @@ export default {
     const createValue = async ({ keyId, languageId, text }) => {
       try {
         const { data } = await actions.value.store({ keyId, languageId, text });
-        state.keys.find((key) => key.id === keyId).values.push({
-          ...data,
-          language: { id: languageId },
-        });
+        const value = { ...data, language: { id: languageId } };
+        state.keys.find((k) => k.id === keyId).values.push(value);
       } catch (err) {
         console.debug(err);
       }
@@ -99,9 +97,10 @@ export default {
     const editValue = async ({ keyId, valueId, text }) => {
       try {
         const { data } = await actions.value.update({ valueId, text });
-        state.keys
-          .find((key) => key.id === keyId).values
-          .find((value) => value.id === valueId).text = data.text;
+        const value = state.keys
+          .find((k) => k.id === keyId).values
+          .find((v) => v.id === valueId);
+        Object.assign(value, data);
       } catch (err) {
         console.debug(err);
       }

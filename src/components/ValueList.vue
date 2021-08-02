@@ -13,7 +13,7 @@
         :language="language"
         :on-create-value="onCreateValue"
         :on-edit-value="onEditValue"
-        :value="values.find((value) => value.language.id === language.id)"
+        :value="values.find((v) => v.language.id === language.id)"
       />
     </template>
   </q-list>
