@@ -120,11 +120,15 @@ export default {
       state.editForm = v;
     };
     const createValue = (data) => {
-      props.onCreateValue(data);
+      if (data.text) {
+        props.onCreateValue(data);
+      }
       setCreateForm(false);
     };
     const editValue = (data) => {
-      props.onEditValue(data);
+      if (data.text !== props.value.text) {
+        props.onEditValue(data);
+      }
       setEditForm(false);
     };
     return {
