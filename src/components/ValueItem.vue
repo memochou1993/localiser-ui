@@ -81,7 +81,7 @@ import ValueCreator from './ValueCreator.vue';
 import ValueEditor from './ValueEditor.vue';
 
 export default {
-  name: 'ValueList',
+  name: 'ValueItem',
   components: {
     ValueCreator,
     ValueEditor,

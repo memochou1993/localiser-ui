@@ -15,7 +15,7 @@ import {
 } from '@/actions';
 
 export default {
-  name: 'Login',
+  name: 'Logout',
   setup() {
     const store = useStore();
     const router = useRouter();
