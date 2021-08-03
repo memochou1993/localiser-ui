@@ -39,16 +39,16 @@
 <script>
 const items = [
   {
-    name: 'Profile',
+    name: 'My Profile',
     to: {
-      name: 'projects',
+      name: 'project.index', // FIXME
     },
     separated: false,
   },
   {
-    name: 'Projects',
+    name: 'My Projects',
     to: {
-      name: 'projects',
+      name: 'project.index',
     },
     separated: false,
   },

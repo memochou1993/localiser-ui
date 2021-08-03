@@ -6,7 +6,7 @@ const routes = [
     path: '/',
     name: 'home',
     redirect: {
-      name: 'projects',
+      name: 'project.index',
     },
     meta: {
       requiresAuth: true,
@@ -14,16 +14,16 @@ const routes = [
   },
   {
     path: '/projects',
-    name: 'projects',
-    component: () => import(/* webpackChunkName: "projects" */ '@/views/Projects.vue'),
+    name: 'project.index',
+    component: () => import(/* webpackChunkName: "projectIndex" */ '@/views/ProjectIndex.vue'),
     meta: {
       requiresAuth: true,
     },
   },
   {
-    path: '/projects/:projectId',
-    name: 'project',
-    component: () => import(/* webpackChunkName: "project" */ '@/views/Project.vue'),
+    path: '/projects/:projectId/keys',
+    name: 'key.index',
+    component: () => import(/* webpackChunkName: "keyIndex" */ '@/views/KeyIndex.vue'),
     meta: {
       requiresAuth: true,
     },

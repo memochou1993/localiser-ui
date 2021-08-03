@@ -66,7 +66,7 @@ import {
 } from '@/components';
 
 export default {
-  name: 'Project',
+  name: 'KeyIndex',
   components: {
     AppFilter,
     AppSkeleton,
