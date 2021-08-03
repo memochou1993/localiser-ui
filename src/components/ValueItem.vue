@@ -18,6 +18,7 @@
           class="col-8 flex items-center"
         >
           <div
+            ref="anchor"
             class="full-width cursor-pointer break-word"
           >
             <template
@@ -28,11 +29,10 @@
                 @click="setEditForm(true)"
                 v-text="value.text || 'Empty'"
               />
-              <q-menu
+              <q-popup-proxy
                 v-if="state.editForm"
-                :offset="[0, 0]"
+                :style="anchor ? `width: ${anchor.clientWidth}px`: ''"
                 class="q-pa-md shadow-4"
-                fit
               >
                 <ValueEditor
                   :key-id="keyId"
@@ -41,7 +41,7 @@
                   :value-text="value.text"
                   @close="setEditForm(false)"
                 />
-              </q-menu>
+              </q-popup-proxy>
             </template>
             <template
               v-else
@@ -51,11 +51,10 @@
                 @click="setCreateForm(true)"
                 v-text="'Empty'"
               />
-              <q-menu
+              <q-popup-proxy
                 v-if="state.createForm"
-                :offset="[0, 0]"
+                :style="anchor ? `width: ${anchor.clientWidth}px`: ''"
                 class="q-pa-md shadow-4"
-                fit
               >
                 <ValueCreator
                   v-if="state.createForm"
@@ -64,7 +63,7 @@
                   :on-create-value="createValue"
                   @close="setCreateForm(false)"
                 />
-              </q-menu>
+              </q-popup-proxy>
             </template>
           </div>
         </div>
@@ -75,6 +74,7 @@
 
 <script>
 import {
+  ref,
   reactive,
 } from 'vue';
 import ValueCreator from './ValueCreator.vue';
@@ -113,6 +113,7 @@ export default {
       createForm: false,
       editForm: false,
     });
+    const anchor = ref(null);
     const setCreateForm = (v) => {
       state.createForm = v;
     };
@@ -133,6 +134,7 @@ export default {
     };
     return {
       state,
+      anchor,
       setCreateForm,
       setEditForm,
       createValue,
