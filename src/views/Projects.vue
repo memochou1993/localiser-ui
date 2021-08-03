@@ -22,11 +22,20 @@
           />
         </q-card-section>
         <q-card-section
-          class="q-pa-md"
+          class="q-pb-none"
         >
+          <AppFilter
+            v-if="isLoaded"
+            @update="(keyword) => state.keyword = keyword"
+          />
+          <AppSkeleton
+            v-else
+          />
+        </q-card-section>
+        <q-card-section>
           <ProjectList
             v-if="isLoaded"
-            :projects="projects"
+            :projects="projects.filter(filter)"
           />
           <AppSkeleton
             v-else
@@ -41,6 +50,7 @@
 <script>
 import {
   computed,
+  reactive,
 } from 'vue';
 import {
   useStore,
@@ -49,6 +59,7 @@ import {
   project,
 } from '@/actions';
 import {
+  AppFilter,
   AppSkeleton,
   ProjectList,
 } from '@/components';
@@ -56,11 +67,15 @@ import {
 export default {
   name: 'Projects',
   components: {
+    AppFilter,
     AppSkeleton,
     ProjectList,
   },
   setup() {
     const store = useStore();
+    const state = reactive({
+      keyword: '',
+    });
     const projects = computed(() => store.state.projects);
     const isLoaded = computed(() => !!projects.value);
     if (!projects.value) {
@@ -73,9 +88,12 @@ export default {
         }
       })();
     }
+    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
+      state,
       projects,
       isLoaded,
+      filter,
     };
   },
 };

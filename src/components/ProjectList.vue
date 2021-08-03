@@ -1,10 +1,11 @@
 <template>
-  <q-list>
-    <q-separator
-      spaced
-    />
+  <q-list
+    bordered
+    class="rounded-borders q-py-sm"
+    style="background: #fafafa;"
+  >
     <template
-      v-for="(project) in projects"
+      v-for="(project, i) in projects"
       :key="project.id"
     >
       <q-item>
@@ -35,6 +36,7 @@
         </q-item-section>
       </q-item>
       <q-separator
+        v-show="i < projects.length - 1"
         spaced
       />
     </template>

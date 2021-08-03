@@ -22,7 +22,7 @@
           />
         </q-card-section>
         <q-card-section
-          class="q-pb-xs"
+          class="q-pb-none"
         >
           <AppFilter
             v-if="isLoaded"
@@ -32,9 +32,7 @@
             v-else
           />
         </q-card-section>
-        <q-card-section
-          class="q-pa-md"
-        >
+        <q-card-section>
           <KeyList
             v-if="isLoaded"
             :keys="state.keys.filter(filter)"
@@ -119,7 +117,7 @@ export default {
         console.debug(err);
       }
     };
-    const filter = (k) => k.name.toLowerCase().includes(state.keyword.toLowerCase());
+    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
       isLoaded,
