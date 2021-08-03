@@ -29,12 +29,12 @@
             class="row justify-between items-center"
           >
             <div
-              class="col-12 col-sm-6"
+              class="col-12 col-sm-6 col-md-6"
             >
               <KeyCreator />
             </div>
             <div
-              class="col-12 col-sm-2"
+              class="col-12 col-sm-6 col-md-2"
             >
               <AppFilter
                 @update="(keyword) => state.keyword = keyword"

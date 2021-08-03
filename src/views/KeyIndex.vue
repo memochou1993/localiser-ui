@@ -24,10 +24,21 @@
         <q-card-section
           class="q-pb-none"
         >
-          <AppFilter
+          <div
             v-if="isLoaded"
-            @update="(keyword) => state.keyword = keyword"
-          />
+            class="row justify-between items-center"
+          >
+            <div
+              class="col-12 col-sm-6 col-md-6"
+            />
+            <div
+              class="col-12 col-sm-6 col-md-2"
+            >
+              <AppFilter
+                @update="(keyword) => state.keyword = keyword"
+              />
+            </div>
+          </div>
           <AppSkeleton
             v-else
           />
