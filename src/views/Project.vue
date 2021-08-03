@@ -24,20 +24,10 @@
         <q-card-section
           class="q-pb-xs"
         >
-          <q-card
+          <AppFilter
             v-if="isLoaded"
-            bordered
-            class="q-px-md"
-            flat
-          >
-            <q-input
-              v-model="state.keyword"
-              autofocus
-              borderless
-              dense
-              placeholder="Search"
-            />
-          </q-card>
+            @update="(keyword) => state.keyword = keyword"
+          />
           <AppSkeleton
             v-else
           />
@@ -72,6 +62,7 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
+  AppFilter,
   AppSkeleton,
   KeyList,
 } from '@/components';
@@ -79,6 +70,7 @@ import {
 export default {
   name: 'Project',
   components: {
+    AppFilter,
     AppSkeleton,
     KeyList,
   },
