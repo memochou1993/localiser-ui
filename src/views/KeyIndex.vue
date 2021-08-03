@@ -3,7 +3,7 @@
     class="row justify-center"
   >
     <div
-      class="col-10 col-sm-8"
+      class="col-10"
     >
       <q-card
         class="q-pa-md shadow-4"

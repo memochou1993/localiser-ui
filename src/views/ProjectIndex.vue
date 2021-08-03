@@ -3,7 +3,7 @@
     class="row justify-center"
   >
     <div
-      class="col-10 col-sm-8"
+      class="col-10"
     >
       <q-card
         class="q-pa-md shadow-4"
@@ -24,10 +24,23 @@
         <q-card-section
           class="q-pb-none"
         >
-          <AppFilter
+          <div
             v-if="isLoaded"
-            @update="(keyword) => state.keyword = keyword"
-          />
+            class="row justify-between items-center"
+          >
+            <div
+              class="col-12 col-sm-6"
+            >
+              <KeyCreator />
+            </div>
+            <div
+              class="col-12 col-sm-2"
+            >
+              <AppFilter
+                @update="(keyword) => state.keyword = keyword"
+              />
+            </div>
+          </div>
           <AppSkeleton
             v-else
           />
@@ -61,6 +74,7 @@ import {
 import {
   AppFilter,
   AppSkeleton,
+  KeyCreator,
   ProjectList,
 } from '@/components';
 
@@ -69,6 +83,7 @@ export default {
   components: {
     AppFilter,
     AppSkeleton,
+    KeyCreator,
     ProjectList,
   },
   setup() {
