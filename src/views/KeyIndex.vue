@@ -35,7 +35,7 @@
               class="col-12 col-sm-6 col-md-2"
             >
               <AppFilter
-                @update="(keyword) => state.keyword = keyword"
+                @onUpdate="(keyword) => state.keyword = keyword"
               />
             </div>
           </div>

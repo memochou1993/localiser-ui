@@ -36,10 +36,10 @@
               >
                 <ValueEditor
                   :key-id="keyId"
-                  :on-edit-value="editValue"
                   :value-id="value.id"
                   :value-text="value.text"
-                  @close="setEditForm(false)"
+                  @onClose="setEditForm(false)"
+                  @onSubmit="editValue"
                 />
               </q-popup-proxy>
             </template>
@@ -56,12 +56,11 @@
                 :style="anchor ? `width: ${anchor.clientWidth}px`: ''"
                 class="q-pa-md shadow-4"
               >
-                <ValueCreator
-                  v-if="state.createForm"
+                <ValueEditor
                   :key-id="keyId"
                   :language-id="language.id"
-                  :on-create-value="createValue"
-                  @close="setCreateForm(false)"
+                  @onClose="setCreateForm(false)"
+                  @onSubmit="createValue"
                 />
               </q-popup-proxy>
             </template>
@@ -77,13 +76,11 @@ import {
   ref,
   reactive,
 } from 'vue';
-import ValueCreator from './ValueCreator.vue';
 import ValueEditor from './ValueEditor.vue';
 
 export default {
   name: 'ValueItem',
   components: {
-    ValueCreator,
     ValueEditor,
   },
   props: {

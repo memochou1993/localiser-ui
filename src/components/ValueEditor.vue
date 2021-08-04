@@ -22,14 +22,14 @@
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="onEditValue({ keyId, valueId, text })"
+      @click="$emit('onSubmit', { keyId, languageId, valueId, text })"
     />
     <q-btn
       class="q-mr-xs"
       icon="mdi-close"
       outline
       size="sm"
-      @click="$emit('close')"
+      @click="$emit('onClose')"
     />
   </div>
 </template>
@@ -44,15 +44,15 @@ export default {
   props: {
     keyId: {
       type: Number,
-      required: true,
+      default: 0,
     },
-    onEditValue: {
-      type: Function,
-      default: () => {},
+    languageId: {
+      type: Number,
+      default: 0,
     },
     valueId: {
       type: Number,
-      required: true,
+      default: 0,
     },
     valueText: {
       type: String,
@@ -60,7 +60,8 @@ export default {
     },
   },
   emits: [
-    'close',
+    'onClose',
+    'onSubmit',
   ],
   setup(props) {
     const text = ref(props.valueText);

@@ -9,7 +9,7 @@
       autofocus
       borderless
       dense
-      @update:model-value="(v) => $emit('update', v)"
+      @update:model-value="(v) => $emit('onUpdate', v)"
     >
       <template
         #append
@@ -30,7 +30,7 @@ import {
 export default {
   name: 'AppFilter',
   emits: [
-    'update',
+    'onUpdate',
   ],
   setup() {
     const input = ref('');
