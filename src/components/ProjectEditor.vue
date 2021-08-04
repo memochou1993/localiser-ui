@@ -64,7 +64,7 @@ import {
 import { useDialogPluginComponent } from 'quasar';
 
 export default {
-  name: 'KeyCreator',
+  name: 'ProjectEditor',
   emits: [
     ...useDialogPluginComponent.emits,
     'onSubmit',

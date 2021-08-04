@@ -31,7 +31,7 @@
             <div
               class="col-12 col-sm-6 col-md-6"
             >
-              <KeyCreator
+              <ProjectEditor
                 @onSubmit="submit"
               />
             </div>
@@ -74,7 +74,7 @@ import * as actions from '@/actions';
 import {
   AppFilter,
   AppSkeleton,
-  KeyCreator,
+  ProjectEditor,
   ProjectList,
 } from '@/components';
 
@@ -83,7 +83,7 @@ export default {
   components: {
     AppFilter,
     AppSkeleton,
-    KeyCreator,
+    ProjectEditor,
     ProjectList,
   },
   setup() {
@@ -109,7 +109,8 @@ export default {
         const { data } = await actions.project.store({
           name,
         });
-        store.commit('setProjects', [...projects.value, data]);
+        const project = { ...data, languages: [] };
+        store.commit('setProjects', projects.value.concat(project));
       } catch (err) {
         console.debug(err);
       }
