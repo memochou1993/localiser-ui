@@ -1,6 +1,6 @@
 <template>
   <q-skeleton
-    v-for="n in count"
+    v-for="(n) in count"
     :key="n"
     :height="height"
     :width="width"

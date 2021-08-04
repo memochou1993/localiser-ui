@@ -1,19 +1,20 @@
 <template>
   <q-list
     bordered
-    class="rounded-borders q-py-sm"
-    style="background: #fafafa;"
+    class="rounded-borders bg-grey-1 q-py-sm"
   >
     <template
       v-for="(project, i) in projects"
       :key="project.id"
     >
+      <q-separator
+        v-show="i > 0"
+        spaced
+      />
       <q-item
         class="q-py-none"
       >
-        <q-item-section
-          class="text-weight-regular"
-        >
+        <q-item-section>
           <div
             class="text-subtitle2 text-weight-regular q-my-sm"
           >
@@ -31,8 +32,8 @@
               v-for="(language) in project.languages"
               :key="language.id"
               :label="language.name"
-              class="q-ma-none q-mr-sm cursor-pointer"
-              color="red"
+              class="q-ma-none q-mr-sm cursor-default"
+              color="secondary"
               dense
               outline
               square
@@ -40,10 +41,6 @@
           </div>
         </q-item-section>
       </q-item>
-      <q-separator
-        v-show="i < projects.length - 1"
-        spaced
-      />
     </template>
   </q-list>
 </template>

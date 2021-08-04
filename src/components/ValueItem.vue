@@ -25,7 +25,7 @@
               v-if="value"
             >
               <div
-                :class="[value.text ? 'text-info' : 'text-warning', 'q-pr-md q-py-sm']"
+                :class="[value.text ? 'text-info' : 'text-secondary', 'q-pr-md q-py-sm']"
                 @click="setEditForm(true)"
                 v-text="value.text || 'Empty'"
               />
@@ -47,7 +47,7 @@
               v-else
             >
               <div
-                class="text-warning q-pr-md q-py-sm"
+                class="text-secondary q-pr-md q-py-sm"
                 @click="setCreateForm(true)"
                 v-text="'Empty'"
               />

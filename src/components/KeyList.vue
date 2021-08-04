@@ -1,13 +1,16 @@
 <template>
   <q-list
     bordered
-    class="rounded-borders q-py-sm"
-    style="background: #fafafa;"
+    class="rounded-borders bg-grey-1 q-py-sm"
   >
     <template
       v-for="(key, i) in keys"
       :key="key.id"
     >
+      <q-separator
+        v-show="i > 0"
+        spaced
+      />
       <q-item
         class="q-pa-none"
       >
@@ -37,10 +40,6 @@
           </div>
         </q-item-section>
       </q-item>
-      <q-separator
-        v-show="i < keys.length - 1"
-        spaced
-      />
     </template>
   </q-list>
 </template>
