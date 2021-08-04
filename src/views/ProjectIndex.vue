@@ -31,7 +31,9 @@
             <div
               class="col-12 col-sm-6 col-md-6"
             >
-              <KeyCreator />
+              <KeyCreator
+                @onSubmit="submit"
+              />
             </div>
             <div
               class="col-12 col-sm-6 col-md-2"
@@ -104,11 +106,22 @@ export default {
       })();
     }
     const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
+    const submit = async ({ name }) => {
+      try {
+        const { data } = await project.store({
+          name,
+        });
+        store.commit('setProjects', [...projects.value, data]);
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     return {
       state,
       projects,
       isLoaded,
       filter,
+      submit,
     };
   },
 };

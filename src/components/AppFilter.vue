@@ -1,7 +1,7 @@
 <template>
   <q-card
     bordered
-    class="q-px-md"
+    class="q-px-sm"
     flat
   >
     <q-input

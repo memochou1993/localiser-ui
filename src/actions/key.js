@@ -9,6 +9,19 @@ const index = ({
     .catch((err) => reject(err));
 });
 
+const store = ({
+  projectId,
+  name,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .post(`/api/projects/${projectId}/keys`, {
+      name,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
+  store,
 };

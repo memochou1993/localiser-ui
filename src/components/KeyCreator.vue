@@ -4,17 +4,38 @@
     color="primary"
     label="Create"
     outline
-    @click="dialog.show()"
+    @click="dialogRef.show()"
   />
   <q-dialog
-    ref="dialog"
-    @hide="onDialogHide"
+    ref="dialogRef"
+    @hide="cancel"
   >
     <q-card
       class="q-dialog-plugin"
     >
       <q-card-section>
-        TODO
+        <span
+          class="text-body1 text-weight-regular"
+          v-text="'Create'"
+        />
+      </q-card-section>
+      <q-card-section>
+        <div
+          class="text-grey-10 q-py-sm"
+          v-text="'Name'"
+        />
+        <q-card
+          bordered
+          class="q-px-sm"
+          flat
+        >
+          <q-input
+            v-model="state.name"
+            autofocus
+            borderless
+            dense
+          />
+        </q-card>
       </q-card-section>
       <q-card-actions
         class="q-pa-md"
@@ -37,27 +58,41 @@
 </template>
 
 <script>
+import {
+  reactive,
+} from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 
 export default {
   name: 'KeyCreator',
   emits: [
     ...useDialogPluginComponent.emits,
+    'onSubmit',
   ],
-  setup() {
+  setup(props, { emit }) {
+    const state = reactive({
+      name: '',
+    });
     const {
-      dialog,
-      onDialogHide,
+      dialogRef,
       onDialogOK,
       onDialogCancel,
     } = useDialogPluginComponent();
+    const reset = () => {
+      state.name = '';
+    };
     return {
-      dialog,
-      onDialogHide,
-      submit() {
+      state,
+      dialogRef,
+      submit: () => {
+        emit('onSubmit', state);
+        reset();
         onDialogOK();
       },
-      cancel: onDialogCancel,
+      cancel: () => {
+        reset();
+        onDialogCancel();
+      },
     };
   },
 };

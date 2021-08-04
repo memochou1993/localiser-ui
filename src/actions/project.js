@@ -16,7 +16,19 @@ const show = ({
     .catch((err) => reject(err));
 });
 
+const store = ({
+  name,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .post('/api/projects', {
+      name,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   show,
+  store,
 };

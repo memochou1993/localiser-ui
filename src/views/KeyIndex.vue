@@ -69,7 +69,7 @@ import {
 import {
   useRoute,
 } from 'vue-router';
-import * as actions from '@/actions';
+import * as actions from '@/actions'; // FIXME
 import {
   AppFilter,
   AppSkeleton,
