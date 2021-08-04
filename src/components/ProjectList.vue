@@ -1,5 +1,6 @@
 <template>
   <q-list
+    v-if="projects.length"
     bordered
     class="rounded-borders bg-grey-1 q-py-sm"
   >
@@ -52,13 +53,21 @@
       </q-item>
     </template>
   </q-list>
+  <AppEmpty
+    v-else
+    class="text-center text-weight-medium q-my-xl"
+  />
 </template>
 
 <script>
 import moment from 'moment';
+import AppEmpty from './AppEmpty.vue';
 
 export default {
   name: 'ProjectList',
+  components: {
+    AppEmpty,
+  },
   props: {
     projects: {
       type: Array,

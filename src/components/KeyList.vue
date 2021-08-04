@@ -1,5 +1,6 @@
 <template>
   <q-list
+    v-if="keys.length > 0"
     bordered
     class="rounded-borders bg-grey-1 q-py-sm"
   >
@@ -42,14 +43,20 @@
       </q-item>
     </template>
   </q-list>
+  <AppEmpty
+    v-else
+    class="text-center text-weight-medium q-my-xl"
+  />
 </template>
 
 <script>
+import AppEmpty from './AppEmpty.vue';
 import LanguageList from './LanguageList.vue';
 
 export default {
   name: 'KeyList',
   components: {
+    AppEmpty,
     LanguageList,
   },
   props: {
@@ -69,9 +76,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  setup() {
-    //
   },
 };
 </script>
