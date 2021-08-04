@@ -29,10 +29,14 @@
             class="row justify-between items-center"
           >
             <div
-              class="col-12 col-sm-6 col-md-6"
-            />
+              class="col-6 col-sm-6 col-md-6"
+            >
+              <KeyEditor
+                @onSubmit="createKey"
+              />
+            </div>
             <div
-              class="col-12 col-sm-6 col-md-2"
+              class="col-6 col-sm-6 col-md-3"
             >
               <AppFilter
                 @onUpdate="(keyword) => state.keyword = keyword"
@@ -73,6 +77,7 @@ import * as actions from '@/actions';
 import {
   AppFilter,
   AppSkeleton,
+  KeyEditor,
   KeyList,
 } from '@/components';
 
@@ -81,6 +86,7 @@ export default {
   components: {
     AppFilter,
     AppSkeleton,
+    KeyEditor,
     KeyList,
   },
   setup() {
@@ -108,6 +114,18 @@ export default {
         console.debug(err);
       }
     })();
+    const createKey = async ({ name }) => {
+      try {
+        const { data } = await actions.key.store({
+          projectId,
+          name,
+        });
+        const key = { ...data, values: [] };
+        state.keys.push(key);
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     const createValue = async ({ keyId, languageId, text }) => {
       try {
         const { data } = await actions.value.store({ keyId, languageId, text });
@@ -132,6 +150,7 @@ export default {
     return {
       state,
       isLoaded,
+      createKey,
       createValue,
       editValue,
       filter,

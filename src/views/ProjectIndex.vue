@@ -29,14 +29,14 @@
             class="row justify-between items-center"
           >
             <div
-              class="col-12 col-sm-6 col-md-6"
+              class="col-6 col-sm-6 col-md-6"
             >
               <ProjectEditor
-                @onSubmit="submit"
+                @onSubmit="createProject"
               />
             </div>
             <div
-              class="col-12 col-sm-6 col-md-2"
+              class="col-6 col-sm-6 col-md-3"
             >
               <AppFilter
                 @onUpdate="(keyword) => state.keyword = keyword"
@@ -103,8 +103,7 @@ export default {
         }
       })();
     }
-    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
-    const submit = async ({ name }) => {
+    const createProject = async ({ name }) => {
       try {
         const { data } = await actions.project.store({
           name,
@@ -115,12 +114,13 @@ export default {
         console.debug(err);
       }
     };
+    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
       projects,
       isLoaded,
+      createProject,
       filter,
-      submit,
     };
   },
 };
