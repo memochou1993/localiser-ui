@@ -40,12 +40,23 @@
             />
           </div>
         </q-item-section>
+        <q-card-section
+          class="flex items-center q-px-none"
+          side
+        >
+          <span
+            class="text-grey-6"
+            v-text="`Updated ${formatDate(project.updated_at)} ago`"
+          />
+        </q-card-section>
       </q-item>
     </template>
   </q-list>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name: 'ProjectList',
   props: {
@@ -53,6 +64,12 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+  setup() {
+    const formatDate = (v) => moment.duration(moment(v).diff(moment())).humanize();
+    return {
+      formatDate,
+    };
   },
 };
 </script>
