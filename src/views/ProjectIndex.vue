@@ -70,9 +70,7 @@ import {
 import {
   useStore,
 } from 'vuex';
-import {
-  project,
-} from '@/actions';
+import * as actions from '@/actions';
 import {
   AppFilter,
   AppSkeleton,
@@ -98,7 +96,7 @@ export default {
     if (!projects.value) {
       (async () => {
         try {
-          const { data } = await project.index();
+          const { data } = await actions.project.index();
           store.commit('setProjects', data);
         } catch (err) {
           console.debug(err);
@@ -108,7 +106,7 @@ export default {
     const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     const submit = async ({ name }) => {
       try {
-        const { data } = await project.store({
+        const { data } = await actions.project.store({
           name,
         });
         store.commit('setProjects', [...projects.value, data]);
