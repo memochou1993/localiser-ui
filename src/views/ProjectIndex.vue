@@ -22,30 +22,39 @@
           />
         </q-card-section>
         <q-card-section
-          class="q-pb-none"
+          class="q-py-none"
         >
           <div
             v-if="isLoaded"
             class="row justify-between items-center"
           >
             <div
-              class="col-6 col-sm-6 col-md-6"
+              class="row justify-between items-center q-pt-md"
             >
-              <ProjectEditor
-                @onSubmit="createProject"
+              <q-btn
+                class="q-mr-xs"
+                color="grey-8"
+                label="Create"
+                no-caps
+                outline
+                @click="state.createForm = true"
               />
             </div>
             <div
-              class="col-6 col-sm-6 col-md-3"
+              class="row justify-between items-center q-pt-md"
             >
               <AppFilter
+                class="q-mr-xs"
                 @onUpdate="(keyword) => state.keyword = keyword"
+              />
+              <q-btn
+                color="grey-8"
+                flat
+                round
+                icon="mdi-sort-ascending"
               />
             </div>
           </div>
-          <AppSkeleton
-            v-else
-          />
         </q-card-section>
         <q-card-section>
           <ProjectList
@@ -59,6 +68,11 @@
         </q-card-section>
       </q-card>
     </div>
+    <ProjectEditor
+      v-if="state.createForm"
+      @onSubmit="createProject"
+      @onClose="state.createForm = false"
+    />
   </div>
 </template>
 
@@ -89,6 +103,7 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({
+      createForm: false,
       keyword: '',
     });
     const projects = computed(() => store.state.projects);
