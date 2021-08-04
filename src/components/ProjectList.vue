@@ -8,12 +8,14 @@
       v-for="(project, i) in projects"
       :key="project.id"
     >
-      <q-item>
+      <q-item
+        class="q-py-none"
+      >
         <q-item-section
           class="text-weight-regular"
         >
           <div
-            class="text-subtitle2 text-weight-regular q-mb-md"
+            class="text-subtitle2 text-weight-regular q-my-sm"
           >
             <router-link
               :to="{ name: 'key.index', params: { projectId: project.id } }"
@@ -21,7 +23,10 @@
               v-text="project.name"
             />
           </div>
-          <div>
+          <div
+            v-if="project.languages.length > 0"
+            class="q-my-sm"
+          >
             <q-chip
               v-for="(language) in project.languages"
               :key="language.id"
