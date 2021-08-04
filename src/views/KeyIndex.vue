@@ -32,11 +32,11 @@
               class="row justify-between items-center q-pt-md"
             >
               <q-btn
-                class="q-mr-xs"
                 color="grey-8"
                 label="Create"
                 no-caps
                 outline
+                style="height: 42px;"
                 @click="state.createForm = true"
               />
             </div>
@@ -44,14 +44,7 @@
               class="row justify-between items-center q-pt-md"
             >
               <AppFilter
-                class="q-mr-xs"
                 @onUpdate="(keyword) => state.keyword = keyword"
-              />
-              <q-btn
-                color="grey-8"
-                flat
-                round
-                icon="mdi-sort-ascending"
               />
             </div>
           </div>
