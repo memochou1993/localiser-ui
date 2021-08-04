@@ -22,30 +22,39 @@
           />
         </q-card-section>
         <q-card-section
-          class="q-pb-none"
+          class="q-py-none"
         >
           <div
             v-if="isLoaded"
             class="row justify-between items-center"
           >
             <div
-              class="col-6 col-sm-6 col-md-6"
+              class="row justify-between items-center q-pt-md"
             >
-              <KeyEditor
-                @onSubmit="createKey"
+              <q-btn
+                class="q-mr-xs"
+                color="grey-8"
+                label="Create"
+                no-caps
+                outline
+                @click="state.createForm = true"
               />
             </div>
             <div
-              class="col-6 col-sm-6 col-md-3"
+              class="row justify-between items-center q-pt-md"
             >
               <AppFilter
+                class="q-mr-xs"
                 @onUpdate="(keyword) => state.keyword = keyword"
+              />
+              <q-btn
+                color="grey-8"
+                flat
+                round
+                icon="mdi-sort-ascending"
               />
             </div>
           </div>
-          <AppSkeleton
-            v-else
-          />
         </q-card-section>
         <q-card-section>
           <KeyList
@@ -62,6 +71,11 @@
         </q-card-section>
       </q-card>
     </div>
+    <KeyEditor
+      v-if="state.createForm"
+      @onSubmit="createKey"
+      @onClose="state.createForm = false"
+    />
   </div>
 </template>
 
@@ -94,6 +108,7 @@ export default {
     const state = reactive({
       project: null,
       keys: null,
+      createForm: false,
       keyword: '',
     });
     const isLoaded = computed(() => !!state.project && !!state.keys);

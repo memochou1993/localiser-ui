@@ -1,14 +1,7 @@
 <template>
-  <q-btn
-    class="q-px-md"
-    color="primary"
-    label="Create"
-    outline
-    @click="dialogRef.show()"
-  />
   <q-dialog
     ref="dialogRef"
-    @hide="cancel"
+    @hide="close"
   >
     <q-card
       class="q-dialog-plugin"
@@ -44,7 +37,7 @@
           color="primary"
           label="Cancel"
           outline
-          @click="cancel"
+          @click="close"
         />
         <q-space />
         <q-btn
@@ -59,15 +52,17 @@
 
 <script>
 import {
+  onMounted,
   reactive,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 
 export default {
-  name: 'ProjectEditor',
+  name: 'KeyEditor',
   emits: [
     ...useDialogPluginComponent.emits,
     'onSubmit',
+    'onClose',
   ],
   setup(props, { emit }) {
     const state = reactive({
@@ -75,23 +70,19 @@ export default {
     });
     const {
       dialogRef,
-      onDialogOK,
-      onDialogCancel,
     } = useDialogPluginComponent();
-    const reset = () => {
-      state.name = '';
-    };
+    onMounted(() => {
+      dialogRef.value.show();
+    });
     return {
       state,
       dialogRef,
       submit: () => {
         emit('onSubmit', state);
-        reset();
-        onDialogOK();
+        emit('onClose');
       },
-      cancel: () => {
-        reset();
-        onDialogCancel();
+      close: () => {
+        emit('onClose');
       },
     };
   },
