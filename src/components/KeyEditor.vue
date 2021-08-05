@@ -27,6 +27,7 @@
             autofocus
             borderless
             dense
+            model-value=""
           />
         </q-card>
       </q-card-section>

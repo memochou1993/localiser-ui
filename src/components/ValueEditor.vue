@@ -11,6 +11,7 @@
       borderless
       dense
       input-style="max-height: 6rem;"
+      model-value=""
       type="textarea"
       @keyup.enter.stop
     />

@@ -9,6 +9,7 @@
       autofocus
       borderless
       dense
+      model-value=""
       @update:model-value="(v) => $emit('onUpdate', v)"
     >
       <template
