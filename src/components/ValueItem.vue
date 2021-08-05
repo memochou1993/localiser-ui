@@ -26,7 +26,7 @@
             >
               <div
                 :class="[currentValue.text ? 'text-info' : 'text-secondary', 'q-pr-md q-py-sm']"
-                @click="setEditForm(true)"
+                @click="state.editForm = true"
                 v-text="currentValue.text || 'Empty'"
               />
               <q-popup-proxy
@@ -38,7 +38,7 @@
                   :default-text="currentValue.text"
                   :key-id="keyId"
                   :value-id="currentValue.id"
-                  @onClose="setEditForm(false)"
+                  @onClose="state.editForm = false"
                   @onSubmit="editValue"
                 />
               </q-popup-proxy>
@@ -48,7 +48,7 @@
             >
               <div
                 class="text-secondary q-pr-md q-py-sm"
-                @click="setCreateForm(true)"
+                @click="state.createForm = true"
                 v-text="'Empty'"
               />
               <q-popup-proxy
@@ -59,7 +59,7 @@
                 <ValueEditor
                   :key-id="keyId"
                   :language-id="language.id"
-                  @onClose="setCreateForm(false)"
+                  @onClose="state.createForm = false"
                   @onSubmit="createValue"
                 />
               </q-popup-proxy>
@@ -111,29 +111,21 @@ export default {
       editForm: false,
     });
     const anchor = ref(null);
-    const setCreateForm = (v) => {
-      state.createForm = v;
-    };
-    const setEditForm = (v) => {
-      state.editForm = v;
-    };
     const createValue = (data) => {
       if (data.text) {
         props.onCreateValue(data);
       }
-      setCreateForm(false);
+      state.createForm = false;
     };
     const editValue = (data) => {
       if (data.text !== props.currentValue.text) {
         props.onEditValue(data);
       }
-      setEditForm(false);
+      state.editForm = false;
     };
     return {
       state,
       anchor,
-      setCreateForm,
-      setEditForm,
       createValue,
       editValue,
     };
