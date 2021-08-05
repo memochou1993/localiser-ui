@@ -12,35 +12,13 @@
         v-show="i > 0"
         spaced
       />
-      <q-item
-        class="q-pa-none"
-      >
-        <q-item-section>
-          <div
-            class="row"
-          >
-            <div
-              class="col-3 flex items-center"
-            >
-              <span
-                class="q-px-md q-py-sm break-word"
-                v-text="key.name"
-              />
-            </div>
-            <div
-              class="col-9"
-            >
-              <LanguageList
-                :key-id="key.id"
-                :languages="languages"
-                :on-create-value="onCreateValue"
-                :on-edit-value="onEditValue"
-                :values="key.values"
-              />
-            </div>
-          </div>
-        </q-item-section>
-      </q-item>
+      <KeyItem
+        :current-key="key"
+        :keys="keys"
+        :on-create-value="onCreateValue"
+        :on-edit-value="onEditValue"
+        :languages="languages"
+      />
     </template>
   </q-list>
   <AppEmpty
@@ -51,13 +29,13 @@
 
 <script>
 import AppEmpty from './AppEmpty.vue';
-import LanguageList from './LanguageList.vue';
+import KeyItem from './KeyItem.vue';
 
 export default {
   name: 'KeyList',
   components: {
     AppEmpty,
-    LanguageList,
+    KeyItem,
   },
   props: {
     keys: {

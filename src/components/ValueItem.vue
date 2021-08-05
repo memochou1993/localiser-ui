@@ -1,6 +1,6 @@
 <template>
   <q-item
-    class="q-pa-none"
+    class="full-height q-pa-none"
   >
     <q-item-section>
       <div

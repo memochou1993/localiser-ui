@@ -73,6 +73,14 @@ import { useDialogPluginComponent } from 'quasar';
 export default {
   name: 'KeyEditor',
   props: {
+    defaultName: {
+      type: String,
+      default: '',
+    },
+    keyId: {
+      type: Number,
+      default: 0,
+    },
     keys: {
       type: Array,
       default: () => [],
@@ -85,7 +93,7 @@ export default {
   ],
   setup(props, { emit }) {
     const state = reactive({
-      name: '',
+      name: props.defaultName,
     });
     const isUnique = (name) => !props.keys.some((k) => k.name === name.trim());
     const rules = [
