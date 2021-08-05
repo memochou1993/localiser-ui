@@ -18,6 +18,9 @@ export default createStore({
     setProjects(state, v) {
       state.projects = v;
     },
+    unshiftProjects(state, v) {
+      state.projects.unshift(v);
+    },
   },
   actions: {
   },

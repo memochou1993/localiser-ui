@@ -119,7 +119,7 @@ export default {
           name,
         });
         const project = { ...data, languages: [] };
-        store.commit('setProjects', projects.value.concat(project));
+        store.commit('unshiftProjects', project);
       } catch (err) {
         console.debug(err);
       }

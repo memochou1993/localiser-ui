@@ -131,7 +131,7 @@ export default {
           name,
         });
         const key = { ...data, values: [] };
-        state.keys.push(key);
+        state.keys.unshift(key);
       } catch (err) {
         console.debug(err);
       }
