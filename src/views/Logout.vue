@@ -28,7 +28,7 @@ export default {
         Cookie.remove('token');
         store.commit('setToken', null);
         store.commit('setProjects', null);
-        router.push({ name: 'login' });
+        await router.push({ name: 'login' });
       }
     })();
   },

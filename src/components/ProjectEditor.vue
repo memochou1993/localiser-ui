@@ -13,23 +13,27 @@
         />
       </q-card-section>
       <q-card-section
-        class="q-pb-lg"
+        class="q-pb-none"
       >
-        <div
-          class="text-grey-10 q-py-xs"
-          v-text="'Name'"
-        />
         <q-form
           ref="formRef"
         >
-          <q-input
-            v-model="state.name"
-            :model-value="state.name"
-            :rules="rules"
-            autofocus
-            borderless
-            dense
-          />
+          <div
+            class="q-pb-lg"
+          >
+            <div
+              class="text-grey-10 q-pa-xs"
+              v-text="'Name'"
+            />
+            <q-input
+              v-model="state.name"
+              :model-value="state.name"
+              :rules="rules"
+              autofocus
+              borderless
+              dense
+            />
+          </div>
         </q-form>
       </q-card-section>
       <q-card-actions
