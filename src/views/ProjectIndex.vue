@@ -36,7 +36,6 @@
                 label="Create"
                 no-caps
                 outline
-                style="height: 42px;"
                 @click="state.createForm = true"
               />
             </div>
