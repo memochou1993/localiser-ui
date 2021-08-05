@@ -11,11 +11,11 @@
           style="height: 400px;"
         >
           <q-img
-            class="col-6"
+            class="col-6 gt-xs visible"
             src="https://cdn.quasar.dev/img/parallax2.jpg"
           />
           <q-card-section
-            class="col-6"
+            class="col-12 col-sm-6 q-pa-lg"
           >
             <q-form
               @submit="submit"
