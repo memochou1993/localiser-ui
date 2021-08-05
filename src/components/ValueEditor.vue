@@ -3,8 +3,8 @@
     class="q-mb-md"
   >
     <q-input
-      v-model="text"
-      :model-value="text"
+      v-model="state.text"
+      :model-value="state.text"
       autofocus
       autogrow
       borderless
@@ -21,7 +21,7 @@
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="$emit('onSubmit', { keyId, languageId, valueId, text })"
+      @click="$emit('onSubmit', { keyId, languageId, valueId, text: state.text })"
     />
     <q-btn
       class="q-mr-xs"
@@ -35,12 +35,16 @@
 
 <script>
 import {
-  ref,
+  reactive,
 } from 'vue';
 
 export default {
   name: 'ValueEditor',
   props: {
+    defaultText: {
+      type: String,
+      default: '',
+    },
     keyId: {
       type: Number,
       default: 0,
@@ -53,19 +57,17 @@ export default {
       type: Number,
       default: 0,
     },
-    valueText: {
-      type: String,
-      default: '',
-    },
   },
   emits: [
     'onClose',
     'onSubmit',
   ],
   setup(props) {
-    const text = ref(props.valueText);
+    const state = reactive({
+      text: props.defaultText,
+    });
     return {
-      text,
+      state,
     };
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <q-input
-    v-model="input"
-    :model-value="input"
+    v-model="state.input"
+    :model-value="state.input"
     autofocus
     borderless
     dense
@@ -19,7 +19,7 @@
 
 <script>
 import {
-  ref,
+  reactive,
 } from 'vue';
 
 export default {
@@ -28,9 +28,11 @@ export default {
     'onUpdate',
   ],
   setup() {
-    const input = ref('');
+    const state = reactive({
+      input: '',
+    });
     return {
-      input,
+      state,
     };
   },
 };

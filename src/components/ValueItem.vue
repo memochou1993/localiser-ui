@@ -22,12 +22,12 @@
             class="full-width cursor-pointer break-word"
           >
             <template
-              v-if="value"
+              v-if="currentValue"
             >
               <div
-                :class="[value.text ? 'text-info' : 'text-secondary', 'q-pr-md q-py-sm']"
+                :class="[currentValue.text ? 'text-info' : 'text-secondary', 'q-pr-md q-py-sm']"
                 @click="setEditForm(true)"
-                v-text="value.text || 'Empty'"
+                v-text="currentValue.text || 'Empty'"
               />
               <q-popup-proxy
                 v-if="state.editForm"
@@ -35,9 +35,9 @@
                 class="q-pa-md shadow-4"
               >
                 <ValueEditor
+                  :default-text="currentValue.text"
                   :key-id="keyId"
-                  :value-id="value.id"
-                  :value-text="value.text"
+                  :value-id="currentValue.id"
                   @onClose="setEditForm(false)"
                   @onSubmit="editValue"
                 />
@@ -84,6 +84,10 @@ export default {
     ValueEditor,
   },
   props: {
+    currentValue: {
+      type: Object,
+      default: () => {},
+    },
     keyId: {
       type: Number,
       required: true,
@@ -98,10 +102,6 @@ export default {
     },
     onEditValue: {
       type: Function,
-      default: () => {},
-    },
-    value: {
-      type: Object,
       default: () => {},
     },
   },
@@ -124,7 +124,7 @@ export default {
       setCreateForm(false);
     };
     const editValue = (data) => {
-      if (data.text !== props.value.text) {
+      if (data.text !== props.currentValue.text) {
         props.onEditValue(data);
       }
       setEditForm(false);

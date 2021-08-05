@@ -9,11 +9,11 @@
         spaced
       />
       <ValueItem
+        :current-value="values.find((v) => v.language.id === language.id)"
         :key-id="keyId"
         :language="language"
         :on-create-value="onCreateValue"
         :on-edit-value="onEditValue"
-        :value="values.find((v) => v.language.id === language.id)"
       />
     </template>
   </q-list>
