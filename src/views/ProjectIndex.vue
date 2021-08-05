@@ -32,7 +32,9 @@
               class="row justify-between items-center q-pt-md"
             >
               <q-btn
+                class="q-px-sm"
                 color="grey-8"
+                dense
                 label="Create"
                 no-caps
                 outline
