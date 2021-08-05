@@ -77,7 +77,7 @@ export default {
     const state = reactive({
       name: '',
     });
-    const isUnique = ((name) => !props.projects.some((p) => p.name === name));
+    const isUnique = (name) => !props.projects.some((p) => p.name === name);
     const rules = [
       (v) => !!v || 'The name is required.',
       (v) => isUnique(v) || 'The name has already been taken.',

@@ -67,6 +67,7 @@
     </div>
     <KeyEditor
       v-if="state.createForm"
+      :keys="state.keys"
       @onSubmit="createKey"
       @onClose="state.createForm = false"
     />

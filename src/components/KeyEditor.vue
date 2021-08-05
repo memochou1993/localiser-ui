@@ -22,6 +22,7 @@
         <q-input
           v-model="state.name"
           :model-value="state.name"
+          :rules="rules"
           autofocus
           borderless
           dense
@@ -61,6 +62,12 @@ import { useDialogPluginComponent } from 'quasar';
 
 export default {
   name: 'KeyEditor',
+  props: {
+    keys: {
+      type: Array,
+      default: () => [],
+    },
+  },
   emits: [
     ...useDialogPluginComponent.emits,
     'onSubmit',
@@ -70,6 +77,11 @@ export default {
     const state = reactive({
       name: '',
     });
+    const isUnique = (name) => !props.keys.some((k) => k.name === name);
+    const rules = [
+      (v) => !!v || 'The name is required.',
+      (v) => isUnique(v) || 'The name has already been taken.',
+    ];
     const {
       dialogRef,
     } = useDialogPluginComponent();
@@ -78,6 +90,7 @@ export default {
     });
     return {
       state,
+      rules,
       dialogRef,
       submit: () => {
         emit('onSubmit', state);
