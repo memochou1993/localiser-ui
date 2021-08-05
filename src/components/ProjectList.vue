@@ -42,7 +42,7 @@
           </div>
         </q-item-section>
         <q-card-section
-          class="flex items-center q-px-none"
+          class="flex items-center q-px-none gt-xs"
           side
         >
           <span
@@ -55,7 +55,7 @@
   </q-list>
   <AppEmpty
     v-else
-    class="text-center text-weight-medium q-my-xl"
+    class="text-center q-my-xl"
   />
 </template>
 

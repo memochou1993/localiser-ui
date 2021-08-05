@@ -11,7 +11,7 @@
           style="height: 400px;"
         >
           <q-img
-            class="col-6 gt-xs visible"
+            class="col-6 gt-xs"
             src="https://cdn.quasar.dev/img/parallax2.jpg"
           />
           <q-card-section

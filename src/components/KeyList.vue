@@ -45,7 +45,7 @@
   </q-list>
   <AppEmpty
     v-else
-    class="text-center text-weight-medium q-my-xl"
+    class="text-center q-my-xl"
   />
 </template>
 

@@ -17,6 +17,7 @@
       >
         <q-form
           ref="formRef"
+          @submit="submit"
         >
           <div
             class="q-pb-lg"
