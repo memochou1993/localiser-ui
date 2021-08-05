@@ -64,6 +64,7 @@
     </div>
     <ProjectEditor
       v-if="state.createForm"
+      :projects="projects"
       @onSubmit="createProject"
       @onClose="state.createForm = false"
     />

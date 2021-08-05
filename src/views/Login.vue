@@ -24,16 +24,16 @@
             >
               <q-input
                 v-model="state.email"
+                :model-value="state.email"
                 label="Email"
                 lazy-rules
-                model-value=""
                 spellcheck="false"
               />
               <q-input
                 v-model="state.password"
+                :model-value="state.password"
                 label="Password"
                 lazy-rules
-                model-value=""
                 type="password"
               />
               <div

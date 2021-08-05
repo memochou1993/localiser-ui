@@ -1,21 +1,19 @@
 <template>
-  <q-card
-    bordered
-    class="q-mb-md q-px-sm"
-    flat
+  <div
+    class="q-mb-md"
   >
     <q-input
       v-model="text"
+      :model-value="text"
       autofocus
       autogrow
       borderless
       dense
       input-style="max-height: 6rem;"
-      model-value=""
       type="textarea"
       @keyup.enter.stop
     />
-  </q-card>
+  </div>
   <div>
     <q-btn
       class="q-mr-xs"

@@ -12,23 +12,21 @@
           v-text="'Create'"
         />
       </q-card-section>
-      <q-card-section>
+      <q-card-section
+        class="q-pb-lg"
+      >
         <div
-          class="text-grey-10 q-py-sm"
+          class="text-grey-10 q-py-xs"
           v-text="'Name'"
         />
-        <q-card
-          bordered
-          class="q-px-sm"
-          flat
-        >
-          <q-input
-            v-model="state.name"
-            autofocus
-            borderless
-            dense
-          />
-        </q-card>
+        <q-input
+          v-model="state.name"
+          :model-value="state.name"
+          :rules="rules"
+          autofocus
+          borderless
+          dense
+        />
       </q-card-section>
       <q-card-actions
         class="q-pa-md"
@@ -64,6 +62,12 @@ import { useDialogPluginComponent } from 'quasar';
 
 export default {
   name: 'ProjectEditor',
+  props: {
+    projects: {
+      type: Array,
+      default: () => [],
+    },
+  },
   emits: [
     ...useDialogPluginComponent.emits,
     'onSubmit',
@@ -73,6 +77,11 @@ export default {
     const state = reactive({
       name: '',
     });
+    const isUnique = ((name) => !props.projects.some((p) => p.name === name));
+    const rules = [
+      (v) => !!v || 'The name is required.',
+      (v) => isUnique(v) || 'The name has already been taken.',
+    ];
     const {
       dialogRef,
     } = useDialogPluginComponent();
@@ -81,6 +90,7 @@ export default {
     });
     return {
       state,
+      rules,
       dialogRef,
       submit: () => {
         emit('onSubmit', state);

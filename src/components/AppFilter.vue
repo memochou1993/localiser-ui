@@ -1,26 +1,20 @@
 <template>
-  <q-card
-    bordered
-    class="q-px-sm"
-    flat
+  <q-input
+    v-model="input"
+    :model-value="input"
+    autofocus
+    borderless
+    dense
+    @update:model-value="(v) => $emit('onUpdate', v)"
   >
-    <q-input
-      v-model="input"
-      autofocus
-      borderless
-      dense
-      model-value=""
-      @update:model-value="(v) => $emit('onUpdate', v)"
+    <template
+      #append
     >
-      <template
-        #append
-      >
-        <q-icon
-          name="mdi-magnify"
-        />
-      </template>
-    </q-input>
-  </q-card>
+      <q-icon
+        name="mdi-magnify"
+      />
+    </template>
+  </q-input>
 </template>
 
 <script>
