@@ -105,10 +105,11 @@ export default {
       dialogRef,
       formRef,
       submit: async () => {
-        if (await formRef?.value.validate()) {
-          emit('onSubmit', state);
-          emit('onClose');
+        if (!await formRef?.value.validate()) {
+          return;
         }
+        emit('onSubmit', state);
+        emit('onClose');
       },
       close: () => {
         emit('onClose');

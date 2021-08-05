@@ -18,6 +18,7 @@
             class="col-12 col-sm-6 q-pa-lg"
           >
             <q-form
+              ref="formRef"
               @submit="submit"
             >
               <div
@@ -30,7 +31,7 @@
                 <q-input
                   v-model="state.email"
                   :model-value="state.email"
-                  :rules="[(v) => (v && !!v.trim()) || 'The email is required.']"
+                  :rules="rule.email"
                   autofocus
                   borderless
                   class="q-pb-lg"
@@ -48,7 +49,7 @@
                 <q-input
                   v-model="state.password"
                   :model-value="state.password"
-                  :rules="[(v) => (v && !!v.trim()) || 'The password is required.']"
+                  :rules="rule.password"
                   borderless
                   dense
                   type="password"
@@ -58,10 +59,10 @@
                 class="text-right q-mt-md"
               >
                 <q-btn
-                  :disable="!isValid"
                   color="primary"
                   label="Log in"
                   type="submit"
+                  @click="submit"
                 />
               </div>
             </q-form>
@@ -75,8 +76,8 @@
 <script>
 import Cookie from 'js-cookie';
 import {
-  computed,
   reactive,
+  ref,
 } from 'vue';
 import {
   useStore,
@@ -88,6 +89,15 @@ import {
   token,
 } from '@/actions';
 
+const rule = {
+  email: [
+    (v) => (v && !!v.trim()) || 'The email is required.',
+  ],
+  password: [
+    (v) => (v && !!v.trim()) || 'The password is required.',
+  ],
+};
+
 export default {
   name: 'Login',
   setup() {
@@ -97,8 +107,11 @@ export default {
       email: '',
       password: '',
     });
-    const isValid = computed(() => !!state.email && !!state.password);
+    const formRef = ref(null);
     const submit = async () => {
+      if (!await formRef?.value.validate()) {
+        return;
+      }
       try {
         const { data } = await token.fetch({
           email: state.email,
@@ -114,7 +127,8 @@ export default {
     };
     return {
       state,
-      isValid,
+      rule,
+      formRef,
       submit,
     };
   },
