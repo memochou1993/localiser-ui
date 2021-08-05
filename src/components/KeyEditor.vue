@@ -35,14 +35,19 @@
       >
         <q-btn
           color="primary"
+          dense
           label="Cancel"
+          no-caps
           outline
           @click="close"
         />
         <q-space />
         <q-btn
           color="primary"
-          label="Create"
+          dense
+          label="Save"
+          no-caps
+          unelevated
           @click="submit"
         />
       </q-card-actions>
