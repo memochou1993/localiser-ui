@@ -19,14 +19,18 @@
           class="text-grey-10 q-py-xs"
           v-text="'Name'"
         />
-        <q-input
-          v-model="state.name"
-          :model-value="state.name"
-          :rules="rules"
-          autofocus
-          borderless
-          dense
-        />
+        <q-form
+          ref="formRef"
+        >
+          <q-input
+            v-model="state.name"
+            :model-value="state.name"
+            :rules="rules"
+            autofocus
+            borderless
+            dense
+          />
+        </q-form>
       </q-card-section>
       <q-card-actions
         class="q-pa-md"
@@ -57,6 +61,7 @@
 import {
   onMounted,
   reactive,
+  ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 
@@ -77,14 +82,15 @@ export default {
     const state = reactive({
       name: '',
     });
-    const isUnique = (name) => !props.keys.some((k) => k.name === name);
+    const isUnique = (name) => !props.keys.some((k) => k.name === name.trim());
     const rules = [
-      (v) => !!v || 'The name is required.',
+      (v) => (v && !!v.trim()) || 'The name is required.',
       (v) => isUnique(v) || 'The name has already been taken.',
     ];
     const {
       dialogRef,
     } = useDialogPluginComponent();
+    const formRef = ref(null);
     onMounted(() => {
       dialogRef.value.show();
     });
@@ -92,9 +98,12 @@ export default {
       state,
       rules,
       dialogRef,
-      submit: () => {
-        emit('onSubmit', state);
-        emit('onClose');
+      formRef,
+      submit: async () => {
+        if (await formRef?.value.validate()) {
+          emit('onSubmit', state);
+          emit('onClose');
+        }
       },
       close: () => {
         emit('onClose');
