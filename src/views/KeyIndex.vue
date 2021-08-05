@@ -55,6 +55,7 @@
             v-if="isLoaded"
             :keys="state.keys.filter(filter)"
             :on-create-value="createValue"
+            :on-edit-key="editKey"
             :on-edit-value="editValue"
             :languages="state.project.languages"
           />
@@ -136,6 +137,15 @@ export default {
         console.debug(err);
       }
     };
+    const editKey = async ({ keyId, name }) => {
+      try {
+        const { data } = await actions.key.update({ keyId, name });
+        const key = state.keys.find((k) => k.id === keyId);
+        Object.assign(key, data);
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     const createValue = async ({ keyId, languageId, text }) => {
       try {
         const { data } = await actions.value.store({ keyId, languageId, text });
@@ -148,9 +158,7 @@ export default {
     const editValue = async ({ keyId, valueId, text }) => {
       try {
         const { data } = await actions.value.update({ valueId, text });
-        const value = state.keys
-          .find((k) => k.id === keyId).values
-          .find((v) => v.id === valueId);
+        const value = state.keys.find((k) => k.id === keyId).values.find((v) => v.id === valueId);
         Object.assign(value, data);
       } catch (err) {
         console.debug(err);
@@ -161,6 +169,7 @@ export default {
       state,
       isLoaded,
       createKey,
+      editKey,
       createValue,
       editValue,
       filter,

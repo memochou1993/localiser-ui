@@ -95,7 +95,12 @@ export default {
     const state = reactive({
       name: props.defaultName,
     });
-    const isUnique = (name) => !props.keys.some((k) => k.name === name.trim());
+    const isUnique = (name) => {
+      if (name === props.defaultName) {
+        return true;
+      }
+      return !props.keys.some((k) => k.name === name.trim());
+    };
     const rules = [
       (v) => (v && !!v.trim()) || 'The name is required.',
       (v) => isUnique(v) || 'The name has already been taken.',
@@ -116,7 +121,7 @@ export default {
         if (!await formRef?.value.validate()) {
           return;
         }
-        emit('onSubmit', state);
+        emit('onSubmit', { ...state, keyId: props.keyId });
         emit('onClose');
       },
       close: () => {

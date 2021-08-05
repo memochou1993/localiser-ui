@@ -111,15 +111,15 @@ export default {
       editForm: false,
     });
     const anchor = ref(null);
-    const createValue = (data) => {
-      if (data.text) {
-        props.onCreateValue(data);
+    const createValue = (value) => {
+      if (value.text) {
+        props.onCreateValue(value);
       }
       state.createForm = false;
     };
-    const editValue = (data) => {
-      if (data.text !== props.currentValue.text) {
-        props.onEditValue(data);
+    const editValue = (value) => {
+      if (value.text !== props.currentValue.text) {
+        props.onEditValue(value);
       }
       state.editForm = false;
     };

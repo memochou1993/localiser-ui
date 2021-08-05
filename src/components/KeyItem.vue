@@ -36,8 +36,10 @@
   <KeyEditor
     v-if="state.editForm"
     :default-name="currentKey.name"
+    :key-id="currentKey.id"
     :keys="keys"
     @onClose="state.editForm = false"
+    @onSubmit="editKey"
   />
 </template>
 
@@ -67,6 +69,10 @@ export default {
       type: Function,
       default: () => {},
     },
+    onEditKey: {
+      type: Function,
+      default: () => {},
+    },
     onEditValue: {
       type: Function,
       default: () => {},
@@ -76,12 +82,19 @@ export default {
       default: () => [],
     },
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       editForm: false,
     });
+    const editKey = (key) => {
+      if (key.name !== props.currentKey.name) {
+        props.onEditKey(key);
+      }
+      state.editForm = false;
+    };
     return {
       state,
+      editKey,
     };
   },
 };

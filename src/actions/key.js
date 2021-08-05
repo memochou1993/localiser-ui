@@ -21,7 +21,20 @@ const store = ({
     .catch((err) => reject(err));
 });
 
+const update = ({
+  keyId,
+  name,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .patch(`/api/keys/${keyId}`, {
+      name,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   store,
+  update,
 };
