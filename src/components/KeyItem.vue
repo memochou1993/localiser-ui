@@ -22,7 +22,7 @@
         <div
           class="col-9"
         >
-          <LanguageList
+          <ValueList
             :key-id="currentKey.id"
             :languages="languages"
             :on-create-value="onCreateValue"
@@ -48,13 +48,13 @@ import {
   reactive,
 } from 'vue';
 import KeyEditor from './KeyEditor.vue';
-import LanguageList from './LanguageList.vue';
+import ValueList from './ValueList.vue';
 
 export default {
   name: 'KeyItem',
   components: {
     KeyEditor,
-    LanguageList,
+    ValueList,
   },
   props: {
     currentKey: {

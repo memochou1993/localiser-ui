@@ -25,7 +25,7 @@
 import ValueItem from './ValueItem.vue';
 
 export default {
-  name: 'LanguageList',
+  name: 'ValueList',
   components: {
     ValueItem,
   },
