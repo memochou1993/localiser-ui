@@ -7,7 +7,7 @@
         class="row"
       >
         <div
-          class="col-4 flex items-center"
+          class="col-3 flex items-center"
         >
           <span
             class="q-px-md q-py-sm"
@@ -15,7 +15,7 @@
           />
         </div>
         <div
-          class="col-8 flex items-center"
+          class="col-9 flex items-center"
         >
           <div
             ref="anchor"

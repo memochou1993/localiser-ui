@@ -20,14 +20,29 @@
           </div>
         </div>
         <div
-          class="col-9"
+          class="col-8 flex items-center"
         >
-          <ValueList
-            :key-id="currentKey.id"
-            :languages="languages"
-            :on-create-value="onCreateValue"
-            :on-edit-value="onEditValue"
-            :values="currentKey.values"
+          <div
+            class="full-width"
+          >
+            <ValueList
+              :key-id="currentKey.id"
+              :languages="languages"
+              :on-create-value="onCreateValue"
+              :on-edit-value="onEditValue"
+              :values="currentKey.values"
+            />
+          </div>
+        </div>
+        <div
+          class="col-1 flex justify-center items-center"
+        >
+          <q-btn
+            color="grey-6"
+            dense
+            flat
+            icon="mdi-trash-can-outline"
+            round
           />
         </div>
       </div>
