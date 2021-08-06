@@ -29,10 +29,32 @@
             <q-input
               v-model="state.name"
               :model-value="state.name"
-              :rules="rules"
+              :rules="rule.name"
               autofocus
               borderless
               dense
+            />
+          </div>
+          <div
+            class="q-pb-lg"
+          >
+            <div
+              class="text-grey-10 q-pa-xs"
+              v-text="'Languages'"
+            />
+            <q-select
+              v-model="state.languages"
+              :model-value="state.languages"
+              :options="state.languageOptions"
+              :rules="rule.languages"
+              borderless
+              dense
+              hide-dropdown-icon
+              input-debounce="0"
+              multiple
+              option-label="name"
+              option-value="code"
+              use-chips
             />
           </div>
         </q-form>
@@ -70,6 +92,17 @@ import {
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 
+const languageOptions = [
+  {
+    name: 'English',
+    code: 'en',
+  },
+  {
+    name: 'Chinese',
+    code: 'zh',
+  },
+];
+
 export default {
   name: 'ProjectEditor',
   props: {
@@ -92,12 +125,18 @@ export default {
   setup(props) {
     const state = reactive({
       name: '',
+      languages: [],
+      languageOptions,
     });
-    const isUnique = (name) => !props.projects.some((p) => p.name === name.trim());
-    const rules = [
-      (v) => (v && !!v.trim()) || 'The name is required.',
-      (v) => isUnique(v) || 'The name has already been taken.',
-    ];
+    const rule = {
+      name: [
+        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => !props.projects.some((p) => p.name === v.trim()) || 'The name has already been taken.',
+      ],
+      languages: [
+        (v) => v.length > 0 || 'The languages is required.',
+      ],
+    };
     const {
       dialogRef,
     } = useDialogPluginComponent();
@@ -107,7 +146,7 @@ export default {
     });
     return {
       state,
-      rules,
+      rule,
       dialogRef,
       formRef,
       submit: async () => {
