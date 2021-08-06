@@ -115,7 +115,7 @@ export default {
       rules: {
         name: [
           (v) => (v && !!v.trim()) || 'The name is required.',
-          (v) => v === props.defaultName || !props.keys.some((k) => k.name === v.trim()) || 'The name has already been taken.',
+          (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || 'The name has already been taken.',
         ],
       },
       submit: async () => {
