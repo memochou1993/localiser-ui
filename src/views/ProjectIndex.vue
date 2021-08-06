@@ -107,6 +107,10 @@ export default {
         console.debug(err);
       }
     })();
+    const filter = (p) => {
+      const keyword = state.keyword.toLowerCase();
+      return p.name.toLowerCase().includes(keyword);
+    };
     const createProject = async ({ name, languages }) => {
       try {
         const { data } = await actions.project.store({
@@ -119,12 +123,11 @@ export default {
         console.debug(err);
       }
     };
-    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
       isLoaded,
-      createProject,
       filter,
+      createProject,
     };
   },
 };

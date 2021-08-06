@@ -126,6 +126,11 @@ export default {
         console.debug(err);
       }
     })();
+    const filter = (k) => {
+      const keyword = state.keyword.toLowerCase();
+      return k.name.toLowerCase().includes(keyword)
+        || k.values.some((v) => v.text.toLowerCase().includes(keyword));
+    };
     const createKey = async ({ name }) => {
       try {
         const { data } = await actions.key.store({
@@ -175,16 +180,15 @@ export default {
         console.debug(err);
       }
     };
-    const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
       isLoaded,
+      filter,
       createKey,
       editKey,
       deleteKey,
       createValue,
       editValue,
-      filter,
     };
   },
 };
