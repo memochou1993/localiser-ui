@@ -107,13 +107,13 @@ export default {
         console.debug(err);
       }
     })();
-    const createProject = async ({ name }) => {
+    const createProject = async ({ name, languages }) => {
       try {
         const { data } = await actions.project.store({
           name,
+          languages,
         });
-        const project = { ...data, languages: [] };
-        state.projects.unshift(project);
+        state.projects.unshift(data);
       } catch (err) {
         console.debug(err);
       }

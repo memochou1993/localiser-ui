@@ -1,7 +1,5 @@
 <template>
-  <q-list
-    class="full-height"
-  >
+  <q-list>
     <template
       v-for="(language, i) in languages"
       :key="language.id"

@@ -18,10 +18,12 @@ const show = ({
 
 const store = ({
   name,
+  languages,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .post('/api/projects', {
       name,
+      languages,
     })
     .then(({ data }) => resolve(data))
     .catch((err) => reject(err));
