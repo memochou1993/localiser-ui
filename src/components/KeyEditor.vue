@@ -6,14 +6,16 @@
     <q-card
       class="q-dialog-plugin"
     >
-      <q-card-section>
+      <q-card-section
+        class="q-pa-lg"
+      >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Create'"
+          v-text="'Key Editor'"
         />
       </q-card-section>
       <q-card-section
-        class="q-pb-none"
+        class="q-px-lg q-pb-none"
       >
         <q-form
           ref="formRef"
@@ -38,7 +40,7 @@
         </q-form>
       </q-card-section>
       <q-card-actions
-        class="q-pa-md"
+        class="q-pa-lg"
       >
         <q-btn
           color="primary"
