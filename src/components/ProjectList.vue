@@ -1,6 +1,6 @@
 <template>
   <q-list
-    v-if="projects.length"
+    v-if="projects.length > 0"
     bordered
     class="rounded-borders bg-grey-1 q-py-sm"
   >

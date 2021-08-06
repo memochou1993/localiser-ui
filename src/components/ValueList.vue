@@ -6,6 +6,7 @@
     >
       <q-separator
         v-show="i > 0"
+        class="gt-xs"
         spaced
       />
       <ValueItem

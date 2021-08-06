@@ -13,7 +13,7 @@
         >
           <span
             v-if="isLoaded"
-            class="text-h6 text-weight-regular q-mb-md"
+            class="text-h6 text-weight-regular"
             v-text="state.project.name"
           />
           <AppSkeleton

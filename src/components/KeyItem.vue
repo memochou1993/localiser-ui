@@ -7,7 +7,7 @@
         class="row"
       >
         <div
-          class="col-3 flex items-center"
+          class="col-12 col-sm-3 flex items-center"
         >
           <div
             class="full-width cursor-pointer break-word"
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div
-          class="col-8 flex items-center"
+          class="col-12 col-sm-8 flex items-center"
         >
           <div
             class="full-width"
@@ -35,13 +35,13 @@
           </div>
         </div>
         <div
-          class="col-1 flex justify-center items-center"
+          class="col-12 col-sm-1 flex justify-center items-center"
         >
           <q-btn
             color="grey-6"
             dense
             flat
-            icon="mdi-trash-can-outline"
+            icon="mdi-dots-vertical"
             round
           />
         </div>

@@ -1,13 +1,13 @@
 <template>
   <q-item
-    class="full-height q-pa-none"
+    class="q-pa-none"
   >
     <q-item-section>
       <div
         class="row"
       >
         <div
-          class="col-3 flex items-center"
+          class="col-sm-2 flex items-center justify-end"
         >
           <span
             class="q-px-md q-py-sm"
@@ -15,7 +15,7 @@
           />
         </div>
         <div
-          class="col-9 flex items-center"
+          class="col-sm-10 flex items-center"
         >
           <div
             ref="anchor"
@@ -25,13 +25,14 @@
               v-if="currentValue"
             >
               <div
-                :class="[currentValue.text ? 'text-info' : 'text-secondary', 'q-pr-md q-py-sm']"
+                :class="[currentValue.text ? 'text-info' : 'text-secondary', 'q-px-md q-py-sm']"
                 @click="state.editForm = true"
                 v-text="currentValue.text || 'Empty'"
               />
               <q-popup-proxy
                 v-if="state.editForm"
-                :style="anchor ? `width: ${anchor.clientWidth}px`: ''"
+                :offset="[-16, 0]"
+                :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
                 class="q-pa-md shadow-4"
               >
                 <ValueEditor
@@ -47,13 +48,14 @@
               v-else
             >
               <div
-                class="text-secondary q-pr-md q-py-sm"
+                class="text-secondary q-px-md q-py-sm"
                 @click="state.createForm = true"
                 v-text="'Empty'"
               />
               <q-popup-proxy
                 v-if="state.createForm"
-                :style="anchor ? `width: ${anchor.clientWidth}px`: ''"
+                :offset="[-16, 0]"
+                :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
                 class="q-pa-md shadow-4"
               >
                 <ValueEditor
