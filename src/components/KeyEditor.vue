@@ -1,7 +1,7 @@
 <template>
   <q-dialog
     ref="dialogRef"
-    @hide="close"
+    @hide="onClose"
   >
     <q-card
       class="q-dialog-plugin"
@@ -46,7 +46,7 @@
           label="Cancel"
           no-caps
           outline
-          @click="close"
+          @click="onClose"
         />
         <q-space />
         <q-btn
@@ -121,9 +121,6 @@ export default {
           return;
         }
         props.onSubmit({ ...state, keyId: props.keyId });
-        props.onClose();
-      },
-      close: () => {
         props.onClose();
       },
     };
