@@ -29,7 +29,7 @@
             <q-input
               v-model="state.name"
               :model-value="state.name"
-              :rules="rules"
+              :rules="rules.name"
               autofocus
               borderless
               dense
@@ -101,28 +101,21 @@ export default {
     const state = reactive({
       name: props.defaultName,
     });
-    const isUnique = (name) => {
-      if (name === props.defaultName) {
-        return true;
-      }
-      return !props.keys.some((k) => k.name === name.trim());
-    };
-    const rules = [
-      (v) => (v && !!v.trim()) || 'The name is required.',
-      (v) => isUnique(v) || 'The name has already been taken.',
-    ];
-    const {
-      dialogRef,
-    } = useDialogPluginComponent();
+    const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
     onMounted(() => {
       dialogRef.value.show();
     });
     return {
       state,
-      rules,
       dialogRef,
       formRef,
+      rules: {
+        name: [
+          (v) => (v && !!v.trim()) || 'The name is required.',
+          (v) => v === props.defaultName || !props.keys.some((k) => k.name === v.trim()) || 'The name has already been taken.',
+        ],
+      },
       submit: async () => {
         if (!await formRef?.value.validate()) {
           return;

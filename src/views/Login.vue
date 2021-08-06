@@ -31,7 +31,7 @@
                 <q-input
                   v-model="state.email"
                   :model-value="state.email"
-                  :rules="rule.email"
+                  :rules="rules.email"
                   autofocus
                   borderless
                   class="q-pb-lg"
@@ -49,7 +49,7 @@
                 <q-input
                   v-model="state.password"
                   :model-value="state.password"
-                  :rules="rule.password"
+                  :rules="rules.password"
                   borderless
                   dense
                   type="password"
@@ -89,7 +89,7 @@ import {
   token,
 } from '@/actions';
 
-const rule = {
+const rules = {
   email: [
     (v) => (v && !!v.trim()) || 'The email is required.',
   ],
@@ -127,7 +127,7 @@ export default {
     };
     return {
       state,
-      rule,
+      rules,
       formRef,
       submit,
     };

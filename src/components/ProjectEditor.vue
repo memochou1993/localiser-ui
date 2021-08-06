@@ -29,7 +29,7 @@
             <q-input
               v-model="state.name"
               :model-value="state.name"
-              :rules="rule.name"
+              :rules="rules.name"
               autofocus
               borderless
               dense
@@ -46,7 +46,7 @@
               v-model="state.languages"
               :model-value="state.languages"
               :options="state.languageOptions"
-              :rules="rule.languages"
+              :rules="rules.languages"
               borderless
               dense
               hide-dropdown-icon
@@ -128,27 +128,24 @@ export default {
       languages: [],
       languageOptions,
     });
-    const rule = {
-      name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => !props.projects.some((p) => p.name === v.trim()) || 'The name has already been taken.',
-      ],
-      languages: [
-        (v) => v.length > 0 || 'The languages is required.',
-      ],
-    };
-    const {
-      dialogRef,
-    } = useDialogPluginComponent();
+    const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
     onMounted(() => {
       dialogRef.value.show();
     });
     return {
       state,
-      rule,
       dialogRef,
       formRef,
+      rules: {
+        name: [
+          (v) => (v && !!v.trim()) || 'The name is required.',
+          (v) => !props.projects.some((p) => p.name === v.trim()) || 'The name has already been taken.',
+        ],
+        languages: [
+          (v) => v.length > 0 || 'The languages is required.',
+        ],
+      },
       submit: async () => {
         if (!await formRef?.value.validate()) {
           return;
