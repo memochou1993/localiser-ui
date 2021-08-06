@@ -7,7 +7,7 @@
     />
     <q-page-container>
       <router-view
-        class="layout q-my-xl"
+        class="q-my-xl"
       />
     </q-page-container>
   </q-layout>
@@ -38,8 +38,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass" scoped>
-.layout
-  height: calc(100vh - 58px - 96px)
-</style>

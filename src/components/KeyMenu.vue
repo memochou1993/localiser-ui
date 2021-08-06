@@ -1,8 +1,10 @@
 <template>
   <div>
     <q-btn
+      color="grey-6"
+      dense
       flat
-      icon="mdi-menu"
+      icon="mdi-dots-vertical"
       round
     />
     <q-menu>
@@ -18,13 +20,13 @@
           />
           <q-item
             v-close-popup
-            :to="item.to"
             clickable
             style="min-height: 40px;"
+            @click="item.callback"
           >
             <q-item-section>
               <span
-                v-text="item.name"
+                v-text="'Delete Key'"
               />
             </q-item-section>
           </q-item>
@@ -35,33 +37,26 @@
 </template>
 
 <script>
-const items = [
-  {
-    name: 'My Profile',
-    to: {
-      name: 'project.index', // FIXME
-    },
-    separated: false,
-  },
-  {
-    name: 'My Projects',
-    to: {
-      name: 'project.index',
-    },
-    separated: false,
-  },
-  {
-    name: 'Log out',
-    to: {
-      name: 'logout',
-    },
-    separated: true,
-  },
-];
-
 export default {
-  name: 'TheMenu',
-  setup() {
+  name: 'KeyMenu',
+  props: {
+    keyId: {
+      type: Number,
+      required: true,
+    },
+    onDeleteKey: {
+      type: Function,
+      default: () => {},
+    },
+  },
+  setup(props) {
+    const items = [
+      {
+        name: 'Delete Key',
+        callback: () => props.onDeleteKey({ keyId: props.keyId }),
+        separated: false,
+      },
+    ];
     return {
       items,
     };

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="row justify-center items-center"
+    class="layout row justify-center items-center"
   >
     <div
       class="col-10 col-sm-8 col-md-6"
@@ -134,3 +134,8 @@ export default {
   },
 };
 </script>
+
+<style lang="sass" scoped>
+.layout
+  height: calc(100vh - 58px - 48px * 2)
+</style>

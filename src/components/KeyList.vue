@@ -16,6 +16,7 @@
         :current-key="key"
         :keys="keys"
         :on-create-value="onCreateValue"
+        :on-delete-key="onDeleteKey"
         :on-edit-key="onEditKey"
         :on-edit-value="onEditValue"
         :languages="languages"
@@ -44,6 +45,10 @@ export default {
       default: () => [],
     },
     onCreateValue: {
+      type: Function,
+      default: () => {},
+    },
+    onDeleteKey: {
       type: Function,
       default: () => {},
     },

@@ -33,8 +33,18 @@ const update = ({
     .catch((err) => reject(err));
 });
 
+const destroy = ({
+  keyId,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .delete(`/api/keys/${keyId}`)
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   store,
   update,
+  destroy,
 };

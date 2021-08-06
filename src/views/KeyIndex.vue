@@ -55,6 +55,7 @@
             v-if="isLoaded"
             :keys="state.keys.filter(filter)"
             :on-create-value="createValue"
+            :on-delete-key="deleteKey"
             :on-edit-key="editKey"
             :on-edit-value="editValue"
             :languages="state.project.languages"
@@ -146,6 +147,16 @@ export default {
         console.debug(err);
       }
     };
+    const deleteKey = async ({ keyId }) => {
+      try {
+        await actions.key.destroy({
+          keyId,
+        });
+        state.keys.splice(state.keys.findIndex((k) => k.id === keyId), 1);
+      } catch (err) {
+        console.debug(err);
+      }
+    };
     const createValue = async ({ keyId, languageId, text }) => {
       try {
         const { data } = await actions.value.store({ keyId, languageId, text });
@@ -170,6 +181,7 @@ export default {
       isLoaded,
       createKey,
       editKey,
+      deleteKey,
       createValue,
       editValue,
       filter,

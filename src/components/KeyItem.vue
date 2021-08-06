@@ -37,12 +37,9 @@
         <div
           class="col-12 col-sm-1 flex justify-center items-center"
         >
-          <q-btn
-            color="grey-6"
-            dense
-            flat
-            icon="mdi-dots-vertical"
-            round
+          <KeyMenu
+            :key-id="currentKey.id"
+            :on-delete-key="onDeleteKey"
           />
         </div>
       </div>
@@ -63,12 +60,14 @@ import {
   reactive,
 } from 'vue';
 import KeyEditor from './KeyEditor.vue';
+import KeyMenu from './KeyMenu.vue';
 import ValueList from './ValueList.vue';
 
 export default {
   name: 'KeyItem',
   components: {
     KeyEditor,
+    KeyMenu,
     ValueList,
   },
   props: {
@@ -81,6 +80,10 @@ export default {
       default: () => [],
     },
     onCreateValue: {
+      type: Function,
+      default: () => {},
+    },
+    onDeleteKey: {
       type: Function,
       default: () => {},
     },
