@@ -113,7 +113,8 @@ export default {
           name,
           languages,
         });
-        state.projects.unshift(data);
+        const project = { ...data, languages };
+        state.projects.unshift(project);
       } catch (err) {
         console.debug(err);
       }
