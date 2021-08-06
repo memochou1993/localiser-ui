@@ -53,7 +53,7 @@
         <q-card-section>
           <ProjectList
             v-if="isLoaded"
-            :projects="projects.filter(filter)"
+            :projects="state.projects.filter(filter)"
           />
           <AppSkeleton
             v-else
@@ -64,7 +64,7 @@
     </div>
     <ProjectEditor
       v-if="state.createForm"
-      :projects="projects"
+      :projects="state.projects"
       :on-close="() => state.createForm = false"
       :on-submit="createProject"
     />
@@ -76,9 +76,6 @@ import {
   computed,
   reactive,
 } from 'vue';
-import {
-  useStore,
-} from 'vuex';
 import * as actions from '@/actions';
 import {
   AppFilter,
@@ -96,30 +93,27 @@ export default {
     ProjectList,
   },
   setup() {
-    const store = useStore();
     const state = reactive({
+      projects: null,
       createForm: false,
       keyword: '',
     });
-    const projects = computed(() => store.state.projects);
-    const isLoaded = computed(() => !!projects.value);
-    if (!projects.value) {
-      (async () => {
-        try {
-          const { data } = await actions.project.index();
-          store.commit('setProjects', data);
-        } catch (err) {
-          console.debug(err);
-        }
-      })();
-    }
+    const isLoaded = computed(() => !!state.projects);
+    (async () => {
+      try {
+        const { data } = await actions.project.index();
+        state.projects = data;
+      } catch (err) {
+        console.debug(err);
+      }
+    })();
     const createProject = async ({ name }) => {
       try {
         const { data } = await actions.project.store({
           name,
         });
         const project = { ...data, languages: [] };
-        store.commit('unshiftProjects', project);
+        state.projects.unshift(project);
       } catch (err) {
         console.debug(err);
       }
@@ -127,7 +121,6 @@ export default {
     const filter = (v) => v.name.toLowerCase().includes(state.keyword.toLowerCase());
     return {
       state,
-      projects,
       isLoaded,
       createProject,
       filter,
