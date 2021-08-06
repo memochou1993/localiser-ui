@@ -21,14 +21,14 @@
       icon="mdi-check"
       size="sm"
       unelevated
-      @click="$emit('onSubmit', { keyId, languageId, valueId, text: state.text })"
+      @click="onSubmit({ keyId, languageId, valueId, text: state.text })"
     />
     <q-btn
       class="q-mr-xs"
       icon="mdi-close"
       outline
       size="sm"
-      @click="$emit('onClose')"
+      @click="onClose"
     />
   </div>
 </template>
@@ -57,11 +57,15 @@ export default {
       type: Number,
       default: 0,
     },
+    onClose: {
+      type: Function,
+      default: () => {},
+    },
+    onSubmit: {
+      type: Function,
+      default: () => {},
+    },
   },
-  emits: [
-    'onClose',
-    'onSubmit',
-  ],
   setup(props) {
     const state = reactive({
       text: props.defaultText,

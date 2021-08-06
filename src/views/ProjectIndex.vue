@@ -45,7 +45,7 @@
               class="row justify-between items-center q-pt-md"
             >
               <AppFilter
-                @onUpdate="(keyword) => state.keyword = keyword"
+                :on-input="(v) => state.keyword = v"
               />
             </div>
           </div>
@@ -65,8 +65,8 @@
     <ProjectEditor
       v-if="state.createForm"
       :projects="projects"
-      @onSubmit="createProject"
-      @onClose="state.createForm = false"
+      :on-close="() => state.createForm = false"
+      :on-submit="createProject"
     />
   </div>
 </template>

@@ -77,13 +77,19 @@ export default {
       type: Array,
       default: () => [],
     },
+    onClose: {
+      type: Function,
+      default: () => {},
+    },
+    onSubmit: {
+      type: Function,
+      default: () => {},
+    },
   },
   emits: [
     ...useDialogPluginComponent.emits,
-    'onSubmit',
-    'onClose',
   ],
-  setup(props, { emit }) {
+  setup(props) {
     const state = reactive({
       name: '',
     });
@@ -108,11 +114,11 @@ export default {
         if (!await formRef?.value.validate()) {
           return;
         }
-        emit('onSubmit', state);
-        emit('onClose');
+        props.onSubmit(state);
+        props.onClose();
       },
       close: () => {
-        emit('onClose');
+        props.onClose();
       },
     };
   },

@@ -45,7 +45,7 @@
               class="row justify-between items-center q-pt-md"
             >
               <AppFilter
-                @onUpdate="(keyword) => state.keyword = keyword"
+                :on-input="(v) => state.keyword = v"
               />
             </div>
           </div>
@@ -69,8 +69,8 @@
     <KeyEditor
       v-if="state.createForm"
       :keys="state.keys"
-      @onSubmit="createKey"
-      @onClose="state.createForm = false"
+      :on-close="() => state.createForm = false"
+      :on-submit="createKey"
     />
   </div>
 </template>

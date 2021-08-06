@@ -5,7 +5,7 @@
     autofocus
     borderless
     dense
-    @update:model-value="(v) => $emit('onUpdate', v)"
+    @update:model-value="onInput"
   >
     <template
       #append
@@ -24,9 +24,12 @@ import {
 
 export default {
   name: 'AppFilter',
-  emits: [
-    'onUpdate',
-  ],
+  props: {
+    onInput: {
+      type: Function,
+      default: () => {},
+    },
+  },
   setup() {
     const state = reactive({
       input: '',

@@ -38,8 +38,8 @@
     :default-name="currentKey.name"
     :key-id="currentKey.id"
     :keys="keys"
-    @onClose="state.editForm = false"
-    @onSubmit="editKey"
+    :on-close="() => state.editForm = false"
+    :on-submit="editKey"
   />
 </template>
 

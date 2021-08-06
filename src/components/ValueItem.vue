@@ -38,8 +38,8 @@
                   :default-text="currentValue.text"
                   :key-id="keyId"
                   :value-id="currentValue.id"
-                  @onClose="state.editForm = false"
-                  @onSubmit="editValue"
+                  :on-close="() => state.editForm = false"
+                  :on-submit="editValue"
                 />
               </q-popup-proxy>
             </template>
@@ -59,8 +59,8 @@
                 <ValueEditor
                   :key-id="keyId"
                   :language-id="language.id"
-                  @onClose="state.createForm = false"
-                  @onSubmit="createValue"
+                  :on-close="() => state.createForm = false"
+                  :on-submit="createValue"
                 />
               </q-popup-proxy>
             </template>
