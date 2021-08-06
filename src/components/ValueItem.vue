@@ -7,7 +7,7 @@
         class="row"
       >
         <div
-          class="col-sm-2 flex items-center justify-end"
+          class="col-12 col-sm-2 flex justify-sm-end items-center"
         >
           <span
             class="q-px-md q-py-sm"
@@ -15,7 +15,7 @@
           />
         </div>
         <div
-          class="col-sm-10 flex items-center"
+          class="col-12 col-sm-10 flex items-center"
         >
           <div
             ref="anchor"
@@ -29,7 +29,7 @@
                 @click="state.editForm = true"
                 v-text="currentValue.text || 'Empty'"
               />
-              <q-popup-proxy
+              <q-menu
                 v-if="state.editForm"
                 :offset="[-16, 0]"
                 :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
@@ -42,7 +42,7 @@
                   :on-close="() => state.editForm = false"
                   :on-submit="editValue"
                 />
-              </q-popup-proxy>
+              </q-menu>
             </template>
             <template
               v-else
@@ -52,7 +52,7 @@
                 @click="state.createForm = true"
                 v-text="'Empty'"
               />
-              <q-popup-proxy
+              <q-menu
                 v-if="state.createForm"
                 :offset="[-16, 0]"
                 :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
@@ -64,7 +64,7 @@
                   :on-close="() => state.createForm = false"
                   :on-submit="createValue"
                 />
-              </q-popup-proxy>
+              </q-menu>
             </template>
           </div>
         </div>
