@@ -40,6 +40,7 @@
           <KeyMenu
             :key-id="currentKey.id"
             :on-delete-key="onDeleteKey"
+            class="q-px-md q-py-sm"
           />
         </div>
       </div>
