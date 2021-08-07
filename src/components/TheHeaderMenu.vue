@@ -61,7 +61,7 @@ const items = [
 ];
 
 export default {
-  name: 'TheMenu',
+  name: 'TheHeaderMenu',
   setup() {
     return {
       items,

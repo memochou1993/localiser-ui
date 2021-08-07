@@ -10,7 +10,7 @@
           v-text="'Localiser'"
         />
       </q-toolbar-title>
-      <TheMenu
+      <TheHeaderMenu
         v-if="enabled"
       />
     </q-toolbar>
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import TheMenu from './TheMenu.vue';
+import TheHeaderMenu from './TheHeaderMenu.vue';
 
 export default {
   name: 'TheHeader',
   components: {
-    TheMenu,
+    TheHeaderMenu,
   },
   props: {
     enabled: {
