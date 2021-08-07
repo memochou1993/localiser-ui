@@ -38,13 +38,9 @@
         </div>
       </div>
     </template>
-    <template
+    <AppLoading
       v-else
-    >
-      <AppSkeleton
-        :count="8"
-      />
-    </template>
+    />
   </div>
 </template>
 
@@ -58,14 +54,14 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
-  AppSkeleton,
+  AppLoading,
   ProjectSettingMenu,
 } from '@/components';
 
 export default {
   name: 'ProjectSetting',
   components: {
-    AppSkeleton,
+    AppLoading,
     ProjectSettingMenu,
   },
   setup() {

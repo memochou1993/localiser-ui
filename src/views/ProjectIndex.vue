@@ -1,25 +1,17 @@
 <template>
-  <div
-    class="row justify-center"
-  >
-    <div
-      class="col-10"
+  <div>
+    <template
+      v-if="isLoaded"
     >
       <div
         class="q-my-sm"
       >
         <span
-          v-if="isLoaded"
           class="text-h6 text-weight-regular"
           v-text="'My Projects'"
         />
-        <AppSkeleton
-          v-else
-          width="25%"
-        />
       </div>
       <div
-        v-if="isLoaded"
         class="row justify-between items-end"
       >
         <div
@@ -50,17 +42,16 @@
           v-if="isLoaded"
           :projects="state.projects.filter(filter)"
         />
-        <AppSkeleton
-          v-else
-          :count="8"
-        />
       </div>
-    </div>
-    <ProjectEditor
-      v-if="state.createForm"
-      :projects="state.projects"
-      :on-close="() => state.createForm = false"
-      :on-submit="createProject"
+      <ProjectEditor
+        v-if="state.createForm"
+        :projects="state.projects"
+        :on-close="() => state.createForm = false"
+        :on-submit="createProject"
+      />
+    </template>
+    <AppLoading
+      v-else
     />
   </div>
 </template>
@@ -73,7 +64,7 @@ import {
 import * as actions from '@/actions';
 import {
   AppFilter,
-  AppSkeleton,
+  AppLoading,
   ProjectEditor,
   ProjectList,
 } from '@/components';
@@ -82,7 +73,7 @@ export default {
   name: 'ProjectIndex',
   components: {
     AppFilter,
-    AppSkeleton,
+    AppLoading,
     ProjectEditor,
     ProjectList,
   },

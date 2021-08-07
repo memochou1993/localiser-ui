@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="row justify-center"
-  >
-    <div
-      class="col-10"
+  <div>
+    <template
+      v-if="isLoaded"
     >
       <div
         class="q-my-sm"
@@ -20,13 +18,8 @@
             :label="state.project.name"
           />
         </q-breadcrumbs>
-        <AppSkeleton
-          v-else
-          width="25%"
-        />
       </div>
       <div
-        v-if="isLoaded"
         class="row justify-between items-end"
       >
         <div
@@ -71,17 +64,16 @@
           :on-edit-value="editValue"
           :languages="state.project.languages"
         />
-        <AppSkeleton
-          v-else
-          :count="8"
-        />
       </div>
-    </div>
-    <KeyEditor
-      v-if="state.createForm"
-      :keys="state.keys"
-      :on-close="() => state.createForm = false"
-      :on-submit="createKey"
+      <KeyEditor
+        v-if="state.createForm"
+        :keys="state.keys"
+        :on-close="() => state.createForm = false"
+        :on-submit="createKey"
+      />
+    </template>
+    <AppLoading
+      v-else
     />
   </div>
 </template>
@@ -97,7 +89,7 @@ import {
 import * as actions from '@/actions';
 import {
   AppFilter,
-  AppSkeleton,
+  AppLoading,
   KeyEditor,
   KeyList,
 } from '@/components';
@@ -106,7 +98,7 @@ export default {
   name: 'KeyIndex',
   components: {
     AppFilter,
-    AppSkeleton,
+    AppLoading,
     KeyEditor,
     KeyList,
   },
