@@ -24,7 +24,6 @@
             >
               <router-view
                 v-if="isLoaded"
-                :on-update-project="updateProject"
                 :project="state.project"
                 style="min-height: 500px"
               />
@@ -69,16 +68,9 @@ export default {
         console.debug(err);
       }
     })();
-    const updateProject = ({ name }) => {
-      actions.project.update({
-        projectId,
-        name,
-      });
-    };
     return {
       state,
       isLoaded,
-      updateProject,
     };
   },
 };
