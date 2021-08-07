@@ -10,9 +10,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
-import {
-  token,
-} from '@/actions';
+import * as actions from '@/actions';
 
 export default {
   name: 'Logout',
@@ -21,7 +19,7 @@ export default {
     const router = useRouter();
     (async () => {
       try {
-        await token.destroy();
+        await actions.token.destroy();
       } catch (err) {
         console.debug(err);
       } finally {

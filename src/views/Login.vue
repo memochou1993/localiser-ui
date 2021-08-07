@@ -87,9 +87,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
-import {
-  token,
-} from '@/actions';
+import * as actions from '@/actions';
 
 const rules = {
   email: [
@@ -115,7 +113,7 @@ export default {
         return;
       }
       try {
-        const { data } = await token.fetch({
+        const { data } = await actions.token.fetch({
           email: state.email,
           password: state.password,
         });
