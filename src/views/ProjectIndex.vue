@@ -5,62 +5,56 @@
     <div
       class="col-10"
     >
-      <q-card
-        class="q-pa-md shadow-4"
+      <div
+        class="q-my-sm"
       >
-        <q-card-section
-          class="q-pb-none"
+        <span
+          v-if="isLoaded"
+          class="text-h6 text-weight-regular"
+          v-text="'My Projects'"
+        />
+        <AppSkeleton
+          v-else
+          width="25%"
+        />
+      </div>
+      <div
+        v-if="isLoaded"
+        class="row justify-between items-end"
+      >
+        <div
+          class="row justify-between items-end q-my-sm"
         >
-          <span
-            v-if="isLoaded"
-            class="text-h6 text-weight-regular"
-            v-text="'My Projects'"
+          <q-btn
+            class="q-px-sm"
+            color="grey-8"
+            dense
+            label="Create"
+            no-caps
+            outline
+            @click="state.createForm = true"
           />
-          <AppSkeleton
-            v-else
-            width="25%"
-          />
-        </q-card-section>
-        <q-card-section
-          class="q-py-none"
+        </div>
+        <div
+          class="row justify-between items-end q-my-sm"
         >
-          <div
-            v-if="isLoaded"
-            class="row justify-between items-center"
-          >
-            <div
-              class="row justify-between items-center q-pt-md"
-            >
-              <q-btn
-                class="q-px-sm"
-                color="grey-8"
-                dense
-                label="Create"
-                no-caps
-                outline
-                @click="state.createForm = true"
-              />
-            </div>
-            <div
-              class="row justify-between items-center q-pt-md"
-            >
-              <AppFilter
-                :on-input="(v) => state.keyword = v"
-              />
-            </div>
-          </div>
-        </q-card-section>
-        <q-card-section>
-          <ProjectList
-            v-if="isLoaded"
-            :projects="state.projects.filter(filter)"
+          <AppFilter
+            :on-input="(v) => state.keyword = v"
           />
-          <AppSkeleton
-            v-else
-            :count="5"
-          />
-        </q-card-section>
-      </q-card>
+        </div>
+      </div>
+      <div
+        class="q-my-sm"
+      >
+        <ProjectList
+          v-if="isLoaded"
+          :projects="state.projects.filter(filter)"
+        />
+        <AppSkeleton
+          v-else
+          :count="5"
+        />
+      </div>
     </div>
     <ProjectEditor
       v-if="state.createForm"
