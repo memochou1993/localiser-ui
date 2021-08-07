@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: 'KeySettingMenu',
+  name: 'KeyItemMenu',
   props: {
     keyId: {
       type: Number,

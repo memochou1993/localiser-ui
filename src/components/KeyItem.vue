@@ -37,7 +37,7 @@
         <div
           class="col-12 col-sm-1 flex justify-center items-center"
         >
-          <KeySettingMenu
+          <KeyItemMenu
             :key-id="currentKey.id"
             :on-delete-key="onDeleteKey"
             class="q-px-md q-py-sm"
@@ -61,14 +61,14 @@ import {
   reactive,
 } from 'vue';
 import KeyEditor from './KeyEditor.vue';
-import KeySettingMenu from './KeySettingMenu.vue';
+import KeyItemMenu from './KeyItemMenu.vue';
 import ValueList from './ValueList.vue';
 
 export default {
   name: 'KeyItem',
   components: {
     KeyEditor,
-    KeySettingMenu,
+    KeyItemMenu,
     ValueList,
   },
   props: {
