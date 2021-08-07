@@ -27,7 +27,7 @@
           >
             <q-item-section>
               <span
-                v-text="'Delete Key'"
+                v-text="item.name"
               />
             </q-item-section>
           </q-item>
