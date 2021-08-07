@@ -73,10 +73,6 @@ export default {
     ProjectSettingHeading,
   },
   props: {
-    onUpdateProject: {
-      type: Function,
-      default: () => {},
-    },
     project: {
       type: Object,
       required: true,
@@ -93,10 +89,11 @@ export default {
         return;
       }
       try {
-        await actions.project.update({
+        const { data } = await actions.project.update({
           projectId: props.project.id,
           name: state.name,
         });
+        Object.assign(props.project, data);
       } catch (err) {
         const { data } = err.response;
         state.errorMessages.name = data.errors.name.pop();
