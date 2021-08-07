@@ -5,7 +5,9 @@
     <div
       class="col-10 col-sm-8 col-md-6"
     >
-      <q-card>
+      <q-card
+        class="shadow-4"
+      >
         <q-card-section
           horizontal
           style="height: 400px;"
@@ -25,7 +27,7 @@
                 class="q-pb-lg"
               >
                 <div
-                  class="text-grey-10 q-pa-xs"
+                  class="text-caption text-grey-10 q-pa-xs"
                   v-text="'Email'"
                 />
                 <q-input
@@ -43,7 +45,7 @@
                 class="q-pb-lg"
               >
                 <div
-                  class="text-grey-10 q-pa-xs"
+                  class="text-caption text-grey-10 q-pa-xs"
                   v-text="'Password'"
                 />
                 <q-input

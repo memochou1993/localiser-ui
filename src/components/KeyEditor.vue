@@ -25,7 +25,7 @@
             class="q-pb-lg"
           >
             <div
-              class="text-grey-10 q-pa-xs"
+              class="text-caption text-grey-10 q-pa-xs"
               v-text="'Name'"
             />
             <q-input
