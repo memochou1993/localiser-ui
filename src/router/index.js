@@ -21,10 +21,10 @@ const routes = [
     },
   },
   {
-    path: '/projects/:projectId/keys',
-    alias: '/projects/:projectId',
-    name: 'key.index',
-    component: () => import(/* webpackChunkName: "keyIndex" */ '@/views/KeyIndex.vue'),
+    path: '/projects/:projectId',
+    alias: '/projects/:projectId/keys',
+    name: 'project.show',
+    component: () => import(/* webpackChunkName: "projectShow" */ '@/views/ProjectShow.vue'),
     meta: {
       requiresAuth: true,
     },

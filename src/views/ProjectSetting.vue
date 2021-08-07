@@ -9,7 +9,7 @@
         <AppBreadcrumb
           :breadcrumbs="[
             { label: 'Projects', to: { name: 'project.index' } },
-            { label: state.project.name, to: { name: 'key.index' } },
+            { label: state.project.name, to: { name: 'project.show' } },
             { label: 'Settings' },
           ]"
         />

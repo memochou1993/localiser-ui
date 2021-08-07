@@ -93,7 +93,7 @@ import {
 } from '@/components';
 
 export default {
-  name: 'KeyIndex',
+  name: 'ProjectShow',
   components: {
     AppBreadcrumb,
     AppFilter,

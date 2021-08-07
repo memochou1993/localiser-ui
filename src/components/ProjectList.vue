@@ -20,7 +20,7 @@
             class="text-subtitle2 text-weight-regular q-my-sm"
           >
             <router-link
-              :to="{ name: 'key.index', params: { projectId: project.id } }"
+              :to="{ name: 'project.show', params: { projectId: project.id } }"
               class="text-info underline-none underline-hover"
               v-text="project.name"
             />
