@@ -152,7 +152,10 @@ export default {
         if (!await formRef?.value.validate()) {
           return;
         }
-        props.onSubmit(state);
+        props.onSubmit({
+          name: state.name,
+          languages: state.languages,
+        });
         props.onClose();
       },
     };
