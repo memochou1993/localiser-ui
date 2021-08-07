@@ -3,7 +3,7 @@
     view="hhh lpr fff"
   >
     <TheHeader
-      :enabled="isAuthenticated"
+      :is-menu-enabled="isAuthenticated"
     />
     <q-page-container>
       <div
