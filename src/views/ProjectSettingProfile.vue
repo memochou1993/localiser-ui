@@ -1,16 +1,8 @@
 <template>
   <div>
-    <span
-      class="text-h6 text-weight-regular"
-      v-text="'General'"
+    <ProjectSettingHeading
+      text="General"
     />
-    <div
-      class="q-mt-md q-mb-lg"
-    >
-      <q-separator
-        spaced
-      />
-    </div>
     <q-card
       bordered
       flat
@@ -67,6 +59,9 @@ import {
   ref,
 } from 'vue';
 import * as actions from '@/actions';
+import {
+  ProjectSettingHeading,
+} from '@/components';
 
 const rules = {
   name: [
@@ -76,6 +71,9 @@ const rules = {
 
 export default {
   name: 'ProjectSettingProfile',
+  components: {
+    ProjectSettingHeading,
+  },
   props: {
     onUpdateProject: {
       type: Function,

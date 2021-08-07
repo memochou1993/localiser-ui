@@ -1,10 +1,12 @@
 <template>
   <div>
+    <ProjectSettingHeading
+      text="Languages"
+    />
     <q-table
       :rows="project.languages"
       :columns="columns"
       bordered
-      card-class="bg-grey-1"
       flat
       hide-bottom
     />
@@ -12,6 +14,10 @@
 </template>
 
 <script>
+import {
+  ProjectSettingHeading,
+} from '@/components';
+
 const columns = [
   {
     name: 'name',
@@ -19,7 +25,7 @@ const columns = [
     label: 'Name',
     align: 'left',
     field: (row) => row.name,
-    sortable: true,
+    sortable: false,
   },
   {
     name: 'code',
@@ -27,12 +33,15 @@ const columns = [
     label: 'Code',
     align: 'left',
     field: (row) => row.code,
-    sortable: true,
+    sortable: false,
   },
 ];
 
 export default {
   name: 'ProjectSettingLanguage',
+  components: {
+    ProjectSettingHeading,
+  },
   props: {
     project: {
       type: Object,
