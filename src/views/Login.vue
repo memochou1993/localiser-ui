@@ -3,7 +3,7 @@
     class="layout row justify-center items-center"
   >
     <div
-      class="col-10 col-sm-8 col-md-6"
+      class="col-12 col-sm-10 col-md-8"
     >
       <q-card
         class="shadow-4"
@@ -26,9 +26,8 @@
               <div
                 class="q-pb-lg"
               >
-                <div
-                  class="text-caption text-grey-10 q-pa-xs"
-                  v-text="'Email'"
+                <AppInputLabel
+                  text="Email"
                 />
                 <q-input
                   v-model="state.email"
@@ -36,7 +35,6 @@
                   :rules="rules.email"
                   autofocus
                   borderless
-                  class="q-pb-lg"
                   dense
                   spellcheck="false"
                 />
@@ -44,9 +42,8 @@
               <div
                 class="q-pb-lg"
               >
-                <div
-                  class="text-caption text-grey-10 q-pa-xs"
-                  v-text="'Password'"
+                <AppInputLabel
+                  text="Password"
                 />
                 <q-input
                   v-model="state.password"
@@ -88,6 +85,9 @@ import {
   useRouter,
 } from 'vue-router';
 import * as actions from '@/actions';
+import {
+  AppInputLabel,
+} from '@/components';
 
 const rules = {
   email: [
@@ -100,6 +100,9 @@ const rules = {
 
 export default {
   name: 'Login',
+  components: {
+    AppInputLabel,
+  },
   setup() {
     const store = useStore();
     const router = useRouter();
@@ -127,8 +130,8 @@ export default {
     };
     return {
       state,
-      rules,
       formRef,
+      rules,
       submit,
     };
   },

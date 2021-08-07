@@ -31,9 +31,7 @@
               :rules="rules.name"
               autofocus
               borderless
-              class="q-pb-lg"
               dense
-              spellcheck="false"
               @update:model-value="state.errorMessages.name = ''"
             />
           </div>
