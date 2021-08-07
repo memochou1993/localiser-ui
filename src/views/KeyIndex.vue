@@ -5,67 +5,77 @@
     <div
       class="col-10"
     >
-      <q-card
-        class="q-pa-md shadow-4"
+      <div
+        class="q-my-sm"
       >
-        <q-card-section
-          class="q-pb-none"
+        <q-breadcrumbs
+          v-if="isLoaded"
+          active-color="info"
         >
-          <span
-            v-if="isLoaded"
-            class="text-h6 text-weight-regular"
-            v-text="state.project.name"
+          <q-breadcrumbs-el
+            :to="{ name: 'project.index' }"
+            label="Projects"
           />
-          <AppSkeleton
-            v-else
-            width="25%"
+          <q-breadcrumbs-el
+            :label="state.project.name"
           />
-        </q-card-section>
-        <q-card-section
-          class="q-py-none"
+        </q-breadcrumbs>
+        <AppSkeleton
+          v-else
+          width="25%"
+        />
+      </div>
+      <div
+        v-if="isLoaded"
+        class="row justify-between items-end"
+      >
+        <div
+          class="row justify-between items-end q-my-sm"
         >
-          <div
-            v-if="isLoaded"
-            class="row justify-between items-center"
-          >
-            <div
-              class="row justify-between items-center q-pt-md"
-            >
-              <q-btn
-                class="q-px-sm"
-                color="grey-8"
-                dense
-                label="Create"
-                no-caps
-                outline
-                @click="state.createForm = true"
-              />
-            </div>
-            <div
-              class="row justify-between items-center q-pt-md"
-            >
-              <AppFilter
-                :on-input="(v) => state.keyword = v"
-              />
-            </div>
-          </div>
-        </q-card-section>
-        <q-card-section>
-          <KeyList
-            v-if="isLoaded"
-            :keys="state.keys.filter(filter)"
-            :on-create-value="createValue"
-            :on-delete-key="deleteKey"
-            :on-edit-key="editKey"
-            :on-edit-value="editValue"
-            :languages="state.project.languages"
+          <q-btn
+            class="q-px-sm q-mr-sm"
+            color="grey-8"
+            dense
+            label="Create"
+            no-caps
+            outline
+            @click="state.createForm = true"
           />
-          <AppSkeleton
-            v-else
-            :count="5"
+          <q-btn
+            :to="{ name: 'project.settings', projectId: state.project.id }"
+            class="q-px-sm q-mr-sm"
+            color="grey-8"
+            dense
+            label="Settings"
+            no-caps
+            outline
           />
-        </q-card-section>
-      </q-card>
+        </div>
+        <div
+          class="row justify-between items-end q-my-sm"
+        >
+          <AppFilter
+            :on-input="(v) => state.keyword = v"
+          />
+        </div>
+      </div>
+      <div
+        class="q-my-sm"
+      >
+        <KeyList
+          v-if="isLoaded"
+          :keys="state.keys.filter(filter)"
+          :on-create-value="createValue"
+          :on-delete-key="deleteKey"
+          :on-edit-key="editKey"
+          :on-edit-value="editValue"
+          :languages="state.project.languages"
+        />
+        <AppSkeleton
+          v-else
+          :count="8"
+        />
+      </div>
     </div>
     <KeyEditor
       v-if="state.createForm"
@@ -129,7 +139,7 @@ export default {
     const filter = (k) => {
       const keyword = state.keyword.toLowerCase();
       return k.name.toLowerCase().includes(keyword)
-        || k.values.some((v) => v.text.toLowerCase().includes(keyword));
+        || k.values.some((v) => v.text?.toLowerCase().includes(keyword));
     };
     const createKey = async ({ name }) => {
       try {

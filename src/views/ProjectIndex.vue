@@ -52,7 +52,7 @@
         />
         <AppSkeleton
           v-else
-          :count="5"
+          :count="8"
         />
       </div>
     </div>

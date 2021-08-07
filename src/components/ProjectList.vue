@@ -2,7 +2,7 @@
   <q-list
     v-if="projects.length > 0"
     bordered
-    class="rounded-borders bg-grey-1 q-py-sm"
+    class="rounded-borders bg-white q-py-sm"
   >
     <template
       v-for="(project, i) in projects"

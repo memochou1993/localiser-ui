@@ -4,6 +4,7 @@
     :model-value="state.input"
     autofocus
     borderless
+    class="bg-white"
     dense
     @update:model-value="onInput"
   >
