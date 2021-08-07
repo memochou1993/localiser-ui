@@ -1,8 +1,7 @@
 <template>
   <q-list
     bordered
-    class="text-primary rounded-borders"
-    style="padding: 2px 0;"
+    class="text-primary rounded-borders q-py-xs"
   >
     <template
       v-for="(item, i) in items"
