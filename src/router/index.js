@@ -35,13 +35,13 @@ const routes = [
     children: [
       {
         path: 'settings',
-        name: 'project.settings',
-        component: () => import(/* webpackChunkName: "projectProfile" */ '@/views/ProjectProfile.vue'),
+        name: 'project.profile',
+        component: () => import(/* webpackChunkName: "projectSettingProfile" */ '@/views/ProjectSettingProfile.vue'),
       },
       {
         path: 'languages',
         name: 'project.languages',
-        component: () => import(/* webpackChunkName: "projectLanguage" */ '@/views/ProjectLanguage.vue'),
+        component: () => import(/* webpackChunkName: "projectSettingLanguage" */ '@/views/ProjectSettingLanguage.vue'),
       },
     ],
     meta: {

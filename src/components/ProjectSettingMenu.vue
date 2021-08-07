@@ -1,7 +1,7 @@
 <template>
   <q-list
     bordered
-    class="text-primary rounded-borders q-py-xs"
+    class="bg-white rounded-borders text-primary q-py-xs"
   >
     <template
       v-for="(item, i) in items"
@@ -30,7 +30,7 @@ const items = [
   {
     name: 'General',
     to: {
-      name: 'project.settings',
+      name: 'project.profile',
     },
   },
   {

@@ -1,37 +1,50 @@
 <template>
-  <div
-    class="row justify-center"
-  >
-    <div
-      class="col-10"
+  <div>
+    <template
+      v-if="isLoaded"
     >
-      <q-card
-        class="q-pa-md shadow-4"
+      <q-breadcrumbs
+        active-color="info"
+        class="q-mb-lg"
       >
-        <q-card-section
-          class="q-pa-none"
+        <q-breadcrumbs-el
+          :to="{ name: 'project.index' }"
+          label="Projects"
+        />
+        <q-breadcrumbs-el
+          :to="{ name: 'key.index', projectId: state.project.id }"
+          :label="state.project.name"
+        />
+        <q-breadcrumbs-el
+          :label="'Settings'"
+        />
+      </q-breadcrumbs>
+      <div
+        class="row"
+      >
+        <div
+          class="col-12 col-md-3"
         >
-          <div
-            class="row"
-          >
-            <div
-              class="col-12 col-sm-4 q-pa-md"
-            >
-              <ProjectSettingMenu />
-            </div>
-            <div
-              class="col-12 col-sm-8 q-pa-md"
-            >
-              <router-view
-                v-if="isLoaded"
-                :project="state.project"
-                style="min-height: 500px"
-              />
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
+          <ProjectSettingMenu
+            class="q-mr-md-xl q-mb-lg"
+          />
+        </div>
+        <div
+          class="col-12 col-md-9"
+        >
+          <router-view
+            :project="state.project"
+          />
+        </div>
+      </div>
+    </template>
+    <template
+      v-else
+    >
+      <AppSkeleton
+        :count="8"
+      />
+    </template>
   </div>
 </template>
 
@@ -45,12 +58,14 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
+  AppSkeleton,
   ProjectSettingMenu,
 } from '@/components';
 
 export default {
   name: 'ProjectSetting',
   components: {
+    AppSkeleton,
     ProjectSettingMenu,
   },
   setup() {

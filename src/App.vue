@@ -6,9 +6,17 @@
       :enabled="isAuthenticated"
     />
     <q-page-container>
-      <router-view
-        class="q-my-xl"
-      />
+      <div
+        class="row justify-center"
+      >
+        <div
+          class="col-10"
+        >
+          <router-view
+            class="q-my-xl"
+          />
+        </div>
+      </div>
     </q-page-container>
   </q-layout>
 </template>

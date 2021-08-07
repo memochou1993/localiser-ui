@@ -42,7 +42,7 @@
             @click="state.createForm = true"
           />
           <q-btn
-            :to="{ name: 'project.settings', projectId: state.project.id }"
+            :to="{ name: 'project.profile', params: { projectId: state.project.id } }"
             class="q-px-sm q-mr-sm"
             color="grey-8"
             dense
