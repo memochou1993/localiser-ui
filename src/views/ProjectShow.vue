@@ -37,7 +37,7 @@
               icon="mdi-dots-horizontal"
               round
             />
-            <KeyIndexMenu />
+            <ProjectMenu />
           </div>
         </div>
         <div
@@ -89,7 +89,7 @@ import {
   AppLoading,
   KeyEditor,
   KeyList,
-  KeyIndexMenu,
+  ProjectMenu,
 } from '@/components';
 
 export default {
@@ -100,7 +100,7 @@ export default {
     AppLoading,
     KeyEditor,
     KeyList,
-    KeyIndexMenu,
+    ProjectMenu,
   },
   setup() {
     const route = useRoute();
