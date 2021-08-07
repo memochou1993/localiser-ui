@@ -19,24 +19,26 @@
         <div
           class="row justify-between items-end q-my-sm"
         >
-          <q-btn
-            class="q-px-sm q-mr-sm"
-            color="grey-8"
-            dense
-            label="Create"
-            no-caps
-            outline
-            @click="state.createForm = true"
-          />
-          <q-btn
-            :to="{ name: 'project.profile' }"
-            class="q-px-sm q-mr-sm"
-            color="grey-8"
-            dense
-            label="Settings"
-            no-caps
-            outline
-          />
+          <div>
+            <q-btn
+              class="q-mr-sm"
+              color="red-4"
+              dense
+              icon="mdi-plus"
+              round
+              @click="state.createForm = true"
+            />
+          </div>
+          <div>
+            <q-btn
+              class="q-mr-sm"
+              color="indigo-4"
+              dense
+              icon="mdi-dots-horizontal"
+              round
+            />
+            <KeyIndexMenu />
+          </div>
         </div>
         <div
           class="row justify-between items-end q-my-sm"
@@ -87,6 +89,7 @@ import {
   AppLoading,
   KeyEditor,
   KeyList,
+  KeyIndexMenu,
 } from '@/components';
 
 export default {
@@ -97,6 +100,7 @@ export default {
     AppLoading,
     KeyEditor,
     KeyList,
+    KeyIndexMenu,
   },
   setup() {
     const route = useRoute();

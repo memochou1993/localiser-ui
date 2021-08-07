@@ -4,6 +4,7 @@ export { default as AppLoading } from './AppLoading.vue';
 export { default as AppInputLabel } from './AppInputLabel.vue';
 export { default as KeyEditor } from './KeyEditor.vue';
 export { default as KeyList } from './KeyList.vue';
+export { default as KeyIndexMenu } from './KeyIndexMenu.vue';
 export { default as ProjectEditor } from './ProjectEditor.vue';
 export { default as ProjectList } from './ProjectList.vue';
 export { default as ProjectSettingHeading } from './ProjectSettingHeading.vue';
