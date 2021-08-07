@@ -132,6 +132,25 @@ export default {
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
+    const rules = {
+      name: [
+        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => !props.projects.some((p) => p.name === v.trim()) || 'The name has already been taken.',
+      ],
+      languages: [
+        (v) => v.length > 0 || 'The languages is required.',
+      ],
+    };
+    const submit = async () => {
+      if (!await formRef?.value.validate()) {
+        return;
+      }
+      props.onSubmit({
+        name: state.name,
+        languages: state.languages,
+      });
+      props.onClose();
+    };
     onMounted(() => {
       dialogRef.value.show();
     });
@@ -139,25 +158,8 @@ export default {
       state,
       dialogRef,
       formRef,
-      rules: {
-        name: [
-          (v) => (v && !!v.trim()) || 'The name is required.',
-          (v) => !props.projects.some((p) => p.name === v.trim()) || 'The name has already been taken.',
-        ],
-        languages: [
-          (v) => v.length > 0 || 'The languages is required.',
-        ],
-      },
-      submit: async () => {
-        if (!await formRef?.value.validate()) {
-          return;
-        }
-        props.onSubmit({
-          name: state.name,
-          languages: state.languages,
-        });
-        props.onClose();
-      },
+      rules,
+      submit,
     };
   },
 };

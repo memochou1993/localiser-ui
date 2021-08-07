@@ -31,10 +31,5 @@ export default {
       default: false,
     },
   },
-  setup() {
-    return {
-      //
-    };
-  },
 };
 </script>

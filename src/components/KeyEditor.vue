@@ -105,6 +105,19 @@ export default {
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
+    const rules = {
+      name: [
+        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || 'The name has already been taken.',
+      ],
+    };
+    const submit = async () => {
+      if (!await formRef?.value.validate()) {
+        return;
+      }
+      props.onSubmit({ ...state, keyId: props.keyId });
+      props.onClose();
+    };
     onMounted(() => {
       dialogRef.value.show();
     });
@@ -112,19 +125,8 @@ export default {
       state,
       dialogRef,
       formRef,
-      rules: {
-        name: [
-          (v) => (v && !!v.trim()) || 'The name is required.',
-          (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || 'The name has already been taken.',
-        ],
-      },
-      submit: async () => {
-        if (!await formRef?.value.validate()) {
-          return;
-        }
-        props.onSubmit({ ...state, keyId: props.keyId });
-        props.onClose();
-      },
+      rules,
+      submit,
     };
   },
 };
