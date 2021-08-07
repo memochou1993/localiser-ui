@@ -1,0 +1,53 @@
+<template>
+  <q-list
+    bordered
+    class="text-primary rounded-borders"
+    style="padding: 2px 0;"
+  >
+    <template
+      v-for="(item, i) in items"
+      :key="i"
+    >
+      <q-item
+        v-close-popup
+        :to="item.to"
+        clickable
+        exact
+        exact-active-class="bg-primary text-white"
+      >
+        <q-item-section>
+          <span
+            class="text-caption q-px-md"
+            v-text="item.name"
+          />
+        </q-item-section>
+      </q-item>
+    </template>
+  </q-list>
+</template>
+
+<script>
+const items = [
+  {
+    name: 'General',
+    to: {
+      name: 'project.settings',
+    },
+  },
+  {
+    name: 'Languages',
+    to: {
+      name: 'project.languages',
+    },
+  },
+];
+
+export default {
+  name: 'ProjectSettingMenu',
+  setup() {
+    return {
+      items,
+    };
+  },
+};
+</script>

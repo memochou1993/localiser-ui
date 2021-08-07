@@ -29,8 +29,21 @@ const store = ({
     .catch((err) => reject(err));
 });
 
+const update = ({
+  projectId,
+  name,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .patch(`/api/projects/${projectId}`, {
+      name,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   show,
   store,
+  update,
 };

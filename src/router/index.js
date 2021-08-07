@@ -22,8 +22,28 @@ const routes = [
   },
   {
     path: '/projects/:projectId/keys',
+    alias: '/projects/:projectId',
     name: 'key.index',
     component: () => import(/* webpackChunkName: "keyIndex" */ '@/views/KeyIndex.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/projects/:projectId',
+    component: () => import(/* webpackChunkName: "projectSetting" */ '@/views/ProjectSetting.vue'),
+    children: [
+      {
+        path: 'settings',
+        name: 'project.settings',
+        component: () => import(/* webpackChunkName: "projectProfile" */ '@/views/ProjectProfile.vue'),
+      },
+      {
+        path: 'languages',
+        name: 'project.languages',
+        component: () => import(/* webpackChunkName: "projectLanguage" */ '@/views/ProjectLanguage.vue'),
+      },
+    ],
     meta: {
       requiresAuth: true,
     },
