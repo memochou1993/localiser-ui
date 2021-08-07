@@ -9,7 +9,6 @@
     />
     <q-menu>
       <q-list
-        class="text-primary"
         style="min-width: 160px;"
       >
         <template
