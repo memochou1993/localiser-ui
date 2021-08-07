@@ -30,6 +30,7 @@
       <q-btn
         color="primary"
         label="Save"
+        no-caps
         @click="submit"
       />
     </div>
