@@ -1,3 +1,4 @@
+export { default as AppBreadcrumb } from './AppBreadcrumb.vue';
 export { default as AppFilter } from './AppFilter.vue';
 export { default as AppLoading } from './AppLoading.vue';
 export { default as AppInputLabel } from './AppInputLabel.vue';

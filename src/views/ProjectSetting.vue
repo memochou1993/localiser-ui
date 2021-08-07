@@ -3,22 +3,17 @@
     <template
       v-if="isLoaded"
     >
-      <q-breadcrumbs
-        active-color="info"
+      <div
         class="q-mb-lg"
       >
-        <q-breadcrumbs-el
-          :to="{ name: 'project.index' }"
-          label="Projects"
+        <AppBreadcrumb
+          :breadcrumbs="[
+            { label: 'Projects', to: { name: 'project.index' } },
+            { label: state.project.name, to: { name: 'key.index' } },
+            { label: 'Settings' },
+          ]"
         />
-        <q-breadcrumbs-el
-          :to="{ name: 'key.index', projectId: state.project.id }"
-          :label="state.project.name"
-        />
-        <q-breadcrumbs-el
-          :label="'Settings'"
-        />
-      </q-breadcrumbs>
+      </div>
       <div
         class="row"
       >
@@ -54,6 +49,7 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
+  AppBreadcrumb,
   AppLoading,
   ProjectSettingMenu,
 } from '@/components';
@@ -61,6 +57,7 @@ import {
 export default {
   name: 'ProjectSetting',
   components: {
+    AppBreadcrumb,
     AppLoading,
     ProjectSettingMenu,
   },

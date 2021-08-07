@@ -6,18 +6,12 @@
       <div
         class="q-my-sm"
       >
-        <q-breadcrumbs
-          v-if="isLoaded"
-          active-color="info"
-        >
-          <q-breadcrumbs-el
-            :to="{ name: 'project.index' }"
-            label="Projects"
-          />
-          <q-breadcrumbs-el
-            :label="state.project.name"
-          />
-        </q-breadcrumbs>
+        <AppBreadcrumb
+          :breadcrumbs="[
+            { label: 'Projects', to: { name: 'project.index' } },
+            { label: state.project.name },
+          ]"
+        />
       </div>
       <div
         class="row justify-between items-end"
@@ -35,7 +29,7 @@
             @click="state.createForm = true"
           />
           <q-btn
-            :to="{ name: 'project.profile', params: { projectId: state.project.id } }"
+            :to="{ name: 'project.profile' }"
             class="q-px-sm q-mr-sm"
             color="grey-8"
             dense
@@ -88,6 +82,7 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
+  AppBreadcrumb,
   AppFilter,
   AppLoading,
   KeyEditor,
@@ -97,6 +92,7 @@ import {
 export default {
   name: 'KeyIndex',
   components: {
+    AppBreadcrumb,
     AppFilter,
     AppLoading,
     KeyEditor,
