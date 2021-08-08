@@ -61,7 +61,6 @@
                 <q-btn
                   color="primary"
                   label="Log in"
-                  type="submit"
                   @click="submit"
                 />
               </div>
