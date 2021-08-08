@@ -123,18 +123,8 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
+import languageOptions from '@/assets/language_options.json';
 import AppInputLabel from './AppInputLabel.vue';
-
-const languageOptions = [
-  {
-    name: 'English',
-    code: 'en',
-  },
-  {
-    name: 'Chinese',
-    code: 'zh',
-  },
-];
 
 export default {
   name: 'ProjectEditor',
