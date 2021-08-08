@@ -33,7 +33,7 @@
               v-for="(language) in project.languages"
               :key="language.id"
               :label="language.name"
-              class="q-ma-none q-mr-sm cursor-default"
+              class="q-px-sm q-ml-none q-my-xs q-mr-sm cursor-default"
               color="secondary"
               dense
               outline

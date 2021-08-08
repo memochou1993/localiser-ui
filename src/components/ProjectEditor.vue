@@ -54,8 +54,40 @@
               multiple
               option-label="name"
               option-value="code"
+              options-selected-class="text-secondary"
               use-chips
-            />
+            >
+              <template
+                #selected-item="scope"
+              >
+                <q-chip
+                  :tabindex="scope.tabindex"
+                  :label="scope.opt.name"
+                  class="q-px-sm q-ml-none q-my-xs q-mr-sm cursor-default"
+                  color="secondary"
+                  dense
+                  outline
+                  removable
+                  square
+                  @remove="scope.removeAtIndex(scope.index)"
+                />
+              </template>
+              <template
+                #option="scope"
+              >
+                <q-item
+                  v-close-popup
+                  v-bind="scope.itemProps"
+                  style="min-height: 40px;"
+                >
+                  <q-item-section>
+                    <span
+                      v-text="scope.opt.name"
+                    />
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
           </div>
         </q-form>
       </q-card-section>
