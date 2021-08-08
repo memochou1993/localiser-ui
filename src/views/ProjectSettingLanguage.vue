@@ -12,7 +12,7 @@
         dense
         icon="mdi-plus"
         round
-        @click="state.createForm = true"
+        @click="state.enableCreateForm = true"
       />
     </div>
     <LanguageList
@@ -21,9 +21,9 @@
       :on-edit-language="editLanguage"
     />
     <LanguageEditor
-      v-if="state.createForm"
+      v-if="state.enableCreateForm"
       :languages="project.languages"
-      :on-close="() => state.createForm = false"
+      :on-close="() => state.enableCreateForm = false"
       :on-submit="createLanguage"
     />
   </div>
@@ -59,7 +59,7 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      createForm: false,
+      enableCreateForm: false,
     });
     const createLanguage = async ({ name, code }) => {
       try {

@@ -14,7 +14,7 @@
           >
             <div
               class="text-info q-px-md q-py-sm"
-              @click="state.editForm = true"
+              @click="state.enableEditForm = true"
               v-text="currentKey.name"
             />
           </div>
@@ -47,11 +47,11 @@
     </q-item-section>
   </q-item>
   <KeyEditor
-    v-if="state.editForm"
+    v-if="state.enableEditForm"
     :default-name="currentKey.name"
     :key-id="currentKey.id"
     :keys="keys"
-    :on-close="() => state.editForm = false"
+    :on-close="() => state.enableEditForm = false"
     :on-submit="editKey"
   />
 </template>
@@ -103,13 +103,13 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      editForm: false,
+      enableEditForm: false,
     });
     const editKey = (key) => {
       if (key.name !== props.currentKey.name) {
         props.onEditKey(key);
       }
-      state.editForm = false;
+      state.enableEditForm = false;
     };
     return {
       state,

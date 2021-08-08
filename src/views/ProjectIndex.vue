@@ -23,7 +23,7 @@
             dense
             icon="mdi-plus"
             round
-            @click="state.createForm = true"
+            @click="state.enableCreateForm = true"
           />
         </div>
         <div
@@ -43,9 +43,9 @@
         />
       </div>
       <ProjectEditor
-        v-if="state.createForm"
+        v-if="state.enableCreateForm"
         :projects="state.projects"
-        :on-close="() => state.createForm = false"
+        :on-close="() => state.enableCreateForm = false"
         :on-submit="createProject"
       />
     </template>
@@ -79,7 +79,7 @@ export default {
   setup() {
     const state = reactive({
       projects: null,
-      createForm: false,
+      enableCreateForm: false,
       keyword: '',
     });
     const isLoaded = computed(() => !!state.projects);

@@ -26,7 +26,7 @@
               dense
               icon="mdi-plus"
               round
-              @click="state.createForm = true"
+              @click="state.enableCreateForm = true"
             />
           </div>
           <div>
@@ -62,9 +62,9 @@
         />
       </div>
       <KeyEditor
-        v-if="state.createForm"
+        v-if="state.enableCreateForm"
         :keys="state.keys"
-        :on-close="() => state.createForm = false"
+        :on-close="() => state.enableCreateForm = false"
         :on-submit="createKey"
       />
     </template>
@@ -107,7 +107,7 @@ export default {
     const state = reactive({
       project: null,
       keys: null,
-      createForm: false,
+      enableCreateForm: false,
       keyword: '',
     });
     const isLoaded = computed(() => !!state.project && !!state.keys);

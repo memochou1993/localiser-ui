@@ -26,11 +26,11 @@
             >
               <div
                 :class="[currentValue.text ? 'text-info' : 'text-secondary', 'q-px-md q-py-sm']"
-                @click="state.editForm = true"
+                @click="state.enableEditForm = true"
                 v-text="currentValue.text || 'Empty'"
               />
               <q-menu
-                v-if="state.editForm"
+                v-if="state.enableEditForm"
                 :offset="[-16, 0]"
                 :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
                 class="q-pa-md shadow-4"
@@ -39,7 +39,7 @@
                   :default-text="currentValue.text"
                   :key-id="keyId"
                   :value-id="currentValue.id"
-                  :on-close="() => state.editForm = false"
+                  :on-close="() => state.enableEditForm = false"
                   :on-submit="editValue"
                 />
               </q-menu>
@@ -49,11 +49,11 @@
             >
               <div
                 class="text-secondary q-px-md q-py-sm"
-                @click="state.createForm = true"
+                @click="state.enableCreateForm = true"
                 v-text="'Empty'"
               />
               <q-menu
-                v-if="state.createForm"
+                v-if="state.enableCreateForm"
                 :offset="[-16, 0]"
                 :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
                 class="q-pa-md shadow-4"
@@ -61,7 +61,7 @@
                 <ValueEditor
                   :key-id="keyId"
                   :language-id="language.id"
-                  :on-close="() => state.createForm = false"
+                  :on-close="() => state.enableCreateForm = false"
                   :on-submit="createValue"
                 />
               </q-menu>
@@ -109,21 +109,21 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      createForm: false,
-      editForm: false,
+      enableCreateForm: false,
+      enableEditForm: false,
     });
     const anchor = ref(null);
     const createValue = (value) => {
       if (value.text) {
         props.onCreateValue(value);
       }
-      state.createForm = false;
+      state.enableCreateForm = false;
     };
     const editValue = (value) => {
       if (value.text !== props.currentValue.text) {
         props.onEditValue(value);
       }
-      state.editForm = false;
+      state.enableEditForm = false;
     };
     return {
       state,

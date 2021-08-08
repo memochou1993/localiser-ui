@@ -26,7 +26,7 @@
           flat
           icon="mdi-pencil"
           round
-          @click="state.editForm = true"
+          @click="state.enableEditForm = true"
         />
       </div>
       <div
@@ -44,12 +44,12 @@
     </q-td>
   </q-tr>
   <LanguageEditor
-    v-if="state.editForm"
+    v-if="state.enableEditForm"
     :default-code="props.row.code"
     :default-name="props.row.name"
     :language-id="props.row.id"
     :languages="languages"
-    :on-close="() => state.editForm = false"
+    :on-close="() => state.enableEditForm = false"
     :on-submit="onEditLanguage"
   />
 </template>
@@ -85,7 +85,7 @@ export default {
   },
   setup() {
     const state = reactive({
-      editForm: false,
+      enableEditForm: false,
     });
     return {
       state,
