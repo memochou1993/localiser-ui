@@ -7,7 +7,7 @@
         class="row"
       >
         <div
-          class="col-12 col-sm-2 flex justify-sm-end items-center"
+          class="col-12 col-sm-3 flex justify-sm-end items-center"
         >
           <span
             class="q-px-md q-py-sm"
@@ -15,7 +15,7 @@
           />
         </div>
         <div
-          class="col-12 col-sm-10 flex items-center"
+          class="col-12 col-sm-9 flex items-center"
         >
           <div
             ref="anchor"
