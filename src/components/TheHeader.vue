@@ -11,7 +11,7 @@
         />
       </q-toolbar-title>
       <TheHeaderMenu
-        v-if="isMenuEnabled"
+        v-if="enableMenu"
       />
     </q-toolbar>
   </q-header>
@@ -26,7 +26,7 @@ export default {
     TheHeaderMenu,
   },
   props: {
-    isMenuEnabled: {
+    enableMenu: {
       type: Boolean,
       default: false,
     },

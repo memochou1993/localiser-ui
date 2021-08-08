@@ -148,6 +148,7 @@ export default {
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
       ],
       code: [
         (v) => (v && !!v.trim()) || 'The code is required.',
