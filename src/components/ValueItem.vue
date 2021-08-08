@@ -10,7 +10,7 @@
           class="col-12 col-sm-3 flex justify-sm-end items-center"
         >
           <span
-            class="q-px-md q-py-sm"
+            class="q-px-md q-py-sm text-sm-right"
             v-text="language.name"
           />
         </div>
