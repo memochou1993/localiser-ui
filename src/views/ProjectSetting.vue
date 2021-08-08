@@ -18,14 +18,14 @@
         class="row"
       >
         <div
-          class="col-12 col-md-3"
+          class="col-12 col-sm-4 col-md-3"
         >
           <ProjectSettingMenu
-            class="q-mr-md-xl q-mb-lg"
+            class="q-mr-sm-xl q-mb-lg"
           />
         </div>
         <div
-          class="col-12 col-md-9"
+          class="col-12 col-sm-8 col-md-9"
         >
           <router-view
             :project="state.project"
