@@ -19,6 +19,7 @@
       >
         <q-form
           ref="formRef"
+          @keyup.enter.stop="submit"
           @submit="submit"
         >
           <div

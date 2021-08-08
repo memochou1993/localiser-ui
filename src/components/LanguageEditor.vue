@@ -19,8 +19,8 @@
       >
         <q-form
           ref="formRef"
-          @submit="submit"
           @keyup.enter.stop="submit"
+          @submit="submit"
         >
           <div
             class="q-pb-lg"
