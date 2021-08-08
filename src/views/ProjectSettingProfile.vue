@@ -77,6 +77,10 @@ export default {
       type: Object,
       required: true,
     },
+    onUpdateProject: {
+      type: Function,
+      default: () => {},
+    },
   },
   setup(props) {
     const state = reactive({
@@ -93,7 +97,9 @@ export default {
           projectId: props.project.id,
           name: state.name,
         });
-        Object.assign(props.project, data);
+        const { project } = props;
+        Object.assign(project, data);
+        props.onUpdateProject(project);
       } catch (err) {
         const { data } = err.response;
         state.errorMessages.name = data.errors.name.pop();

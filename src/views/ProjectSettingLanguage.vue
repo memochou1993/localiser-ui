@@ -71,6 +71,10 @@ export default {
       type: Object,
       required: true,
     },
+    onUpdateProject: {
+      type: Function,
+      default: () => {},
+    },
   },
   setup(props) {
     const state = reactive({
@@ -82,7 +86,9 @@ export default {
         name,
         code,
       });
-      console.log(data); // FIXME
+      const { project } = props;
+      project.languages.push(data);
+      props.onUpdateProject(project);
     };
     return {
       state,

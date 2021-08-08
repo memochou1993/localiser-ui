@@ -29,6 +29,7 @@
         >
           <router-view
             :project="state.project"
+            :on-update-project="(p) => state.project = p"
           />
         </div>
       </div>
