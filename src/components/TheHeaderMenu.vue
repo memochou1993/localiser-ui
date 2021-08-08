@@ -20,6 +20,7 @@
             v-close-popup
             :to="item.to"
             clickable
+            exact-active-class="text-black"
             style="min-height: 40px;"
           >
             <q-item-section>
