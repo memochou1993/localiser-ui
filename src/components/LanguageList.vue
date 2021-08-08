@@ -24,15 +24,25 @@
           v-text="props.row.code"
         />
         <q-td
-          key="edit"
+          key="action"
           :props="props"
         >
           <q-btn
+            class="q-mx-xs"
             color="grey-6"
             dense
             flat
             icon="mdi-pencil"
             round
+          />
+          <q-btn
+            class="q-mx-xs"
+            color="grey-6"
+            dense
+            flat
+            icon="mdi-trash-can-outline"
+            round
+            @click="onDeleteLanguage({ languageId: props.row.id })"
           />
         </q-td>
       </q-tr>
@@ -59,7 +69,7 @@ const columns = [
     sortable: false,
   },
   {
-    name: 'edit',
+    name: 'action',
     required: true,
     label: '',
     align: 'center',
@@ -74,6 +84,14 @@ export default {
     languages: {
       type: Array,
       default: () => [],
+    },
+    onEditLanguage: {
+      type: Function,
+      default: () => {},
+    },
+    onDeleteLanguage: {
+      type: Function,
+      default: () => {},
     },
   },
   setup() {

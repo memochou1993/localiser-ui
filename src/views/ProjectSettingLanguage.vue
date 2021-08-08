@@ -17,6 +17,7 @@
     </div>
     <LanguageList
       :languages="project.languages"
+      :on-delete-language="deleteLanguage"
     />
     <LanguageEditor
       v-if="state.createForm"
@@ -60,18 +61,35 @@ export default {
       createForm: false,
     });
     const createLanguage = async ({ name, code }) => {
-      const { data } = await actions.language.store({
-        projectId: props.project.id,
-        name,
-        code,
-      });
-      const { project } = props;
-      project.languages.unshift(data);
-      props.onUpdateProject(project);
+      try {
+        const { data } = await actions.language.store({
+          projectId: props.project.id,
+          name,
+          code,
+        });
+        const { project } = props;
+        project.languages.unshift(data);
+        props.onUpdateProject(project);
+      } catch (err) {
+        console.debug(err);
+      }
+    };
+    const deleteLanguage = async ({ languageId }) => {
+      try {
+        await actions.language.destroy({
+          languageId,
+        });
+        const { project } = props;
+        project.languages.splice(project.languages.findIndex((l) => l.id === languageId), 1);
+        props.onUpdateProject(project);
+      } catch (err) {
+        console.debug(err);
+      }
     };
     return {
       state,
       createLanguage,
+      deleteLanguage,
     };
   },
 };

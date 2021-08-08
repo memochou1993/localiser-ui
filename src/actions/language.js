@@ -14,6 +14,16 @@ const store = ({
     .catch((err) => reject(err));
 });
 
+const destroy = ({
+  languageId,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .delete(`/api/languages/${languageId}`)
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   store,
+  destroy,
 };
