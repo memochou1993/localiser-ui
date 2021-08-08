@@ -45,12 +45,11 @@
             <q-select
               v-model="state.languages"
               :model-value="state.languages"
-              :options="state.languageOptions"
+              :options="langOptions"
               :rules="rules.languages"
               borderless
               dense
               hide-dropdown-icon
-              input-debounce="0"
               multiple
               option-label="name"
               option-value="code"
@@ -123,7 +122,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import languageOptions from '@/assets/language_options.json';
+import langOptions from '@/assets/language_options.json';
 import AppInputLabel from './AppInputLabel.vue';
 
 export default {
@@ -152,7 +151,6 @@ export default {
     const state = reactive({
       name: '',
       languages: [],
-      languageOptions,
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
@@ -182,6 +180,7 @@ export default {
       state,
       dialogRef,
       formRef,
+      langOptions,
       rules,
       submit,
     };

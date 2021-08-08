@@ -10,5 +10,9 @@
   {
     "name": "Chinese Simplified",
     "code": "zh_CN"
+  },
+  {
+    "name": "Custom Language",
+    "code": ""
   }
 ]

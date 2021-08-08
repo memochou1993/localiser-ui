@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Key Editor'"
+          v-text="'Language Editor'"
         />
       </q-card-section>
       <q-card-section
@@ -27,11 +27,29 @@
             <AppInputLabel
               text="Name"
             />
-            <q-input
+            <q-select
               v-model="state.name"
               :model-value="state.name"
+              :options="langOptions.map((o) => o.name)"
               :rules="rules.name"
               autofocus
+              borderless
+              dense
+              hide-dropdown-icon
+              options-selected-class="text-secondary"
+              @update:model-value="state.code = langOptions.find((o) => o.name === state.name).code"
+            />
+          </div>
+          <div
+            class="q-pb-lg"
+          >
+            <AppInputLabel
+              text="Code"
+            />
+            <q-input
+              v-model="state.code"
+              :model-value="state.code"
+              :rules="rules.code"
               borderless
               dense
             />
@@ -70,23 +88,24 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
+import langOptions from '@/assets/language_options.json';
 import AppInputLabel from './AppInputLabel.vue';
 
 export default {
-  name: 'KeyEditor',
+  name: 'LanguageEditor',
   components: {
     AppInputLabel,
   },
   props: {
+    defaultCode: {
+      type: String,
+      default: '',
+    },
     defaultName: {
       type: String,
       default: '',
     },
-    keyId: {
-      type: Number,
-      default: 0,
-    },
-    keys: {
+    languages: {
       type: Array,
       default: () => [],
     },
@@ -105,13 +124,18 @@ export default {
   setup(props) {
     const state = reactive({
       name: props.defaultName,
+      code: props.defaultCode,
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || 'The name has already been taken.',
+        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
+      ],
+      code: [
+        (v) => (v && !!v.trim()) || 'The code is required.',
+        (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
       ],
     };
     const submit = async () => {
@@ -119,8 +143,8 @@ export default {
         return;
       }
       props.onSubmit({
-        keyId: props.keyId,
         name: state.name,
+        code: state.code,
       });
       props.onClose();
     };
@@ -131,6 +155,7 @@ export default {
       state,
       dialogRef,
       formRef,
+      langOptions,
       rules,
       submit,
     };
