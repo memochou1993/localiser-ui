@@ -1,0 +1,95 @@
+<template>
+  <q-tr
+    :props="props"
+  >
+    <q-td
+      key="name"
+      :props="props"
+      v-text="props.row.name"
+    />
+    <q-td
+      key="code"
+      :props="props"
+      v-text="props.row.code"
+    />
+    <q-td
+      key="action"
+      :props="props"
+      class="flex justify-center"
+    >
+      <div
+        class="q-mx-xs"
+      >
+        <q-btn
+          color="grey-6"
+          dense
+          flat
+          icon="mdi-pencil"
+          round
+          @click="state.editForm = true"
+        />
+      </div>
+      <div
+        class="q-mx-xs"
+      >
+        <q-btn
+          color="grey-6"
+          dense
+          flat
+          icon="mdi-trash-can-outline"
+          round
+          @click="onDeleteLanguage({ languageId: props.row.id })"
+        />
+      </div>
+    </q-td>
+  </q-tr>
+  <LanguageEditor
+    v-if="state.editForm"
+    :default-code="props.row.code"
+    :default-name="props.row.name"
+    :language-id="props.row.id"
+    :languages="languages"
+    :on-close="() => state.editForm = false"
+    :on-submit="onEditLanguage"
+  />
+</template>
+
+<script>
+import {
+  reactive,
+} from 'vue';
+import LanguageEditor from './LanguageEditor.vue';
+
+export default {
+  name: 'LanguageItem',
+  components: {
+    LanguageEditor,
+  },
+  props: {
+    languages: {
+      type: Array,
+      default: () => [],
+    },
+    onDeleteLanguage: {
+      type: Function,
+      default: () => {},
+    },
+    onEditLanguage: {
+      type: Function,
+      default: () => {},
+    },
+    props: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup() {
+    const state = reactive({
+      editForm: false,
+    });
+    return {
+      state,
+    };
+  },
+};
+</script>

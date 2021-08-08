@@ -105,6 +105,10 @@ export default {
       type: String,
       default: '',
     },
+    languageId: {
+      type: Number,
+      default: 0,
+    },
     languages: {
       type: Array,
       default: () => [],
@@ -143,6 +147,7 @@ export default {
         return;
       }
       props.onSubmit({
+        languageId: props.languageId,
         name: state.name,
         code: state.code,
       });

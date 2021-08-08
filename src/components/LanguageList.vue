@@ -1,8 +1,8 @@
 <template>
   <q-table
-    :rows="languages"
     :columns="columns"
     :pagination="{ rowsPerPage: 0 }"
+    :rows="languages"
     bordered
     flat
     hide-bottom
@@ -10,86 +10,67 @@
     <template
       #body="props"
     >
-      <q-tr
+      <LanguageItem
+        :languages="languages"
+        :on-delete-language="onDeleteLanguage"
+        :on-edit-language="onEditLanguage"
         :props="props"
-      >
-        <q-td
-          key="name"
-          :props="props"
-          v-text="props.row.name"
-        />
-        <q-td
-          key="code"
-          :props="props"
-          v-text="props.row.code"
-        />
-        <q-td
-          key="action"
-          :props="props"
-        >
-          <q-btn
-            class="q-mx-xs"
-            color="grey-6"
-            dense
-            flat
-            icon="mdi-pencil"
-            round
-          />
-          <q-btn
-            class="q-mx-xs"
-            color="grey-6"
-            dense
-            flat
-            icon="mdi-trash-can-outline"
-            round
-            @click="onDeleteLanguage({ languageId: props.row.id })"
-          />
-        </q-td>
-      </q-tr>
+      />
     </template>
   </q-table>
 </template>
 
 <script>
+import LanguageItem from './LanguageItem.vue';
+
 const columns = [
   {
     name: 'name',
-    required: true,
-    label: 'Name',
     align: 'left',
     field: (row) => row.name,
+    headerStyle: '',
+    label: 'Name',
+    required: true,
     sortable: false,
+    style: '',
   },
   {
     name: 'code',
-    required: true,
-    label: 'Code',
     align: 'left',
     field: (row) => row.code,
+    headerStyle: '',
+    label: 'Code',
+    required: true,
     sortable: false,
+    style: '',
   },
   {
     name: 'action',
-    required: true,
-    label: '',
     align: 'center',
     field: () => '',
+    headerStyle: 'width: 160px',
+    label: '',
+    required: true,
     sortable: false,
+    style: 'width: 160px',
   },
 ];
 
 export default {
   name: 'LanguageList',
+  components: {
+    LanguageItem,
+  },
   props: {
     languages: {
       type: Array,
       default: () => [],
     },
-    onEditLanguage: {
+    onDeleteLanguage: {
       type: Function,
       default: () => {},
     },
-    onDeleteLanguage: {
+    onEditLanguage: {
       type: Function,
       default: () => {},
     },

@@ -14,6 +14,20 @@ const store = ({
     .catch((err) => reject(err));
 });
 
+const update = ({
+  languageId,
+  name,
+  code,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .patch(`/api/languages/${languageId}`, {
+      name,
+      code,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 const destroy = ({
   languageId,
 } = {}) => new Promise((resolve, reject) => {
@@ -25,5 +39,6 @@ const destroy = ({
 
 export default {
   store,
+  update,
   destroy,
 };
