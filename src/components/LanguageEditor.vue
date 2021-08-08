@@ -20,6 +20,7 @@
         <q-form
           ref="formRef"
           @submit="submit"
+          @keyup.enter.stop="submit"
         >
           <div
             class="q-pb-lg"
@@ -27,7 +28,17 @@
             <AppInputLabel
               text="Name"
             />
+            <q-input
+              v-if="state.enableNameInput"
+              v-model="state.name"
+              :model-value="state.name"
+              :rules="rules.name"
+              autofocus
+              borderless
+              dense
+            />
             <q-select
+              v-else
               v-model="state.name"
               :model-value="state.name"
               :options="langOptions.filter(langFilter).map((o) => o.name)"
@@ -37,7 +48,7 @@
               dense
               hide-dropdown-icon
               options-selected-class="text-secondary"
-              @update:model-value="state.code = langOptions.find((o) => o.name === state.name).code"
+              @update:model-value="onSelectName"
             />
           </div>
           <div
@@ -127,6 +138,7 @@ export default {
   ],
   setup(props) {
     const state = reactive({
+      enableNameInput: props.defaultName && !langOptions.some((o) => o.name === props.defaultName),
       name: props.defaultName,
       code: props.defaultCode,
     });
@@ -141,6 +153,15 @@ export default {
         (v) => (v && !!v.trim()) || 'The code is required.',
         (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
       ],
+    };
+    const onSelectName = () => {
+      const language = langOptions.find((o) => o.name === state.name);
+      if (language.code === '') {
+        state.enableNameInput = true;
+        state.name = '';
+        return;
+      }
+      state.code = language.code;
     };
     const submit = async () => {
       if (!await formRef?.value.validate()) {
@@ -163,6 +184,7 @@ export default {
       langOptions,
       langFilter,
       rules,
+      onSelectName,
       submit,
     };
   },
