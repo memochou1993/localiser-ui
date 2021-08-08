@@ -18,12 +18,11 @@
           class="row justify-between items-end q-my-sm"
         >
           <q-btn
-            class="q-px-sm"
-            color="grey-8"
+            class="q-mr-sm"
+            color="red-4"
             dense
-            label="Create"
-            no-caps
-            outline
+            icon="mdi-plus"
+            round
             @click="state.createForm = true"
           />
         </div>

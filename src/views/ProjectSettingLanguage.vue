@@ -22,7 +22,38 @@
       bordered
       flat
       hide-bottom
-    />
+    >
+      <template
+        #body="props"
+      >
+        <q-tr
+          :props="props"
+        >
+          <q-td
+            key="name"
+            :props="props"
+            v-text="props.row.name"
+          />
+          <q-td
+            key="code"
+            :props="props"
+            v-text="props.row.code"
+          />
+          <q-td
+            key="edit"
+            :props="props"
+          >
+            <q-btn
+              color="grey-6"
+              dense
+              flat
+              icon="mdi-pencil"
+              round
+            />
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
     <LanguageEditor
       v-if="state.createForm"
       :languages="project.languages"
@@ -57,6 +88,14 @@ const columns = [
     label: 'Code',
     align: 'left',
     field: (row) => row.code,
+    sortable: false,
+  },
+  {
+    name: 'edit',
+    required: true,
+    label: '',
+    align: 'center',
+    field: () => '',
     sortable: false,
   },
 ];

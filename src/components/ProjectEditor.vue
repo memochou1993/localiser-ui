@@ -45,7 +45,7 @@
             <q-select
               v-model="state.languages"
               :model-value="state.languages"
-              :options="langOptions"
+              :options="langOptions.filter(langFilter)"
               :rules="rules.languages"
               borderless
               dense
@@ -154,6 +154,7 @@ export default {
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
+    const langFilter = (o) => !!o.code;
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
@@ -181,6 +182,7 @@ export default {
       dialogRef,
       formRef,
       langOptions,
+      langFilter,
       rules,
       submit,
     };
