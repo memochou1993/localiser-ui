@@ -1,6 +1,7 @@
 <template>
   <q-breadcrumbs
     active-color="info"
+    class="text-caption"
   >
     <template
       v-for="(breadcrumb, i) in breadcrumbs"
