@@ -18,6 +18,7 @@
     <q-table
       :rows="project.languages"
       :columns="columns"
+      :pagination="{ rowsPerPage: 0 }"
       bordered
       flat
       hide-bottom
@@ -87,7 +88,7 @@ export default {
         code,
       });
       const { project } = props;
-      project.languages.push(data);
+      project.languages.unshift(data);
       props.onUpdateProject(project);
     };
     return {

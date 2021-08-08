@@ -30,7 +30,7 @@
             <q-select
               v-model="state.name"
               :model-value="state.name"
-              :options="langOptions.map((o) => o.name)"
+              :options="langOptions.filter(filter).map((o) => o.name)"
               :rules="rules.name"
               autofocus
               borderless
@@ -131,13 +131,13 @@ export default {
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
       ],
       code: [
         (v) => (v && !!v.trim()) || 'The code is required.',
         (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
       ],
     };
+    const filter = (o) => !props.languages.some((l) => l.code === o.code);
     const submit = async () => {
       if (!await formRef?.value.validate()) {
         return;
@@ -157,6 +157,7 @@ export default {
       formRef,
       langOptions,
       rules,
+      filter,
       submit,
     };
   },
