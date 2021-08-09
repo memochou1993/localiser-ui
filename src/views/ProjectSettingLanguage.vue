@@ -4,22 +4,37 @@
       text="Languages"
     />
     <div
-      class="q-mb-lg"
+      class="row justify-between items-center"
     >
-      <q-btn
-        class="q-mr-sm"
-        color="red-4"
-        dense
-        icon="mdi-plus"
-        round
-        @click="state.enableCreateForm = true"
+      <div
+        class="row justify-between items-center q-my-sm"
+      >
+        <q-btn
+          class="q-mr-sm"
+          color="red-4"
+          dense
+          icon="mdi-plus"
+          round
+          @click="state.enableCreateForm = true"
+        />
+      </div>
+      <div
+        class="row justify-between items-center q-my-sm"
+      >
+        <AppFilter
+          :on-input="(v) => state.keyword = v"
+        />
+      </div>
+    </div>
+    <div
+      class="q-my-sm"
+    >
+      <LanguageList
+        :languages="project.languages.filter(filter)"
+        :on-delete-language="deleteLanguage"
+        :on-edit-language="editLanguage"
       />
     </div>
-    <LanguageList
-      :languages="project.languages"
-      :on-delete-language="deleteLanguage"
-      :on-edit-language="editLanguage"
-    />
     <LanguageEditor
       v-if="state.enableCreateForm"
       :languages="project.languages"
@@ -35,6 +50,7 @@ import {
 } from 'vue';
 import * as actions from '@/actions';
 import {
+  AppFilter,
   LanguageEditor,
   LanguageList,
   ProjectSettingHeading,
@@ -43,6 +59,7 @@ import {
 export default {
   name: 'ProjectSettingLanguage',
   components: {
+    AppFilter,
     LanguageEditor,
     LanguageList,
     ProjectSettingHeading,
@@ -59,8 +76,13 @@ export default {
   },
   setup(props) {
     const state = reactive({
+      keyword: '',
       enableCreateForm: false,
     });
+    const filter = (l) => {
+      const keyword = state.keyword.toLowerCase();
+      return l.name.toLowerCase().includes(keyword);
+    };
     const createLanguage = async ({ name, code }) => {
       try {
         const { data } = await actions.language.store({
@@ -104,6 +126,7 @@ export default {
     };
     return {
       state,
+      filter,
       createLanguage,
       editLanguage,
       deleteLanguage,

@@ -14,10 +14,10 @@
         />
       </div>
       <div
-        class="row justify-between items-end"
+        class="row justify-between items-center"
       >
         <div
-          class="row justify-between items-end q-my-sm"
+          class="row justify-between items-center q-my-sm"
         >
           <div>
             <q-btn
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div
-          class="row justify-between items-end q-my-sm"
+          class="row justify-between items-center q-my-sm"
         >
           <AppFilter
             :on-input="(v) => state.keyword = v"
