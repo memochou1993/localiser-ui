@@ -1,7 +1,7 @@
 <template>
   <q-list
     bordered
-    class="bg-white rounded-borders text-primary q-py-xs"
+    class="bg-white rounded-borders q-py-xs"
   >
     <template
       v-for="(item, i) in items"
@@ -12,7 +12,7 @@
         :to="item.to"
         clickable
         exact
-        exact-active-class="bg-primary text-white"
+        exact-active-class="bg-grey-3 text-black"
       >
         <q-item-section>
           <span
