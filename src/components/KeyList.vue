@@ -1,11 +1,11 @@
 <template>
   <q-list
-    v-if="keys.length > 0"
+    v-if="keys.filter(filter).length > 0"
     bordered
     class="bg-white rounded-borders q-py-sm"
   >
     <template
-      v-for="(key, i) in keys"
+      v-for="(key, i) in keys.filter(filter)"
       :key="key.id"
     >
       <q-separator
@@ -44,6 +44,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    languages: {
+      type: Array,
+      default: () => [],
+    },
+    needle: {
+      type: String,
+      default: '',
+    },
     onCreateValue: {
       type: Function,
       default: () => {},
@@ -60,10 +68,16 @@ export default {
       type: Function,
       default: () => {},
     },
-    languages: {
-      type: Array,
-      default: () => [],
-    },
+  },
+  setup(props) {
+    const filter = (k) => {
+      const needle = props.needle.toLowerCase();
+      return k.name.toLowerCase().includes(needle)
+        || k.values.some((v) => v.text?.toLowerCase().includes(needle));
+    };
+    return {
+      filter,
+    };
   },
 };
 </script>

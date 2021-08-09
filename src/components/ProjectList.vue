@@ -1,11 +1,11 @@
 <template>
   <q-list
-    v-if="projects.length > 0"
+    v-if="projects.filter(filter).length > 0"
     bordered
     class="bg-white rounded-borders q-py-sm"
   >
     <template
-      v-for="(project, i) in projects"
+      v-for="(project, i) in projects.filter(filter)"
       :key="project.id"
     >
       <q-separator
@@ -73,10 +73,19 @@ export default {
       type: Array,
       default: () => [],
     },
+    needle: {
+      type: String,
+      default: '',
+    },
   },
-  setup() {
+  setup(props) {
+    const filter = (p) => {
+      const needle = props.needle.toLowerCase();
+      return p.name.toLowerCase().includes(needle);
+    };
     const formatDate = (v) => moment.duration(moment(v).diff(moment())).humanize();
     return {
+      filter,
       formatDate,
     };
   },

@@ -53,12 +53,13 @@
       >
         <KeyList
           v-if="isLoaded"
-          :keys="state.keys.filter(filter)"
+          :keys="state.keys"
+          :languages="state.project.languages"
+          :needle="state.keyword"
           :on-create-value="createValue"
           :on-delete-key="deleteKey"
           :on-edit-key="editKey"
           :on-edit-value="editValue"
-          :languages="state.project.languages"
         />
       </div>
       <KeyEditor
@@ -128,11 +129,6 @@ export default {
         console.debug(err);
       }
     })();
-    const filter = (k) => {
-      const keyword = state.keyword.toLowerCase();
-      return k.name.toLowerCase().includes(keyword)
-        || k.values.some((v) => v.text?.toLowerCase().includes(keyword));
-    };
     const createKey = async ({ name }) => {
       try {
         const { data } = await actions.key.store({
@@ -185,7 +181,6 @@ export default {
     return {
       state,
       isLoaded,
-      filter,
       createKey,
       editKey,
       deleteKey,

@@ -30,7 +30,8 @@
       class="q-my-sm"
     >
       <LanguageList
-        :languages="project.languages.filter(filter)"
+        :languages="project.languages"
+        :needle="state.keyword"
         :on-delete-language="deleteLanguage"
         :on-edit-language="editLanguage"
       />
@@ -79,10 +80,6 @@ export default {
       keyword: '',
       enableCreateForm: false,
     });
-    const filter = (l) => {
-      const keyword = state.keyword.toLowerCase();
-      return l.name.toLowerCase().includes(keyword);
-    };
     const createLanguage = async ({ name, code }) => {
       try {
         const { data } = await actions.language.store({
@@ -126,7 +123,6 @@ export default {
     };
     return {
       state,
-      filter,
       createLanguage,
       editLanguage,
       deleteLanguage,

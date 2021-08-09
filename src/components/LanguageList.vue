@@ -1,8 +1,9 @@
 <template>
   <q-table
+    v-if="languages.filter(filter).length > 0"
     :columns="columns"
     :pagination="{ rowsPerPage: 0 }"
-    :rows="languages"
+    :rows="languages.filter(filter)"
     bordered
     flat
     hide-bottom
@@ -18,9 +19,14 @@
       />
     </template>
   </q-table>
+  <AppEmpty
+    v-else
+    class="text-center q-my-xl"
+  />
 </template>
 
 <script>
+import AppEmpty from './AppEmpty.vue';
 import LanguageItem from './LanguageItem.vue';
 
 const columns = [
@@ -59,12 +65,17 @@ const columns = [
 export default {
   name: 'LanguageList',
   components: {
+    AppEmpty,
     LanguageItem,
   },
   props: {
     languages: {
       type: Array,
       default: () => [],
+    },
+    needle: {
+      type: String,
+      default: '',
     },
     onDeleteLanguage: {
       type: Function,
@@ -75,9 +86,15 @@ export default {
       default: () => {},
     },
   },
-  setup() {
+  setup(props) {
+    const filter = (l) => {
+      const needle = props.needle.toLowerCase();
+      return l.name.toLowerCase().includes(needle)
+        || l.code.toLowerCase().includes(needle);
+    };
     return {
       columns,
+      filter,
     };
   },
 };

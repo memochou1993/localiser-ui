@@ -39,7 +39,8 @@
       >
         <ProjectList
           v-if="isLoaded"
-          :projects="state.projects.filter(filter)"
+          :needle="state.keyword"
+          :projects="state.projects"
         />
       </div>
       <ProjectEditor
@@ -91,10 +92,6 @@ export default {
         console.debug(err);
       }
     })();
-    const filter = (p) => {
-      const keyword = state.keyword.toLowerCase();
-      return p.name.toLowerCase().includes(keyword);
-    };
     const createProject = async ({ name, languages }) => {
       try {
         const { data } = await actions.project.store({
@@ -110,7 +107,6 @@ export default {
     return {
       state,
       isLoaded,
-      filter,
       createProject,
     };
   },
