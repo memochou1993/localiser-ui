@@ -47,6 +47,7 @@ import {
 } from 'vue';
 import {
   useRoute,
+  useRouter,
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
@@ -64,6 +65,7 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const state = reactive({
       project: null,
     });
@@ -75,7 +77,9 @@ export default {
         state.project = data;
       } catch (err) {
         console.debug(err);
+        return router.push({ name: 'project.index' });
       }
+      return null;
     })();
     return {
       state,

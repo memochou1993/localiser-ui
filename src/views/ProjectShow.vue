@@ -76,6 +76,7 @@ import {
 } from 'vue';
 import {
   useRoute,
+  useRouter,
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
@@ -99,6 +100,7 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const state = reactive({
       project: null,
       keys: null,
@@ -113,15 +115,16 @@ export default {
         state.project = data;
       } catch (err) {
         console.debug(err);
+        return router.push({ name: 'project.index' });
       }
-    })();
-    (async () => {
       try {
         const { data } = await actions.key.index({ projectId });
         state.keys = data;
       } catch (err) {
         console.debug(err);
+        return router.push({ name: 'project.index' });
       }
+      return null;
     })();
     const createKey = async ({ name }) => {
       try {

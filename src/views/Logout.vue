@@ -25,7 +25,6 @@ export default {
       } finally {
         Cookie.remove('token');
         store.commit('setToken', null);
-        store.commit('setProjects', null);
         await router.push({ name: 'login' });
       }
     })();
