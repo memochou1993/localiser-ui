@@ -12,7 +12,7 @@
         :to="item.to"
         clickable
         exact
-        exact-active-class="bg-grey-3 text-black"
+        exact-active-class="bg-primary text-white"
       >
         <q-item-section>
           <span
