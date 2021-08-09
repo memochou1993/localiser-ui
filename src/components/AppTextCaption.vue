@@ -1,13 +1,13 @@
 <template>
   <div
-    class="text-caption text-grey-10 q-pa-xs"
+    class="text-caption text-weight-medium text-grey-10"
     v-text="text"
   />
 </template>
 
 <script>
 export default {
-  name: 'AppInputLabel',
+  name: 'AppTextCaption',
   props: {
     text: {
       type: String,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProjectSettingHeading
+    <AppTextHeading
       text="Languages"
     />
     <div
@@ -49,18 +49,18 @@ import {
 import * as actions from '@/actions';
 import {
   AppFilter,
+  AppTextHeading,
   LanguageEditor,
   LanguageList,
-  ProjectSettingHeading,
 } from '@/components';
 
 export default {
   name: 'ProjectSettingLanguage',
   components: {
     AppFilter,
+    AppTextHeading,
     LanguageEditor,
     LanguageList,
-    ProjectSettingHeading,
   },
   props: {
     project: {

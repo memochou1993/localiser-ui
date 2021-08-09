@@ -2,16 +2,13 @@
   <q-card
     bordered
     flat
+    style="min-height: 400px"
+    class="row justify-center items-center"
   >
-    <q-card-section
-      class="row justify-center items-center"
-      style="min-height: 400px"
-    >
-      <span
-        class="text-caption"
-        v-text="'No Data'"
-      />
-    </q-card-section>
+    <span
+      class="text-caption"
+      v-text="'No Data'"
+    />
   </q-card>
 </template>
 

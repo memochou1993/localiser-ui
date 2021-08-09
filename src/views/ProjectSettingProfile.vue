@@ -1,57 +1,106 @@
 <template>
   <div>
-    <ProjectSettingHeading
-      text="General"
-    />
     <div
-      class="row"
-    />
-    <q-card
-      bordered
-      flat
-      class="q-pa-md my-12"
+      class="q-mb-lg"
     >
-      <q-card-section
-        class="q-py-none"
+      <AppTextHeading
+        text="General"
+      />
+      <div
+        class="row"
+      />
+      <q-card
+        bordered
+        flat
+        class="q-pa-md my-12"
         style="min-height: 400px"
       >
-        <q-form
-          ref="formRef"
-          @keyup.enter.stop="submit"
-          @submit="submit"
+        <q-card-section
+          class="q-py-none"
         >
-          <div
-            class="q-pb-lg"
+          <q-form
+            ref="form"
+            @keyup.enter.stop="submit"
+            @submit="submit"
           >
             <div
-              class="text-caption text-weight-medium text-grey-10 q-py-sm"
-              v-text="'Project Name'"
-            />
-            <q-input
-              v-model="state.name"
-              :error="!!state.errorMessages.name"
-              :error-message="state.errorMessages.name"
-              :model-value="state.name"
-              :rules="rules.name"
-              autofocus
-              borderless
-              dense
-              @update:model-value="state.errorMessages.name = ''"
-            />
-          </div>
+              class="q-pb-lg"
+            >
+              <AppTextCaption
+                text="Project Name"
+                class="q-my-sm"
+              />
+              <q-input
+                v-model="state.name"
+                :error="!!state.errorMessages.name"
+                :error-message="state.errorMessages.name"
+                :model-value="state.name"
+                :rules="rules.name"
+                autofocus
+                borderless
+                dense
+                @update:model-value="state.errorMessages.name = ''"
+              />
+            </div>
+            <div
+              class="text-right"
+            >
+              <q-btn
+                color="primary"
+                label="Save"
+                no-caps
+                @click="submit"
+              />
+            </div>
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </div>
+    <div
+      class="q-mb-lg"
+    >
+      <AppTextHeading
+        text="Danger Zone"
+      />
+      <div
+        class="row"
+      />
+      <q-card
+        bordered
+        flat
+        class="q-pa-md my-12"
+      >
+        <q-card-section
+          class="q-py-none"
+        >
           <div
-            class="text-right q-mt-md"
+            class="row justify-between items-center"
           >
-            <q-btn
-              color="primary"
-              label="Save"
-              no-caps
-              @click="submit"
-            />
+            <div
+              class="col-12 col-md-8"
+            >
+              <AppTextCaption
+                text="Delete this project"
+              />
+              <span
+                v-text="'Once you delete a project, there is no going back. Please be certain.'"
+              />
+            </div>
+            <div
+              class="col-12 col-md-4 text-sm-right"
+            >
+              <q-btn
+                class="text-red q-my-md"
+                label="Delete this project"
+                no-caps
+                outline
+                unelevated
+              />
+            </div>
           </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
+        </q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 
@@ -62,7 +111,8 @@ import {
 } from 'vue';
 import * as actions from '@/actions';
 import {
-  ProjectSettingHeading,
+  AppTextCaption,
+  AppTextHeading,
 } from '@/components';
 
 const rules = {
@@ -74,7 +124,8 @@ const rules = {
 export default {
   name: 'ProjectSettingProfile',
   components: {
-    ProjectSettingHeading,
+    AppTextCaption,
+    AppTextHeading,
   },
   props: {
     project: {
@@ -91,9 +142,9 @@ export default {
       errorMessages: {},
       name: props.project.name,
     });
-    const formRef = ref(null);
+    const form = ref(null);
     const submit = async () => {
-      if (!await formRef?.value.validate()) {
+      if (!await form?.value.validate()) {
         return;
       }
       try {
@@ -111,7 +162,7 @@ export default {
     };
     return {
       state,
-      formRef,
+      form,
       rules,
       submit,
     };

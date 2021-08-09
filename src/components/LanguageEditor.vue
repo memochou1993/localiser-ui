@@ -25,7 +25,7 @@
           <div
             class="q-pb-lg"
           >
-            <AppInputLabel
+            <AppTextLabel
               text="Name"
             />
             <q-select
@@ -66,7 +66,7 @@
           <div
             class="q-pb-lg"
           >
-            <AppInputLabel
+            <AppTextLabel
               text="Code"
             />
             <q-input
@@ -112,12 +112,12 @@ import {
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 import langOptions from '@/assets/language_options.json';
-import AppInputLabel from './AppInputLabel.vue';
+import AppTextLabel from './AppTextLabel.vue';
 
 export default {
   name: 'LanguageEditor',
   components: {
-    AppInputLabel,
+    AppTextLabel,
   },
   props: {
     defaultCode: {

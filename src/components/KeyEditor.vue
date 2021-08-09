@@ -25,7 +25,7 @@
           <div
             class="q-pb-lg"
           >
-            <AppInputLabel
+            <AppTextLabel
               text="Name"
             />
             <q-input
@@ -71,12 +71,12 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import AppInputLabel from './AppInputLabel.vue';
+import AppTextLabel from './AppTextLabel.vue';
 
 export default {
   name: 'KeyEditor',
   components: {
-    AppInputLabel,
+    AppTextLabel,
   },
   props: {
     defaultName: {

@@ -25,7 +25,7 @@
           <div
             class="q-pb-lg"
           >
-            <AppInputLabel
+            <AppTextLabel
               text="Name"
             />
             <q-input
@@ -40,7 +40,7 @@
           <div
             class="q-pb-lg"
           >
-            <AppInputLabel
+            <AppTextLabel
               text="Languages"
             />
             <q-select
@@ -124,12 +124,12 @@ import {
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 import langOptions from '@/assets/language_options.json';
-import AppInputLabel from './AppInputLabel.vue';
+import AppTextLabel from './AppTextLabel.vue';
 
 export default {
   name: 'ProjectEditor',
   components: {
-    AppInputLabel,
+    AppTextLabel,
   },
   props: {
     projects: {

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ProjectSettingHeading',
+  name: 'AppHeading',
   props: {
     text: {
       type: String,

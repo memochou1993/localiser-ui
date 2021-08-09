@@ -20,14 +20,14 @@
             class="col-12 col-sm-6 q-pa-lg"
           >
             <q-form
-              ref="formRef"
+              ref="form"
               @keyup.enter.stop="submit"
               @submit="submit"
             >
               <div
                 class="q-pb-lg"
               >
-                <AppInputLabel
+                <AppTextLabel
                   text="Email"
                 />
                 <q-input
@@ -43,7 +43,7 @@
               <div
                 class="q-pb-lg"
               >
-                <AppInputLabel
+                <AppTextLabel
                   text="Password"
                 />
                 <q-input
@@ -56,11 +56,12 @@
                 />
               </div>
               <div
-                class="text-right q-mt-md"
+                class="text-right q-mt-lg"
               >
                 <q-btn
                   color="primary"
                   label="Log in"
+                  no-caps
                   @click="submit"
                 />
               </div>
@@ -86,7 +87,7 @@ import {
 } from 'vue-router';
 import * as actions from '@/actions';
 import {
-  AppInputLabel,
+  AppTextLabel,
 } from '@/components';
 
 const rules = {
@@ -101,7 +102,7 @@ const rules = {
 export default {
   name: 'Login',
   components: {
-    AppInputLabel,
+    AppTextLabel,
   },
   setup() {
     const store = useStore();
@@ -110,9 +111,9 @@ export default {
       email: '',
       password: '',
     });
-    const formRef = ref(null);
+    const form = ref(null);
     const submit = async () => {
-      if (!await formRef?.value.validate()) {
+      if (!await form?.value.validate()) {
         return;
       }
       try {
@@ -130,7 +131,7 @@ export default {
     };
     return {
       state,
-      formRef,
+      form,
       rules,
       submit,
     };
