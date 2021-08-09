@@ -45,7 +45,23 @@
               @filter="onFilterName"
               @input-value="onInputName"
               @keyup.enter.stop=""
-            />
+            >
+              <template
+                #option="scope"
+              >
+                <q-item
+                  v-close-popup
+                  v-bind="scope.itemProps"
+                  class="dense"
+                >
+                  <q-item-section>
+                    <span
+                      v-text="scope.opt"
+                    />
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
           </div>
           <div
             class="q-pb-lg"

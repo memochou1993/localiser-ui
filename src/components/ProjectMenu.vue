@@ -1,7 +1,7 @@
 <template>
   <q-menu>
     <q-list
-      style="min-width: 160px;"
+      class="slim"
     >
       <template
         v-for="(item, i) in items"
@@ -13,8 +13,8 @@
         <q-item
           v-close-popup
           :to="item.to"
+          class="dense"
           clickable
-          style="min-height: 40px;"
         >
           <q-item-section>
             <span

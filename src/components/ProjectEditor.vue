@@ -78,7 +78,7 @@
                 <q-item
                   v-close-popup
                   v-bind="scope.itemProps"
-                  style="min-height: 40px;"
+                  class="dense"
                 >
                   <q-item-section>
                     <span
