@@ -25,41 +25,10 @@
       <div
         class="row"
       />
-      <q-card
-        bordered
-        flat
-        class="q-pa-md my-12"
-      >
-        <q-card-section
-          class="q-py-none"
-        >
-          <div
-            class="row justify-between items-center"
-          >
-            <div
-              class="col-12 col-md-8"
-            >
-              <AppTextCaption
-                text="Delete this project"
-              />
-              <span
-                v-text="'Once you delete a project, there is no going back. Please be certain.'"
-              />
-            </div>
-            <div
-              class="col-12 col-md-4 text-sm-right"
-            >
-              <q-btn
-                class="text-red q-my-md"
-                label="Delete this project"
-                no-caps
-                outline
-                unelevated
-              />
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
+      <ProjectEditorDanger
+        :on-submit="deleteProject"
+        :project-id="project.id"
+      />
     </div>
   </div>
 </template>
@@ -67,7 +36,7 @@
 <script>
 import * as actions from '@/actions';
 import {
-  AppTextCaption,
+  ProjectEditorDanger,
   ProjectEditorGeneral,
   AppTextHeading,
 } from '@/components';
@@ -75,7 +44,7 @@ import {
 export default {
   name: 'ProjectSettingProfile',
   components: {
-    AppTextCaption,
+    ProjectEditorDanger,
     ProjectEditorGeneral,
     AppTextHeading,
   },
@@ -103,8 +72,12 @@ export default {
         console.debug(err);
       }
     };
+    const deleteProject = async () => {
+      // TODO
+    };
     return {
       editProject,
+      deleteProject,
     };
   },
 };
