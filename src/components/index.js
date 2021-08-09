@@ -9,6 +9,7 @@ export { default as KeyList } from './KeyList.vue';
 export { default as LanguageEditor } from './LanguageEditor.vue';
 export { default as LanguageList } from './LanguageList.vue';
 export { default as ProjectEditor } from './ProjectEditor.vue';
+export { default as ProjectEditorGeneral } from './ProjectEditorGeneral.vue';
 export { default as ProjectList } from './ProjectList.vue';
 export { default as ProjectMenu } from './ProjectMenu.vue';
 export { default as ProjectSettingMenu } from './ProjectSettingMenu.vue';

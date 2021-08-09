@@ -9,52 +9,12 @@
       <div
         class="row"
       />
-      <q-card
-        bordered
-        flat
-        class="q-pa-md my-12"
-        style="min-height: 400px"
-      >
-        <q-card-section
-          class="q-py-none"
-        >
-          <q-form
-            ref="form"
-            @keyup.enter.stop="submit"
-            @submit="submit"
-          >
-            <div
-              class="q-pb-lg"
-            >
-              <AppTextCaption
-                text="Project Name"
-                class="q-my-sm"
-              />
-              <q-input
-                v-model="state.name"
-                :error="!!state.errorMessages.name"
-                :error-message="state.errorMessages.name"
-                :model-value="state.name"
-                :rules="rules.name"
-                autofocus
-                borderless
-                dense
-                @update:model-value="state.errorMessages.name = ''"
-              />
-            </div>
-            <div
-              class="text-right"
-            >
-              <q-btn
-                color="primary"
-                label="Save"
-                no-caps
-                @click="submit"
-              />
-            </div>
-          </q-form>
-        </q-card-section>
-      </q-card>
+      <ProjectEditorGeneral
+        :default-name="project.name"
+        :on-submit="editProject"
+        :project-id="project.id"
+        class="my-12"
+      />
     </div>
     <div
       class="q-mb-lg"
@@ -105,26 +65,18 @@
 </template>
 
 <script>
-import {
-  reactive,
-  ref,
-} from 'vue';
 import * as actions from '@/actions';
 import {
   AppTextCaption,
+  ProjectEditorGeneral,
   AppTextHeading,
 } from '@/components';
-
-const rules = {
-  name: [
-    (v) => (v && !!v.trim()) || 'The name is required.',
-  ],
-};
 
 export default {
   name: 'ProjectSettingProfile',
   components: {
     AppTextCaption,
+    ProjectEditorGeneral,
     AppTextHeading,
   },
   props: {
@@ -138,33 +90,21 @@ export default {
     },
   },
   setup(props) {
-    const state = reactive({
-      errorMessages: {},
-      name: props.project.name,
-    });
-    const form = ref(null);
-    const submit = async () => {
-      if (!await form?.value.validate()) {
-        return;
-      }
+    const editProject = async ({ projectId, name }) => {
       try {
         const { data } = await actions.project.update({
-          projectId: props.project.id,
-          name: state.name,
+          projectId,
+          name,
         });
         const { project } = props;
         Object.assign(project, data);
         props.onUpdateProject(project);
       } catch (err) {
-        const { data } = err.response;
-        state.errorMessages.name = data.errors.name.pop();
+        console.debug(err);
       }
     };
     return {
-      state,
-      form,
-      rules,
-      submit,
+      editProject,
     };
   },
 };
