@@ -28,27 +28,23 @@
             <AppInputLabel
               text="Name"
             />
-            <q-input
-              v-if="state.enableNameInput"
-              v-model="state.name"
-              :model-value="state.name"
-              :rules="rules.name"
-              autofocus
-              borderless
-              dense
-            />
             <q-select
-              v-else
               v-model="state.name"
               :model-value="state.name"
-              :options="langOptions.filter(langFilter).map((o) => o.name)"
+              :options="state.nameOptions"
               :rules="rules.name"
               autofocus
               borderless
               dense
+              fill-input
               hide-dropdown-icon
+              hide-selected
+              input-debounce="0"
               options-selected-class="text-secondary"
-              @update:model-value="onSelectName"
+              use-input
+              @filter="onFilterName"
+              @input-value="onInputName"
+              @keyup.enter.stop=""
             />
           </div>
           <div
@@ -138,13 +134,12 @@ export default {
   ],
   setup(props) {
     const state = reactive({
-      enableNameInput: props.defaultName && !langOptions.some((o) => o.name === props.defaultName),
       name: props.defaultName,
       code: props.defaultCode,
+      nameOptions: [],
     });
     const { dialogRef } = useDialogPluginComponent();
     const formRef = ref(null);
-    const langFilter = (o) => !props.languages.some((l) => l.code === o.code);
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
@@ -155,14 +150,20 @@ export default {
         (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
       ],
     };
-    const onSelectName = () => {
-      const language = langOptions.find((o) => o.name === state.name);
-      if (language.code === '') {
-        state.enableNameInput = true;
-        state.name = '';
-        return;
+    const onFilterName = (v, update) => {
+      update(() => {
+        const keyword = v.toLowerCase();
+        state.nameOptions = langOptions
+          .filter((o) => !props.languages.some((l) => l.name === o.name))
+          .filter((o) => o.name.toLocaleLowerCase().includes(keyword))
+          .map((o) => o.name);
+      });
+    };
+    const onInputName = (v) => {
+      state.name = v;
+      if (!state.code) {
+        state.code = langOptions.find((o) => o.name === v)?.code || '';
       }
-      state.code = language.code;
     };
     const submit = async () => {
       if (!await formRef?.value.validate()) {
@@ -182,10 +183,9 @@ export default {
       state,
       dialogRef,
       formRef,
-      langOptions,
-      langFilter,
       rules,
-      onSelectName,
+      onFilterName,
+      onInputName,
       submit,
     };
   },
