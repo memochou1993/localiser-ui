@@ -4,18 +4,14 @@
       v-if="isLoaded"
     >
       <div
-        class="q-my-sm"
-      >
-        <span
-          class="text-h6 text-weight-regular"
-          v-text="'My Projects'"
-        />
-      </div>
+        class="text-h6 text-weight-regular my-12"
+        v-text="'My Projects'"
+      />
       <div
         class="row justify-between items-center"
       >
         <div
-          class="row justify-between items-center q-my-sm"
+          class="row justify-between items-center my-12"
         >
           <q-btn
             class="q-mr-sm"
@@ -27,22 +23,19 @@
           />
         </div>
         <div
-          class="row justify-between items-center q-my-sm"
+          class="row justify-between items-center my-12"
         >
           <AppFilter
             :on-input="(v) => state.keyword = v"
           />
         </div>
       </div>
-      <div
-        class="q-my-sm"
-      >
-        <ProjectList
-          v-if="isLoaded"
-          :needle="state.keyword"
-          :projects="state.projects"
-        />
-      </div>
+      <ProjectList
+        v-if="isLoaded"
+        :needle="state.keyword"
+        :projects="state.projects"
+        class="my-12"
+      />
       <ProjectEditor
         v-if="state.enableCreateForm"
         :projects="state.projects"

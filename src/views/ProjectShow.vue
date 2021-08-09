@@ -3,21 +3,18 @@
     <template
       v-if="isLoaded"
     >
-      <div
-        class="q-my-sm"
-      >
-        <AppBreadcrumb
-          :breadcrumbs="[
-            { label: 'Projects', to: { name: 'project.index' } },
-            { label: state.project.name },
-          ]"
-        />
-      </div>
+      <AppBreadcrumb
+        :breadcrumbs="[
+          { label: 'Projects', to: { name: 'project.index' } },
+          { label: state.project.name },
+        ]"
+        class="my-12"
+      />
       <div
         class="row justify-between items-center"
       >
         <div
-          class="row justify-between items-center q-my-sm"
+          class="row justify-between items-center my-12"
         >
           <div>
             <q-btn
@@ -41,27 +38,24 @@
           </div>
         </div>
         <div
-          class="row justify-between items-center q-my-sm"
+          class="row justify-between items-center my-12"
         >
           <AppFilter
             :on-input="(v) => state.keyword = v"
           />
         </div>
       </div>
-      <div
-        class="q-my-sm"
-      >
-        <KeyList
-          v-if="isLoaded"
-          :keys="state.keys"
-          :languages="state.project.languages"
-          :needle="state.keyword"
-          :on-create-value="createValue"
-          :on-delete-key="deleteKey"
-          :on-edit-key="editKey"
-          :on-edit-value="editValue"
-        />
-      </div>
+      <KeyList
+        v-if="isLoaded"
+        :keys="state.keys"
+        :languages="state.project.languages"
+        :needle="state.keyword"
+        :on-create-value="createValue"
+        :on-delete-key="deleteKey"
+        :on-edit-key="editKey"
+        :on-edit-value="editValue"
+        class="my-12"
+      />
       <KeyEditor
         v-if="state.enableCreateForm"
         :keys="state.keys"

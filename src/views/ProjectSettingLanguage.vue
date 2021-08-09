@@ -7,7 +7,7 @@
       class="row justify-between items-center"
     >
       <div
-        class="row justify-between items-center q-my-sm"
+        class="row justify-between items-center my-12"
       >
         <q-btn
           class="q-mr-sm"
@@ -19,23 +19,20 @@
         />
       </div>
       <div
-        class="row justify-between items-center q-my-sm"
+        class="row justify-between items-center my-12"
       >
         <AppFilter
           :on-input="(v) => state.keyword = v"
         />
       </div>
     </div>
-    <div
-      class="q-my-sm"
-    >
-      <LanguageList
-        :languages="project.languages"
-        :needle="state.keyword"
-        :on-delete-language="deleteLanguage"
-        :on-edit-language="editLanguage"
-      />
-    </div>
+    <LanguageList
+      :languages="project.languages"
+      :needle="state.keyword"
+      :on-delete-language="deleteLanguage"
+      :on-edit-language="editLanguage"
+      class="my-12"
+    />
     <LanguageEditor
       v-if="state.enableCreateForm"
       :languages="project.languages"
