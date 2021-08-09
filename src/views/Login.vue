@@ -22,7 +22,7 @@
             <q-form
               ref="form"
               @keyup.enter.stop="submit"
-              @submit="submit"
+              @submit.stop="submit"
             >
               <div
                 class="q-pb-lg"

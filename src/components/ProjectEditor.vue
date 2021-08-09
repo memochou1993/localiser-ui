@@ -20,7 +20,7 @@
         <q-form
           ref="form"
           @keyup.enter.stop="submit"
-          @submit="submit"
+          @submit.stop="submit"
         >
           <div
             class="q-pb-lg"
@@ -56,6 +56,7 @@
               option-value="code"
               options-selected-class="text-secondary"
               use-chips
+              @keyup.enter.stop
             >
               <template
                 #selected-item="scope"

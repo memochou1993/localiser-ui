@@ -20,7 +20,7 @@
         <q-form
           ref="form"
           @keyup.enter.stop="submit"
-          @submit="submit"
+          @submit.stop="submit"
         >
           <div
             class="q-pb-lg"
@@ -44,7 +44,7 @@
               use-input
               @filter="onFilterName"
               @input-value="onInputName"
-              @keyup.enter.stop=""
+              @keyup.enter.stop
             >
               <template
                 #option="scope"
