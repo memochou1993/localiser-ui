@@ -1,6 +1,6 @@
 <template>
   <q-dialog
-    ref="dialogRef"
+    ref="dialog"
     @hide="onClose"
   >
     <q-card
@@ -18,7 +18,7 @@
         class="q-px-lg q-pb-none"
       >
         <q-form
-          ref="formRef"
+          ref="form"
           @keyup.enter.stop="submit"
           @submit="submit"
         >
@@ -153,8 +153,8 @@ export default {
       name: '',
       languages: [],
     });
-    const { dialogRef } = useDialogPluginComponent();
-    const formRef = ref(null);
+    const { dialogRef: dialog } = useDialogPluginComponent();
+    const form = ref(null);
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
@@ -165,7 +165,7 @@ export default {
       ],
     };
     const submit = async () => {
-      if (!await formRef?.value.validate()) {
+      if (!await form?.value.validate()) {
         return;
       }
       props.onSubmit({
@@ -175,12 +175,12 @@ export default {
       props.onClose();
     };
     onMounted(() => {
-      dialogRef.value.show();
+      dialog.value.show();
     });
     return {
       state,
-      dialogRef,
-      formRef,
+      dialog,
+      form,
       langOptions,
       rules,
       submit,
