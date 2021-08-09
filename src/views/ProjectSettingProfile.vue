@@ -10,10 +10,10 @@
       bordered
       flat
       class="q-pa-md my-12"
-      style="min-height: 400px"
     >
       <q-card-section
         class="q-py-none"
+        style="min-height: 400px"
       >
         <q-form
           ref="formRef"
