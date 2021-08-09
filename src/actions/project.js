@@ -43,12 +43,9 @@ const update = ({
 
 const destroy = ({
   projectId,
-  name,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .delete(`/api/projects/${projectId}`, {
-      name,
-    })
+    .delete(`/api/projects/${projectId}`)
     .then(({ data }) => resolve(data))
     .catch((err) => reject(err));
 });

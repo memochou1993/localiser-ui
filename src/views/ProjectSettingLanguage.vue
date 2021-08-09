@@ -63,13 +63,13 @@ export default {
     LanguageList,
   },
   props: {
-    project: {
-      type: Object,
-      required: true,
-    },
     onUpdateProject: {
       type: Function,
       default: () => {},
+    },
+    project: {
+      type: Object,
+      required: true,
     },
   },
   setup(props) {

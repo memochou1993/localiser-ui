@@ -40,6 +40,9 @@ import {
   ProjectEditorGeneral,
   AppTextHeading,
 } from '@/components';
+import {
+  useRouter,
+} from 'vue-router';
 
 export default {
   name: 'ProjectSettingProfile',
@@ -49,16 +52,17 @@ export default {
     AppTextHeading,
   },
   props: {
-    project: {
-      type: Object,
-      required: true,
-    },
     onUpdateProject: {
       type: Function,
       default: () => {},
     },
+    project: {
+      type: Object,
+      required: true,
+    },
   },
   setup(props) {
+    const router = useRouter();
     const editProject = async ({ projectId, name }) => {
       try {
         const { data } = await actions.project.update({
@@ -72,8 +76,16 @@ export default {
         console.debug(err);
       }
     };
-    const deleteProject = async () => {
-      // TODO
+    const deleteProject = async ({ projectId }) => {
+      try {
+        await actions.project.destroy({
+          projectId,
+        });
+        props.onUpdateProject(null);
+        await router.push({ name: 'project.index' });
+      } catch (err) {
+        console.debug(err);
+      }
     };
     return {
       editProject,

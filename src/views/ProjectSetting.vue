@@ -28,8 +28,8 @@
           class="col-12 col-sm-8 col-md-9"
         >
           <router-view
-            :project="state.project"
             :on-update-project="(p) => state.project = p"
+            :project="state.project"
           />
         </div>
       </div>
