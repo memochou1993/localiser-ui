@@ -30,6 +30,7 @@
             />
             <q-select
               v-model="state.name"
+              :input-debounce="0"
               :model-value="state.name"
               :options="state.nameOptions"
               :rules="rules.name"
@@ -39,7 +40,6 @@
               fill-input
               hide-dropdown-icon
               hide-selected
-              input-debounce="0"
               options-selected-class="text-secondary"
               use-input
               @filter="onFilterName"

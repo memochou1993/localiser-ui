@@ -45,8 +45,9 @@
             />
             <q-select
               v-model="state.languages"
+              :input-debounce="0"
               :model-value="state.languages"
-              :options="langOptions"
+              :options="state.languageOptions"
               :rules="rules.languages"
               borderless
               dense
@@ -153,6 +154,7 @@ export default {
     const state = reactive({
       name: '',
       languages: [],
+      languageOptions: langOptions,
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
@@ -182,7 +184,6 @@ export default {
       state,
       dialog,
       form,
-      langOptions,
       rules,
       submit,
     };
