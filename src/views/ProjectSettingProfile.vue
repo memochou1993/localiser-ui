@@ -34,15 +34,15 @@
 </template>
 
 <script>
+import {
+  useRouter,
+} from 'vue-router';
 import * as actions from '@/actions';
 import {
   ProjectEditorDanger,
   ProjectEditorGeneral,
   AppTextHeading,
 } from '@/components';
-import {
-  useRouter,
-} from 'vue-router';
 
 export default {
   name: 'ProjectSettingProfile',
