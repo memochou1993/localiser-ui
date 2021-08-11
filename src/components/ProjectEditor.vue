@@ -125,7 +125,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import langOptions from '@/assets/language_options.json';
+import defaultLanguageOptions from '@/assets/language_options.json';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
@@ -154,7 +154,7 @@ export default {
     const state = reactive({
       name: '',
       languages: [],
-      languageOptions: langOptions,
+      languageOptions: defaultLanguageOptions,
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);

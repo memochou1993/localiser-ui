@@ -111,7 +111,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import langOptions from '@/assets/language_options.json';
+import defaultLanguageOptions from '@/assets/language_options.json';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
@@ -169,7 +169,7 @@ export default {
     const onFilterName = (v, update) => {
       update(() => {
         const keyword = v.toLowerCase();
-        state.nameOptions = langOptions
+        state.nameOptions = defaultLanguageOptions
           .filter((o) => !props.languages.some((l) => l.name === o.name))
           .filter((o) => o.name.toLocaleLowerCase().includes(keyword))
           .map((o) => o.name);
@@ -178,7 +178,7 @@ export default {
     const onInputName = (v) => {
       state.name = v;
       if (!state.code) {
-        state.code = langOptions.find((o) => o.name === v)?.code || '';
+        state.code = defaultLanguageOptions.find((o) => o.name === v)?.code || '';
       }
     };
     const submit = async () => {
