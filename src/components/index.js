@@ -14,6 +14,8 @@ export { default as ProjectEditorGeneral } from './ProjectEditorGeneral.vue';
 export { default as ProjectList } from './ProjectList.vue';
 export { default as ProjectMenu } from './ProjectMenu.vue';
 export { default as ProjectSettingMenu } from './ProjectSettingMenu.vue';
+export { default as ProjectUserEditor } from './ProjectUserEditor.vue';
 export { default as TheHeader } from './TheHeader.vue';
+export { default as UserList } from './UserList.vue';
 
 export default null;

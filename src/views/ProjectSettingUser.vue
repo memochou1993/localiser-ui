@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppTextHeading
-      text="Languages"
+      text="Members"
     />
     <div
       class="row justify-between items-center"
@@ -26,18 +26,18 @@
         />
       </div>
     </div>
-    <LanguageList
-      :languages="project.languages"
+    <UserList
       :needle="state.keyword"
-      :on-delete-language="deleteLanguage"
-      :on-edit-language="editLanguage"
+      :on-detach-user="detachUser"
+      :users="project.users"
       class="my-12"
     />
-    <LanguageEditor
+    <ProjectUserEditor
       v-if="state.enableCreateForm"
-      :languages="project.languages"
+      :default-user-options="users"
+      :users="project.users"
       :on-close="() => state.enableCreateForm = false"
-      :on-submit="createLanguage"
+      :on-submit="attachUser"
     />
   </div>
 </template>
@@ -50,17 +50,17 @@ import * as actions from '@/actions';
 import {
   AppFilter,
   AppTextHeading,
-  LanguageEditor,
-  LanguageList,
+  ProjectUserEditor,
+  UserList,
 } from '@/components';
 
 export default {
-  name: 'ProjectSettingLanguage',
+  name: 'ProjectSettingUser',
   components: {
     AppFilter,
     AppTextHeading,
-    LanguageEditor,
-    LanguageList,
+    ProjectUserEditor,
+    UserList,
   },
   props: {
     onUpdateProject: {
@@ -71,48 +71,37 @@ export default {
       type: Object,
       required: true,
     },
+    users: {
+      type: Array,
+      required: true,
+    },
   },
   setup(props) {
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
     });
-    const createLanguage = async ({ name, code }) => {
+    const attachUser = async ({ users }) => {
       try {
-        const { data } = await actions.language.store({
+        await actions.project.attachUser({
           projectId: props.project.id,
-          name,
-          code,
+          users,
         });
         const { project } = props;
-        project.languages.push(data);
+        project.users = project.users.concat(users);
         props.onUpdateProject(project);
       } catch (err) {
         console.debug(err);
       }
     };
-    const editLanguage = async ({ languageId, name, code }) => {
+    const detachUser = async ({ userId }) => {
       try {
-        const { data } = await actions.language.update({
-          languageId,
-          name,
-          code,
+        await actions.project.detachUser({
+          projectId: props.project.id,
+          userId,
         });
         const { project } = props;
-        const language = project.languages.find((l) => l.id === languageId);
-        Object.assign(language, data);
-        props.onUpdateProject(project);
-      } catch (err) {
-        console.debug(err);
-      }
-    };
-    const deleteLanguage = async ({ languageId }) => {
-      try {
-        await actions.language.destroy({
-          languageId,
-        });
-        const { project } = props;
-        project.languages.splice(project.languages.findIndex((l) => l.id === languageId), 1);
+        project.users.splice(project.users.findIndex((u) => u.id === userId), 1);
         props.onUpdateProject(project);
       } catch (err) {
         console.debug(err);
@@ -120,9 +109,8 @@ export default {
     };
     return {
       state,
-      createLanguage,
-      editLanguage,
-      deleteLanguage,
+      attachUser,
+      detachUser,
     };
   },
 };

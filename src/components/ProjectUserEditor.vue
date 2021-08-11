@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Language Editor'"
+          v-text="'Member Editor'"
         />
       </q-card-section>
       <q-card-section
@@ -26,26 +26,40 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Name"
+              text="Users"
             />
             <q-select
-              v-model="state.name"
+              v-model="state.users"
               :input-debounce="0"
-              :model-value="state.name"
-              :options="state.nameOptions"
-              :rules="rules.name"
-              autofocus
+              :model-value="state.users"
+              :options="state.userOptions"
+              :rules="rules.users"
               borderless
               dense
-              fill-input
               hide-dropdown-icon
-              hide-selected
+              multiple
+              option-label="name"
+              option-value="id"
               options-selected-class="text-secondary"
-              use-input
-              @filter="onFilterName"
-              @input-value="onInputName"
+              use-chips
+              @filter="onFilterUser"
               @keyup.enter.stop
             >
+              <template
+                #selected-item="scope"
+              >
+                <q-chip
+                  :tabindex="scope.tabindex"
+                  :label="scope.opt.name"
+                  class="q-px-sm q-ml-none q-my-xs q-mr-sm cursor-default"
+                  color="secondary"
+                  dense
+                  outline
+                  removable
+                  square
+                  @remove="scope.removeAtIndex(scope.index)"
+                />
+              </template>
               <template
                 #option="scope"
               >
@@ -56,26 +70,23 @@
                 >
                   <q-item-section>
                     <span
-                      v-text="scope.opt"
+                      v-text="scope.opt.name"
                     />
                   </q-item-section>
                 </q-item>
               </template>
+              <template
+                #no-option
+              >
+                <q-item
+                  class="dense cursor-default"
+                >
+                  <q-item-section>
+                    No available user
+                  </q-item-section>
+                </q-item>
+              </template>
             </q-select>
-          </div>
-          <div
-            class="q-pb-lg"
-          >
-            <AppTextLabel
-              text="Code"
-            />
-            <q-input
-              v-model="state.code"
-              :model-value="state.code"
-              :rules="rules.code"
-              borderless
-              dense
-            />
           </div>
         </q-form>
       </q-card-section>
@@ -111,28 +122,19 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import defaultLanguageOptions from '@/assets/language_options.json';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
-  name: 'LanguageEditor',
+  name: 'ProjectUserEditor',
   components: {
     AppTextLabel,
   },
   props: {
-    defaultCode: {
-      type: String,
-      default: '',
+    defaultUserOptions: {
+      type: Array,
+      default: () => [],
     },
-    defaultName: {
-      type: String,
-      default: '',
-    },
-    languageId: {
-      type: Number,
-      default: 0,
-    },
-    languages: {
+    users: {
       type: Array,
       default: () => [],
     },
@@ -150,45 +152,30 @@ export default {
   ],
   setup(props) {
     const state = reactive({
-      name: props.defaultName,
-      code: props.defaultCode,
-      nameOptions: [],
+      users: [],
+      userOptions: [],
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
     const rules = {
-      name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
-      ],
-      code: [
-        (v) => (v && !!v.trim()) || 'The code is required.',
-        (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
+      users: [
+        (v) => v.length > 0 || 'The users is required.',
       ],
     };
-    const onFilterName = (v, update) => {
+    const onFilterUser = (v, update) => {
       update(() => {
         const needle = v.toLowerCase();
-        state.nameOptions = defaultLanguageOptions
-          .filter((o) => !props.languages.some((l) => l.name === o.name))
-          .filter((o) => o.name.toLocaleLowerCase().includes(needle))
-          .map((o) => o.name);
+        state.userOptions = props.defaultUserOptions
+          .filter((o) => !props.users.some((u) => u.id === o.id))
+          .filter((o) => o.name.toLocaleLowerCase().includes(needle));
       });
-    };
-    const onInputName = (v) => {
-      state.name = v;
-      if (!state.code) {
-        state.code = defaultLanguageOptions.find((o) => o.name === v)?.code || '';
-      }
     };
     const submit = async () => {
       if (!await form?.value.validate()) {
         return;
       }
       props.onSubmit({
-        languageId: props.languageId,
-        name: state.name,
-        code: state.code,
+        users: state.users,
       });
       props.onClose();
     };
@@ -200,8 +187,7 @@ export default {
       dialog,
       form,
       rules,
-      onFilterName,
-      onInputName,
+      onFilterUser,
       submit,
     };
   },

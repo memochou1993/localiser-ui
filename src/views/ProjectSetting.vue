@@ -30,6 +30,7 @@
           <router-view
             :on-update-project="(p) => state.project = p"
             :project="state.project"
+            :users="state.users"
           />
         </div>
       </div>
@@ -68,6 +69,7 @@ export default {
     const router = useRouter();
     const state = reactive({
       project: null,
+      users: [],
     });
     const isLoaded = computed(() => !!state.project);
     const { projectId } = route.params;
@@ -78,6 +80,12 @@ export default {
       } catch (err) {
         console.debug(err);
         return router.push({ name: 'project.index' });
+      }
+      try {
+        const { data } = await actions.user.index();
+        state.users = data;
+      } catch (err) {
+        console.debug(err);
       }
       return null;
     })();

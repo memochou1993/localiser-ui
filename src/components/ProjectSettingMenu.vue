@@ -34,6 +34,12 @@ const items = [
     },
   },
   {
+    name: 'Members',
+    to: {
+      name: 'project.users',
+    },
+  },
+  {
     name: 'Languages',
     to: {
       name: 'project.languages',
