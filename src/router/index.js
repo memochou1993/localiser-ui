@@ -39,6 +39,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "projectSettingProfile" */ '@/views/ProjectSettingProfile.vue'),
       },
       {
+        path: 'members',
+        name: 'project.users',
+        component: () => import(/* webpackChunkName: "projectSettingUser" */ '@/views/ProjectSettingUser.vue'),
+      },
+      {
         path: 'languages',
         name: 'project.languages',
         component: () => import(/* webpackChunkName: "projectSettingLanguage" */ '@/views/ProjectSettingLanguage.vue'),

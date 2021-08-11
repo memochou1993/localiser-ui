@@ -50,10 +50,34 @@ const destroy = ({
     .catch((err) => reject(err));
 });
 
+const attachUser = ({
+  projectId,
+  users,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .post(`/api/projects/${projectId}/users`, {
+      users,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
+const detachUser = ({
+  projectId,
+  userId,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .delete(`/api/projects/${projectId}/users/${userId}`)
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   show,
   store,
   update,
   destroy,
+  attachUser,
+  detachUser,
 };
