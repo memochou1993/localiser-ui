@@ -6,6 +6,7 @@
     borderless
     class="bg-white"
     dense
+    type="search"
     @update:model-value="onInput"
   >
     <template

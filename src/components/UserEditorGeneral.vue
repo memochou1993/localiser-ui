@@ -43,6 +43,7 @@
             autofocus
             borderless
             dense
+            type="email"
           />
         </div>
         <div

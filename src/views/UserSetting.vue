@@ -67,7 +67,7 @@ export default {
       }
     })();
     const user = computed(() => store.state.user);
-    const setUser = store.commit('setUser');
+    const setUser = (u) => store.commit('setUser', u);
     return {
       state,
       user,
