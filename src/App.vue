@@ -18,6 +18,9 @@
         </div>
       </div>
     </q-page-container>
+    <TheConfirmation
+      v-if="confirmation"
+    />
   </q-layout>
 </template>
 
@@ -29,18 +32,22 @@ import {
   useStore,
 } from 'vuex';
 import {
+  TheConfirmation,
   TheHeader,
 } from '@/components';
 
 export default {
   name: 'App',
   components: {
+    TheConfirmation,
     TheHeader,
   },
   setup() {
     const store = useStore();
+    const confirmation = computed(() => store.state.confirmation);
     const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
+      confirmation,
       isAuthenticated,
     };
   },

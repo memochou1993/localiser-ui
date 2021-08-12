@@ -51,7 +51,12 @@
         :languages="state.project.languages"
         :needle="state.keyword"
         :on-create-value="createValue"
-        :on-delete-key="deleteKey"
+        :on-delete-key="(payload) => confirm({
+          title: 'Are you absolutely sure?',
+          content: 'Delete this key with all translations in all languages?',
+          action: 'Delete',
+          callback: () => deleteKey(payload),
+        })"
         :on-edit-key="editKey"
         :on-edit-value="editValue"
         class="my-12"
@@ -74,6 +79,9 @@ import {
   computed,
   reactive,
 } from 'vue';
+import {
+  useStore,
+} from 'vuex';
 import {
   useRoute,
   useRouter,
@@ -100,6 +108,7 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const store = useStore();
     const router = useRouter();
     const state = reactive({
       project: null,
@@ -126,6 +135,7 @@ export default {
       }
       return null;
     })();
+    const confirm = (payload) => store.commit('setConfirmation', payload);
     const createKey = async ({ name }) => {
       try {
         const { data } = await actions.key.store({
@@ -178,6 +188,7 @@ export default {
     return {
       state,
       isLoaded,
+      confirm,
       createKey,
       editKey,
       deleteKey,
