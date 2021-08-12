@@ -44,7 +44,7 @@ const items = [
   {
     name: 'My Profile',
     to: {
-      name: 'project.index', // FIXME
+      name: 'user.profile',
     },
     separated: true,
   },

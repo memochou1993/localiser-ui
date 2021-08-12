@@ -30,6 +30,20 @@ const routes = [
     },
   },
   {
+    path: '/settings',
+    component: () => import(/* webpackChunkName: "userSetting" */ '@/views/UserSetting.vue'),
+    children: [
+      {
+        path: 'profile',
+        name: 'user.profile',
+        component: () => import(/* webpackChunkName: "userSettingProfile" */ '@/views/UserSettingProfile.vue'),
+      },
+    ],
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/projects/:projectId',
     component: () => import(/* webpackChunkName: "projectSetting" */ '@/views/ProjectSetting.vue'),
     children: [

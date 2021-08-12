@@ -1,7 +1,6 @@
 export { default as AppBreadcrumb } from './AppBreadcrumb.vue';
 export { default as AppFilter } from './AppFilter.vue';
 export { default as AppLoading } from './AppLoading.vue';
-export { default as AppTextCaption } from './AppTextCaption.vue';
 export { default as AppTextHeading } from './AppTextHeading.vue';
 export { default as AppTextLabel } from './AppTextLabel.vue';
 export { default as KeyEditor } from './KeyEditor.vue';
@@ -18,5 +17,6 @@ export { default as ProjectUserEditor } from './ProjectUserEditor.vue';
 export { default as TheConfirmation } from './TheConfirmation.vue';
 export { default as TheHeader } from './TheHeader.vue';
 export { default as UserList } from './UserList.vue';
+export { default as UserSettingMenu } from './UserSettingMenu.vue';
 
 export default null;
