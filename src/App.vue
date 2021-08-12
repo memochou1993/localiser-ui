@@ -4,6 +4,7 @@
   >
     <TheHeader
       :enable-menu="isAuthenticated"
+      :user-name="user ? user.name : ''"
     />
     <q-page-container>
       <div
@@ -31,6 +32,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import * as actions from '@/actions';
 import {
   TheConfirmation,
   TheHeader,
@@ -44,9 +46,19 @@ export default {
   },
   setup() {
     const store = useStore();
+    (async () => {
+      try {
+        const { data } = await actions.user.showMe();
+        store.commit('setUser', data);
+      } catch (err) {
+        console.debug(err);
+      }
+    })();
+    const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
     const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
+      user,
       confirmation,
       isAuthenticated,
     };

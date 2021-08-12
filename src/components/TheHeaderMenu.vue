@@ -9,6 +9,10 @@
       <q-list
         class="slim"
       >
+        <q-item-label
+          class="text-caption text-weight-medium q-pa-md"
+          v-text="userName"
+        />
         <template
           v-for="(item, i) in items"
           :key="i"
@@ -42,7 +46,7 @@ const items = [
     to: {
       name: 'project.index', // FIXME
     },
-    separated: false,
+    separated: true,
   },
   {
     name: 'My Projects',
@@ -62,6 +66,12 @@ const items = [
 
 export default {
   name: 'TheHeaderMenu',
+  props: {
+    userName: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     return {
       items,

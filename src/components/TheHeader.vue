@@ -12,6 +12,7 @@
       </q-toolbar-title>
       <TheHeaderMenu
         v-if="enableMenu"
+        :user-name="userName"
       />
     </q-toolbar>
   </q-header>
@@ -29,6 +30,10 @@ export default {
     enableMenu: {
       type: Boolean,
       default: false,
+    },
+    userName: {
+      type: String,
+      required: true,
     },
   },
 };

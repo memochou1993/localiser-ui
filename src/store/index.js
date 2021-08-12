@@ -5,6 +5,7 @@ import Confirmation from '@/models/Confirmation';
 export default createStore({
   state: {
     token: Cookie.get('token') || null,
+    user: null,
     confirmation: null,
   },
   getters: {
@@ -15,6 +16,9 @@ export default createStore({
   mutations: {
     setToken(state, v) {
       state.token = v;
+    },
+    setUser(state, v) {
+      state.user = v;
     },
     setConfirmation(state, {
       title,
