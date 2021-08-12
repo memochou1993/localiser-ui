@@ -29,7 +29,12 @@
     <LanguageList
       :languages="project.languages"
       :needle="state.keyword"
-      :on-delete-language="deleteLanguage"
+      :on-delete-language="(data) => confirm({
+        title: 'Are you sure?',
+        content: 'Delete this language with all translations? This action cannot be undone.',
+        action: 'Delete',
+        callback: () => deleteLanguage(data),
+      })"
       :on-edit-language="editLanguage"
       class="my-12"
     />
@@ -46,6 +51,9 @@
 import {
   reactive,
 } from 'vue';
+import {
+  useStore,
+} from 'vuex';
 import * as actions from '@/actions';
 import {
   AppFilter,
@@ -73,10 +81,12 @@ export default {
     },
   },
   setup(props) {
+    const store = useStore();
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
     });
+    const confirm = (data) => store.commit('setConfirmation', data);
     const createLanguage = async ({ name, code }) => {
       try {
         const { data } = await actions.language.store({
@@ -120,6 +130,7 @@ export default {
     };
     return {
       state,
+      confirm,
       createLanguage,
       editLanguage,
       deleteLanguage,

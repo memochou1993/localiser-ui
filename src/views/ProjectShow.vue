@@ -51,11 +51,11 @@
         :languages="state.project.languages"
         :needle="state.keyword"
         :on-create-value="createValue"
-        :on-delete-key="(payload) => confirm({
-          title: 'Are you absolutely sure?',
-          content: 'Delete this key with all translations in all languages?',
+        :on-delete-key="(data) => confirm({
+          title: 'Are you sure?',
+          content: 'Delete this key with all translations? This action cannot be undone.',
           action: 'Delete',
-          callback: () => deleteKey(payload),
+          callback: () => deleteKey(data),
         })"
         :on-edit-key="editKey"
         :on-edit-value="editValue"
@@ -107,8 +107,8 @@ export default {
     ProjectMenu,
   },
   setup() {
-    const route = useRoute();
     const store = useStore();
+    const route = useRoute();
     const router = useRouter();
     const state = reactive({
       project: null,
@@ -135,7 +135,7 @@ export default {
       }
       return null;
     })();
-    const confirm = (payload) => store.commit('setConfirmation', payload);
+    const confirm = (data) => store.commit('setConfirmation', data);
     const createKey = async ({ name }) => {
       try {
         const { data } = await actions.key.store({

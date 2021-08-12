@@ -26,7 +26,12 @@
         class="row"
       />
       <ProjectEditorDanger
-        :on-submit="deleteProject"
+        :on-submit="(data) => confirm({
+          title: 'Are you sure?',
+          content: 'Delete this project with all translations? This action cannot be undone.',
+          action: 'Delete',
+          callback: () => deleteProject(data),
+        })"
         :project-id="project.id"
       />
     </div>
@@ -34,6 +39,9 @@
 </template>
 
 <script>
+import {
+  useStore,
+} from 'vuex';
 import {
   useRouter,
 } from 'vue-router';
@@ -62,7 +70,9 @@ export default {
     },
   },
   setup(props) {
+    const store = useStore();
     const router = useRouter();
+    const confirm = (data) => store.commit('setConfirmation', data);
     const editProject = async ({ projectId, name }) => {
       try {
         const { data } = await actions.project.update({
@@ -88,6 +98,7 @@ export default {
       }
     };
     return {
+      confirm,
       editProject,
       deleteProject,
     };

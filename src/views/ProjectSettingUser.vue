@@ -28,7 +28,12 @@
     </div>
     <UserList
       :needle="state.keyword"
-      :on-detach-user="detachUser"
+      :on-detach-user="(data) => confirm({
+        title: 'Are you sure?',
+        content: 'Remove this user from this project?',
+        action: 'Remove',
+        callback: () => detachUser(data),
+      })"
       :users="project.users"
       class="my-12"
     />
@@ -46,6 +51,9 @@
 import {
   reactive,
 } from 'vue';
+import {
+  useStore,
+} from 'vuex';
 import * as actions from '@/actions';
 import {
   AppFilter,
@@ -77,10 +85,12 @@ export default {
     },
   },
   setup(props) {
+    const store = useStore();
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
     });
+    const confirm = (data) => store.commit('setConfirmation', data);
     const attachUser = async ({ users }) => {
       try {
         await actions.project.attachUser({
@@ -109,6 +119,7 @@ export default {
     };
     return {
       state,
+      confirm,
       attachUser,
       detachUser,
     };
