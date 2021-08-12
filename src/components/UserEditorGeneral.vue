@@ -108,6 +108,7 @@ export default {
       ],
       email: [
         (v) => (v && !!v.trim()) || 'The email is required.',
+        (v) => /^\S+@\S+\.\S+$/.test(v) || 'The email must be a valid email address.',
         (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((l) => l.email === v.trim())) || 'The email has already been taken.',
       ],
     };
