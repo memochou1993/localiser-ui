@@ -14,7 +14,23 @@ const showMe = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const updateMe = ({
+  userId,
+  name,
+  email,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .patch('/api/users/me', {
+      userId,
+      name,
+      email,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   index,
   showMe,
+  updateMe,
 };

@@ -17,13 +17,29 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Project Name"
+            text="Name"
             class="q-my-sm"
           />
           <q-input
             v-model="state.name"
             :model-value="state.name"
             :rules="rules.name"
+            autofocus
+            borderless
+            dense
+          />
+        </div>
+        <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
+            text="Email"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.email"
+            :model-value="state.email"
+            :rules="rules.email"
             autofocus
             borderless
             dense
@@ -51,14 +67,8 @@ import {
 } from 'vue';
 import AppTextCaption from './AppTextCaption.vue';
 
-const rules = {
-  name: [
-    (v) => (v && !!v.trim()) || 'The name is required.',
-  ],
-};
-
 export default {
-  name: 'ProjectEditorGeneral',
+  name: 'UserEditorGeneral',
   components: {
     AppTextCaption,
   },
@@ -67,27 +77,47 @@ export default {
       type: String,
       default: '',
     },
+    defaultEmail: {
+      type: String,
+      default: '',
+    },
     onSubmit: {
       type: Function,
       default: () => {},
     },
-    projectId: {
+    userId: {
       type: Number,
       default: 0,
+    },
+    users: {
+      type: Array,
+      default: () => [],
     },
   },
   setup(props) {
     const state = reactive({
       name: props.defaultName,
+      email: props.defaultEmail,
     });
     const form = ref(null);
+    const rules = {
+      name: [
+        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => (v.trim() === props.defaultName.trim() || !props.users.some((l) => l.name === v.trim())) || 'The name has already been taken.',
+      ],
+      email: [
+        (v) => (v && !!v.trim()) || 'The email is required.',
+        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((l) => l.email === v.trim())) || 'The email has already been taken.',
+      ],
+    };
     const submit = async () => {
       if (!await form?.value.validate()) {
         return;
       }
       props.onSubmit({
-        projectId: props.projectId,
+        userId: props.userId,
         name: state.name,
+        email: state.email,
       });
     };
     return {

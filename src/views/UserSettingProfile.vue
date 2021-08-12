@@ -9,20 +9,30 @@
       <div
         class="row"
       />
-      TODO
+      <UserEditorGeneral
+        :default-name="user.name"
+        :default-email="user.email"
+        :on-submit="editUser"
+        :user-id="user.id"
+        :users="users"
+        class="my-12"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import * as actions from '@/actions';
 import {
   AppTextHeading,
+  UserEditorGeneral,
 } from '@/components';
 
 export default {
   name: 'UserSettingProfile',
   components: {
     AppTextHeading,
+    UserEditorGeneral,
   },
   props: {
     onUpdateUser: {
@@ -33,11 +43,22 @@ export default {
       type: Object,
       required: true,
     },
+    users: {
+      type: Array,
+      default: () => [],
+    },
   },
-  setup() {
-    const editUser = async () => {
+  setup(props) {
+    const editUser = async ({ userId, name, email }) => {
       try {
-        //
+        const { data } = await actions.user.updateMe({
+          userId,
+          name,
+          email,
+        });
+        const { user } = props;
+        Object.assign(user, data);
+        props.onUpdateUser(user);
       } catch (err) {
         console.debug(err);
       }

@@ -16,6 +16,7 @@ export { default as ProjectSettingMenu } from './ProjectSettingMenu.vue';
 export { default as ProjectUserEditor } from './ProjectUserEditor.vue';
 export { default as TheConfirmation } from './TheConfirmation.vue';
 export { default as TheHeader } from './TheHeader.vue';
+export { default as UserEditorGeneral } from './UserEditorGeneral.vue';
 export { default as UserList } from './UserList.vue';
 export { default as UserSettingMenu } from './UserSettingMenu.vue';
 

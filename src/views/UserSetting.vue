@@ -24,8 +24,9 @@
       >
         <router-view
           v-if="user"
+          :on-update-user="setUser"
           :user="user"
-          :on-update-user="() => {}"
+          :users="state.users"
         />
       </div>
     </div>
@@ -35,6 +36,7 @@
 <script>
 import {
   computed,
+  reactive,
 } from 'vue';
 import {
   useStore,
@@ -43,6 +45,7 @@ import {
   AppBreadcrumb,
   UserSettingMenu,
 } from '@/components';
+import * as actions from '@/actions';
 
 export default {
   name: 'ProjectSetting',
@@ -52,9 +55,23 @@ export default {
   },
   setup() {
     const store = useStore();
+    const state = reactive({
+      users: [],
+    });
+    (async () => {
+      try {
+        const { data } = await actions.user.index();
+        state.users = data;
+      } catch (err) {
+        console.debug(err);
+      }
+    })();
     const user = computed(() => store.state.user);
+    const setUser = store.commit('setUser');
     return {
+      state,
       user,
+      setUser,
     };
   },
 };
