@@ -7,7 +7,7 @@ const index = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const show = ({
+const fetch = ({
   projectId,
 } = {}) => new Promise((resolve, reject) => {
   axios
@@ -74,7 +74,7 @@ const detachUser = ({
 
 export default {
   index,
-  show,
+  fetch,
   store,
   update,
   destroy,

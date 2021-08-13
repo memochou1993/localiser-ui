@@ -75,7 +75,7 @@ export default {
     const { projectId } = route.params;
     (async () => {
       try {
-        const { data } = await actions.project.show({ projectId });
+        const { data } = await actions.project.fetch({ projectId });
         state.project = data;
       } catch (err) {
         console.debug(err);

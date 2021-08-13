@@ -48,7 +48,7 @@ export default {
     const store = useStore();
     (async () => {
       try {
-        const { data } = await actions.user.showMe();
+        const { data } = await actions.user.fetchMe();
         store.commit('setUser', data);
       } catch (err) {
         console.debug(err);

@@ -7,7 +7,7 @@ const index = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const showMe = () => new Promise((resolve, reject) => {
+const fetchMe = () => new Promise((resolve, reject) => {
   axios
     .get('/api/users/me')
     .then(({ data }) => resolve(data))
@@ -31,6 +31,6 @@ const updateMe = ({
 
 export default {
   index,
-  showMe,
+  fetchMe,
   updateMe,
 };
