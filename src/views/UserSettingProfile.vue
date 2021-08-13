@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import * as actions from '@/actions';
 import { useQuasar } from 'quasar';
+import * as actions from '@/actions';
 import {
   AppTextHeading,
   UserEditorGeneral,

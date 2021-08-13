@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppTextHeading,
@@ -42,11 +43,18 @@ export default {
     },
   },
   setup() {
+    const q = useQuasar();
     const editUser = async ({ userId, newPassword }) => {
       try {
         await actions.user.updateMe({
           userId,
           password: newPassword,
+        });
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Password updated.',
+          timeout: 1000,
         });
       } catch (err) {
         console.debug(err);
