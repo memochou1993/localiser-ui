@@ -17,33 +17,49 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Name"
+            text="Old password"
             class="q-my-sm"
           />
           <q-input
-            v-model="state.name"
-            :model-value="state.name"
-            :rules="rules.name"
+            v-model="state.oldPassword"
+            :model-value="state.oldPassword"
+            :rules="rules.oldPassword"
             autofocus
             borderless
             dense
+            type="password"
           />
         </div>
         <div
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Email"
+            text="New password"
             class="q-my-sm"
           />
           <q-input
-            v-model="state.email"
-            :model-value="state.email"
-            :rules="rules.email"
-            autofocus
+            v-model="state.newPassword"
+            :model-value="state.newPassword"
+            :rules="rules.newPassword"
             borderless
             dense
-            type="email"
+            type="password"
+          />
+        </div>
+        <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
+            text="Confirm password"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.confirmPassword"
+            :model-value="state.confirmPassword"
+            :rules="rules.confirmPassword"
+            borderless
+            dense
+            type="password"
           />
         </div>
         <div
@@ -69,19 +85,11 @@ import {
 import AppTextCaption from './AppTextCaption.vue';
 
 export default {
-  name: 'UserEditorGeneral',
+  name: 'UserEditorSecurity',
   components: {
     AppTextCaption,
   },
   props: {
-    defaultName: {
-      type: String,
-      default: '',
-    },
-    defaultEmail: {
-      type: String,
-      default: '',
-    },
     onSubmit: {
       type: Function,
       default: () => {},
@@ -90,26 +98,25 @@ export default {
       type: Number,
       default: 0,
     },
-    users: {
-      type: Array,
-      default: () => [],
-    },
   },
   setup(props) {
     const state = reactive({
-      name: props.defaultName,
-      email: props.defaultEmail,
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
     });
     const form = ref(null);
     const rules = {
-      name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.users.some((l) => l.name === v.trim())) || 'The name has already been taken.',
+      oldPassword: [
+        (v) => (v && !!v.trim()) || 'The old password is required.',
       ],
-      email: [
-        (v) => (v && !!v.trim()) || 'The email is required.',
-        (v) => /^\S+@\S+\.\S+$/.test(v) || 'The email must be a valid email address.',
-        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((l) => l.email === v.trim())) || 'The email has already been taken.',
+      newPassword: [
+        (v) => (v && !!v.trim()) || 'The new password is required.',
+        (v) => v.length >= 8 || 'The new password must be at least 8 characters.',
+      ],
+      confirmPassword: [
+        (v) => (v && !!v.trim()) || 'The confirm password is required.',
+        (v) => v === state.newPassword || 'The password and confirm password does not match.',
       ],
     };
     const submit = async () => {
@@ -118,8 +125,8 @@ export default {
       }
       props.onSubmit({
         userId: props.userId,
-        name: state.name,
-        email: state.email,
+        oldPassword: state.newPassword,
+        newPassword: state.newPassword,
       });
     };
     return {

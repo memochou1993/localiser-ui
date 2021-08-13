@@ -33,6 +33,12 @@ const items = [
       name: 'user.profile',
     },
   },
+  {
+    name: 'Security',
+    to: {
+      name: 'user.security',
+    },
+  },
 ];
 
 export default {

@@ -17,7 +17,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Project Name"
+            text="Project name"
             class="q-my-sm"
           />
           <q-input
@@ -30,7 +30,7 @@
           />
         </div>
         <div
-          class="text-right q-mt-lg"
+          class="text-right q-my-lg"
         >
           <q-btn
             color="primary"

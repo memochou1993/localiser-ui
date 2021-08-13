@@ -38,6 +38,11 @@ const routes = [
         name: 'user.profile',
         component: () => import(/* webpackChunkName: "userSettingProfile" */ '@/views/UserSettingProfile.vue'),
       },
+      {
+        path: 'security',
+        name: 'user.security',
+        component: () => import(/* webpackChunkName: "userSettingSecurity" */ '@/views/UserSettingSecurity.vue'),
+      },
     ],
     meta: {
       requiresAuth: true,
