@@ -45,6 +45,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   ProjectEditorDanger,
@@ -72,6 +73,7 @@ export default {
   setup(props) {
     const store = useStore();
     const router = useRouter();
+    const q = useQuasar();
     const confirm = (data) => store.commit('setConfirmation', data);
     const editProject = async ({ projectId, name }) => {
       try {
@@ -82,6 +84,11 @@ export default {
         const { project } = props;
         Object.assign(project, data);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          message: 'Project updated.',
+          timeout: 20000,
+        });
       } catch (err) {
         console.debug(err);
       }
@@ -92,6 +99,11 @@ export default {
           projectId,
         });
         props.onUpdateProject(null);
+        q.notify({
+          color: 'info',
+          message: 'Project deleted.',
+          timeout: 2000,
+        });
         await router.push({ name: 'project.index' });
       } catch (err) {
         console.debug(err);
