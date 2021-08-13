@@ -33,6 +33,7 @@
         class="q-mx-xs"
       >
         <q-btn
+          :disable="languages.length === 1"
           color="grey-6"
           dense
           flat
