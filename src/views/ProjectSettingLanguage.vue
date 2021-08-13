@@ -54,6 +54,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppFilter,
@@ -82,6 +83,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    const q = useQuasar();
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
@@ -97,6 +99,12 @@ export default {
         const { project } = props;
         project.languages.push(data);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Language created.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }
@@ -112,6 +120,12 @@ export default {
         const language = project.languages.find((l) => l.id === languageId);
         Object.assign(language, data);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Language updated.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }
@@ -124,6 +138,12 @@ export default {
         const { project } = props;
         project.languages.splice(project.languages.findIndex((l) => l.id === languageId), 1);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Language deleted.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }

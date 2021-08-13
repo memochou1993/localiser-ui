@@ -54,6 +54,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppFilter,
@@ -86,6 +87,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    const q = useQuasar();
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
@@ -100,6 +102,12 @@ export default {
         const { project } = props;
         project.users = project.users.concat(users);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Member added.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }
@@ -113,6 +121,12 @@ export default {
         const { project } = props;
         project.users.splice(project.users.findIndex((u) => u.id === userId), 1);
         props.onUpdateProject(project);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Member removed.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }
