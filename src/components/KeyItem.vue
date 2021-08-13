@@ -15,7 +15,7 @@
             <div
               class="text-info q-px-md q-py-sm"
               @click="state.enableEditForm = true"
-              v-text="currentKey.name"
+              v-text="keyItem.name"
             />
           </div>
         </div>
@@ -26,11 +26,11 @@
             class="full-width"
           >
             <ValueList
-              :key-id="currentKey.id"
+              :key-id="keyItem.id"
               :languages="languages"
               :on-create-value="onCreateValue"
               :on-edit-value="onEditValue"
-              :values="currentKey.values"
+              :values="keyItem.values"
             />
           </div>
         </div>
@@ -38,7 +38,7 @@
           class="col-12 col-sm-1 flex justify-center items-center"
         >
           <KeyItemMenu
-            :key-id="currentKey.id"
+            :key-id="keyItem.id"
             :on-delete-key="onDeleteKey"
             class="q-px-md q-py-sm"
           />
@@ -48,8 +48,8 @@
   </q-item>
   <KeyEditor
     v-if="state.enableEditForm"
-    :default-name="currentKey.name"
-    :key-id="currentKey.id"
+    :default-name="keyItem.name"
+    :key-id="keyItem.id"
     :keys="keys"
     :on-close="() => state.enableEditForm = false"
     :on-submit="editKey"
@@ -72,7 +72,7 @@ export default {
     ValueList,
   },
   props: {
-    currentKey: {
+    keyItem: {
       type: Object,
       default: () => {},
     },
@@ -106,7 +106,7 @@ export default {
       enableEditForm: false,
     });
     const editKey = (key) => {
-      if (key.name !== props.currentKey.name) {
+      if (key.name !== props.keyItem.name) {
         props.onEditKey(key);
       }
       state.enableEditForm = false;

@@ -13,7 +13,7 @@
         spaced
       />
       <KeyItem
-        :current-key="key"
+        :key-item="key"
         :keys="keys"
         :on-create-value="onCreateValue"
         :on-delete-key="onDeleteKey"

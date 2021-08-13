@@ -22,12 +22,12 @@
             class="full-width cursor-pointer break-word"
           >
             <template
-              v-if="value"
+              v-if="valueItem"
             >
               <div
-                :class="[value.text ? 'text-info' : 'text-secondary', 'q-px-md q-py-sm']"
+                :class="[valueItem.text ? 'text-info' : 'text-secondary', 'q-px-md q-py-sm']"
                 @click="state.enableEditForm = true"
-                v-text="value.text || 'Empty'"
+                v-text="valueItem.text || 'Empty'"
               />
               <q-menu
                 v-if="state.enableEditForm"
@@ -36,9 +36,9 @@
                 class="q-pa-md shadow-4"
               >
                 <ValueEditor
-                  :default-text="value.text"
+                  :default-text="valueItem.text"
                   :key-id="keyId"
-                  :value-id="value.id"
+                  :value-id="valueItem.id"
                   :on-close="() => state.enableEditForm = false"
                   :on-submit="editValue"
                 />
@@ -102,7 +102,7 @@ export default {
       type: Function,
       default: () => {},
     },
-    value: {
+    valueItem: {
       type: Object,
       default: () => {},
     },
@@ -120,7 +120,7 @@ export default {
       state.enableCreateForm = false;
     };
     const editValue = (value) => {
-      if (value.text !== props.value.text) {
+      if (value.text !== props.valueItem.text) {
         props.onEditValue(value);
       }
       state.enableEditForm = false;
