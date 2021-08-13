@@ -19,7 +19,7 @@
 </template>
 
 <script>
-// import * as actions from '@/actions';
+import * as actions from '@/actions';
 import {
   AppTextHeading,
   UserEditorSecurity,
@@ -42,17 +42,12 @@ export default {
     },
   },
   setup() {
-    const editUser = async ({ userId, oldPassword, newPassword }) => {
+    const editUser = async ({ userId, newPassword }) => {
       try {
-        console.log(userId, oldPassword, newPassword);
-        // TODO
-        // const { data } = await actions.user.updateMe({
-        //   userId,
-        //   password,
-        // });
-        // const { user } = props;
-        // Object.assign(user, data);
-        // props.onUpdateUser(user);
+        await actions.user.updateMe({
+          userId,
+          password: newPassword,
+        });
       } catch (err) {
         console.debug(err);
       }

@@ -17,23 +17,6 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Old password"
-            class="q-my-sm"
-          />
-          <q-input
-            v-model="state.oldPassword"
-            :model-value="state.oldPassword"
-            :rules="rules.oldPassword"
-            autofocus
-            borderless
-            dense
-            type="password"
-          />
-        </div>
-        <div
-          class="q-pb-lg"
-        >
-          <AppTextCaption
             text="New password"
             class="q-my-sm"
           />
@@ -101,15 +84,11 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      oldPassword: '',
       newPassword: '',
       confirmPassword: '',
     });
     const form = ref(null);
     const rules = {
-      oldPassword: [
-        (v) => (v && !!v.trim()) || 'The old password is required.',
-      ],
       newPassword: [
         (v) => (v && !!v.trim()) || 'The new password is required.',
         (v) => v.length >= 8 || 'The new password must be at least 8 characters.',
@@ -125,7 +104,6 @@ export default {
       }
       props.onSubmit({
         userId: props.userId,
-        oldPassword: state.newPassword,
         newPassword: state.newPassword,
       });
     };
