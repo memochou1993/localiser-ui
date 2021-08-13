@@ -85,9 +85,6 @@ export default {
       if (!await form?.value.validate()) {
         return;
       }
-      if (state.name === props.defaultName) {
-        return;
-      }
       props.onSubmit({
         projectId: props.projectId,
         name: state.name,

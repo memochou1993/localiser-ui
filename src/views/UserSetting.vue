@@ -25,6 +25,7 @@
         <router-view
           v-if="user"
           :on-update-user="setUser"
+          :on-update-users="(data) => state.users = data"
           :user="user"
           :users="state.users"
         />

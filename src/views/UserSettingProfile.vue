@@ -23,6 +23,7 @@
 
 <script>
 import * as actions from '@/actions';
+import { useQuasar } from 'quasar';
 import {
   AppTextHeading,
   UserEditorGeneral,
@@ -39,6 +40,10 @@ export default {
       type: Function,
       default: () => {},
     },
+    onUpdateUsers: {
+      type: Function,
+      default: () => {},
+    },
     user: {
       type: Object,
       required: true,
@@ -49,6 +54,7 @@ export default {
     },
   },
   setup(props) {
+    const q = useQuasar();
     const editUser = async ({ userId, name, email }) => {
       try {
         const { data } = await actions.user.updateMe({
@@ -59,6 +65,15 @@ export default {
         const { user } = props;
         Object.assign(user, data);
         props.onUpdateUser(user);
+        const { users } = props;
+        users.splice(users.findIndex((u) => u.id === user.id), 1, user);
+        props.onUpdateUsers(users);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Profile updated.',
+          timeout: 1000,
+        });
       } catch (err) {
         console.debug(err);
       }

@@ -104,7 +104,6 @@ export default {
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.users.some((l) => l.name === v.trim())) || 'The name has already been taken.',
       ],
       email: [
         (v) => (v && !!v.trim()) || 'The email is required.',

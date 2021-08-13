@@ -87,7 +87,7 @@ export default {
         q.notify({
           color: 'info',
           message: 'Project updated.',
-          timeout: 20000,
+          timeout: 1000,
         });
       } catch (err) {
         console.debug(err);
@@ -102,7 +102,7 @@ export default {
         q.notify({
           color: 'info',
           message: 'Project deleted.',
-          timeout: 2000,
+          timeout: 1000,
         });
         await router.push({ name: 'project.index' });
       } catch (err) {
