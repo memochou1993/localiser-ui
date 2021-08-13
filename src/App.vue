@@ -28,6 +28,7 @@
 <script>
 import {
   computed,
+  watch,
 } from 'vue';
 import {
   useStore,
@@ -52,10 +53,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const q = useQuasar();
-    (async () => {
-      if (!store.getters.isAuthenticated) {
-        return;
-      }
+    const fetchMe = async () => {
       try {
         const { data } = await actions.user.fetchMe();
         store.commit('setUser', data);
@@ -69,10 +67,14 @@ export default {
           timeout: 1000,
         });
       }
-    })();
+    };
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
     const isAuthenticated = computed(() => store.getters.isAuthenticated);
+    if (isAuthenticated.value) {
+      fetchMe();
+    }
+    watch(() => isAuthenticated.value, (after) => after && fetchMe());
     return {
       user,
       confirmation,
