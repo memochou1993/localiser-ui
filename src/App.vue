@@ -32,6 +32,10 @@ import {
 import {
   useStore,
 } from 'vuex';
+import {
+  useRouter,
+} from 'vue-router';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   TheConfirmation,
@@ -46,12 +50,24 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
+    const q = useQuasar();
     (async () => {
+      if (!store.getters.isAuthenticated) {
+        return;
+      }
       try {
         const { data } = await actions.user.fetchMe();
         store.commit('setUser', data);
       } catch (err) {
         console.debug(err);
+        await router.push({ name: 'logout' });
+        q.notify({
+          color: 'negative',
+          group: false,
+          message: 'Token expired.',
+          timeout: 1000,
+        });
       }
     })();
     const user = computed(() => store.state.user);

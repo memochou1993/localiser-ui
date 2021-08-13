@@ -85,6 +85,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppTextLabel,
@@ -107,6 +108,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const q = useQuasar();
     const state = reactive({
       email: '',
       password: '',
@@ -127,6 +129,11 @@ export default {
         await router.push({ name: 'home' });
       } catch (err) {
         console.debug(err);
+        q.notify({
+          color: 'negative',
+          message: 'Wrong email or password.',
+          timeout: 1000,
+        });
       }
     };
     return {
