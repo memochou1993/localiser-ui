@@ -10,7 +10,6 @@
         class="row"
       />
       <UserEditorGeneral
-        v-if="user"
         :default-name="user.name"
         :default-email="user.email"
         :on-submit="editUser"
@@ -47,7 +46,7 @@ export default {
     },
     user: {
       type: Object,
-      default: () => {},
+      required: true,
     },
     users: {
       type: Array,

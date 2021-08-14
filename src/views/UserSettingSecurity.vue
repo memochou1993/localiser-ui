@@ -10,7 +10,6 @@
         class="row"
       />
       <UserEditorSecurity
-        v-if="user"
         :on-submit="editUser"
         :user-id="user.id"
         class="my-12"
@@ -40,7 +39,7 @@ export default {
     },
     user: {
       type: Object,
-      default: () => {},
+      required: true,
     },
   },
   setup() {

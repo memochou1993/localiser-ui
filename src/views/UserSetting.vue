@@ -1,35 +1,42 @@
 <template>
   <div>
-    <div
-      class="q-mb-lg"
-    >
-      <AppBreadcrumb
-        :breadcrumbs="[
-          { label: 'Profile' },
-        ]"
-      />
-    </div>
-    <div
-      class="row"
+    <template
+      v-if="isLoaded"
     >
       <div
-        class="col-12 col-sm-4 col-md-3"
+        class="q-mb-lg"
       >
-        <UserSettingMenu
-          class="q-mr-sm-xl q-mb-lg"
+        <AppBreadcrumb
+          :breadcrumbs="[
+            { label: 'Profile' },
+          ]"
         />
       </div>
       <div
-        class="col-12 col-sm-8 col-md-9"
+        class="row"
       >
-        <router-view
-          :on-update-user="setUser"
-          :on-update-users="(data) => state.users = data"
-          :user="user"
-          :users="state.users"
-        />
+        <div
+          class="col-12 col-sm-4 col-md-3"
+        >
+          <UserSettingMenu
+            class="q-mr-sm-xl q-mb-lg"
+          />
+        </div>
+        <div
+          class="col-12 col-sm-8 col-md-9"
+        >
+          <router-view
+            :on-update-user="setUser"
+            :on-update-users="(data) => state.users = data"
+            :user="user"
+            :users="state.users"
+          />
+        </div>
       </div>
-    </div>
+    </template>
+    <AppLoading
+      v-else
+    />
   </div>
 </template>
 
@@ -43,6 +50,7 @@ import {
 } from 'vuex';
 import {
   AppBreadcrumb,
+  AppLoading,
   UserSettingMenu,
 } from '@/components';
 import * as actions from '@/actions';
@@ -51,13 +59,15 @@ export default {
   name: 'UserSetting',
   components: {
     AppBreadcrumb,
+    AppLoading,
     UserSettingMenu,
   },
   setup() {
     const store = useStore();
     const state = reactive({
-      users: [],
+      users: null,
     });
+    const isLoaded = computed(() => !!state.users);
     (async () => {
       try {
         const { data } = await actions.user.index();
@@ -70,6 +80,7 @@ export default {
     const setUser = (u) => store.commit('setUser', u);
     return {
       state,
+      isLoaded,
       user,
       setUser,
     };
