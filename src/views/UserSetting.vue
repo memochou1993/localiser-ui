@@ -49,7 +49,7 @@ import {
 import * as actions from '@/actions';
 
 export default {
-  name: 'ProjectSetting',
+  name: 'UserSetting',
   components: {
     AppBreadcrumb,
     UserSettingMenu,
