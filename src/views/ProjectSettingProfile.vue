@@ -13,7 +13,7 @@
         :default-name="project.name"
         :on-submit="editProject"
         :project-id="project.id"
-        class="my-12"
+        class="q-my-sm"
       />
     </div>
     <div
@@ -33,6 +33,7 @@
           callback: () => deleteProject(data),
         })"
         :project-id="project.id"
+        class="q-my-sm"
       />
     </div>
   </div>

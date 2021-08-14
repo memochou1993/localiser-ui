@@ -2,7 +2,7 @@
   <q-card
     bordered
     flat
-    class="q-pa-md my-12"
+    class="q-pa-md"
   >
     <q-card-section
       class="q-py-none"

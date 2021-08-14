@@ -3,7 +3,6 @@
     bordered
     flat
     class="q-pa-md"
-    style="min-height: 400px"
   >
     <q-card-section
       class="q-py-none"

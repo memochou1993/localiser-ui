@@ -12,7 +12,7 @@
       <UserEditorSecurity
         :on-submit="editUser"
         :user-id="user.id"
-        class="my-12"
+        class="q-my-sm"
       />
     </div>
   </div>

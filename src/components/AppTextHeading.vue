@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mb-12"
+    class="q-mb-sm"
   >
     <span
       class="text-h6 text-weight-regular"

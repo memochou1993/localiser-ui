@@ -15,7 +15,7 @@
         :on-submit="editUser"
         :user-id="user.id"
         :users="users"
-        class="my-12"
+        class="q-my-sm"
       />
     </div>
   </div>

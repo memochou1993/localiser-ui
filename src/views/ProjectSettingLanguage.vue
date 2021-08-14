@@ -10,7 +10,7 @@
         class="row justify-between items-center"
       >
         <div
-          class="row justify-between items-center my-12"
+          class="row justify-between items-center q-my-sm"
         >
           <q-btn
             class="q-mr-sm"
@@ -22,7 +22,7 @@
           />
         </div>
         <div
-          class="row justify-between items-center my-12"
+          class="row justify-between items-center q-my-sm"
         >
           <AppFilter
             :on-input="(v) => state.keyword = v"
@@ -39,7 +39,7 @@
           callback: () => deleteLanguage(data),
         })"
         :on-edit-language="editLanguage"
-        class="my-12"
+        class="q-my-sm"
       />
       <LanguageEditor
         v-if="state.enableCreateForm"
