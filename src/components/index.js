@@ -12,7 +12,6 @@ export { default as ProjectEditorDanger } from './ProjectEditorDanger.vue';
 export { default as ProjectEditorGeneral } from './ProjectEditorGeneral.vue';
 export { default as ProjectList } from './ProjectList.vue';
 export { default as ProjectMenu } from './ProjectMenu.vue';
-export { default as ProjectSettingMenu } from './ProjectSettingMenu.vue';
 export { default as ProjectUserEditor } from './ProjectUserEditor.vue';
 export { default as SettingMenu } from './SettingMenu.vue';
 export { default as SystemUserEditor } from './SystemUserEditor.vue';
@@ -21,6 +20,5 @@ export { default as TheHeader } from './TheHeader.vue';
 export { default as UserEditorGeneral } from './UserEditorGeneral.vue';
 export { default as UserEditorSecurity } from './UserEditorSecurity.vue';
 export { default as UserList } from './UserList.vue';
-export { default as UserSettingMenu } from './UserSettingMenu.vue';
 
 export default null;

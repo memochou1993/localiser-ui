@@ -18,7 +18,8 @@
         <div
           class="col-12 col-sm-4 col-md-3"
         >
-          <UserSettingMenu
+          <SettingMenu
+            :items="menuItems"
             class="q-mr-sm-xl q-mb-lg"
           />
         </div>
@@ -51,16 +52,31 @@ import {
 import {
   AppBreadcrumb,
   AppLoading,
-  UserSettingMenu,
+  SettingMenu,
 } from '@/components';
 import * as actions from '@/actions';
+
+const menuItems = [
+  {
+    name: 'General',
+    to: {
+      name: 'user.profile',
+    },
+  },
+  {
+    name: 'Security',
+    to: {
+      name: 'user.security',
+    },
+  },
+];
 
 export default {
   name: 'UserSetting',
   components: {
     AppBreadcrumb,
     AppLoading,
-    UserSettingMenu,
+    SettingMenu,
   },
   setup() {
     const store = useStore();
@@ -80,6 +96,7 @@ export default {
     const setUser = (u) => store.commit('setUser', u);
     return {
       state,
+      menuItems,
       isLoaded,
       user,
       setUser,

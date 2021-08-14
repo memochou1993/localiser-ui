@@ -20,7 +20,8 @@
         <div
           class="col-12 col-sm-4 col-md-3"
         >
-          <ProjectSettingMenu
+          <SettingMenu
+            :items="menuItems"
             class="q-mr-sm-xl q-mb-lg"
           />
         </div>
@@ -54,15 +55,36 @@ import * as actions from '@/actions';
 import {
   AppBreadcrumb,
   AppLoading,
-  ProjectSettingMenu,
+  SettingMenu,
 } from '@/components';
+
+const menuItems = [
+  {
+    name: 'General',
+    to: {
+      name: 'project.profile',
+    },
+  },
+  {
+    name: 'Members',
+    to: {
+      name: 'project.users',
+    },
+  },
+  {
+    name: 'Languages',
+    to: {
+      name: 'project.languages',
+    },
+  },
+];
 
 export default {
   name: 'ProjectSetting',
   components: {
     AppBreadcrumb,
     AppLoading,
-    ProjectSettingMenu,
+    SettingMenu,
   },
   setup() {
     const route = useRoute();
@@ -91,6 +113,7 @@ export default {
     })();
     return {
       state,
+      menuItems,
       isLoaded,
     };
   },
