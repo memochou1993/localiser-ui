@@ -41,6 +41,10 @@ export default {
       type: Object,
       required: true,
     },
+    users: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup() {
     const q = useQuasar();

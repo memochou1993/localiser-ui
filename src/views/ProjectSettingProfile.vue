@@ -70,6 +70,10 @@ export default {
       type: Object,
       required: true,
     },
+    users: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup(props) {
     const store = useStore();
