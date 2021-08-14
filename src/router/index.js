@@ -73,6 +73,20 @@ const routes = [
     },
   },
   {
+    path: '/system',
+    component: () => import(/* webpackChunkName: "systemSetting" */ '@/views/SystemSetting.vue'),
+    children: [
+      {
+        path: 'users',
+        name: 'system.users',
+        component: () => import(/* webpackChunkName: "systemSettingUser" */ '@/views/SystemSettingUser.vue'),
+      },
+    ],
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),

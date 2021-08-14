@@ -38,6 +38,7 @@
                   borderless
                   dense
                   spellcheck="false"
+                  type="email"
                 />
               </div>
               <div

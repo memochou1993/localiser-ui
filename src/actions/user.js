@@ -14,6 +14,23 @@ const index = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const store = ({
+  name,
+  email,
+  password,
+  roles,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .post('/api/users', {
+      name,
+      email,
+      password,
+      roles,
+    })
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 const update = ({
   userId,
   name,
@@ -33,5 +50,6 @@ const update = ({
 export default {
   fetchMe,
   index,
+  store,
   update,
 };

@@ -32,7 +32,6 @@ const columns = [
   {
     name: 'name',
     align: 'left',
-    field: (row) => row.name,
     headerStyle: '',
     label: 'Name',
     required: true,
@@ -42,7 +41,6 @@ const columns = [
   {
     name: 'email',
     align: 'left',
-    field: (row) => row.email,
     headerStyle: '',
     label: 'Email',
     required: true,
@@ -50,9 +48,17 @@ const columns = [
     style: '',
   },
   {
+    name: 'role',
+    align: 'left',
+    headerStyle: '',
+    label: 'Roles',
+    required: true,
+    sortable: false,
+    style: '',
+  },
+  {
     name: 'action',
     align: 'center',
-    field: () => '',
     headerStyle: 'width: 160px',
     label: '',
     required: true,

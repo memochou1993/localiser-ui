@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Admin",
+    "value": "admin",
+    "scope": "system"
+  },
+  {
+    "name": "User",
+    "value": "user",
+    "scope": "system"
+  },
+  {
+    "name": "Owner",
+    "value": "owner",
+    "scope": "project"
+  },
+  {
+    "name": "Maintainer",
+    "value": "maintainer",
+    "scope": "project"
+  },
+  {
+    "name": "Reviewer",
+    "value": "reviewer",
+    "scope": "project"
+  }
+]

@@ -56,6 +56,13 @@ const items = [
     separated: false,
   },
   {
+    name: 'Settings',
+    to: {
+      name: 'system.users',
+    },
+    separated: false,
+  },
+  {
     name: 'Log out',
     to: {
       name: 'logout',
