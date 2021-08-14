@@ -1,12 +1,5 @@
 import axios from '@/plugins/axios';
 
-const index = () => new Promise((resolve, reject) => {
-  axios
-    .get('/api/users')
-    .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
-});
-
 const fetchMe = () => new Promise((resolve, reject) => {
   axios
     .get('/api/users/me')
@@ -14,15 +7,21 @@ const fetchMe = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const updateMe = ({
+const index = () => new Promise((resolve, reject) => {
+  axios
+    .get('/api/users')
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
+const update = ({
   userId,
   name,
   email,
   password,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .patch('/api/users/me', {
-      userId,
+    .patch(`/api/users/${userId}`, {
       name,
       email,
       password,
@@ -32,7 +31,7 @@ const updateMe = ({
 });
 
 export default {
-  index,
   fetchMe,
-  updateMe,
+  index,
+  update,
 };

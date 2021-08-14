@@ -46,7 +46,7 @@ export default {
     const q = useQuasar();
     const editUser = async ({ userId, newPassword }) => {
       try {
-        await actions.user.updateMe({
+        await actions.user.update({
           userId,
           password: newPassword,
         });
