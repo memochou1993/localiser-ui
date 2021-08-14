@@ -1,49 +1,53 @@
 <template>
   <div>
-    <AppTextHeading
-      text="Languages"
-    />
     <div
-      class="row justify-between items-center"
+      class="q-mb-lg"
     >
+      <AppTextHeading
+        text="Languages"
+      />
       <div
-        class="row justify-between items-center my-12"
+        class="row justify-between items-center"
       >
-        <q-btn
-          class="q-mr-sm"
-          color="red-4"
-          dense
-          icon="mdi-plus"
-          round
-          @click="state.enableCreateForm = true"
-        />
+        <div
+          class="row justify-between items-center my-12"
+        >
+          <q-btn
+            class="q-mr-sm"
+            color="red-4"
+            dense
+            icon="mdi-plus"
+            round
+            @click="state.enableCreateForm = true"
+          />
+        </div>
+        <div
+          class="row justify-between items-center my-12"
+        >
+          <AppFilter
+            :on-input="(v) => state.keyword = v"
+          />
+        </div>
       </div>
-      <div
-        class="row justify-between items-center my-12"
-      >
-        <AppFilter
-          :on-input="(v) => state.keyword = v"
-        />
-      </div>
+      <LanguageList
+        :languages="project.languages"
+        :needle="state.keyword"
+        :on-delete-language="(data) => confirm({
+          title: 'Are you sure?',
+          content: 'Delete this language with all translations? This action cannot be undone.',
+          action: 'Delete',
+          callback: () => deleteLanguage(data),
+        })"
+        :on-edit-language="editLanguage"
+        class="my-12"
+      />
+      <LanguageEditor
+        v-if="state.enableCreateForm"
+        :languages="project.languages"
+        :on-close="() => state.enableCreateForm = false"
+        :on-submit="createLanguage"
+      />
     </div>
-    <LanguageList
-      :languages="project.languages"
-      :needle="state.keyword"
-      :on-delete-language="(data) => confirm({
-        title: 'Are you sure?',
-        content: 'Delete this language with all translations? This action cannot be undone.',
-        action: 'Delete',
-        callback: () => deleteLanguage(data),
-      })"
-      :on-edit-language="editLanguage"
-      class="my-12"
-    />
-    <LanguageEditor
-      v-if="state.enableCreateForm"
-      :languages="project.languages"
-      :on-close="() => state.enableCreateForm = false"
-      :on-submit="createLanguage"
-    />
   </div>
 </template>
 

@@ -1,49 +1,53 @@
 <template>
   <div>
-    <AppTextHeading
-      text="Members"
-    />
     <div
-      class="row justify-between items-center"
+      class="q-mb-lg"
     >
+      <AppTextHeading
+        text="Members"
+      />
       <div
-        class="row justify-between items-center my-12"
+        class="row justify-between items-center"
       >
-        <q-btn
-          class="q-mr-sm"
-          color="red-4"
-          dense
-          icon="mdi-plus"
-          round
-          @click="state.enableCreateForm = true"
-        />
+        <div
+          class="row justify-between items-center my-12"
+        >
+          <q-btn
+            class="q-mr-sm"
+            color="red-4"
+            dense
+            icon="mdi-plus"
+            round
+            @click="state.enableCreateForm = true"
+          />
+        </div>
+        <div
+          class="row justify-between items-center my-12"
+        >
+          <AppFilter
+            :on-input="(v) => state.keyword = v"
+          />
+        </div>
       </div>
-      <div
-        class="row justify-between items-center my-12"
-      >
-        <AppFilter
-          :on-input="(v) => state.keyword = v"
-        />
-      </div>
+      <UserList
+        :needle="state.keyword"
+        :on-detach-user="(data) => confirm({
+          title: 'Are you sure?',
+          content: 'Remove this user from this project?',
+          action: 'Remove',
+          callback: () => detachUser(data),
+        })"
+        :users="project.users"
+        class="my-12"
+      />
+      <ProjectUserEditor
+        v-if="state.enableCreateForm"
+        :default-user-options="users"
+        :users="project.users"
+        :on-close="() => state.enableCreateForm = false"
+        :on-submit="attachUser"
+      />
     </div>
-    <UserList
-      :needle="state.keyword"
-      :on-detach-user="(data) => confirm({
-        title: 'Are you sure?',
-        content: 'Remove this user from this project?',
-        action: 'Remove',
-        callback: () => detachUser(data),
-      })"
-      :users="project.users"
-      class="my-12"
-    />
-    <ProjectUserEditor
-      v-if="state.enableCreateForm"
-      :default-user-options="users"
-      :users="project.users"
-      :on-close="() => state.enableCreateForm = false"
-      :on-submit="attachUser"
-    />
   </div>
 </template>
 
