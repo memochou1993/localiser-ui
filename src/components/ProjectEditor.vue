@@ -53,8 +53,6 @@
               dense
               hide-dropdown-icon
               multiple
-              option-label="name"
-              option-value="code"
               options-selected-class="text-secondary"
               use-chips
               @keyup.enter.stop

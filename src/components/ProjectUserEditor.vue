@@ -38,8 +38,6 @@
               dense
               hide-dropdown-icon
               multiple
-              option-label="name"
-              option-value="id"
               options-selected-class="text-secondary"
               use-chips
               @filter="onFilterUser"
