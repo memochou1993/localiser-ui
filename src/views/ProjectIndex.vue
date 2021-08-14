@@ -81,8 +81,8 @@ export default {
       try {
         const { data } = await actions.project.index();
         state.projects = data;
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     })();
     const createProject = async ({ name, languages }) => {
@@ -93,8 +93,8 @@ export default {
         });
         const project = { ...data, languages };
         state.projects.unshift(project);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

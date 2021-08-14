@@ -90,8 +90,8 @@ export default {
           message: 'Project updated.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const deleteProject = async ({ projectId }) => {
@@ -106,8 +106,8 @@ export default {
           timeout: 1000,
         });
         await router.push({ name: 'project.index' });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

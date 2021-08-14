@@ -115,8 +115,8 @@ export default {
           message: 'Member added.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const detachUser = async ({ userId }) => {
@@ -134,8 +134,8 @@ export default {
           message: 'Member removed.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

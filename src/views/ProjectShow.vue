@@ -122,15 +122,15 @@ export default {
       try {
         const { data } = await actions.project.fetch({ projectId });
         state.project = data;
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
         return router.push({ name: 'project.index' });
       }
       try {
         const { data } = await actions.key.index({ projectId });
         state.keys = data;
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
         return router.push({ name: 'project.index' });
       }
       return null;
@@ -144,8 +144,8 @@ export default {
         });
         const key = { ...data, values: [] };
         state.keys.unshift(key);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const editKey = async ({ keyId, name }) => {
@@ -153,8 +153,8 @@ export default {
         const { data } = await actions.key.update({ keyId, name });
         const key = state.keys.find((k) => k.id === keyId);
         Object.assign(key, data);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const deleteKey = async ({ keyId }) => {
@@ -163,8 +163,8 @@ export default {
           keyId,
         });
         state.keys.splice(state.keys.findIndex((k) => k.id === keyId), 1);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const createValue = async ({ keyId, languageId, text }) => {
@@ -172,8 +172,8 @@ export default {
         const { data } = await actions.value.store({ keyId, languageId, text });
         const value = { ...data, language: { id: languageId } };
         state.keys.find((k) => k.id === keyId).values.push(value);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const editValue = async ({ keyId, valueId, text }) => {
@@ -181,8 +181,8 @@ export default {
         const { data } = await actions.value.update({ valueId, text });
         const value = state.keys.find((k) => k.id === keyId).values.find((v) => v.id === valueId);
         Object.assign(value, data);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

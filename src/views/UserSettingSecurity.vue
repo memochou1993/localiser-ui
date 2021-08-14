@@ -56,8 +56,8 @@ export default {
           message: 'Password updated.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

@@ -109,8 +109,8 @@ export default {
           message: 'Language created.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const editLanguage = async ({ languageId, name, code }) => {
@@ -130,8 +130,8 @@ export default {
           message: 'Language updated.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     const deleteLanguage = async ({ languageId }) => {
@@ -148,8 +148,8 @@ export default {
           message: 'Language deleted.',
           timeout: 1000,
         });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     };
     return {

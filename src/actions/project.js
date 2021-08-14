@@ -4,7 +4,7 @@ const index = () => new Promise((resolve, reject) => {
   axios
     .get('/api/projects')
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const fetch = ({
@@ -13,7 +13,7 @@ const fetch = ({
   axios
     .get(`/api/projects/${projectId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const store = ({
@@ -26,7 +26,7 @@ const store = ({
       languages,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const update = ({
@@ -38,7 +38,7 @@ const update = ({
       name,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const destroy = ({
@@ -47,7 +47,7 @@ const destroy = ({
   axios
     .delete(`/api/projects/${projectId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const attachUser = ({
@@ -59,7 +59,7 @@ const attachUser = ({
       users,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const detachUser = ({
@@ -69,7 +69,7 @@ const detachUser = ({
   axios
     .delete(`/api/projects/${projectId}/users/${userId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 export default {

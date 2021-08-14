@@ -76,8 +76,8 @@ export default {
       try {
         const { data } = await actions.user.index();
         state.users = data;
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
     })();
     return {

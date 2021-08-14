@@ -128,8 +128,8 @@ export default {
         Cookie.set('token', encoded);
         store.commit('setToken', encoded);
         await router.push({ name: 'home' });
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
         q.notify({
           color: 'negative',
           message: 'Wrong email or password.',

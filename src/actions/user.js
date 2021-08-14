@@ -4,14 +4,14 @@ const fetchMe = () => new Promise((resolve, reject) => {
   axios
     .get('/api/users/me')
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const index = () => new Promise((resolve, reject) => {
   axios
     .get('/api/users')
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const store = ({
@@ -28,7 +28,7 @@ const store = ({
       roles,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const update = ({
@@ -44,7 +44,7 @@ const update = ({
       password,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const destroy = ({
@@ -53,7 +53,7 @@ const destroy = ({
   axios
     .delete(`/api/users/${userId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 export default {

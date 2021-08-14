@@ -99,15 +99,15 @@ export default {
       try {
         const { data } = await actions.project.fetch({ projectId });
         state.project = data;
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
         return router.push({ name: 'project.index' });
       }
       try {
         const { data } = await actions.user.index();
         state.users = data.filter((u) => !u.deleted_at);
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       }
       return null;
     })();

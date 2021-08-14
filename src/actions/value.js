@@ -11,7 +11,7 @@ const store = ({
       text,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const update = ({
@@ -23,7 +23,7 @@ const update = ({
       text,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 export default {

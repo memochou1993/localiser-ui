@@ -55,8 +55,8 @@ export default createStore({
             commit('setUser', data);
             resolve();
           })
-          .catch((err) => {
-            reject(err);
+          .catch((e) => {
+            reject(e);
           });
       });
     },

@@ -6,7 +6,7 @@ const index = ({
   axios
     .get(`/api/projects/${projectId}/keys`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const store = ({
@@ -18,7 +18,7 @@ const store = ({
       name,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const update = ({
@@ -30,7 +30,7 @@ const update = ({
       name,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const destroy = ({
@@ -39,7 +39,7 @@ const destroy = ({
   axios
     .delete(`/api/keys/${keyId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 export default {

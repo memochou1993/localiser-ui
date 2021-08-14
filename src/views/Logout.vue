@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie';
 import {
   useStore,
 } from 'vuex';
@@ -20,8 +19,8 @@ export default {
     (async () => {
       try {
         await actions.token.destroy();
-      } catch (err) {
-        console.debug(err);
+      } catch (e) {
+        console.debug(e);
       } finally {
         await store.dispatch('reset');
         await router.push({ name: 'login' });

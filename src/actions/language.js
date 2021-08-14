@@ -11,7 +11,7 @@ const store = ({
       code,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const update = ({
@@ -25,7 +25,7 @@ const update = ({
       code,
     })
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 const destroy = ({
@@ -34,7 +34,7 @@ const destroy = ({
   axios
     .delete(`/api/languages/${languageId}`)
     .then(({ data }) => resolve(data))
-    .catch((err) => reject(err));
+    .catch((e) => reject(e));
 });
 
 export default {
