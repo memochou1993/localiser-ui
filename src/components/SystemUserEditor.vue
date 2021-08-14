@@ -64,6 +64,7 @@
               :rules="rules.password"
               borderless
               dense
+              spellcheck="false"
             />
           </div>
           <div
@@ -151,6 +152,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
+import PasswordGenerator from '@memochou1993/password-generator-js';
 import defaultRoleOptions from '@/assets/role_options.json';
 import AppTextLabel from './AppTextLabel.vue';
 
@@ -180,7 +182,11 @@ export default {
     const state = reactive({
       name: '',
       email: '',
-      password: 'password', // FIXME
+      password: PasswordGenerator.generate({
+        length: 20,
+        letters: true,
+        numbers: true,
+      }),
       roles: [],
       roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
     });

@@ -944,6 +944,11 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@memochou1993/password-generator-js@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@memochou1993/password-generator-js/-/password-generator-js-1.0.1.tgz#43c2c4f6e8e90a3f8eb7d9d5f07cc41c428417d8"
+  integrity sha512-80mR+qWMpIyXA0FCpfLbuRDhnbdbVyHph74oE4apiQc18PlOnOLBXi4wOOS3gR5ZGrUrazik2Ag/z8zxmKnpmw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
