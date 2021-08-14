@@ -35,6 +35,7 @@ const routes = [
     children: [
       {
         path: 'profile',
+        alias: '',
         name: 'user.profile',
         component: () => import(/* webpackChunkName: "userSettingProfile" */ '@/views/UserSettingProfile.vue'),
       },
@@ -78,6 +79,7 @@ const routes = [
     children: [
       {
         path: 'users',
+        alias: '',
         name: 'system.users',
         component: () => import(/* webpackChunkName: "systemSettingUser" */ '@/views/SystemSettingUser.vue'),
       },

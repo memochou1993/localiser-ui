@@ -30,8 +30,9 @@
         </div>
       </div>
       <UserList
+        :me="me"
         :needle="state.keyword"
-        :on-detach-user="(data) => confirm({
+        :on-delete-user="(data) => confirm({
           title: 'Are you sure?',
           content: 'Remove this user from this project?',
           action: 'Remove',
@@ -53,6 +54,7 @@
 
 <script>
 import {
+  computed,
   reactive,
 } from 'vue';
 import {
@@ -96,6 +98,7 @@ export default {
       keyword: '',
       enableCreateForm: false,
     });
+    const me = computed(() => store.state.user);
     const confirm = (data) => store.commit('setConfirmation', data);
     const attachUser = async ({ users }) => {
       try {
@@ -137,6 +140,7 @@ export default {
     };
     return {
       state,
+      me,
       confirm,
       attachUser,
       detachUser,

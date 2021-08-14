@@ -47,9 +47,19 @@ const update = ({
     .catch((err) => reject(err));
 });
 
+const destroy = ({
+  userId,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .delete(`/api/users/${userId}`)
+    .then(({ data }) => resolve(data))
+    .catch((err) => reject(err));
+});
+
 export default {
   fetchMe,
   index,
   store,
   update,
+  destroy,
 };

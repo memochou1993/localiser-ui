@@ -29,7 +29,7 @@
           <router-view
             :on-update-user="setUser"
             :on-update-users="(data) => state.users = data"
-            :user="user"
+            :user="me"
             :users="state.users"
           />
         </div>
@@ -92,13 +92,13 @@ export default {
         console.debug(err);
       }
     })();
-    const user = computed(() => store.state.user);
+    const me = computed(() => store.state.user);
     const setUser = (u) => store.commit('setUser', u);
     return {
       state,
       menuItems,
       isLoaded,
-      user,
+      me,
       setUser,
     };
   },

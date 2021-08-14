@@ -12,8 +12,9 @@
       #body="props"
     >
       <UserItem
-        :on-detach-user="onDetachUser"
+        :on-delete-user="onDeleteUser"
         :props="props"
+        :me="me"
         :users="users"
       />
     </template>
@@ -74,11 +75,15 @@ export default {
     UserItem,
   },
   props: {
+    me: {
+      type: Object,
+      required: true,
+    },
     needle: {
       type: String,
       default: '',
     },
-    onDetachUser: {
+    onDeleteUser: {
       type: Function,
       default: () => {},
     },

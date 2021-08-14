@@ -105,7 +105,7 @@ export default {
       }
       try {
         const { data } = await actions.user.index();
-        state.users = data;
+        state.users = data.filter((u) => !u.deleted_at);
       } catch (err) {
         console.debug(err);
       }

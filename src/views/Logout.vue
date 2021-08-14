@@ -25,6 +25,7 @@ export default {
       } finally {
         Cookie.remove('token');
         store.commit('setToken', null);
+        store.commit('setUser', null);
         await router.push({ name: 'login' });
       }
     })();

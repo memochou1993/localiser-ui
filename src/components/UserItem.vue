@@ -36,13 +36,13 @@
         class="q-mx-xs"
       >
         <q-btn
-          :disable="users.length === 1"
+          :disable="!!props.row.deleted_at || props.row.id === me.id"
           color="grey-6"
           dense
           flat
           icon="mdi-trash-can-outline"
           round
-          @click="onDetachUser({ userId: props.row.id })"
+          @click="onDeleteUser({ userId: props.row.id })"
         />
       </div>
     </q-td>
@@ -57,7 +57,11 @@ const { capitalize } = format;
 export default {
   name: 'UserItem',
   props: {
-    onDetachUser: {
+    me: {
+      type: Object,
+      required: true,
+    },
+    onDeleteUser: {
       type: Function,
       default: () => {},
     },

@@ -30,7 +30,14 @@
         </div>
       </div>
       <UserList
+        :me="me"
         :needle="state.keyword"
+        :on-delete-user="(data) => confirm({
+          title: 'Are you sure?',
+          content: 'Delete this user?',
+          action: 'Delete',
+          callback: () => deleteUser(data),
+        })"
         :users="users"
         class="q-my-sm"
       />
@@ -46,8 +53,13 @@
 
 <script>
 import {
+  computed,
   reactive,
 } from 'vue';
+import {
+  useStore,
+} from 'vuex';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppTextHeading,
@@ -76,10 +88,14 @@ export default {
     },
   },
   setup(props) {
+    const store = useStore();
+    const q = useQuasar();
     const state = reactive({
       keyword: '',
       enableCreateForm: false,
     });
+    const me = computed(() => store.state.user);
+    const confirm = (data) => store.commit('setConfirmation', data);
     const createUser = async ({
       name,
       email,
@@ -96,9 +112,29 @@ export default {
       users.push(data);
       props.onUpdateUsers(users);
     };
+    const deleteUser = async ({
+      userId,
+    }) => {
+      await actions.user.destroy({
+        userId,
+      });
+      const { users } = props;
+      const user = users.find((u) => u.id === userId);
+      Object.assign(user, { deleted_at: new Date() });
+      props.onUpdateUsers(users);
+      q.notify({
+        color: 'info',
+        group: false,
+        message: 'User deleted.',
+        timeout: 1000,
+      });
+    };
     return {
       state,
+      me,
+      confirm,
       createUser,
+      deleteUser,
     };
   },
 };
