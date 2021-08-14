@@ -24,6 +24,8 @@
             v-model="state.newPassword"
             :model-value="state.newPassword"
             :rules="rules.newPassword"
+            autocomplete="new-password"
+            autofocus
             borderless
             dense
             type="password"
@@ -40,6 +42,7 @@
             v-model="state.confirmPassword"
             :model-value="state.confirmPassword"
             :rules="rules.confirmPassword"
+            autocomplete="new-password"
             borderless
             dense
             type="password"
