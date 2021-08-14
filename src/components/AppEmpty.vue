@@ -1,9 +1,9 @@
 <template>
   <q-card
     bordered
+    class="row justify-center items-center"
     flat
     style="min-height: 400px"
-    class="row justify-center items-center"
   >
     <span
       class="text-caption"

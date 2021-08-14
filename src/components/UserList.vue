@@ -20,7 +20,7 @@
   </q-table>
   <AppEmpty
     v-else
-    class="text-center q-my-xl"
+    class="text-center"
   />
 </template>
 
