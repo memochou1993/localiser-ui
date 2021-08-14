@@ -23,7 +23,6 @@
         class="col-12 col-sm-8 col-md-9"
       >
         <router-view
-          v-if="user"
           :on-update-user="setUser"
           :on-update-users="(data) => state.users = data"
           :user="user"
