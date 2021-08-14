@@ -120,7 +120,12 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (store.getters.isAuthenticated && !store.state.user) {
-    await store.dispatch('fetchMe');
+    try {
+      await store.dispatch('fetchMe');
+    } catch (err) {
+      console.debug(err);
+      await store.dispatch('reset');
+    }
   }
   if (to.meta.requiresRole) {
     return store.state.user?.roles.includes(to.meta.requiresRole) ? next() : next({ name: 'login' });

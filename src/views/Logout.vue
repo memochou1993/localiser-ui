@@ -23,9 +23,7 @@ export default {
       } catch (err) {
         console.debug(err);
       } finally {
-        Cookie.remove('token');
-        store.commit('setToken', null);
-        store.commit('setUser', null);
+        await store.dispatch('reset');
         await router.push({ name: 'login' });
       }
     })();

@@ -39,15 +39,26 @@ export default createStore({
     },
   },
   actions: {
+    reset({
+      commit,
+    }) {
+      Cookie.remove('token');
+      commit('setToken', null);
+      commit('setUser', null);
+    },
     async fetchMe({
       commit,
     }) {
-      try {
-        const { data } = await actions.user.fetchMe();
-        commit('setUser', data);
-      } catch (err) {
-        console.debug(err);
-      }
+      return new Promise((resolve, reject) => {
+        actions.user.fetchMe()
+          .then(({ data }) => {
+            commit('setUser', data);
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
     },
   },
   modules: {
