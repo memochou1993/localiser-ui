@@ -1,6 +1,7 @@
 import Cookie from 'js-cookie';
 import { createStore } from 'vuex';
 import Confirmation from '@/models/Confirmation';
+import * as actions from '@/actions';
 
 export default createStore({
   state: {
@@ -38,6 +39,16 @@ export default createStore({
     },
   },
   actions: {
+    async fetchMe({
+      commit,
+    }) {
+      try {
+        const { data } = await actions.user.fetchMe();
+        commit('setUser', data);
+      } catch (err) {
+        console.debug(err);
+      }
+    },
   },
   modules: {
   },

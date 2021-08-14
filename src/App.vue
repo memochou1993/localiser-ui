@@ -5,6 +5,7 @@
     <TheHeader
       :enable-menu="isAuthenticated"
       :user-name="user ? user.name : ''"
+      :user-roles="user ? user.roles: []"
     />
     <q-page-container>
       <div
@@ -28,16 +29,10 @@
 <script>
 import {
   computed,
-  watch,
 } from 'vue';
 import {
   useStore,
 } from 'vuex';
-import {
-  useRouter,
-} from 'vue-router';
-import { useQuasar } from 'quasar';
-import * as actions from '@/actions';
 import {
   TheConfirmation,
   TheHeader,
@@ -51,30 +46,9 @@ export default {
   },
   setup() {
     const store = useStore();
-    const router = useRouter();
-    const q = useQuasar();
-    const fetchMe = async () => {
-      try {
-        const { data } = await actions.user.fetchMe();
-        store.commit('setUser', data);
-      } catch (err) {
-        console.debug(err);
-        await router.push({ name: 'logout' });
-        q.notify({
-          color: 'negative',
-          group: false,
-          message: 'Token expired.',
-          timeout: 1000,
-        });
-      }
-    };
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
     const isAuthenticated = computed(() => store.getters.isAuthenticated);
-    if (isAuthenticated.value) {
-      fetchMe();
-    }
-    watch(() => isAuthenticated.value, (after) => after && fetchMe());
     return {
       user,
       confirmation,

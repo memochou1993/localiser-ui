@@ -84,6 +84,7 @@ const routes = [
     ],
     meta: {
       requiresAuth: true,
+      requiresRole: 'admin',
     },
   },
   {
@@ -115,7 +116,13 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  if (store.getters.isAuthenticated && !store.state.user) {
+    await store.dispatch('fetchMe');
+  }
+  if (to.meta.requiresRole) {
+    return store.state.user?.roles.includes(to.meta.requiresRole) ? next() : next({ name: 'login' });
+  }
   if (to.meta.requiresAuth) {
     return store.state.token ? next() : next({ name: 'login' });
   }

@@ -17,22 +17,26 @@
           v-for="(item, i) in items"
           :key="i"
         >
-          <q-separator
-            v-show="item.separated"
-          />
-          <q-item
-            v-close-popup
-            :to="item.to"
-            class="dense"
-            clickable
-            exact-active-class="text-black"
+          <template
+            v-if="!item.requiresRole || userRoles.includes(item.requiresRole)"
           >
-            <q-item-section>
-              <span
-                v-text="item.name"
-              />
-            </q-item-section>
-          </q-item>
+            <q-separator
+              v-show="item.separated"
+            />
+            <q-item
+              v-close-popup
+              :to="item.to"
+              class="dense"
+              clickable
+              exact-active-class="text-black"
+            >
+              <q-item-section>
+                <span
+                  v-text="item.name"
+                />
+              </q-item-section>
+            </q-item>
+          </template>
         </template>
       </q-list>
     </q-menu>
@@ -46,6 +50,7 @@ const items = [
     to: {
       name: 'user.profile',
     },
+    requiresRole: '',
     separated: true,
   },
   {
@@ -53,6 +58,7 @@ const items = [
     to: {
       name: 'project.index',
     },
+    requiresRole: '',
     separated: false,
   },
   {
@@ -60,6 +66,7 @@ const items = [
     to: {
       name: 'system.users',
     },
+    requiresRole: 'admin',
     separated: false,
   },
   {
@@ -67,6 +74,7 @@ const items = [
     to: {
       name: 'logout',
     },
+    requiresRole: '',
     separated: true,
   },
 ];
@@ -77,6 +85,10 @@ export default {
     userName: {
       type: String,
       required: true,
+    },
+    userRoles: {
+      type: Array,
+      default: () => [],
     },
   },
   setup() {
