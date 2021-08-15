@@ -18,7 +18,7 @@
           :key="i"
         >
           <template
-            v-if="!item.requiresRole || userRoles.includes(item.requiresRole)"
+            v-if="!item.requiresRole || item.requiresRole === userRole"
           >
             <q-separator
               v-show="item.separated"
@@ -86,9 +86,9 @@ export default {
       type: String,
       required: true,
     },
-    userRoles: {
-      type: Array,
-      default: () => [],
+    userRole: {
+      type: String,
+      default: '',
     },
   },
   setup() {

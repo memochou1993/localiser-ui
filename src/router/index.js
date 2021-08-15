@@ -128,7 +128,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
   if (to.meta.requiresRole) {
-    return store.state.user?.roles.includes(to.meta.requiresRole) ? next() : next({ name: 'login' });
+    return store.state.user?.role === to.meta.requiresRole ? next() : next({ name: 'login' });
   }
   if (to.meta.requiresAuth) {
     return store.state.token ? next() : next({ name: 'login' });

@@ -100,13 +100,13 @@ export default {
       name,
       email,
       password,
-      roles,
+      role,
     }) => {
       const { data } = await actions.user.store({
         name,
         email,
         password,
-        roles,
+        role,
       });
       const { users } = props;
       users.push(data);

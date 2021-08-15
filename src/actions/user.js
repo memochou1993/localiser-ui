@@ -18,14 +18,14 @@ const store = ({
   name,
   email,
   password,
-  roles,
+  role,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .post('/api/users', {
       name,
       email,
       password,
-      roles,
+      role,
     })
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));

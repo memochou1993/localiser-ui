@@ -15,18 +15,8 @@
     <q-td
       key="role"
       :props="props"
-    >
-      <q-chip
-        v-for="(role, i) in props.row.roles"
-        :key="i"
-        :label="capitalize(role)"
-        class="q-px-sm q-ml-none q-my-xs q-mr-sm cursor-default"
-        color="secondary"
-        dense
-        outline
-        square
-      />
-    </q-td>
+      v-text="capitalize(props.row.role)"
+    />
     <q-td
       key="action"
       :props="props"

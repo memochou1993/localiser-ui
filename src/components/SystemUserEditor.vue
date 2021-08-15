@@ -71,36 +71,22 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Roles"
+              text="Role"
             />
             <q-select
-              v-model="state.roles"
+              v-model="state.role"
               :input-debounce="0"
-              :model-value="state.roles"
+              :model-value="state.role"
               :options="state.roleOptions"
-              :rules="rules.roles"
+              :rules="rules.role"
               borderless
               dense
               hide-dropdown-icon
-              multiple
+              option-label="name"
+              option-value="value"
               options-selected-class="text-secondary"
               @keyup.enter.stop
             >
-              <template
-                #selected-item="scope"
-              >
-                <q-chip
-                  :tabindex="scope.tabindex"
-                  :label="scope.opt.name"
-                  class="q-px-sm q-ml-none q-my-xs q-mr-sm cursor-default"
-                  color="secondary"
-                  dense
-                  outline
-                  removable
-                  square
-                  @remove="scope.removeAtIndex(scope.index)"
-                />
-              </template>
               <template
                 #option="scope"
               >
@@ -187,7 +173,7 @@ export default {
         letters: true,
         numbers: true,
       }),
-      roles: [],
+      role: '',
       roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
@@ -205,8 +191,8 @@ export default {
         (v) => (v && !!v.trim()) || 'The new password is required.',
         (v) => v.length >= 8 || 'The new password must be at least 8 characters.',
       ],
-      roles: [
-        (v) => v.length > 0 || 'The roles is required.',
+      role: [
+        (v) => !!v || 'The role is required.',
       ],
     };
     const submit = async () => {
@@ -217,7 +203,7 @@ export default {
         name: state.name,
         email: state.email,
         password: state.password,
-        roles: state.roles.map((r) => r.value),
+        role: state.role.value,
       });
       props.onClose();
     };

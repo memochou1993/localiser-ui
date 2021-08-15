@@ -52,7 +52,7 @@ const columns = [
     name: 'role',
     align: 'left',
     headerStyle: '',
-    label: 'Roles',
+    label: 'Role',
     required: true,
     sortable: false,
     style: '',
