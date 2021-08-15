@@ -33,6 +33,7 @@
         class="q-mx-xs"
       >
         <q-btn
+          v-if="!props.row.deleted_at"
           color="grey-6"
           dense
           flat
@@ -45,7 +46,8 @@
         class="q-mx-xs"
       >
         <q-btn
-          :disable="!!props.row.deleted_at || props.row.id === me.id"
+          v-if="!props.row.deleted_at"
+          :disable="props.row.id === me.id"
           color="grey-6"
           dense
           flat

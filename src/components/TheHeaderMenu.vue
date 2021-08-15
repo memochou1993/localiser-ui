@@ -66,7 +66,7 @@ const items = [
     separated: false,
   },
   {
-    name: 'Settings',
+    name: 'System Settings',
     to: {
       name: 'system.users',
     },

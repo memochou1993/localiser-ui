@@ -8,7 +8,7 @@
       >
         <AppBreadcrumb
           :breadcrumbs="[
-            { label: 'System' },
+            { label: 'System Settings' },
           ]"
         />
       </div>

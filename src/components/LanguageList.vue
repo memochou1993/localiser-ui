@@ -33,7 +33,6 @@ const columns = [
   {
     name: 'name',
     align: 'left',
-    field: (row) => row.name,
     headerStyle: '',
     label: 'Name',
     required: true,
@@ -43,7 +42,6 @@ const columns = [
   {
     name: 'code',
     align: 'left',
-    field: (row) => row.code,
     headerStyle: '',
     label: 'Code',
     required: true,
@@ -53,7 +51,6 @@ const columns = [
   {
     name: 'action',
     align: 'center',
-    field: () => '',
     headerStyle: 'width: 160px',
     label: '',
     required: true,
