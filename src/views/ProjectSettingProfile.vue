@@ -94,6 +94,7 @@ export default {
         props.onUpdateProject(project);
         q.notify({
           color: 'info',
+          group: false,
           message: 'Project updated.',
           timeout: 1000,
         });
@@ -111,6 +112,7 @@ export default {
         props.onUpdateProject(null);
         q.notify({
           color: 'info',
+          group: false,
           message: 'Project deleted.',
           timeout: 1000,
         });
