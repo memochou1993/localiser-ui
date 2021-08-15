@@ -34,6 +34,7 @@
                   v-model="state.email"
                   :model-value="state.email"
                   :rules="rules.email"
+                  autocomplete="off"
                   autofocus
                   borderless
                   dense
@@ -51,6 +52,7 @@
                   v-model="state.password"
                   :model-value="state.password"
                   :rules="rules.password"
+                  autocomplete="off"
                   borderless
                   dense
                   type="password"

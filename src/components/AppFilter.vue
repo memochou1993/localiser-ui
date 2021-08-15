@@ -2,6 +2,7 @@
   <q-input
     v-model="state.input"
     :model-value="state.input"
+    autocomplete="off"
     autofocus
     borderless
     class="bg-white"

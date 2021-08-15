@@ -23,6 +23,7 @@
             v-model="state.name"
             :model-value="state.name"
             :rules="rules.name"
+            autocomplete="off"
             autofocus
             borderless
             dense
@@ -39,6 +40,7 @@
             v-model="state.email"
             :model-value="state.email"
             :rules="rules.email"
+            autocomplete="off"
             autofocus
             borderless
             dense

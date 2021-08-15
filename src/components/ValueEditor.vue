@@ -5,6 +5,7 @@
     <q-input
       v-model="state.text"
       :model-value="state.text"
+      autocomplete="off"
       autofocus
       autogrow
       borderless

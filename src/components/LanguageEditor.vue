@@ -73,6 +73,7 @@
               v-model="state.code"
               :model-value="state.code"
               :rules="rules.code"
+              autocomplete="off"
               borderless
               dense
             />
