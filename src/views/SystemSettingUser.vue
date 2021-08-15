@@ -181,7 +181,7 @@ export default {
         });
         const { users } = props;
         const user = users.find((u) => u.id === userId);
-        Object.assign(user, { deleted_at: new Date() });
+        Object.assign(user, { deleted_at: (new Date()).toISOString() });
         props.onUpdateUsers(users);
         q.notify({
           color: 'info',
