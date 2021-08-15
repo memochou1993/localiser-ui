@@ -86,6 +86,41 @@
               </template>
             </q-select>
           </div>
+          <div
+            class="q-pb-lg"
+          >
+            <AppTextLabel
+              text="Role"
+            />
+            <q-select
+              v-model="state.role"
+              :input-debounce="0"
+              :model-value="state.role"
+              :options="state.roleOptions"
+              :rules="rules.role"
+              borderless
+              dense
+              hide-dropdown-icon
+              options-selected-class="text-secondary"
+              @keyup.enter.stop
+            >
+              <template
+                #option="scope"
+              >
+                <q-item
+                  v-close-popup
+                  v-bind="scope.itemProps"
+                  class="dense"
+                >
+                  <q-item-section>
+                    <span
+                      v-text="scope.opt.label"
+                    />
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
+          </div>
         </q-form>
       </q-card-section>
       <q-card-actions
@@ -120,6 +155,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
+import defaultRoleOptions from '@/assets/role_options.json';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
@@ -128,6 +164,14 @@ export default {
     AppTextLabel,
   },
   props: {
+    defaultName: {
+      type: String,
+      default: '',
+    },
+    defaultRole: {
+      type: Number,
+      default: 0,
+    },
     defaultUserOptions: {
       type: Array,
       default: () => [],
@@ -152,12 +196,17 @@ export default {
     const state = reactive({
       users: [],
       userOptions: [],
+      role: defaultRoleOptions.find((o) => o.code === props.defaultRole),
+      roleOptions: defaultRoleOptions.filter((o) => o.scope === 'project'),
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
     const rules = {
       users: [
         (v) => v.length > 0 || 'The users is required.',
+      ],
+      role: [
+        (v) => !!v || 'The role is required.',
       ],
     };
     const onFilterUser = (v, update) => {
@@ -173,7 +222,10 @@ export default {
         return;
       }
       props.onSubmit({
-        users: state.users,
+        users: state.users.map((u) => ({
+          id: u.id,
+          role: state.role.code,
+        })),
       });
       props.onClose();
     };
