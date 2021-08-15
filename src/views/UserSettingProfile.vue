@@ -80,6 +80,11 @@ export default {
         });
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     return {

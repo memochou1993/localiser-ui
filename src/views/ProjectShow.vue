@@ -86,6 +86,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppBreadcrumb,
@@ -110,6 +111,7 @@ export default {
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
+    const q = useQuasar();
     const state = reactive({
       project: null,
       keys: null,
@@ -126,6 +128,11 @@ export default {
         state.project = data;
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
         return router.push({ name: 'project.index' });
       }
       try {
@@ -135,6 +142,11 @@ export default {
         state.keys = data;
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
         return router.push({ name: 'project.index' });
       }
       return null;
@@ -152,6 +164,11 @@ export default {
         state.keys.unshift(key);
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     const editKey = async ({
@@ -167,6 +184,11 @@ export default {
         Object.assign(key, data);
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     const deleteKey = async ({
@@ -177,8 +199,19 @@ export default {
           keyId,
         });
         state.keys.splice(state.keys.findIndex((k) => k.id === keyId), 1);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Key deleted.',
+          timeout: 1000,
+        });
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     const createValue = async ({
@@ -196,6 +229,11 @@ export default {
         state.keys.find((k) => k.id === keyId).values.push(value);
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     const editValue = async ({
@@ -212,6 +250,11 @@ export default {
         Object.assign(value, data);
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     return {

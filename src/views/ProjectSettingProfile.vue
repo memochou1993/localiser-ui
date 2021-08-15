@@ -100,6 +100,11 @@ export default {
         });
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     const deleteProject = async ({
@@ -119,6 +124,11 @@ export default {
         await router.push({ name: 'project.index' });
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     };
     return {

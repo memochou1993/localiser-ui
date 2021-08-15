@@ -51,6 +51,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppBreadcrumb,
@@ -89,6 +90,7 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
+    const q = useQuasar();
     const state = reactive({
       project: null,
       users: [],
@@ -110,6 +112,11 @@ export default {
         state.users = data.filter((u) => !u.deleted_at);
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
       return null;
     })();

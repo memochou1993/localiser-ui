@@ -108,15 +108,30 @@ export default {
       password,
       role,
     }) => {
-      const { data } = await actions.user.store({
-        name,
-        email,
-        password,
-        role,
-      });
-      const { users } = props;
-      users.push(data);
-      props.onUpdateUsers(users);
+      try {
+        const { data } = await actions.user.store({
+          name,
+          email,
+          password,
+          role,
+        });
+        const { users } = props;
+        users.push(data);
+        props.onUpdateUsers(users);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'User created.',
+          timeout: 1000,
+        });
+      } catch (e) {
+        console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
+      }
     };
     const editUser = async ({
       userId,
@@ -125,45 +140,63 @@ export default {
       password,
       role,
     }) => {
-      const { data } = await actions.user.update({
-        userId,
-        name,
-        email,
-        password,
-        role,
-      });
-      const { users } = props;
-      const user = users.find((u) => u.id === userId);
-      Object.assign(user, data);
-      props.onUpdateUsers(users);
-      q.notify({
-        color: 'info',
-        group: false,
-        message: 'User updated.',
-        timeout: 1000,
-      });
-      if (userId === me.value.id && role !== me.value.role) {
-        await router.push({
-          name: 'logout',
+      try {
+        const { data } = await actions.user.update({
+          userId,
+          name,
+          email,
+          password,
+          role,
+        });
+        const { users } = props;
+        const user = users.find((u) => u.id === userId);
+        Object.assign(user, data);
+        props.onUpdateUsers(users);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'User updated.',
+          timeout: 1000,
+        });
+        if (userId === me.value.id && role !== me.value.role) {
+          await router.push({
+            name: 'logout',
+          });
+        }
+      } catch (e) {
+        console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
         });
       }
     };
     const deleteUser = async ({
       userId,
     }) => {
-      await actions.user.destroy({
-        userId,
-      });
-      const { users } = props;
-      const user = users.find((u) => u.id === userId);
-      Object.assign(user, { deleted_at: new Date() });
-      props.onUpdateUsers(users);
-      q.notify({
-        color: 'info',
-        group: false,
-        message: 'User deleted.',
-        timeout: 1000,
-      });
+      try {
+        await actions.user.destroy({
+          userId,
+        });
+        const { users } = props;
+        const user = users.find((u) => u.id === userId);
+        Object.assign(user, { deleted_at: new Date() });
+        props.onUpdateUsers(users);
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'User deleted.',
+          timeout: 1000,
+        });
+      } catch (e) {
+        console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
+      }
     };
     return {
       state,

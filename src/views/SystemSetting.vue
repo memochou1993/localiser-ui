@@ -44,6 +44,7 @@ import {
   computed,
   reactive,
 } from 'vue';
+import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppBreadcrumb,
@@ -68,6 +69,7 @@ export default {
     SettingMenu,
   },
   setup() {
+    const q = useQuasar();
     const state = reactive({
       users: null,
     });
@@ -78,6 +80,11 @@ export default {
         state.users = data;
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     })();
     return {

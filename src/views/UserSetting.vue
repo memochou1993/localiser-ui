@@ -49,12 +49,13 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useQuasar } from 'quasar';
+import * as actions from '@/actions';
 import {
   AppBreadcrumb,
   AppLoading,
   SettingMenu,
 } from '@/components';
-import * as actions from '@/actions';
 
 const menuItems = [
   {
@@ -80,6 +81,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const q = useQuasar();
     const state = reactive({
       users: null,
     });
@@ -90,6 +92,11 @@ export default {
         state.users = data;
       } catch (e) {
         console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
       }
     })();
     const me = computed(() => store.state.user);
