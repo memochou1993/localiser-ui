@@ -101,7 +101,9 @@ export default {
     });
     const me = computed(() => store.state.user);
     const confirm = (data) => store.commit('setConfirmation', data);
-    const attachUser = async ({ users }) => {
+    const attachUser = async ({
+      users,
+    }) => {
       try {
         await actions.project.attachUser({
           projectId: props.project.id,
@@ -120,7 +122,9 @@ export default {
         console.debug(e);
       }
     };
-    const detachUser = async ({ userId }) => {
+    const detachUser = async ({
+      userId,
+    }) => {
       try {
         await actions.project.detachUser({
           projectId: props.project.id,

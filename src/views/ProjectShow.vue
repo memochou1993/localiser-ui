@@ -120,14 +120,18 @@ export default {
     const { projectId } = route.params;
     (async () => {
       try {
-        const { data } = await actions.project.fetch({ projectId });
+        const { data } = await actions.project.fetch({
+          projectId,
+        });
         state.project = data;
       } catch (e) {
         console.debug(e);
         return router.push({ name: 'project.index' });
       }
       try {
-        const { data } = await actions.key.index({ projectId });
+        const { data } = await actions.key.index({
+          projectId,
+        });
         state.keys = data;
       } catch (e) {
         console.debug(e);
@@ -136,7 +140,9 @@ export default {
       return null;
     })();
     const confirm = (data) => store.commit('setConfirmation', data);
-    const createKey = async ({ name }) => {
+    const createKey = async ({
+      name,
+    }) => {
       try {
         const { data } = await actions.key.store({
           projectId,
@@ -148,16 +154,24 @@ export default {
         console.debug(e);
       }
     };
-    const editKey = async ({ keyId, name }) => {
+    const editKey = async ({
+      keyId,
+      name,
+    }) => {
       try {
-        const { data } = await actions.key.update({ keyId, name });
+        const { data } = await actions.key.update({
+          keyId,
+          name,
+        });
         const key = state.keys.find((k) => k.id === keyId);
         Object.assign(key, data);
       } catch (e) {
         console.debug(e);
       }
     };
-    const deleteKey = async ({ keyId }) => {
+    const deleteKey = async ({
+      keyId,
+    }) => {
       try {
         await actions.key.destroy({
           keyId,
@@ -167,18 +181,33 @@ export default {
         console.debug(e);
       }
     };
-    const createValue = async ({ keyId, languageId, text }) => {
+    const createValue = async ({
+      keyId,
+      languageId,
+      text,
+    }) => {
       try {
-        const { data } = await actions.value.store({ keyId, languageId, text });
+        const { data } = await actions.value.store({
+          keyId,
+          languageId,
+          text,
+        });
         const value = { ...data, language: { id: languageId } };
         state.keys.find((k) => k.id === keyId).values.push(value);
       } catch (e) {
         console.debug(e);
       }
     };
-    const editValue = async ({ keyId, valueId, text }) => {
+    const editValue = async ({
+      keyId,
+      valueId,
+      text,
+    }) => {
       try {
-        const { data } = await actions.value.update({ valueId, text });
+        const { data } = await actions.value.update({
+          valueId,
+          text,
+        });
         const value = state.keys.find((k) => k.id === keyId).values.find((v) => v.id === valueId);
         Object.assign(value, data);
       } catch (e) {

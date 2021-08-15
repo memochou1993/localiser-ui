@@ -85,7 +85,10 @@ export default {
         console.debug(e);
       }
     })();
-    const createProject = async ({ name, languages }) => {
+    const createProject = async ({
+      name,
+      languages,
+    }) => {
       try {
         const { data } = await actions.project.store({
           name,

@@ -97,7 +97,10 @@ export default {
       enableCreateForm: false,
     });
     const confirm = (data) => store.commit('setConfirmation', data);
-    const createLanguage = async ({ name, code }) => {
+    const createLanguage = async ({
+      name,
+      code,
+    }) => {
       try {
         const { data } = await actions.language.store({
           projectId: props.project.id,
@@ -117,7 +120,11 @@ export default {
         console.debug(e);
       }
     };
-    const editLanguage = async ({ languageId, name, code }) => {
+    const editLanguage = async ({
+      languageId,
+      name,
+      code,
+    }) => {
       try {
         const { data } = await actions.language.update({
           languageId,
@@ -138,7 +145,9 @@ export default {
         console.debug(e);
       }
     };
-    const deleteLanguage = async ({ languageId }) => {
+    const deleteLanguage = async ({
+      languageId,
+    }) => {
       try {
         await actions.language.destroy({
           languageId,

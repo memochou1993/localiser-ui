@@ -80,7 +80,10 @@ export default {
     const router = useRouter();
     const q = useQuasar();
     const confirm = (data) => store.commit('setConfirmation', data);
-    const editProject = async ({ projectId, name }) => {
+    const editProject = async ({
+      projectId,
+      name,
+    }) => {
       try {
         const { data } = await actions.project.update({
           projectId,
@@ -98,7 +101,9 @@ export default {
         console.debug(e);
       }
     };
-    const deleteProject = async ({ projectId }) => {
+    const deleteProject = async ({
+      projectId,
+    }) => {
       try {
         await actions.project.destroy({
           projectId,

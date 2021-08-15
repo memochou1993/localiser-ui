@@ -97,7 +97,9 @@ export default {
     const { projectId } = route.params;
     (async () => {
       try {
-        const { data } = await actions.project.fetch({ projectId });
+        const { data } = await actions.project.fetch({
+          projectId,
+        });
         state.project = data;
       } catch (e) {
         console.debug(e);
