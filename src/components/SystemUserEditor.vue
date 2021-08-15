@@ -208,8 +208,7 @@ export default {
         (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((p) => p.email === v.trim())) || 'The email has already been taken.',
       ],
       password: [
-        (v) => (v && !!v.trim()) || 'The new password is required.',
-        (v) => v.length >= 8 || 'The new password must be at least 8 characters.',
+        (v) => (!v || v.length >= 8) || 'The new password must be at least 8 characters.',
       ],
       role: [
         (v) => !!v || 'The role is required.',

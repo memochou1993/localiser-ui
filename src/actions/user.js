@@ -42,7 +42,7 @@ const update = ({
     .patch(`/api/users/${userId}`, {
       name,
       email,
-      password,
+      ...password && { password },
       role,
     })
     .then(({ data }) => resolve(data))
