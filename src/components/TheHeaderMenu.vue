@@ -44,6 +44,10 @@
 </template>
 
 <script>
+import {
+  Roles,
+} from '@/constants';
+
 const items = [
   {
     name: 'My Profile',
@@ -66,7 +70,7 @@ const items = [
     to: {
       name: 'system.users',
     },
-    requiresRole: 'admin',
+    requiresRole: Roles.SystemAdmin,
     separated: false,
   },
   {
@@ -87,8 +91,8 @@ export default {
       required: true,
     },
     userRole: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
   },
   setup() {

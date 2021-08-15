@@ -37,8 +37,8 @@ export default {
       required: true,
     },
     userRole: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
   },
 };

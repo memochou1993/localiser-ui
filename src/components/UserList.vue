@@ -13,8 +13,10 @@
     >
       <UserItem
         :on-delete-user="onDeleteUser"
+        :on-edit-user="onEditUser"
         :props="props"
         :me="me"
+        :scope="scope"
         :users="users"
       />
     </template>
@@ -86,6 +88,14 @@ export default {
     onDeleteUser: {
       type: Function,
       default: () => {},
+    },
+    onEditUser: {
+      type: Function,
+      default: () => {},
+    },
+    scope: {
+      type: String,
+      required: true,
     },
     users: {
       type: Array,

@@ -36,12 +36,14 @@ const update = ({
   name,
   email,
   password,
+  role,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .patch(`/api/users/${userId}`, {
       name,
       email,
       password,
+      role,
     })
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));

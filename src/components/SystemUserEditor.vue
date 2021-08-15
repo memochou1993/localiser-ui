@@ -82,8 +82,6 @@
               borderless
               dense
               hide-dropdown-icon
-              option-label="name"
-              option-value="value"
               options-selected-class="text-secondary"
               @keyup.enter.stop
             >
@@ -97,7 +95,7 @@
                 >
                   <q-item-section>
                     <span
-                      v-text="scope.opt.name"
+                      v-text="scope.opt.label"
                     />
                   </q-item-section>
                 </q-item>
@@ -148,6 +146,22 @@ export default {
     AppTextLabel,
   },
   props: {
+    defaultName: {
+      type: String,
+      default: '',
+    },
+    defaultEmail: {
+      type: String,
+      default: '',
+    },
+    defaultRole: {
+      type: Number,
+      default: 0,
+    },
+    userId: {
+      type: Number,
+      default: 0,
+    },
     users: {
       type: Array,
       default: () => [],
@@ -166,14 +180,14 @@ export default {
   ],
   setup(props) {
     const state = reactive({
-      name: '',
-      email: '',
+      name: props.defaultName,
+      email: props.defaultEmail,
       password: PasswordGenerator.generate({
         length: 20,
         letters: true,
         numbers: true,
       }),
-      role: '',
+      role: defaultRoleOptions.find((o) => o.code === props.defaultRole),
       roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
@@ -185,7 +199,7 @@ export default {
       email: [
         (v) => (v && !!v.trim()) || 'The email is required.',
         (v) => /^\S+@\S+\.\S+$/.test(v) || 'The email must be a valid email address.',
-        (v) => !props.users.some((p) => p.email === v.trim()) || 'The email has already been taken.',
+        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((p) => p.email === v.trim())) || 'The email has already been taken.',
       ],
       password: [
         (v) => (v && !!v.trim()) || 'The new password is required.',
@@ -200,10 +214,11 @@ export default {
         return;
       }
       props.onSubmit({
+        userId: props.userId,
         name: state.name,
         email: state.email,
         password: state.password,
-        role: state.role.value,
+        role: state.role.code,
       });
       props.onClose();
     };

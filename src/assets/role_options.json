@@ -1,27 +1,27 @@
 [
   {
-    "name": "Admin",
-    "value": "admin",
+    "code": 1,
+    "label": "Admin",
     "scope": "system"
   },
   {
-    "name": "User",
-    "value": "user",
+    "code": 2,
+    "label": "User",
     "scope": "system"
   },
   {
-    "name": "Owner",
-    "value": "owner",
+    "code": 11,
+    "label": "Owner",
     "scope": "project"
   },
   {
-    "name": "Maintainer",
-    "value": "maintainer",
+    "code": 12,
+    "label": "Maintainer",
     "scope": "project"
   },
   {
-    "name": "Reviewer",
-    "value": "reviewer",
+    "code": 13,
+    "label": "Reviewer",
     "scope": "project"
   }
 ]

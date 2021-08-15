@@ -39,6 +39,7 @@
           callback: () => detachUser(data),
         })"
         :users="project.users"
+        scope="project"
         class="q-my-sm"
       />
       <ProjectUserEditor

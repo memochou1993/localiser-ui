@@ -38,7 +38,9 @@
           action: 'Delete',
           callback: () => deleteUser(data),
         })"
+        :on-edit-user="editUser"
         :users="users"
+        scope="system"
         class="q-my-sm"
       />
       <SystemUserEditor
@@ -59,6 +61,9 @@ import {
 import {
   useStore,
 } from 'vuex';
+import {
+  useRouter,
+} from 'vue-router';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -89,6 +94,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    const router = useRouter();
     const q = useQuasar();
     const state = reactive({
       keyword: '',
@@ -112,6 +118,36 @@ export default {
       users.push(data);
       props.onUpdateUsers(users);
     };
+    const editUser = async ({
+      userId,
+      name,
+      email,
+      password,
+      role,
+    }) => {
+      const { data } = await actions.user.update({
+        userId,
+        name,
+        email,
+        password,
+        role,
+      });
+      const { users } = props;
+      const user = users.find((u) => u.id === userId);
+      Object.assign(user, data);
+      props.onUpdateUsers(users);
+      q.notify({
+        color: 'info',
+        group: false,
+        message: 'User updated.',
+        timeout: 1000,
+      });
+      if (userId === me.value.id && role !== me.value.role) {
+        await router.push({
+          name: 'logout',
+        });
+      }
+    };
     const deleteUser = async ({
       userId,
     }) => {
@@ -134,6 +170,7 @@ export default {
       me,
       confirm,
       createUser,
+      editUser,
       deleteUser,
     };
   },
