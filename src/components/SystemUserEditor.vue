@@ -65,7 +65,17 @@
               borderless
               dense
               spellcheck="false"
-            />
+            >
+              <template
+                #append
+              >
+                <q-icon
+                  name="mdi-lock-reset"
+                  class="cursor-pointer"
+                  @click="generatePassword"
+                />
+              </template>
+            </q-input>
           </div>
           <div
             class="q-pb-lg"
@@ -182,11 +192,7 @@ export default {
     const state = reactive({
       name: props.defaultName,
       email: props.defaultEmail,
-      password: PasswordGenerator.generate({
-        length: 20,
-        letters: true,
-        numbers: true,
-      }),
+      password: '',
       role: defaultRoleOptions.find((o) => o.code === props.defaultRole),
       roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
     });
@@ -209,6 +215,13 @@ export default {
         (v) => !!v || 'The role is required.',
       ],
     };
+    const generatePassword = () => {
+      state.password = PasswordGenerator.generate({
+        length: 20,
+        letters: true,
+        numbers: true,
+      });
+    };
     const submit = async () => {
       if (!await form?.value.validate()) {
         return;
@@ -230,6 +243,7 @@ export default {
       dialog,
       form,
       rules,
+      generatePassword,
       submit,
     };
   },
