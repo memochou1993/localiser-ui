@@ -109,9 +109,10 @@ export default {
           projectId: props.project.id,
           users,
         });
-        const { project } = props;
-        project.users = project.users.concat(users);
-        props.onUpdateProject(project);
+        const { data } = await actions.project.fetch({
+          projectId: props.project.id,
+        });
+        props.onUpdateProject(data);
         q.notify({
           color: 'info',
           group: false,
@@ -130,9 +131,10 @@ export default {
           projectId: props.project.id,
           userId,
         });
-        const { project } = props;
-        project.users.splice(project.users.findIndex((u) => u.id === userId), 1);
-        props.onUpdateProject(project);
+        const { data } = await actions.project.fetch({
+          projectId: props.project.id,
+        });
+        props.onUpdateProject(data);
         q.notify({
           color: 'info',
           group: false,

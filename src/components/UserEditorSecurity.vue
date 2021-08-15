@@ -10,7 +10,7 @@
       <q-form
         ref="form"
         @keyup.enter.stop="submit"
-        @submit.stop="submit"
+        @submit.stop
       >
         <div
           class="q-pb-lg"
