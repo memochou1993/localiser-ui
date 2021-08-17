@@ -167,7 +167,7 @@ export default {
       type: String,
       default: '',
     },
-    defaultRole: {
+    defaultRoleCode: {
       type: Number,
       default: 0,
     },
@@ -196,7 +196,7 @@ export default {
       name: props.defaultName,
       email: props.defaultEmail,
       password: '',
-      role: defaultRoleOptions.find((o) => o.code === props.defaultRole),
+      role: defaultRoleOptions.find((o) => o.code === props.defaultRoleCode),
       roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
     });
     const { dialogRef: dialog } = useDialogPluginComponent();

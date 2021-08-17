@@ -18,7 +18,7 @@
           :key="i"
         >
           <template
-            v-if="!item.requiresRole || item.requiresRole === userRole"
+            v-if="!item.requiresRoleCode || item.requiresRoleCode === userRoleCode"
           >
             <q-separator
               v-show="item.separated"
@@ -54,7 +54,7 @@ const items = [
     to: {
       name: 'user.profile',
     },
-    requiresRole: '',
+    requiresRoleCode: 0,
     separated: true,
   },
   {
@@ -62,7 +62,7 @@ const items = [
     to: {
       name: 'project.index',
     },
-    requiresRole: '',
+    requiresRoleCode: 0,
     separated: false,
   },
   {
@@ -70,7 +70,7 @@ const items = [
     to: {
       name: 'system.users',
     },
-    requiresRole: Roles.SystemAdmin,
+    requiresRoleCode: Roles.Admin,
     separated: false,
   },
   {
@@ -78,7 +78,7 @@ const items = [
     to: {
       name: 'logout',
     },
-    requiresRole: '',
+    requiresRoleCode: 0,
     separated: true,
   },
 ];
@@ -90,7 +90,7 @@ export default {
       type: String,
       required: true,
     },
-    userRole: {
+    userRoleCode: {
       type: Number,
       default: 0,
     },

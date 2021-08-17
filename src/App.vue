@@ -5,7 +5,7 @@
     <TheHeader
       :enable-menu="isAuthenticated"
       :user-name="user ? user.name : ''"
-      :user-role="user ? user.role: 0"
+      :user-role-code="user ? user.role.code: 0"
     />
     <q-page-container>
       <div

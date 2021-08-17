@@ -16,13 +16,13 @@
       v-if="scope === 'system'"
       key="role"
       :props="props"
-      v-text="formatRole(props.row.role)"
+      v-text="props.row.role.name"
     />
     <q-td
       v-if="scope === 'project'"
       key="role"
       :props="props"
-      v-text="formatRole(props.row.project_role)"
+      v-text="props.row.project_role.name"
     />
     <q-td
       key="action"
@@ -65,7 +65,7 @@
       v-if="state.enableEditForm"
       :default-name="props.row.name"
       :default-email="props.row.email"
-      :default-role="props.row.role"
+      :default-role-code="props.row.role.code"
       :user-id="props.row.id"
       :users="users"
       :on-close="() => state.enableEditForm = false"
@@ -78,7 +78,6 @@
 import {
   reactive,
 } from 'vue';
-import defaultRoleOptions from '@/assets/role_options.json';
 import SystemUserEditor from './SystemUserEditor.vue';
 
 export default {
@@ -114,10 +113,8 @@ export default {
     const state = reactive({
       enableEditForm: false,
     });
-    const formatRole = (code) => defaultRoleOptions.find((o) => o.code === code).label;
     return {
       state,
-      formatRole,
     };
   },
 };

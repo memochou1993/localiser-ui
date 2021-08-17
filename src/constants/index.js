@@ -1,9 +1,10 @@
 export const Roles = Object.freeze({
-  SystemAdmin: 1,
-  SystemUser: 2,
-  ProjectOwner: 11,
-  ProjectMaintainer: 12,
-  ProjectReviewer: 13,
+  Admin: 100,
+  Developer: 90,
+  ProjectOwner: 60,
+  ProjectMaintainer: 50,
+  ProjectGuest: 40,
+  Guest: 10,
 });
 
 export default null;

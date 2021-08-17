@@ -1,27 +1,32 @@
 [
   {
-    "code": 1,
+    "code": 100,
     "label": "Admin",
     "scope": "system"
   },
   {
-    "code": 2,
-    "label": "User",
+    "code": 90,
+    "label": "Developer",
     "scope": "system"
   },
   {
-    "code": 11,
+    "code": 10,
+    "label": "Guest",
+    "scope": "system"
+  },
+  {
+    "code": 60,
     "label": "Owner",
     "scope": "project"
   },
   {
-    "code": 12,
+    "code": 50,
     "label": "Maintainer",
     "scope": "project"
   },
   {
-    "code": 13,
-    "label": "Reviewer",
+    "code": 40,
+    "label": "Guest",
     "scope": "project"
   }
 ]

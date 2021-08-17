@@ -89,7 +89,7 @@ const routes = [
     ],
     meta: {
       requiresAuth: true,
-      requiresRole: Roles.SystemAdmin,
+      requiresRoleCode: Roles.Admin,
     },
   },
   {
@@ -130,8 +130,8 @@ router.beforeEach(async (to, from, next) => {
       await store.dispatch('reset');
     }
   }
-  if (to.meta.requiresRole) {
-    return store.state.user?.role === to.meta.requiresRole ? next() : next({ name: 'login' });
+  if (to.meta.requiresRoleCode) {
+    return store.state.user?.role.code === to.meta.requiresRoleCode ? next() : next({ name: 'login' });
   }
   if (to.meta.requiresAuth) {
     return store.state.token ? next() : next({ name: 'login' });

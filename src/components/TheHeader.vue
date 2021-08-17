@@ -13,7 +13,7 @@
       <TheHeaderMenu
         v-if="enableMenu"
         :user-name="userName"
-        :user-role="userRole"
+        :user-role-code="userRoleCode"
       />
     </q-toolbar>
   </q-header>
@@ -36,7 +36,7 @@ export default {
       type: String,
       required: true,
     },
-    userRole: {
+    userRoleCode: {
       type: Number,
       default: 0,
     },
