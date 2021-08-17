@@ -17,6 +17,14 @@
               @click="state.enableEditForm = true"
               v-text="keyItem.name"
             />
+            <KeyEditor
+              v-if="state.enableEditForm"
+              :default-name="keyItem.name"
+              :key-id="keyItem.id"
+              :keys="keys"
+              :on-close="() => state.enableEditForm = false"
+              :on-submit="editKey"
+            />
           </div>
         </div>
         <div
@@ -46,14 +54,6 @@
       </div>
     </q-item-section>
   </q-item>
-  <KeyEditor
-    v-if="state.enableEditForm"
-    :default-name="keyItem.name"
-    :key-id="keyItem.id"
-    :keys="keys"
-    :on-close="() => state.enableEditForm = false"
-    :on-submit="editKey"
-  />
 </template>
 
 <script>

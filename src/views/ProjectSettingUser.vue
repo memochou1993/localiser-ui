@@ -20,6 +20,13 @@
             round
             @click="state.enableCreateForm = true"
           />
+          <ProjectUserEditor
+            v-if="state.enableCreateForm"
+            :default-user-options="users"
+            :users="project.users"
+            :on-close="() => state.enableCreateForm = false"
+            :on-submit="attachUser"
+          />
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -41,13 +48,6 @@
         :users="project.users"
         scope="project"
         class="q-my-sm"
-      />
-      <ProjectUserEditor
-        v-if="state.enableCreateForm"
-        :default-user-options="users"
-        :users="project.users"
-        :on-close="() => state.enableCreateForm = false"
-        :on-submit="attachUser"
       />
     </div>
   </div>

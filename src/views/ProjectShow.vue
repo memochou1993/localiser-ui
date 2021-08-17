@@ -25,6 +25,12 @@
               round
               @click="state.enableCreateForm = true"
             />
+            <KeyEditor
+              v-if="state.enableCreateForm"
+              :keys="state.keys"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="createKey"
+            />
           </div>
           <div>
             <q-btn
@@ -60,12 +66,6 @@
         :on-edit-key="editKey"
         :on-edit-value="editValue"
         class="my-12"
-      />
-      <KeyEditor
-        v-if="state.enableCreateForm"
-        :keys="state.keys"
-        :on-close="() => state.enableCreateForm = false"
-        :on-submit="createKey"
       />
     </template>
     <AppLoading

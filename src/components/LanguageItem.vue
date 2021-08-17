@@ -28,6 +28,15 @@
           round
           @click="state.enableEditForm = true"
         />
+        <LanguageEditor
+          v-if="state.enableEditForm"
+          :default-code="props.row.code"
+          :default-name="props.row.name"
+          :language-id="props.row.id"
+          :languages="languages"
+          :on-close="() => state.enableEditForm = false"
+          :on-submit="onEditLanguage"
+        />
       </div>
       <div
         class="q-mx-xs"
@@ -44,15 +53,6 @@
       </div>
     </q-td>
   </q-tr>
-  <LanguageEditor
-    v-if="state.enableEditForm"
-    :default-code="props.row.code"
-    :default-name="props.row.name"
-    :language-id="props.row.id"
-    :languages="languages"
-    :on-close="() => state.enableEditForm = false"
-    :on-submit="onEditLanguage"
-  />
 </template>
 
 <script>

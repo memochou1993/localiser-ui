@@ -21,6 +21,12 @@
             round
             @click="state.enableCreateForm = true"
           />
+          <ProjectEditor
+            v-if="state.enableCreateForm"
+            :projects="state.projects"
+            :on-close="() => state.enableCreateForm = false"
+            :on-submit="createProject"
+          />
         </div>
         <div
           class="row justify-between items-center my-12"
@@ -35,12 +41,6 @@
         :needle="state.keyword"
         :projects="state.projects"
         class="my-12"
-      />
-      <ProjectEditor
-        v-if="state.enableCreateForm"
-        :projects="state.projects"
-        :on-close="() => state.enableCreateForm = false"
-        :on-submit="createProject"
       />
     </template>
     <AppLoading

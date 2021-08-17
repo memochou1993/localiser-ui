@@ -20,6 +20,12 @@
             round
             @click="state.enableCreateForm = true"
           />
+          <LanguageEditor
+            v-if="state.enableCreateForm"
+            :languages="project.languages"
+            :on-close="() => state.enableCreateForm = false"
+            :on-submit="createLanguage"
+          />
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -40,12 +46,6 @@
         })"
         :on-edit-language="editLanguage"
         class="q-my-sm"
-      />
-      <LanguageEditor
-        v-if="state.enableCreateForm"
-        :languages="project.languages"
-        :on-close="() => state.enableCreateForm = false"
-        :on-submit="createLanguage"
       />
     </div>
   </div>

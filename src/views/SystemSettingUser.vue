@@ -20,6 +20,12 @@
             round
             @click="state.enableCreateForm = true"
           />
+          <SystemUserEditor
+            v-if="state.enableCreateForm"
+            :users="users"
+            :on-close="() => state.enableCreateForm = false"
+            :on-submit="createUser"
+          />
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -42,12 +48,6 @@
         :users="users"
         scope="system"
         class="q-my-sm"
-      />
-      <SystemUserEditor
-        v-if="state.enableCreateForm"
-        :users="users"
-        :on-close="() => state.enableCreateForm = false"
-        :on-submit="createUser"
       />
     </div>
   </div>
