@@ -150,7 +150,10 @@ import {
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
 import PasswordGenerator from '@memochou1993/password-generator-js';
-import defaultRoleOptions from '@/assets/role_options.json';
+import {
+  Scope,
+} from '@/constants';
+import defaultRoleOptions from '@/assets/RoleOptions';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
@@ -197,7 +200,7 @@ export default {
       email: props.defaultEmail,
       password: '',
       role: defaultRoleOptions.find((o) => o.code === props.defaultRoleCode),
-      roleOptions: defaultRoleOptions.filter((o) => o.scope === 'system'),
+      roleOptions: defaultRoleOptions.filter((o) => o.scope === Scope.System),
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);

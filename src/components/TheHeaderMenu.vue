@@ -45,7 +45,7 @@
 
 <script>
 import {
-  Roles,
+  Role,
 } from '@/constants';
 
 const items = [
@@ -70,7 +70,7 @@ const items = [
     to: {
       name: 'system.users',
     },
-    requiresRoleCode: Roles.Admin,
+    requiresRoleCode: Role.Admin,
     separated: false,
   },
   {

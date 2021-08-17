@@ -13,13 +13,13 @@
       v-text="props.row.email"
     />
     <q-td
-      v-if="scope === 'system'"
+      v-if="scope === Scope.System"
       key="role"
       :props="props"
       v-text="props.row.role.name"
     />
     <q-td
-      v-if="scope === 'project'"
+      v-if="scope === Scope.Project"
       key="role"
       :props="props"
       v-text="props.row.project_role.name"
@@ -59,7 +59,7 @@
     </q-td>
   </q-tr>
   <template
-    v-if="scope === 'system'"
+    v-if="scope === Scope.System"
   >
     <SystemUserEditor
       v-if="state.enableEditForm"
@@ -72,12 +72,20 @@
       :on-submit="onEditUser"
     />
   </template>
+  <template
+    v-if="scope === Scope.Project"
+  >
+    <!-- TODO -->
+  </template>
 </template>
 
 <script>
 import {
   reactive,
 } from 'vue';
+import {
+  Scope,
+} from '@/constants';
 import SystemUserEditor from './SystemUserEditor.vue';
 
 export default {
@@ -114,6 +122,7 @@ export default {
       enableEditForm: false,
     });
     return {
+      Scope,
       state,
     };
   },

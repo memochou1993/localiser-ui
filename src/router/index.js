@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '@/store';
 import {
-  Roles,
+  Role,
 } from '@/constants';
 
 const routes = [
@@ -89,7 +89,7 @@ const routes = [
     ],
     meta: {
       requiresAuth: true,
-      requiresRoleCode: Roles.Admin,
+      requiresRoleCode: Role.Admin,
     },
   },
   {
