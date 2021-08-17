@@ -6,32 +6,32 @@ import {
 const roles = [
   {
     code: Role.Admin,
-    label: 'Admin',
+    name: 'Admin',
     scope: Scope.System,
   },
   {
     code: Role.Developer,
-    label: 'Developer',
+    name: 'Developer',
     scope: Scope.System,
   },
   {
     code: Role.Guest,
-    label: 'Guest',
+    name: 'Guest',
     scope: Scope.System,
   },
   {
     code: Role.ProjectOwner,
-    label: 'Owner',
+    name: 'Owner',
     scope: Scope.Project,
   },
   {
     code: Role.ProjectMaintainer,
-    label: 'Maintainer',
+    name: 'Maintainer',
     scope: Scope.Project,
   },
   {
     code: Role.ProjectGuest,
-    label: 'Guest',
+    name: 'Guest',
     scope: Scope.Project,
   },
 ];

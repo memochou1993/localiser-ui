@@ -114,7 +114,7 @@
                 >
                   <q-item-section>
                     <span
-                      v-text="scope.opt.label"
+                      v-text="scope.opt.name"
                     />
                   </q-item-section>
                 </q-item>
