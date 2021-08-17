@@ -30,6 +30,7 @@
       class="flex justify-center"
     >
       <div
+        v-if="scope === Scope.System"
         class="q-mx-xs"
       >
         <q-btn
@@ -40,6 +41,16 @@
           icon="mdi-pencil"
           round
           @click="state.enableEditForm = true"
+        />
+        <SystemUserEditor
+          v-if="state.enableEditForm"
+          :default-name="props.row.name"
+          :default-email="props.row.email"
+          :default-role-code="props.row.role.code"
+          :user-id="props.row.id"
+          :users="users"
+          :on-close="() => state.enableEditForm = false"
+          :on-submit="onEditUser"
         />
       </div>
       <div
@@ -58,25 +69,6 @@
       </div>
     </q-td>
   </q-tr>
-  <template
-    v-if="scope === Scope.System"
-  >
-    <SystemUserEditor
-      v-if="state.enableEditForm"
-      :default-name="props.row.name"
-      :default-email="props.row.email"
-      :default-role-code="props.row.role.code"
-      :user-id="props.row.id"
-      :users="users"
-      :on-close="() => state.enableEditForm = false"
-      :on-submit="onEditUser"
-    />
-  </template>
-  <template
-    v-if="scope === Scope.Project"
-  >
-    <!-- TODO -->
-  </template>
 </template>
 
 <script>

@@ -101,6 +101,7 @@
               borderless
               dense
               hide-dropdown-icon
+              option-label="name"
               options-selected-class="text-secondary"
               @keyup.enter.stop
             >
