@@ -15,11 +15,6 @@ const roles = [
     scope: Scope.System,
   },
   {
-    code: Role.Guest,
-    name: 'Guest',
-    scope: Scope.System,
-  },
-  {
     code: Role.ProjectOwner,
     name: 'Owner',
     scope: Scope.Project,

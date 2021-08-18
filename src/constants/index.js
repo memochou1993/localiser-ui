@@ -9,7 +9,6 @@ export const Role = Object.freeze({
   ProjectOwner: 60,
   ProjectMaintainer: 50,
   ProjectGuest: 40,
-  Guest: 10,
 });
 
 export default null;

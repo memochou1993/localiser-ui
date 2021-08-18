@@ -30,7 +30,7 @@
           />
         </div>
         <div
-          class="text-right q-my-lg"
+          class="text-right q-mt-lg"
         >
           <q-btn
             color="primary"
