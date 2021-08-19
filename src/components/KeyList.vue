@@ -13,6 +13,7 @@
         spaced
       />
       <KeyItem
+        :enable-key-menu="enableKeyMenu"
         :key-item="key"
         :keys="keys"
         :on-create-value="onCreateValue"
@@ -40,6 +41,10 @@ export default {
     KeyItem,
   },
   props: {
+    enableKeyMenu: {
+      type: Boolean,
+      default: true,
+    },
     keys: {
       type: Array,
       default: () => [],

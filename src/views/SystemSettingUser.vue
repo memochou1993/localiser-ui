@@ -13,6 +13,7 @@
           class="row justify-between items-center q-my-sm"
         >
           <q-btn
+            v-if="me.can('create-users')"
             class="q-mr-sm"
             color="red-4"
             dense
@@ -36,6 +37,8 @@
         </div>
       </div>
       <UserList
+        :enable-delete-button="me.can('delete-users')"
+        :enable-edit-button="me.can('update-users')"
         :me="me"
         :needle="state.keyword"
         :on-delete-user="(data) => confirm({

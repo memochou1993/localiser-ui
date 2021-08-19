@@ -33,6 +33,7 @@
           class="text-right q-mt-lg"
         >
           <q-btn
+            :disable="!enableSubmitButton"
             color="primary"
             label="Save"
             no-caps
@@ -66,6 +67,10 @@ export default {
     defaultName: {
       type: String,
       default: '',
+    },
+    enableSubmitButton: {
+      type: Boolean,
+      default: true,
     },
     onSubmit: {
       type: Function,

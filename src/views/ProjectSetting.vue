@@ -54,6 +54,9 @@ import {
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
+  Project,
+} from '@/models';
+import {
   AppBreadcrumb,
   AppLoading,
   SettingMenu,
@@ -102,7 +105,7 @@ export default {
         const { data } = await actions.project.fetch({
           projectId,
         });
-        state.project = data;
+        state.project = Object.assign(new Project(), data);
       } catch (e) {
         console.debug(e);
         return router.push({ name: 'project.index' });

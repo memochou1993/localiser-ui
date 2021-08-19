@@ -46,6 +46,7 @@
           class="col-12 col-sm-1 flex justify-center items-center"
         >
           <KeyItemMenu
+            v-if="enableKeyMenu"
             :key-id="keyItem.id"
             :on-delete-key="onDeleteKey"
             class="q-px-md q-py-sm"
@@ -72,6 +73,10 @@ export default {
     ValueList,
   },
   props: {
+    enableKeyMenu: {
+      type: Boolean,
+      default: true,
+    },
     keyItem: {
       type: Object,
       default: () => {},

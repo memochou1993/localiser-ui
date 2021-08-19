@@ -18,6 +18,7 @@
       class="flex justify-center"
     >
       <div
+        v-if="enableEditButton"
         class="q-mx-xs"
       >
         <q-btn
@@ -39,6 +40,7 @@
         />
       </div>
       <div
+        v-if="enableDeleteButton"
         class="q-mx-xs"
       >
         <q-btn
@@ -67,6 +69,14 @@ export default {
     LanguageEditor,
   },
   props: {
+    enableDeleteButton: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditButton: {
+      type: Boolean,
+      default: true,
+    },
     languages: {
       type: Array,
       default: () => [],

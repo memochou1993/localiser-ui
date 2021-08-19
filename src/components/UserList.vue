@@ -12,6 +12,7 @@
       #body="props"
     >
       <UserItem
+        :enable-delete-button="enableDeleteButton"
         :on-delete-user="onDeleteUser"
         :on-edit-user="onEditUser"
         :props="props"
@@ -77,6 +78,14 @@ export default {
     UserItem,
   },
   props: {
+    enableDeleteButton: {
+      type: Boolean,
+      required: true,
+    },
+    enableEditButton: {
+      type: Boolean,
+      required: true,
+    },
     me: {
       type: Object,
       required: true,

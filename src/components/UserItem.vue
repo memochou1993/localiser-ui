@@ -30,7 +30,7 @@
       class="flex justify-center"
     >
       <div
-        v-if="scope === Scope.System"
+        v-if="enableEditButton && scope === Scope.System"
         class="q-mx-xs"
       >
         <q-btn
@@ -54,6 +54,7 @@
         />
       </div>
       <div
+        v-if="enableDeleteButton"
         class="q-mx-xs"
       >
         <q-btn
@@ -84,6 +85,14 @@ export default {
   name: 'UserItem',
   components: { SystemUserEditor },
   props: {
+    enableDeleteButton: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditButton: {
+      type: Boolean,
+      default: true,
+    },
     me: {
       type: Object,
       required: true,

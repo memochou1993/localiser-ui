@@ -13,6 +13,7 @@
           class="row justify-between items-center q-my-sm"
         >
           <q-btn
+            v-if="project.allow('update-projects')"
             class="q-mr-sm"
             color="red-4"
             dense
@@ -37,6 +38,8 @@
         </div>
       </div>
       <UserList
+        :enable-delete-button="project.allow('update-projects')"
+        :enable-edit-button="project.allow('update-projects')"
         :me="me"
         :needle="state.keyword"
         :on-delete-user="(data) => confirm({

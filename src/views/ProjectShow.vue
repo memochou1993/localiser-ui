@@ -16,7 +16,9 @@
         <div
           class="row justify-between items-center my-12"
         >
-          <div>
+          <div
+            v-if="state.project.allow('update-projects')"
+          >
             <q-btn
               class="q-mr-sm"
               color="red-4"
@@ -32,7 +34,9 @@
               :on-submit="createKey"
             />
           </div>
-          <div>
+          <div
+            v-if="state.project.allow('update-projects')"
+          >
             <q-btn
               class="q-mr-sm"
               color="indigo-4"
@@ -53,6 +57,7 @@
       </div>
       <KeyList
         v-if="isLoaded"
+        :enable-key-menu="state.project.allow('update-keys')"
         :keys="state.keys"
         :languages="state.project.languages"
         :needle="state.keyword"
@@ -88,6 +93,9 @@ import {
 } from 'vue-router';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
+import {
+  Project,
+} from '@/models';
 import {
   AppBreadcrumb,
   AppFilter,
@@ -125,7 +133,7 @@ export default {
         const { data } = await actions.project.fetch({
           projectId,
         });
-        state.project = data;
+        state.project = Object.assign(new Project(), data);
       } catch (e) {
         console.debug(e);
         q.notify({

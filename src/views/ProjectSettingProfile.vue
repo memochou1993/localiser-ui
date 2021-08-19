@@ -11,6 +11,7 @@
       />
       <ProjectEditorGeneral
         :default-name="project.name"
+        :enable-submit-button="project.allow('update-projects')"
         :on-submit="editProject"
         :project-id="project.id"
         class="q-my-sm"
@@ -26,6 +27,7 @@
         class="row"
       />
       <ProjectEditorDanger
+        :enable-delete-button="project.allow('delete-projects')"
         :on-submit="(data) => confirm({
           title: 'Are you sure?',
           content: 'Delete this project with all translations? This action cannot be undone.',
