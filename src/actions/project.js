@@ -18,11 +18,13 @@ const fetch = ({
 
 const store = ({
   name,
+  description,
   languages,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .post('/api/projects', {
       name,
+      description,
       languages,
     })
     .then(({ data }) => resolve(data))

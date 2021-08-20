@@ -42,6 +42,24 @@
             class="q-pb-lg"
           >
             <AppTextLabel
+              text="Description"
+            />
+            <q-input
+              v-model="state.description"
+              :model-value="state.description"
+              autocomplete="off"
+              autogrow
+              borderless
+              dense
+              input-style="max-height: 6rem;"
+              type="textarea"
+              @keyup.enter.stop
+            />
+          </div>
+          <div
+            class="q-pb-lg"
+          >
+            <AppTextLabel
               text="Languages"
             />
             <q-select
@@ -152,6 +170,7 @@ export default {
   setup(props) {
     const state = reactive({
       name: '',
+      description: '',
       languages: [],
       languageOptions: defaultLanguageOptions,
     });
@@ -172,6 +191,7 @@ export default {
       }
       props.onSubmit({
         name: state.name,
+        description: state.description,
         languages: state.languages,
       });
       props.onClose();

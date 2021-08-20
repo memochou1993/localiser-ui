@@ -94,11 +94,13 @@ export default {
     })();
     const createProject = async ({
       name,
+      description,
       languages,
     }) => {
       try {
         const { data } = await actions.project.store({
           name,
+          description,
           languages,
         });
         const project = { ...data, languages };

@@ -26,6 +26,13 @@
             />
           </div>
           <div
+            class="q-my-sm"
+          >
+            <span
+              v-text="project.description"
+            />
+          </div>
+          <div
             v-if="project.languages.length > 0"
             class="q-my-sm"
           >
