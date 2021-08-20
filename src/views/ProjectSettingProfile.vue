@@ -10,6 +10,7 @@
         class="row"
       />
       <ProjectEditorGeneral
+        :default-description="project.description"
         :default-name="project.name"
         :enable-submit-button="project.allow('update-projects')"
         :on-submit="editProject"
@@ -85,11 +86,13 @@ export default {
     const editProject = async ({
       projectId,
       name,
+      description,
     }) => {
       try {
         const { data } = await actions.project.update({
           projectId,
           name,
+          description,
         });
         const { project } = props;
         Object.assign(project, data);

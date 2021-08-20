@@ -30,6 +30,25 @@
           />
         </div>
         <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
+            text="Project description"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.description"
+            :model-value="state.description"
+            autocomplete="off"
+            autogrow
+            borderless
+            dense
+            input-style="max-height: 6rem;"
+            type="textarea"
+            @keyup.enter.stop
+          />
+        </div>
+        <div
           class="text-right q-mt-lg"
         >
           <q-btn
@@ -64,6 +83,10 @@ export default {
     AppTextCaption,
   },
   props: {
+    defaultDescription: {
+      type: String,
+      default: '',
+    },
     defaultName: {
       type: String,
       default: '',
@@ -84,6 +107,7 @@ export default {
   setup(props) {
     const state = reactive({
       name: props.defaultName,
+      description: props.defaultDescription,
     });
     const form = ref(null);
     const submit = async () => {
@@ -93,6 +117,7 @@ export default {
       props.onSubmit({
         projectId: props.projectId,
         name: state.name,
+        description: state.description,
       });
     };
     return {
