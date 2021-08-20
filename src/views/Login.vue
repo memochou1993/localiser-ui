@@ -28,7 +28,7 @@
                 class="q-pb-lg"
               >
                 <AppTextLabel
-                  text="Email"
+                  :text="$t('email')"
                 />
                 <q-input
                   v-model="state.email"
@@ -46,7 +46,7 @@
                 class="q-pb-lg"
               >
                 <AppTextLabel
-                  text="Password"
+                  :text="$t('password')"
                 />
                 <q-input
                   v-model="state.password"

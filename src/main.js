@@ -4,6 +4,7 @@ import iconSet from 'quasar/icon-set/mdi-v4';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import { i18n } from './plugins/i18n';
 import '@quasar/extras/mdi-v4/mdi-v4.css';
 import './styles/quasar.sass';
 
@@ -21,4 +22,5 @@ createApp(App)
   })
   .use(store)
   .use(router)
+  .use(i18n)
   .mount('#app');

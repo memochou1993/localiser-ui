@@ -1,6 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '@/store';
 import {
+  i18n,
+  loadMessages,
+  setLanguage,
+} from '@/plugins/i18n';
+import {
   Role,
 } from '@/constants';
 
@@ -122,6 +127,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  // FIXME
+  const locale = to.query.locale || window.localStorage.getItem('locale') || 'en';
+  window.localStorage.setItem('locale', locale);
+  if (!i18n.global.availableLocales.includes(locale)) {
+    await loadMessages(i18n, locale);
+  }
+  setLanguage(i18n, locale);
   if (store.getters.isAuthenticated && !store.state.user) {
     try {
       await store.dispatch('fetchMe');

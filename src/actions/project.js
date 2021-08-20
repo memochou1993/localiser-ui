@@ -76,6 +76,20 @@ const detachUser = ({
     .catch((e) => reject(e));
 });
 
+const fetchValues = ({
+  projectId,
+  locale,
+} = {}) => new Promise((resolve, reject) => {
+  axios
+    .get(`/api/projects/${projectId}/cache/values`, {
+      params: {
+        language_code: locale,
+      },
+    })
+    .then(({ data }) => resolve(data))
+    .catch((e) => reject(e));
+});
+
 export default {
   index,
   fetch,
@@ -84,4 +98,5 @@ export default {
   destroy,
   attachUser,
   detachUser,
+  fetchValues,
 };
