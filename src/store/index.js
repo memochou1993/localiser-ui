@@ -8,6 +8,7 @@ import {
 
 export default createStore({
   state: {
+    locale: '',
     token: Cookie.get('token') || null,
     user: null,
     confirmation: null,
@@ -18,6 +19,9 @@ export default createStore({
     },
   },
   mutations: {
+    setLocale(state, v) {
+      state.locale = v;
+    },
     setToken(state, v) {
       state.token = v;
     },

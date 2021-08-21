@@ -3,23 +3,31 @@ import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n/index';
 import * as actions from '@/actions';
 
-const LOCALISER_PROJECT_ID = 1;
-const DEFAULT_LOCALE = 'en';
-const SUPPORT_LOCALES = [
-  DEFAULT_LOCALE,
-  'zh_TW',
-];
+const LOCALES = Object.freeze({
+  en: 'en',
+  zh: 'zh_TW',
+  zh_TW: 'zh_TW',
+  'zh-TW': 'zh_TW',
+});
 
-export const setLanguage = (i18n, locale) => {
+const { language } = window.navigator;
+
+export const DEFAULT_LOCALE = language in LOCALES ? LOCALES[language] : LOCALES.en;
+
+const i18n = createI18n({
+  locale: DEFAULT_LOCALE,
+});
+
+export const setLanguage = (locale) => {
   i18n.global.locale = locale;
   document.documentElement.lang = locale;
 };
 
-export const loadMessages = async (i18n, locale) => {
+export const loadMessage = async (locale) => {
   try {
     const message = await actions.project.fetchValues({
-      projectId: LOCALISER_PROJECT_ID,
-      locale: SUPPORT_LOCALES.includes(locale) ? locale : DEFAULT_LOCALE,
+      projectId: process.env.VUE_APP_API_PROJECT_ID,
+      locale,
     });
     i18n.global.setLocaleMessage(locale, message);
   } catch (e) {
@@ -28,6 +36,4 @@ export const loadMessages = async (i18n, locale) => {
   return nextTick();
 };
 
-export const i18n = createI18n({
-  locale: DEFAULT_LOCALE,
-});
+export default i18n;
