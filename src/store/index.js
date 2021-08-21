@@ -42,30 +42,18 @@ export default createStore({
     resetConfirmation(state) {
       state.confirmation = null;
     },
+    reset(state) {
+      Cookie.remove('token');
+      state.token = null;
+      state.user = null;
+    },
   },
   actions: {
-    reset({
-      commit,
-    }) {
-      Cookie.remove('token');
-      commit('setToken', null);
-      commit('setUser', null);
-    },
     async fetchMe({
       commit,
     }) {
-      return new Promise((resolve, reject) => {
-        actions.user.fetchMe()
-          .then(({ data }) => {
-            commit('setUser', Object.assign(new User(), data));
-            resolve();
-          })
-          .catch((e) => {
-            reject(e);
-          });
-      });
+      const { data } = await actions.user.fetchMe();
+      commit('setUser', Object.assign(new User(), data));
     },
-  },
-  modules: {
   },
 });

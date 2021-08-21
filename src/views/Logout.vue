@@ -22,7 +22,7 @@ export default {
       } catch {
         //
       } finally {
-        await store.dispatch('reset');
+        await store.commit('reset');
         await router.push({ name: 'login' });
       }
     })();

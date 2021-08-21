@@ -134,7 +134,7 @@ router.beforeEach(async (to, from, next) => {
     try {
       await store.dispatch('fetchMe');
     } catch {
-      await store.dispatch('reset');
+      await store.commit('reset');
     }
   }
   if (to.meta.requiresRoleCode) {

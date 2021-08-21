@@ -2,7 +2,7 @@ import axios from '@/plugins/axios';
 
 const fetchMe = () => new Promise((resolve, reject) => {
   axios
-    .get('/api/users/me')
+    .get('/api/user')
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
 });

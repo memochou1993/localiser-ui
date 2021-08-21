@@ -20,7 +20,7 @@ client.interceptors.response.use(
   (res) => res,
   async (e) => {
     if (e?.response?.status === 401) {
-      await store.dispatch('reset');
+      await store.commit('reset');
       await router.push({ name: 'login' });
     }
     return Promise.reject(e);
