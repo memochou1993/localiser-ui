@@ -133,8 +133,7 @@ router.beforeEach(async (to, from, next) => {
   if (store.getters.isAuthenticated && !store.state.user) {
     try {
       await store.dispatch('fetchMe');
-    } catch (e) {
-      console.debug(e);
+    } catch {
       await store.dispatch('reset');
     }
   }

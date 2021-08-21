@@ -106,15 +106,13 @@ export default {
           projectId,
         });
         state.project = Object.assign(new Project(), data);
-      } catch (e) {
-        console.debug(e);
+      } catch {
         return router.push({ name: 'project.index' });
       }
       try {
         const { data } = await actions.user.index();
         state.users = data.filter((u) => !u.deleted_at);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,

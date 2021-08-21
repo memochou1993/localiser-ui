@@ -128,7 +128,6 @@ export default {
           timeout: 1000,
         });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -167,7 +166,6 @@ export default {
           });
         }
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -193,7 +191,6 @@ export default {
           timeout: 1000,
         });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,

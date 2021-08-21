@@ -19,8 +19,8 @@ export default {
     (async () => {
       try {
         await actions.token.destroy();
-      } catch (e) {
-        console.debug(e);
+      } catch {
+        //
       } finally {
         await store.dispatch('reset');
         await router.push({ name: 'login' });

@@ -139,7 +139,6 @@ export default {
         });
         state.project = Object.assign(new Project(), data);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -153,7 +152,6 @@ export default {
         });
         state.keys = data;
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -176,7 +174,6 @@ export default {
           timeout: 1000,
         });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -195,7 +192,6 @@ export default {
         const key = { ...data, values: [] };
         state.keys.unshift(key);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -215,7 +211,6 @@ export default {
         const key = state.keys.find((k) => k.id === keyId);
         Object.assign(key, data);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -238,7 +233,6 @@ export default {
           timeout: 1000,
         });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -260,7 +254,6 @@ export default {
         const value = { ...data, language: { id: languageId } };
         state.keys.find((k) => k.id === keyId).values.push(value);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -281,7 +274,6 @@ export default {
         const value = state.keys.find((k) => k.id === keyId).values.find((v) => v.id === valueId);
         Object.assign(value, data);
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,

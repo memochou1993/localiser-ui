@@ -112,7 +112,6 @@ export default {
           timeout: 1000,
         });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
@@ -136,7 +135,6 @@ export default {
         });
         await router.push({ name: 'project.index' });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,

@@ -134,7 +134,6 @@ export default {
         store.commit('setToken', encoded);
         await router.push({ name: 'home' });
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: 'Wrong email or password.',

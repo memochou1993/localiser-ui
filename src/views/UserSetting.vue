@@ -91,7 +91,6 @@ export default {
         const { data } = await actions.user.index();
         state.users = data;
       } catch (e) {
-        console.debug(e);
         q.notify({
           color: 'negative',
           message: e?.response?.data?.message || e.statusText,
