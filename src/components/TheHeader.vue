@@ -5,8 +5,9 @@
   >
     <q-toolbar>
       <q-toolbar-title>
-        <span
-          class="q-px-md"
+        <router-link
+          :to="{ name: 'project.index' }"
+          class="text-white q-px-md cursor-pointer underline-none"
           v-text="'Localiser'"
         />
       </q-toolbar-title>
