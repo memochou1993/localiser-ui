@@ -154,7 +154,7 @@ import PasswordGenerator from '@memochou1993/password-generator-js';
 import {
   Scope,
 } from '@/constants';
-import defaultRoleOptions from '@/assets/RoleOptions';
+import defaultRoleOptions from '@/assets/js/RoleOptions';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {

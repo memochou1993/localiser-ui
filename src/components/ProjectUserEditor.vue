@@ -156,7 +156,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import defaultRoleOptions from '@/assets/RoleOptions';
+import defaultRoleOptions from '@/assets/js/RoleOptions';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {

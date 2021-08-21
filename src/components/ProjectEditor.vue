@@ -142,7 +142,7 @@ import {
   ref,
 } from 'vue';
 import { useDialogPluginComponent } from 'quasar';
-import defaultLanguageOptions from '@/assets/LanguageOptions';
+import defaultLanguageOptions from '@/assets/js/LanguageOptions';
 import AppTextLabel from './AppTextLabel.vue';
 
 export default {
