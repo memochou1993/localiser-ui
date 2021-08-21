@@ -26,6 +26,7 @@
             />
           </div>
           <div
+            v-show="project.description"
             class="q-my-sm"
           >
             <span
