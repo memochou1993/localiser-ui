@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n/index';
 import * as actions from '@/actions';
@@ -31,8 +30,9 @@ export const loadMessage = async (locale) => {
       locale,
     });
     i18n.global.setLocaleMessage(locale, message);
-  } catch (e) {
-    console.debug(e);
+  } catch {
+    const message = await import(/* webpackChunkName: "locale-[request]" */ `@/assets/lang/${locale}.json`);
+    i18n.global.setLocaleMessage(locale, message);
   }
   return nextTick();
 };
