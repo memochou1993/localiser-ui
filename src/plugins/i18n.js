@@ -26,7 +26,7 @@ export const setLanguage = (locale) => {
 
 export const loadMessage = async (locale) => {
   try {
-    const message = await actions.project.fetchValues({
+    const message = await actions.project.fetchCachedValues({
       projectId: process.env.VUE_APP_API_PROJECT_ID,
       locale,
     });

@@ -12,9 +12,9 @@
         />
         <q-item
           v-close-popup
-          :to="item.to"
           class="dense"
           clickable
+          @click="item.callback"
         >
           <q-item-section>
             <span
@@ -28,19 +28,36 @@
 </template>
 
 <script>
-const items = [
-  {
-    name: 'Settings',
-    to: {
-      name: 'project.profile',
-    },
-    separated: false,
-  },
-];
+import {
+  useRouter,
+} from 'vue-router';
 
 export default {
   name: 'KeyIndexMenu',
-  setup() {
+  props: {
+    onClearCache: {
+      type: Function,
+      default: () => {},
+    },
+  },
+  setup(props) {
+    const router = useRouter();
+    const items = [
+      {
+        name: 'Clear cache',
+        callback: props.onClearCache,
+        separated: false,
+      },
+      {
+        name: 'Settings',
+        callback: async () => {
+          await router.push({
+            name: 'project.profile',
+          });
+        },
+        separated: false,
+      },
+    ];
     return {
       items,
     };

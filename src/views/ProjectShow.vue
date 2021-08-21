@@ -44,7 +44,9 @@
               icon="mdi-dots-horizontal"
               round
             />
-            <ProjectMenu />
+            <ProjectMenu
+              :on-clear-cache="clearCache"
+            />
           </div>
         </div>
         <div
@@ -162,6 +164,26 @@ export default {
       return null;
     })();
     const confirm = (data) => store.commit('setConfirmation', data);
+    const clearCache = async () => {
+      try {
+        await actions.project.destroyCachedValues({
+          projectId: state.project.id,
+        });
+        q.notify({
+          color: 'info',
+          group: false,
+          message: 'Cache cleared.',
+          timeout: 1000,
+        });
+      } catch (e) {
+        console.debug(e);
+        q.notify({
+          color: 'negative',
+          message: e?.response?.data?.message || e.statusText,
+          timeout: 1000,
+        });
+      }
+    };
     const createKey = async ({
       name,
     }) => {
@@ -271,6 +293,7 @@ export default {
       state,
       isLoaded,
       confirm,
+      clearCache,
       createKey,
       editKey,
       deleteKey,
