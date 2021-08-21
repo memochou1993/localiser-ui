@@ -15,7 +15,7 @@
             <div
               class="text-info q-px-md q-py-sm"
               @click="state.enableEditForm = true"
-              v-text="`${keyPrefix}${keyItem.name}${keySuffix}`"
+              v-text="`${keyPrefix || ''}${keyItem.name}${keySuffix || ''}`"
             />
             <KeyEditor
               v-if="state.enableEditForm"
