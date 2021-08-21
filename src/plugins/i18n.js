@@ -15,11 +15,12 @@ const { language } = window.navigator;
 export const DEFAULT_LOCALE = language in LOCALES ? LOCALES[language] : LOCALES.en;
 
 const i18n = createI18n({
+  legacy: false,
   locale: DEFAULT_LOCALE,
 });
 
 export const setLanguage = (locale) => {
-  i18n.global.locale = locale;
+  i18n.global.locale.value = locale;
   document.documentElement.lang = locale;
 };
 

@@ -28,7 +28,7 @@
                 class="q-pb-lg"
               >
                 <AppTextLabel
-                  :text="$t('email')"
+                  :text="t('__InputEmail')"
                 />
                 <q-input
                   v-model="state.email"
@@ -46,7 +46,7 @@
                 class="q-pb-lg"
               >
                 <AppTextLabel
-                  :text="$t('password')"
+                  :text="t('__InputPassword')"
                 />
                 <q-input
                   v-model="state.password"
@@ -62,8 +62,8 @@
                 class="text-right q-mt-lg"
               >
                 <q-btn
+                  :label="t('__ButtonLogIn')"
                   color="primary"
-                  label="Log in"
                   no-caps
                   @click="submit"
                 />
@@ -88,20 +88,14 @@ import {
 import {
   useRouter,
 } from 'vue-router';
+import {
+  useI18n,
+} from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
   AppTextLabel,
 } from '@/components';
-
-const rules = {
-  email: [
-    (v) => (v && !!v.trim()) || 'The email is required.',
-  ],
-  password: [
-    (v) => (v && !!v.trim()) || 'The password is required.',
-  ],
-};
 
 export default {
   name: 'Login',
@@ -111,12 +105,21 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       email: '',
       password: '',
     });
     const form = ref(null);
+    const rules = {
+      email: [
+        (v) => (v && !!v.trim()) || t('__ErrorEmailRequired'),
+      ],
+      password: [
+        (v) => (v && !!v.trim()) || t('__ErrorPasswordRequired'),
+      ],
+    };
     const submit = async () => {
       if (!await form?.value.validate()) {
         return;
@@ -140,6 +143,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       form,
       rules,
