@@ -43,9 +43,36 @@
             autogrow
             borderless
             dense
-            input-style="max-height: 6rem;"
-            type="textarea"
-            @keyup.enter.stop
+          />
+        </div>
+        <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
+            text="Key prefix"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.keyPrefix"
+            :model-value="state.keyPrefix"
+            autocomplete="off"
+            borderless
+            dense
+          />
+        </div>
+        <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
+            text="Key suffix"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.keySuffix"
+            :model-value="state.keySuffix"
+            autocomplete="off"
+            borderless
+            dense
           />
         </div>
         <div
@@ -91,6 +118,14 @@ export default {
       type: String,
       default: '',
     },
+    defaultKeyPrefix: {
+      type: String,
+      default: '',
+    },
+    defaultKeySuffix: {
+      type: String,
+      default: '',
+    },
     enableSubmitButton: {
       type: Boolean,
       default: true,
@@ -108,6 +143,8 @@ export default {
     const state = reactive({
       name: props.defaultName,
       description: props.defaultDescription,
+      keyPrefix: props.defaultKeyPrefix,
+      keySuffix: props.defaultKeySuffix,
     });
     const form = ref(null);
     const submit = async () => {
@@ -118,6 +155,8 @@ export default {
         projectId: props.projectId,
         name: state.name,
         description: state.description,
+        keyPrefix: state.keyPrefix,
+        keySuffix: state.keySuffix,
       });
     };
     return {

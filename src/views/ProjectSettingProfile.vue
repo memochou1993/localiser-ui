@@ -12,6 +12,8 @@
       <ProjectEditorGeneral
         :default-description="project.description"
         :default-name="project.name"
+        :default-key-prefix="project.settings.keyPrefix"
+        :default-key-suffix="project.settings.keySuffix"
         :enable-submit-button="project.allow('update-projects')"
         :on-submit="editProject"
         :project-id="project.id"
@@ -87,12 +89,18 @@ export default {
       projectId,
       name,
       description,
+      keyPrefix,
+      keySuffix,
     }) => {
       try {
         const { data } = await actions.project.update({
           projectId,
           name,
           description,
+          settings: {
+            keyPrefix,
+            keySuffix,
+          },
         });
         const { project } = props;
         Object.assign(project, data);

@@ -58,6 +58,8 @@
       <KeyList
         v-if="isLoaded"
         :enable-key-menu="state.project.allow('update-keys')"
+        :key-prefix="state.project.settings.keyPrefix"
+        :key-suffix="state.project.settings.keySuffix"
         :keys="state.keys"
         :languages="state.project.languages"
         :needle="state.keyword"

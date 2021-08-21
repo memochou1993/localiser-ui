@@ -15,6 +15,8 @@
       <KeyItem
         :enable-key-menu="enableKeyMenu"
         :key-item="key"
+        :key-prefix="keyPrefix"
+        :key-suffix="keySuffix"
         :keys="keys"
         :on-create-value="onCreateValue"
         :on-delete-key="onDeleteKey"
@@ -44,6 +46,14 @@ export default {
     enableKeyMenu: {
       type: Boolean,
       default: true,
+    },
+    keyPrefix: {
+      type: String,
+      default: '',
+    },
+    keySuffix: {
+      type: String,
+      default: '',
     },
     keys: {
       type: Array,

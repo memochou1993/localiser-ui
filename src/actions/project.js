@@ -35,11 +35,13 @@ const update = ({
   projectId,
   name,
   description,
+  settings,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .patch(`/api/projects/${projectId}`, {
       name,
       description,
+      settings,
     })
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
