@@ -14,9 +14,7 @@ export default createStore({
     confirmation: null,
   },
   getters: {
-    isAuthenticated(state) {
-      return !!state.token;
-    },
+    //
   },
   mutations: {
     setLocale(state, v) {

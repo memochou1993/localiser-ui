@@ -3,7 +3,7 @@
     view="hhh lpr fff"
   >
     <TheHeader
-      :enable-menu="isAuthenticated"
+      :enable-menu="!!token"
       :user-name="user ? user.name : ''"
       :user-role-code="user ? user.role.code: 0"
     />
@@ -46,13 +46,13 @@ export default {
   },
   setup() {
     const store = useStore();
+    const token = computed(() => store.state.token);
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
-    const isAuthenticated = computed(() => store.getters.isAuthenticated);
     return {
+      token,
       user,
       confirmation,
-      isAuthenticated,
     };
   },
 };

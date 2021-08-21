@@ -130,7 +130,7 @@ router.beforeEach(async (to, from, next) => {
     await loadMessage(DEFAULT_LOCALE);
     store.commit('setLocale', DEFAULT_LOCALE);
   }
-  if (store.getters.isAuthenticated && !store.state.user) {
+  if (store.state.token && !store.state.user) {
     try {
       await store.dispatch('fetchMe');
     } catch {
