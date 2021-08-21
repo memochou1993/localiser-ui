@@ -4,8 +4,8 @@
   >
     <TheHeader
       :enable-menu="!!token"
-      :user-name="user ? user.name : ''"
-      :user-role-code="user ? user.role.code: 0"
+      :user-name="user?.name ?? ''"
+      :user-role-code="user?.role.code ?? 0"
     />
     <q-page-container>
       <div
