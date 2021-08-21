@@ -3,12 +3,12 @@ import axios from '@/plugins/axios';
 const store = ({
   projectId,
   name,
-  code,
+  locale,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .post(`/api/projects/${projectId}/languages`, {
       name,
-      code,
+      locale,
     })
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
@@ -17,12 +17,12 @@ const store = ({
 const update = ({
   languageId,
   name,
-  code,
+  locale,
 } = {}) => new Promise((resolve, reject) => {
   axios
     .patch(`/api/languages/${languageId}`, {
       name,
-      code,
+      locale,
     })
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));

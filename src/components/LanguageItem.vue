@@ -8,9 +8,9 @@
       v-text="props.row.name"
     />
     <q-td
-      key="code"
+      key="locale"
       :props="props"
-      v-text="props.row.code"
+      v-text="props.row.locale"
     />
     <q-td
       key="action"
@@ -31,7 +31,7 @@
         />
         <LanguageEditor
           v-if="state.enableEditForm"
-          :default-code="props.row.code"
+          :default-locale="props.row.locale"
           :default-name="props.row.name"
           :language-id="props.row.id"
           :languages="languages"

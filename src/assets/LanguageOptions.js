@@ -1,15 +1,15 @@
 const languages = [
   {
     name: 'English',
-    code: 'en',
+    locale: 'en',
   },
   {
     name: 'Chinese Traditional',
-    code: 'zh_TW',
+    locale: 'zh_TW',
   },
   {
     name: 'Chinese Simplified',
-    code: 'zh_CN',
+    locale: 'zh_CN',
   },
 ];
 

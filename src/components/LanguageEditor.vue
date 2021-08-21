@@ -67,12 +67,12 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Code"
+              text="Locale"
             />
             <q-input
-              v-model="state.code"
-              :model-value="state.code"
-              :rules="rules.code"
+              v-model="state.locale"
+              :model-value="state.locale"
+              :rules="rules.locale"
               autocomplete="off"
               borderless
               dense
@@ -121,7 +121,7 @@ export default {
     AppTextLabel,
   },
   props: {
-    defaultCode: {
+    defaultLocale: {
       type: String,
       default: '',
     },
@@ -152,7 +152,7 @@ export default {
   setup(props) {
     const state = reactive({
       name: props.defaultName,
-      code: props.defaultCode,
+      locale: props.defaultLocale,
       nameOptions: [],
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
@@ -162,9 +162,9 @@ export default {
         (v) => (v && !!v.trim()) || 'The name is required.',
         (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
       ],
-      code: [
-        (v) => (v && !!v.trim()) || 'The code is required.',
-        (v) => (v.trim() === props.defaultCode.trim() || !props.languages.some((l) => l.code === v.trim())) || 'The code has already been taken.',
+      locale: [
+        (v) => (v && !!v.trim()) || 'The locale is required.',
+        (v) => (v.trim() === props.defaultLocale.trim() || !props.languages.some((l) => l.locale === v.trim())) || 'The locale has already been taken.',
       ],
     };
     const onFilterName = (v, update) => {
@@ -178,8 +178,8 @@ export default {
     };
     const onInputName = (v) => {
       state.name = v;
-      if (!state.code) {
-        state.code = defaultLanguageOptions.find((o) => o.name === v)?.code || '';
+      if (!state.locale) {
+        state.locale = defaultLanguageOptions.find((o) => o.name === v)?.locale || '';
       }
     };
     const submit = async () => {
@@ -189,7 +189,7 @@ export default {
       props.onSubmit({
         languageId: props.languageId,
         name: state.name,
-        code: state.code,
+        locale: state.locale,
       });
       props.onClose();
     };

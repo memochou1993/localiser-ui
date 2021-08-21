@@ -83,7 +83,7 @@ const fetchValues = ({
   axios
     .get(`/api/projects/${projectId}/cache/values`, {
       params: {
-        language_code: locale,
+        locale,
       },
     })
     .then(({ data }) => resolve(data))

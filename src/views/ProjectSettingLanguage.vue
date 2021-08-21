@@ -102,13 +102,13 @@ export default {
     const confirm = (data) => store.commit('setConfirmation', data);
     const createLanguage = async ({
       name,
-      code,
+      locale,
     }) => {
       try {
         const { data } = await actions.language.store({
           projectId: props.project.id,
           name,
-          code,
+          locale,
         });
         const { project } = props;
         project.languages.push(data);
@@ -131,13 +131,13 @@ export default {
     const editLanguage = async ({
       languageId,
       name,
-      code,
+      locale,
     }) => {
       try {
         const { data } = await actions.language.update({
           languageId,
           name,
-          code,
+          locale,
         });
         const { project } = props;
         const language = project.languages.find((l) => l.id === languageId);

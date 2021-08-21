@@ -42,10 +42,10 @@ const columns = [
     style: '',
   },
   {
-    name: 'code',
+    name: 'locale',
     align: 'left',
     headerStyle: '',
-    label: 'Code',
+    label: 'Locale',
     required: true,
     sortable: false,
     style: '',
@@ -97,7 +97,7 @@ export default {
     const filter = (l) => {
       const needle = props.needle.toLowerCase();
       return l.name.toLowerCase().includes(needle)
-        || l.code.toLowerCase().includes(needle);
+        || l.locale.toLowerCase().includes(needle);
     };
     return {
       columns,
