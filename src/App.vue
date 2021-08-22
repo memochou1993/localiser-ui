@@ -35,10 +35,7 @@ import {
 import {
   useStore,
 } from 'vuex';
-import {
-  useRouter,
-} from 'vue-router';
-import {
+import i18n, {
   DEFAULT_LOCALE,
   loadMessage,
   setLanguage,
@@ -56,17 +53,21 @@ export default {
   },
   setup() {
     const store = useStore();
-    const router = useRouter();
+    const setLocale = (locale) => {
+      setLanguage(locale);
+      localStorage.setItem('locale', locale);
+      store.commit('setLocale', locale);
+    };
     (async () => {
       await loadMessage(DEFAULT_LOCALE);
-      setLanguage(DEFAULT_LOCALE);
-      localStorage.setItem('locale', DEFAULT_LOCALE);
-      store.commit('setLocale', DEFAULT_LOCALE);
+      setLocale(DEFAULT_LOCALE);
     })();
     const changeLanguage = async (locale) => {
+      if (!i18n.global.availableLocales.includes(locale)) {
+        await loadMessage(locale);
+      }
       if (localStorage.getItem('locale') !== locale) {
-        localStorage.setItem('locale', locale);
-        router.go(0);
+        setLocale(locale);
       }
     };
     const locale = computed(() => store.state.locale);
