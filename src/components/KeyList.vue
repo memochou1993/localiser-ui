@@ -87,7 +87,7 @@ export default {
   setup(props) {
     const filter = (k) => {
       const needle = props.needle.toLowerCase();
-      return k.name.toLowerCase().includes(needle)
+      return `${props.keyPrefix}${k.name}${props.keySuffix}`.toLowerCase().includes(needle)
         || k.values.some((v) => v.text?.toLowerCase().includes(needle));
     };
     return {
