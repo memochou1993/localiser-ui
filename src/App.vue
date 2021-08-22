@@ -37,6 +37,7 @@ import {
 import {
   DEFAULT_LOCALE,
   loadMessage,
+  setLanguage,
 } from '@/plugins/i18n';
 import {
   TheConfirmation,
@@ -51,16 +52,16 @@ export default {
   },
   setup() {
     const store = useStore();
+    (async () => {
+      await loadMessage(DEFAULT_LOCALE);
+      setLanguage(DEFAULT_LOCALE);
+      localStorage.setItem('locale', DEFAULT_LOCALE);
+      store.commit('setLocale', DEFAULT_LOCALE);
+    })();
     const locale = computed(() => store.state.locale);
     const token = computed(() => store.state.token);
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
-    (async () => {
-      if (!store.state.locale) {
-        await loadMessage(DEFAULT_LOCALE);
-        store.commit('setLocale', DEFAULT_LOCALE);
-      }
-    })();
     return {
       locale,
       token,

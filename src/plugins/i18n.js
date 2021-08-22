@@ -9,7 +9,7 @@ const LOCALES = Object.freeze({
   'zh-TW': 'zh_TW',
 });
 
-const { language } = window.navigator;
+const language = localStorage.getItem('locale') || window.navigator.language;
 
 export const DEFAULT_LOCALE = language in LOCALES ? LOCALES[language] : LOCALES.en;
 

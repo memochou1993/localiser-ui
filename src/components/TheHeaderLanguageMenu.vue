@@ -61,9 +61,10 @@ export default {
     const changeLanguage = async (locale) => {
       if (!i18n.global.availableLocales.includes(locale)) {
         await loadMessage(locale);
-        store.commit('setLocale', locale);
       }
       setLanguage(locale);
+      localStorage.setItem('locale', locale);
+      store.commit('setLocale', locale);
     };
     return {
       items,
