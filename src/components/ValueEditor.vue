@@ -3,7 +3,7 @@
     :offset="[offset, 0]"
     :style="`width: ${width + offset}px`"
     class="q-pa-md shadow-4"
-    @hide="onClose"
+    @hide="submit"
   >
     <div
       class="q-mb-md"
@@ -28,7 +28,7 @@
         icon="mdi-check"
         size="sm"
         unelevated
-        @click="onSubmit({ keyId, languageId, valueId, text: state.text })"
+        @click="submit"
       />
       <q-btn
         class="q-mr-xs"
@@ -86,8 +86,17 @@ export default {
     const state = reactive({
       text: props.defaultText,
     });
+    const submit = () => {
+      props.onSubmit({
+        keyId: props.keyId,
+        languageId: props.languageId,
+        valueId: props.valueId,
+        text: state.text,
+      });
+    };
     return {
       state,
+      submit,
     };
   },
 };
