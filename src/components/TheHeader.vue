@@ -11,7 +11,9 @@
           v-text="'Localiser'"
         />
       </q-toolbar-title>
-      <TheHeaderLanguageMenu />
+      <TheHeaderLanguageMenu
+        :on-change-language="onChangeLanguage"
+      />
       <TheHeaderViewMenu
         v-if="enableViewMenu"
         :locale="locale"
@@ -40,6 +42,10 @@ export default {
     locale: {
       type: String,
       required: true,
+    },
+    onChangeLanguage: {
+      type: Function,
+      default: () => {},
     },
     userName: {
       type: String,

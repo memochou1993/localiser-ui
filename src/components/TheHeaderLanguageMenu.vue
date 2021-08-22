@@ -21,7 +21,7 @@
             class="dense"
             clickable
             exact-active-class="text-black"
-            @click="changeLanguage(item.locale)"
+            @click="onChangeLanguage(item.locale)"
           >
             <q-item-section>
               <span
@@ -36,12 +36,6 @@
 </template>
 
 <script>
-import i18n, {
-  loadMessage,
-  setLanguage,
-} from '@/plugins/i18n';
-import store from '@/store';
-
 const items = [
   {
     name: 'English',
@@ -57,18 +51,15 @@ const items = [
 
 export default {
   name: 'TheHeaderLanguageMenu',
+  props: {
+    onChangeLanguage: {
+      type: Function,
+      default: () => {},
+    },
+  },
   setup() {
-    const changeLanguage = async (locale) => {
-      if (!i18n.global.availableLocales.includes(locale)) {
-        await loadMessage(locale);
-      }
-      setLanguage(locale);
-      localStorage.setItem('locale', locale);
-      store.commit('setLocale', locale);
-    };
     return {
       items,
-      changeLanguage,
     };
   },
 };
