@@ -110,7 +110,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Project updated.',
+          message: t('__NotificationProjectUpdated'),
           timeout: 1000,
         });
       } catch (e) {
@@ -132,7 +132,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Project deleted.',
+          message: t('__NotificationProjectDeleted'),
           timeout: 1000,
         });
         await router.push({ name: 'project.index' });

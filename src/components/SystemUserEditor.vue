@@ -149,7 +149,7 @@ import {
   reactive,
   ref,
 } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n/index';
 import { useDialogPluginComponent } from 'quasar';
 import PasswordGenerator from '@memochou1993/password-generator-js';
 import {

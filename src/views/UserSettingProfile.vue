@@ -77,7 +77,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Profile updated.',
+          message: t('__NotificationProfileUpdated'),
           timeout: 1000,
         });
       } catch (e) {

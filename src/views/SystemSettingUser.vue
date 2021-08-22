@@ -129,7 +129,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'User created.',
+          message: t('__NotificationUserCreated'),
           timeout: 1000,
         });
       } catch (e) {
@@ -162,7 +162,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'User updated.',
+          message: t('__NotificationUserUpdated'),
           timeout: 1000,
         });
         if (userId === me.value.id && role !== me.value.role) {
@@ -192,7 +192,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'User deleted.',
+          message: t('__NotificationUserDeleted'),
           timeout: 1000,
         });
       } catch (e) {

@@ -120,11 +120,12 @@ export default {
         const { data } = await actions.project.fetch({
           projectId: props.project.id,
         });
-        props.onUpdateProject(data);
+        const { project } = props;
+        props.onUpdateProject(Object.assign(project, data));
         q.notify({
           color: 'info',
           group: false,
-          message: 'Member added.',
+          message: t('__NotificationMemberAdded'),
           timeout: 1000,
         });
       } catch (e) {
@@ -146,11 +147,12 @@ export default {
         const { data } = await actions.project.fetch({
           projectId: props.project.id,
         });
-        props.onUpdateProject(data);
+        const { project } = props;
+        props.onUpdateProject(Object.assign(project, data));
         q.notify({
           color: 'info',
           group: false,
-          message: 'Member removed.',
+          message: t('__NotificationMemberRemoved'),
           timeout: 1000,
         });
       } catch (e) {

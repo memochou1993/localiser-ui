@@ -112,7 +112,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Project created.',
+          message: t('__NotificationProjectCreated'),
           timeout: 1000,
         });
       } catch (e) {

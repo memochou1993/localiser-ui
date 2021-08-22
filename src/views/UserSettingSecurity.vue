@@ -62,7 +62,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Password updated.',
+          message: t('__NotificationPasswordUpdated'),
           timeout: 1000,
         });
       } catch (e) {

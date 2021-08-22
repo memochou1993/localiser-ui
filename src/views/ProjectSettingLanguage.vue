@@ -121,7 +121,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Language created.',
+          message: t('__NotificationLanguageCreated'),
           timeout: 1000,
         });
       } catch (e) {
@@ -150,7 +150,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Language updated.',
+          message: t('__NotificationLanguageUpdated'),
           timeout: 1000,
         });
       } catch (e) {
@@ -174,7 +174,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Language deleted.',
+          message: t('__NotificationLanguageDeleted'),
           timeout: 1000,
         });
       } catch (e) {

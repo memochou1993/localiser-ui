@@ -134,7 +134,7 @@ export default {
       } catch (e) {
         q.notify({
           color: 'negative',
-          message: 'Wrong email or password.',
+          message: 'Wrong email or password.', // TODO
           timeout: 1000,
         });
       }

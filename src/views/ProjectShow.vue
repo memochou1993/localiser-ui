@@ -95,7 +95,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -172,7 +172,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Cache cleared.',
+          message: t('__NotificationCacheCleared'),
           timeout: 1000,
         });
       } catch (e) {
@@ -231,7 +231,7 @@ export default {
         q.notify({
           color: 'info',
           group: false,
-          message: 'Key deleted.',
+          message: t('__NotificationKeyDeleted'),
           timeout: 1000,
         });
       } catch (e) {
