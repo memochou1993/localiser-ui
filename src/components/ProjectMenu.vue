@@ -51,7 +51,7 @@ export default {
         separated: false,
       },
       {
-        name: t('__ViewProjectSettings'),
+        name: t('__ViewTitleProjectSettings'),
         callback: async () => {
           await router.push({
             name: 'project.profile',

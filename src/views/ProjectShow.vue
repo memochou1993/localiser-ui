@@ -5,7 +5,7 @@
     >
       <AppBreadcrumb
         :breadcrumbs="[
-          { label: 'Projects', to: { name: 'project.index' } },
+          { label: t('__ViewTitleProjectIndex'), to: { name: 'project.index' } },
           { label: state.project.name },
         ]"
         class="my-12"
@@ -95,6 +95,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -123,6 +124,7 @@ export default {
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       project: null,
@@ -282,6 +284,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       isLoaded,
       confirm,

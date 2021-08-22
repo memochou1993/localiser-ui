@@ -8,9 +8,9 @@
       >
         <AppBreadcrumb
           :breadcrumbs="[
-            { label: 'Projects', to: { name: 'project.index' } },
+            { label: t('__ViewTitleProjectIndex'), to: { name: 'project.index' } },
             { label: state.project.name, to: { name: 'project.show' } },
-            { label: 'Settings' },
+            { label: t('__ViewTitleProjectSettings') },
           ]"
         />
       </div>
@@ -108,6 +108,7 @@ export default {
       return null;
     })();
     return {
+      t,
       state,
       menuItems,
       isLoaded,
