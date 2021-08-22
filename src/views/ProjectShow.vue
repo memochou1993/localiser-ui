@@ -67,9 +67,9 @@
         :needle="state.keyword"
         :on-create-value="createValue"
         :on-delete-key="(data) => confirm({
-          title: 'Are you sure?',
-          content: 'Delete this key with all translations? This action cannot be undone.',
-          action: 'Delete',
+          title: t('__ConfirmationTitle'),
+          content: t('__ConfirmationDeleteKey'),
+          action: t('__ButtonDelete'),
           callback: () => deleteKey(data),
         })"
         :on-edit-key="editKey"

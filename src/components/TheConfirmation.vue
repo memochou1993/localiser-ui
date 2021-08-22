@@ -25,9 +25,9 @@
         class="q-pa-lg"
       >
         <q-btn
+          :label="t('__ButtonCancel')"
           color="primary"
           dense
-          label="Cancel"
           no-caps
           outline
           @click="close"
@@ -54,6 +54,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useI18n } from 'vue-i18n/index';
 import { useDialogPluginComponent } from 'quasar';
 
 export default {
@@ -63,6 +64,7 @@ export default {
   ],
   setup() {
     const store = useStore();
+    const { t } = useI18n();
     const { dialogRef: dialog } = useDialogPluginComponent();
     const confirmation = computed(() => store.state.confirmation);
     const close = () => {
@@ -76,6 +78,7 @@ export default {
       dialog.value.show();
     });
     return {
+      t,
       dialog,
       confirmation,
       close,

@@ -32,9 +32,9 @@
       <ProjectEditorDanger
         :enable-delete-button="project.allow('delete-projects')"
         :on-submit="(data) => confirm({
-          title: 'Are you sure?',
-          content: 'Delete this project with all translations? This action cannot be undone.',
-          action: 'Delete',
+          title: t('__ConfirmationTitle'),
+          content: t('__ConfirmationDeleteProject'),
+          action: t('__ButtonDelete'),
           callback: () => deleteProject(data),
         })"
         :project-id="project.id"

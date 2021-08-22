@@ -45,9 +45,9 @@
         :languages="project.languages"
         :needle="state.keyword"
         :on-delete-language="(data) => confirm({
-          title: 'Are you sure?',
-          content: 'Delete this language with all translations? This action cannot be undone.',
-          action: 'Delete',
+          title: t('__ConfirmationTitle'),
+          content: t('__ConfirmationDeleteLanguage'),
+          action: t('__ButtonDelete'),
           callback: () => deleteLanguage(data),
         })"
         :on-edit-language="editLanguage"

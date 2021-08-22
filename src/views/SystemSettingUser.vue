@@ -45,9 +45,9 @@
         :me="me"
         :needle="state.keyword"
         :on-delete-user="(data) => confirm({
-          title: 'Are you sure?',
-          content: 'Delete this user?',
-          action: 'Delete',
+          title: t('__ConfirmationTitle'),
+          content: t('__ConfirmationDeleteUser'),
+          action: t('__ButtonDelete'),
           callback: () => deleteUser(data),
         })"
         :on-edit-user="editUser"
