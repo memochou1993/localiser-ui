@@ -45,7 +45,6 @@
             v-if="enableKeyMenu"
             :key-id="keyItem.id"
             :on-delete-key="onDeleteKey"
-            class="q-px-md q-py-sm"
           />
         </div>
       </div>

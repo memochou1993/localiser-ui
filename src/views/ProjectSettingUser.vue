@@ -4,7 +4,7 @@
       class="q-mb-lg"
     >
       <AppTextHeading
-        text="Members"
+        :text="t('__TitleMembers')"
       />
       <div
         class="row justify-between items-center"
@@ -12,22 +12,25 @@
         <div
           class="row justify-between items-center q-my-sm"
         >
-          <q-btn
-            v-if="project.allow('update-projects')"
+          <div
             class="q-mr-sm"
-            color="red-4"
-            dense
-            icon="mdi-plus"
-            round
-            @click="state.enableCreateForm = true"
-          />
-          <ProjectUserEditor
-            v-if="state.enableCreateForm"
-            :default-user-options="users"
-            :users="project.users"
-            :on-close="() => state.enableCreateForm = false"
-            :on-submit="attachUser"
-          />
+          >
+            <q-btn
+              v-if="project.allow('update-projects')"
+              color="red-4"
+              dense
+              icon="mdi-plus"
+              round
+              @click="state.enableCreateForm = true"
+            />
+            <ProjectUserEditor
+              v-if="state.enableCreateForm"
+              :default-user-options="users"
+              :users="project.users"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="attachUser"
+            />
+          </div>
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -64,6 +67,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -97,6 +101,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       keyword: '',
@@ -157,6 +162,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       me,
       confirm,

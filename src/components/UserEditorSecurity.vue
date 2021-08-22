@@ -13,10 +13,20 @@
         @submit.stop
       >
         <div
+          v-show="false"
+          class="q-pb-lg"
+        >
+          <q-input
+            autocomplete="username"
+            model-value=""
+            type="text"
+          />
+        </div>
+        <div
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="New password"
+            :text="t('__InputNewPassword')"
             class="q-my-sm"
           />
           <q-input
@@ -34,7 +44,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Confirm password"
+            :text="t('__InputConfirmPassword')"
             class="q-my-sm"
           />
           <q-input
@@ -51,8 +61,8 @@
           class="text-right q-mt-lg"
         >
           <q-btn
+            :label="t('__ButtonSave')"
             color="primary"
-            label="Save"
             no-caps
             @click="submit"
           />
@@ -67,6 +77,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import AppTextCaption from './AppTextCaption.vue';
 
 export default {
@@ -85,6 +96,7 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       newPassword: '',
       confirmPassword: '',
@@ -92,12 +104,12 @@ export default {
     const form = ref(null);
     const rules = {
       newPassword: [
-        (v) => (v && !!v.trim()) || 'The new password is required.',
-        (v) => v.length >= 8 || 'The new password must be at least 8 characters.',
+        (v) => (v && !!v.trim()) || t('__ValidationNewPasswordRequired'),
+        (v) => v.length >= 8 || t('__ValidationNewPasswordMin'),
       ],
       confirmPassword: [
-        (v) => (v && !!v.trim()) || 'The confirm password is required.',
-        (v) => v === state.newPassword || 'The password and confirm password does not match.',
+        (v) => (v && !!v.trim()) || t('__ValidationConfirmPasswordRequired'),
+        (v) => v === state.newPassword || t('__ValidationNewPasswordConfirmed'),
       ],
     };
     const submit = async () => {
@@ -110,6 +122,7 @@ export default {
       });
     };
     return {
+      t,
       state,
       form,
       rules,

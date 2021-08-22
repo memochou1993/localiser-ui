@@ -18,9 +18,9 @@
         >
           <div
             v-if="state.project.allow('update-projects')"
+            class="q-mr-sm"
           >
             <q-btn
-              class="q-mr-sm"
               color="red-4"
               dense
               icon="mdi-plus"
@@ -36,9 +36,9 @@
           </div>
           <div
             v-if="state.project.allow('update-projects')"
+            class="q-mr-sm"
           >
             <q-btn
-              class="q-mr-sm"
               color="indigo-4"
               dense
               icon="mdi-dots-horizontal"

@@ -4,7 +4,7 @@
       class="q-mb-lg"
     >
       <AppTextHeading
-        text="Users"
+        :text="t('__TitleUsers')"
       />
       <div
         class="row justify-between items-center"
@@ -12,21 +12,24 @@
         <div
           class="row justify-between items-center q-my-sm"
         >
-          <q-btn
-            v-if="me.can('create-users')"
+          <div
             class="q-mr-sm"
-            color="red-4"
-            dense
-            icon="mdi-plus"
-            round
-            @click="state.enableCreateForm = true"
-          />
-          <SystemUserEditor
-            v-if="state.enableCreateForm"
-            :users="users"
-            :on-close="() => state.enableCreateForm = false"
-            :on-submit="createUser"
-          />
+          >
+            <q-btn
+              v-if="me.can('create-users')"
+              color="red-4"
+              dense
+              icon="mdi-plus"
+              round
+              @click="state.enableCreateForm = true"
+            />
+            <SystemUserEditor
+              v-if="state.enableCreateForm"
+              :users="users"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="createUser"
+            />
+          </div>
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -67,6 +70,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -98,6 +102,7 @@ export default {
   setup(props) {
     const store = useStore();
     const router = useRouter();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       keyword: '',
@@ -199,6 +204,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       me,
       confirm,

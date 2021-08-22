@@ -4,7 +4,7 @@
       class="q-mb-lg"
     >
       <AppTextHeading
-        text="General"
+        :text="t('__TitleGeneral')"
       />
       <div
         class="row"
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -54,6 +55,7 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const q = useQuasar();
     const editUser = async ({
       userId,
@@ -87,6 +89,7 @@ export default {
       }
     };
     return {
+      t,
       editUser,
     };
   },

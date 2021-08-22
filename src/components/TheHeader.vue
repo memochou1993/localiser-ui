@@ -12,8 +12,9 @@
         />
       </q-toolbar-title>
       <TheHeaderLanguageMenu />
-      <TheHeaderMenu
-        v-if="enableMenu"
+      <TheHeaderViewMenu
+        v-if="enableViewMenu"
+        :locale="locale"
         :user-name="userName"
         :user-role-code="userRoleCode"
       />
@@ -22,19 +23,23 @@
 </template>
 
 <script>
-import TheHeaderMenu from './TheHeaderMenu.vue';
+import TheHeaderViewMenu from './TheHeaderViewMenu.vue';
 import TheHeaderLanguageMenu from './TheHeaderLanguageMenu.vue';
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderMenu,
+    TheHeaderViewMenu,
     TheHeaderLanguageMenu,
   },
   props: {
-    enableMenu: {
+    enableViewMenu: {
       type: Boolean,
       default: false,
+    },
+    locale: {
+      type: String,
+      required: true,
     },
     userName: {
       type: String,

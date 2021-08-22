@@ -51,6 +51,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -62,27 +63,6 @@ import {
   SettingMenu,
 } from '@/components';
 
-const menuItems = [
-  {
-    name: 'General',
-    to: {
-      name: 'project.profile',
-    },
-  },
-  {
-    name: 'Members',
-    to: {
-      name: 'project.users',
-    },
-  },
-  {
-    name: 'Languages',
-    to: {
-      name: 'project.languages',
-    },
-  },
-];
-
 export default {
   name: 'ProjectSetting',
   components: {
@@ -93,11 +73,17 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       project: null,
       users: [],
     });
+    const menuItems = [
+      { name: t('__TitleGeneral'), to: { name: 'project.profile' } },
+      { name: t('__TitleMembers'), to: { name: 'project.users' } },
+      { name: t('__TitleLanguages'), to: { name: 'project.languages' } },
+    ];
     const isLoaded = computed(() => !!state.project);
     const { projectId } = route.params;
     (async () => {

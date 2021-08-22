@@ -1,10 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '@/store';
 import {
-  DEFAULT_LOCALE,
-  loadMessage,
-} from '@/plugins/i18n';
-import {
   Role,
 } from '@/constants';
 
@@ -126,10 +122,6 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!store.state.locale) {
-    await loadMessage(DEFAULT_LOCALE);
-    store.commit('setLocale', DEFAULT_LOCALE);
-  }
   if (store.state.token && !store.state.user) {
     try {
       await store.dispatch('fetchMe');

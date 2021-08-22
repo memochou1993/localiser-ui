@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Key Editor'"
+          v-text="t('__TitleKeyEditor')"
         />
       </q-card-section>
       <q-card-section
@@ -26,7 +26,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Name"
+              :text="t('__InputName')"
             />
             <q-input
               v-model="state.name"
@@ -44,18 +44,18 @@
         class="q-pa-lg"
       >
         <q-btn
+          :label="t('__ButtonCancel')"
           color="primary"
           dense
-          label="Cancel"
           no-caps
           outline
           @click="onClose"
         />
         <q-space />
         <q-btn
+          :label="t('__ButtonSave')"
           color="primary"
           dense
-          label="Save"
           no-caps
           unelevated
           @click="submit"
@@ -71,6 +71,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { useDialogPluginComponent } from 'quasar';
 import AppTextLabel from './AppTextLabel.vue';
 
@@ -105,6 +106,7 @@ export default {
     ...useDialogPluginComponent.emits,
   ],
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       name: props.defaultName,
     });
@@ -112,8 +114,8 @@ export default {
     const form = ref(null);
     const rules = {
       name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || 'The name has already been taken.',
+        (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
+        (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || t('__ValidationNameUnique'),
       ],
     };
     const submit = async () => {
@@ -130,6 +132,7 @@ export default {
       dialog.value.show();
     });
     return {
+      t,
       state,
       dialog,
       form,

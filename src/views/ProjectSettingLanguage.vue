@@ -4,7 +4,7 @@
       class="q-mb-lg"
     >
       <AppTextHeading
-        text="Languages"
+        :text="t('__TitleLanguages')"
       />
       <div
         class="row justify-between items-center"
@@ -12,21 +12,24 @@
         <div
           class="row justify-between items-center q-my-sm"
         >
-          <q-btn
-            v-if="project.allow('create-languages')"
+          <div
             class="q-mr-sm"
-            color="red-4"
-            dense
-            icon="mdi-plus"
-            round
-            @click="state.enableCreateForm = true"
-          />
-          <LanguageEditor
-            v-if="state.enableCreateForm"
-            :languages="project.languages"
-            :on-close="() => state.enableCreateForm = false"
-            :on-submit="createLanguage"
-          />
+          >
+            <q-btn
+              v-if="project.allow('create-languages')"
+              color="red-4"
+              dense
+              icon="mdi-plus"
+              round
+              @click="state.enableCreateForm = true"
+            />
+            <LanguageEditor
+              v-if="state.enableCreateForm"
+              :languages="project.languages"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="createLanguage"
+            />
+          </div>
         </div>
         <div
           class="row justify-between items-center q-my-sm"
@@ -61,6 +64,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -94,6 +98,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       keyword: '',
@@ -181,6 +186,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       confirm,
       createLanguage,

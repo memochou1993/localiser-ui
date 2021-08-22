@@ -14,7 +14,7 @@
           v-text="userName"
         />
         <template
-          v-for="(item, i) in items"
+          v-for="(item, i) in state.items"
           :key="i"
         >
           <template
@@ -45,47 +45,21 @@
 
 <script>
 import {
+  reactive,
+  watch,
+} from 'vue';
+import { useI18n } from 'vue-i18n/index';
+import {
   Role,
 } from '@/constants';
 
-const items = [
-  {
-    name: 'My Profile',
-    to: {
-      name: 'user.profile',
-    },
-    requiresRoleCode: 0,
-    separated: true,
-  },
-  {
-    name: 'My Projects',
-    to: {
-      name: 'project.index',
-    },
-    requiresRoleCode: 0,
-    separated: false,
-  },
-  {
-    name: 'System Settings',
-    to: {
-      name: 'system.users',
-    },
-    requiresRoleCode: Role.Admin,
-    separated: false,
-  },
-  {
-    name: 'Log out',
-    to: {
-      name: 'logout',
-    },
-    requiresRoleCode: 0,
-    separated: true,
-  },
-];
-
 export default {
-  name: 'TheHeaderMenu',
+  name: 'TheHeaderViewMenu',
   props: {
+    locale: {
+      type: String,
+      required: true,
+    },
     userName: {
       type: String,
       required: true,
@@ -95,9 +69,45 @@ export default {
       default: 0,
     },
   },
-  setup() {
+  setup(props) {
+    const { t } = useI18n();
+    const state = reactive({
+      items: [],
+    });
+    const setItems = () => {
+      state.items = [
+        {
+          name: t('__ViewTitleSettings'),
+          to: { name: 'user.profile' },
+          requiresRoleCode: 0,
+          separated: true,
+        },
+        {
+          name: t('__ViewTitleProjectIndex'),
+          to: { name: 'project.index' },
+          requiresRoleCode: 0,
+          separated: false,
+        },
+        {
+          name: t('__ViewTitleSystem'),
+          to: { name: 'system.users' },
+          requiresRoleCode: Role.Admin,
+          separated: false,
+        },
+        {
+          name: t('__ButtonLogOut'),
+          to: { name: 'logout' },
+          requiresRoleCode: 0,
+          separated: true,
+        },
+      ];
+    };
+    if (props.locale) {
+      setItems();
+    }
+    watch(() => props.locale, () => setItems());
     return {
-      items,
+      state,
     };
   },
 };

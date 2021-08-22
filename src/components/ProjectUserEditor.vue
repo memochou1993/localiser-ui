@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Member Editor'"
+          v-text="t('__TitleProjectUserEditor')"
         />
       </q-card-section>
       <q-card-section
@@ -26,7 +26,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Users"
+              :text="t('__InputUsers')"
             />
             <q-select
               v-model="state.users"
@@ -90,7 +90,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Role"
+              :text="t('__InputRole')"
             />
             <q-select
               v-model="state.role"
@@ -128,18 +128,18 @@
         class="q-pa-lg"
       >
         <q-btn
+          :label="t('__ButtonCancel')"
           color="primary"
           dense
-          label="Cancel"
           no-caps
           outline
           @click="onClose"
         />
         <q-space />
         <q-btn
+          :label="t('__ButtonSave')"
           color="primary"
           dense
-          label="Save"
           no-caps
           unelevated
           @click="submit"
@@ -155,6 +155,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { useDialogPluginComponent } from 'quasar';
 import defaultRoleOptions from '@/assets/js/RoleOptions';
 import AppTextLabel from './AppTextLabel.vue';
@@ -194,6 +195,7 @@ export default {
     ...useDialogPluginComponent.emits,
   ],
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       users: [],
       userOptions: [],
@@ -204,10 +206,10 @@ export default {
     const form = ref(null);
     const rules = {
       users: [
-        (v) => v.length > 0 || 'The users is required.',
+        (v) => v.length > 0 || t('__ValidationUsersRequired'),
       ],
       role: [
-        (v) => !!v || 'The role is required.',
+        (v) => !!v || t('__ValidationRoleRequired'),
       ],
     };
     const onFilterUser = (v, update) => {
@@ -234,6 +236,7 @@ export default {
       dialog.value.show();
     });
     return {
+      t,
       state,
       dialog,
       form,

@@ -5,7 +5,7 @@
     >
       <div
         class="text-h6 text-weight-regular my-12"
-        v-text="'My Projects'"
+        v-text="t('__ViewTitleProjectIndex')"
       />
       <div
         class="row justify-between items-center"
@@ -13,20 +13,23 @@
         <div
           class="row justify-between items-center my-12"
         >
-          <q-btn
+          <div
             class="q-mr-sm"
-            color="red-4"
-            dense
-            icon="mdi-plus"
-            round
-            @click="state.enableCreateForm = true"
-          />
-          <ProjectEditor
-            v-if="state.enableCreateForm"
-            :projects="state.projects"
-            :on-close="() => state.enableCreateForm = false"
-            :on-submit="createProject"
-          />
+          >
+            <q-btn
+              color="red-4"
+              dense
+              icon="mdi-plus"
+              round
+              @click="state.enableCreateForm = true"
+            />
+            <ProjectEditor
+              v-if="state.enableCreateForm"
+              :projects="state.projects"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="createProject"
+            />
+          </div>
         </div>
         <div
           class="row justify-between items-center my-12"
@@ -54,6 +57,7 @@ import {
   computed,
   reactive,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -72,6 +76,7 @@ export default {
     ProjectList,
   },
   setup() {
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       projects: null,
@@ -119,6 +124,7 @@ export default {
       }
     };
     return {
+      t,
       state,
       isLoaded,
       createProject,

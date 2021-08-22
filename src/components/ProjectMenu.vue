@@ -31,6 +31,7 @@
 import {
   useRouter,
 } from 'vue-router';
+import { useI18n } from 'vue-i18n/index';
 
 export default {
   name: 'KeyIndexMenu',
@@ -42,14 +43,15 @@ export default {
   },
   setup(props) {
     const router = useRouter();
+    const { t } = useI18n();
     const items = [
       {
-        name: 'Clear cache',
+        name: t('__ButtonClearCache'),
         callback: props.onClearCache,
         separated: false,
       },
       {
-        name: 'Settings',
+        name: t('__ViewProjectSettings'),
         callback: async () => {
           await router.push({
             name: 'project.profile',

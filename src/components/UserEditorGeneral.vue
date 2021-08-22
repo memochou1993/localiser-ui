@@ -16,7 +16,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Name"
+            :text="t('__InputName')"
             class="q-my-sm"
           />
           <q-input
@@ -33,7 +33,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Email"
+            :text="t('__InputEmail')"
             class="q-my-sm"
           />
           <q-input
@@ -51,8 +51,8 @@
           class="text-right q-mt-lg"
         >
           <q-btn
+            :label="t('__ButtonSave')"
             color="primary"
-            label="Save"
             no-caps
             @click="submit"
           />
@@ -67,6 +67,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import AppTextCaption from './AppTextCaption.vue';
 
 export default {
@@ -97,6 +98,7 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       name: props.defaultName,
       email: props.defaultEmail,
@@ -104,12 +106,12 @@ export default {
     const form = ref(null);
     const rules = {
       name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
       ],
       email: [
-        (v) => (v && !!v.trim()) || 'The email is required.',
-        (v) => /^\S+@\S+\.\S+$/.test(v) || 'The email must be a valid email address.',
-        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((l) => l.email === v.trim())) || 'The email has already been taken.',
+        (v) => (v && !!v.trim()) || t('__ValidationEmailRequired'),
+        (v) => /^\S+@\S+\.\S+$/.test(v) || t('__ValidationEmailValid'),
+        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((l) => l.email === v.trim())) || t('__ValidationEmailUnique'),
       ],
     };
     const submit = async () => {
@@ -123,6 +125,7 @@ export default {
       });
     };
     return {
+      t,
       state,
       form,
       rules,

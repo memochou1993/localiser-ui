@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n/index';
+
 export default {
   name: 'KeyItemMenu',
   props: {
@@ -50,9 +52,10 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const items = [
       {
-        name: 'Delete Key',
+        name: t('__ButtonDeleteKey'),
         callback: () => props.onDeleteKey({ keyId: props.keyId }),
         separated: false,
       },

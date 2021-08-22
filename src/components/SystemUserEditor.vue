@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'User Editor'"
+          v-text="t('__TitleUserEditor')"
         />
       </q-card-section>
       <q-card-section
@@ -26,7 +26,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Name"
+              :text="t('__InputName')"
             />
             <q-input
               v-model="state.name"
@@ -42,7 +42,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Email"
+              :text="t('__InputEmail')"
             />
             <q-input
               v-model="state.email"
@@ -58,7 +58,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Password"
+              :text="t('__InputPassword')"
             />
             <q-input
               v-model="state.password"
@@ -84,7 +84,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Role"
+              :text="t('__InputRole')"
             />
             <q-select
               v-model="state.role"
@@ -122,18 +122,18 @@
         class="q-pa-lg"
       >
         <q-btn
+          :label="t('__ButtonCancel')"
           color="primary"
           dense
-          label="Cancel"
           no-caps
           outline
           @click="onClose"
         />
         <q-space />
         <q-btn
+          :label="t('__ButtonSave')"
           color="primary"
           dense
-          label="Save"
           no-caps
           unelevated
           @click="submit"
@@ -149,6 +149,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useDialogPluginComponent } from 'quasar';
 import PasswordGenerator from '@memochou1993/password-generator-js';
 import {
@@ -196,6 +197,7 @@ export default {
     ...useDialogPluginComponent.emits,
   ],
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       name: props.defaultName,
       email: props.defaultEmail,
@@ -207,18 +209,19 @@ export default {
     const form = ref(null);
     const rules = {
       name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
+        (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
       ],
       email: [
-        (v) => (v && !!v.trim()) || 'The email is required.',
-        (v) => /^\S+@\S+\.\S+$/.test(v) || 'The email must be a valid email address.',
-        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((p) => p.email === v.trim())) || 'The email has already been taken.',
+        (v) => (v && !!v.trim()) || t('__ValidationEmailRequired'),
+        (v) => /^\S+@\S+\.\S+$/.test(v) || t('__ValidationEmailValid'),
+        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((p) => p.email === v.trim())) || t('__ValidationEmailUnique'),
       ],
       password: [
-        (v) => (!v || v.length >= 8) || 'The new password must be at least 8 characters.',
+        (v) => (v && !!v.trim()) || t('__ValidationPasswordRequired'),
+        (v) => (!v || v.length >= 8) || t('__ValidationPasswordMin'),
       ],
       role: [
-        (v) => !!v || 'The role is required.',
+        (v) => !!v || t('__ValidationRoleRequired'),
       ],
     };
     const generatePassword = () => {
@@ -245,6 +248,7 @@ export default {
       dialog.value.show();
     });
     return {
+      t,
       state,
       dialog,
       form,

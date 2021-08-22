@@ -8,7 +8,7 @@
       >
         <AppBreadcrumb
           :breadcrumbs="[
-            { label: 'System Settings' },
+            { label: t('__ViewTitleSystem') },
           ]"
         />
       </div>
@@ -44,6 +44,7 @@ import {
   computed,
   reactive,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -51,15 +52,6 @@ import {
   AppLoading,
   SettingMenu,
 } from '@/components';
-
-const menuItems = [
-  {
-    name: 'Users',
-    to: {
-      name: 'system.users',
-    },
-  },
-];
 
 export default {
   name: 'SystemSetting',
@@ -69,10 +61,14 @@ export default {
     SettingMenu,
   },
   setup() {
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       users: null,
     });
+    const menuItems = [
+      { name: t('__TitleUsers'), to: { name: 'system.users' } },
+    ];
     const isLoaded = computed(() => !!state.users);
     (async () => {
       try {
@@ -87,6 +83,7 @@ export default {
       }
     })();
     return {
+      t,
       state,
       menuItems,
       isLoaded,

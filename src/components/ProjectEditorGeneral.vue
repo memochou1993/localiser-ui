@@ -16,7 +16,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Project name"
+            :text="t('__InputProjectName')"
             class="q-my-sm"
           />
           <q-input
@@ -33,7 +33,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Project description"
+            :text="t('__InputProjectDescription')"
             class="q-my-sm"
           />
           <q-input
@@ -49,7 +49,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Key prefix"
+            :text="t('__InputKeyPrefix')"
             class="q-my-sm"
           />
           <q-input
@@ -64,7 +64,7 @@
           class="q-pb-lg"
         >
           <AppTextCaption
-            text="Key suffix"
+            :text="t('__InputKeySuffix')"
             class="q-my-sm"
           />
           <q-input
@@ -80,8 +80,8 @@
         >
           <q-btn
             :disable="!enableSubmitButton"
+            :label="t('__ButtonSave')"
             color="primary"
-            label="Save"
             no-caps
             @click="submit"
           />
@@ -96,13 +96,8 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import AppTextCaption from './AppTextCaption.vue';
-
-const rules = {
-  name: [
-    (v) => (v && !!v.trim()) || 'The name is required.',
-  ],
-};
 
 export default {
   name: 'ProjectEditorGeneral',
@@ -140,6 +135,7 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       name: props.defaultName,
       description: props.defaultDescription,
@@ -147,6 +143,11 @@ export default {
       keySuffix: props.defaultKeySuffix,
     });
     const form = ref(null);
+    const rules = {
+      name: [
+        (v) => (v && !!v.trim()) || t('__ValidationProjectNameRequired'),
+      ],
+    };
     const submit = async () => {
       if (!await form?.value.validate()) {
         return;
@@ -160,6 +161,7 @@ export default {
       });
     };
     return {
+      t,
       state,
       form,
       rules,

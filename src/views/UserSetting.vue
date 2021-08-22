@@ -8,7 +8,7 @@
       >
         <AppBreadcrumb
           :breadcrumbs="[
-            { label: 'My Profile' },
+            { label: t('__ViewTitleSettings') },
           ]"
         />
       </div>
@@ -49,6 +49,7 @@ import {
 import {
   useStore,
 } from 'vuex';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -56,21 +57,6 @@ import {
   AppLoading,
   SettingMenu,
 } from '@/components';
-
-const menuItems = [
-  {
-    name: 'General',
-    to: {
-      name: 'user.profile',
-    },
-  },
-  {
-    name: 'Security',
-    to: {
-      name: 'user.security',
-    },
-  },
-];
 
 export default {
   name: 'UserSetting',
@@ -81,10 +67,15 @@ export default {
   },
   setup() {
     const store = useStore();
+    const { t } = useI18n();
     const q = useQuasar();
     const state = reactive({
       users: null,
     });
+    const menuItems = [
+      { name: t('__TitleGeneral'), to: { name: 'user.profile' } },
+      { name: t('__TitleSecurity'), to: { name: 'user.security' } },
+    ];
     const isLoaded = computed(() => !!state.users);
     (async () => {
       try {
@@ -101,6 +92,7 @@ export default {
     const me = computed(() => store.state.user);
     const setUser = (u) => store.commit('setUser', u);
     return {
+      t,
       state,
       menuItems,
       isLoaded,

@@ -11,7 +11,7 @@
       >
         <span
           class="text-body1 text-weight-regular"
-          v-text="'Language Editor'"
+          v-text="t('__TitleLanguageEditor')"
         />
       </q-card-section>
       <q-card-section
@@ -26,7 +26,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Name"
+              :text="t('__InputName')"
             />
             <q-select
               v-model="state.name"
@@ -67,7 +67,7 @@
             class="q-pb-lg"
           >
             <AppTextLabel
-              text="Locale"
+              :text="t('__InputLocale')"
             />
             <q-input
               v-model="state.locale"
@@ -84,18 +84,18 @@
         class="q-pa-lg"
       >
         <q-btn
+          :label="t('__ButtonCancel')"
           color="primary"
           dense
-          label="Cancel"
           no-caps
           outline
           @click="onClose"
         />
         <q-space />
         <q-btn
+          :label="t('__ButtonSave')"
           color="primary"
           dense
-          label="Save"
           no-caps
           unelevated
           @click="submit"
@@ -111,6 +111,7 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { useDialogPluginComponent } from 'quasar';
 import defaultLanguageOptions from '@/assets/js/LanguageOptions';
 import AppTextLabel from './AppTextLabel.vue';
@@ -150,6 +151,7 @@ export default {
     ...useDialogPluginComponent.emits,
   ],
   setup(props) {
+    const { t } = useI18n();
     const state = reactive({
       name: props.defaultName,
       locale: props.defaultLocale,
@@ -159,12 +161,12 @@ export default {
     const form = ref(null);
     const rules = {
       name: [
-        (v) => (v && !!v.trim()) || 'The name is required.',
-        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || 'The name has already been taken.',
+        (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
+        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || t('__ValidationNameUnique'),
       ],
       locale: [
-        (v) => (v && !!v.trim()) || 'The locale is required.',
-        (v) => (v.trim() === props.defaultLocale.trim() || !props.languages.some((l) => l.locale === v.trim())) || 'The locale has already been taken.',
+        (v) => (v && !!v.trim()) || t('__ValidationLocaleRequired'),
+        (v) => (v.trim() === props.defaultLocale.trim() || !props.languages.some((l) => l.locale === v.trim())) || t('__ValidationLocaleUnique'),
       ],
     };
     const onFilterName = (v, update) => {
@@ -197,6 +199,7 @@ export default {
       dialog.value.show();
     });
     return {
+      t,
       state,
       dialog,
       form,

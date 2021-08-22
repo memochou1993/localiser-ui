@@ -24,12 +24,12 @@
             />
           </div>
           <div
-            class="col-12 col-md-4 text-sm-right"
+            class="col-12 col-md-4 text-md-right"
           >
             <q-btn
               :disable="!enableDeleteButton"
+              :label="t('__ButtonDeleteProject')"
               class="text-red q-my-md"
-              label="Delete this project"
               no-caps
               outline
               @click="submit"
@@ -45,6 +45,7 @@
 import {
   ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import AppTextCaption from './AppTextCaption.vue';
 
 export default {
@@ -67,6 +68,7 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
     const form = ref(null);
     const submit = async () => {
       if (!await form?.value.validate()) {
@@ -77,6 +79,7 @@ export default {
       });
     };
     return {
+      t,
       form,
       submit,
     };

@@ -88,9 +88,7 @@ import {
 import {
   useRouter,
 } from 'vue-router';
-import {
-  useI18n,
-} from 'vue-i18n/index';
+import { useI18n } from 'vue-i18n/index';
 import { useQuasar } from 'quasar';
 import * as actions from '@/actions';
 import {
@@ -114,10 +112,10 @@ export default {
     const form = ref(null);
     const rules = {
       email: [
-        (v) => (v && !!v.trim()) || t('__ErrorEmailRequired'),
+        (v) => (v && !!v.trim()) || t('__ValidationEmailRequired'),
       ],
       password: [
-        (v) => (v && !!v.trim()) || t('__ErrorPasswordRequired'),
+        (v) => (v && !!v.trim()) || t('__ValidationPasswordRequired'),
       ],
     };
     const submit = async () => {
