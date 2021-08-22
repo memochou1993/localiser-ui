@@ -10,22 +10,18 @@
           class="col-12 col-sm-3 flex items-center"
         >
           <div
-            class="full-width cursor-pointer break-word"
-          >
-            <div
-              class="text-info q-px-md q-py-sm"
-              @click="state.enableEditForm = true"
-              v-text="`${keyPrefix || ''}${keyItem.name}${keySuffix || ''}`"
-            />
-            <KeyEditor
-              v-if="state.enableEditForm"
-              :default-name="keyItem.name"
-              :key-id="keyItem.id"
-              :keys="keys"
-              :on-close="() => state.enableEditForm = false"
-              :on-submit="editKey"
-            />
-          </div>
+            class="text-info cursor-pointer break-word q-mx-md q-py-sm"
+            @click="state.enableEditForm = true"
+            v-text="`${keyPrefix || ''}${keyItem.name}${keySuffix || ''}`"
+          />
+          <KeyEditor
+            v-if="state.enableEditForm"
+            :default-name="keyItem.name"
+            :key-id="keyItem.id"
+            :keys="keys"
+            :on-close="() => state.enableEditForm = false"
+            :on-submit="editKey"
+          />
         </div>
         <div
           class="col-12 col-sm-8 flex items-center"

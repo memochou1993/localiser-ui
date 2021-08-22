@@ -10,62 +10,52 @@
           class="col-12 col-sm-3 flex justify-sm-end items-center"
         >
           <span
-            class="q-px-md q-py-sm text-sm-right"
+            class="q-mx-md q-py-sm text-sm-right"
             v-text="language.name"
           />
         </div>
         <div
+          ref="anchor"
           class="col-12 col-sm-9 flex items-center"
         >
           <div
-            ref="anchor"
-            class="full-width cursor-pointer break-word"
+            v-if="valueItem"
+            :class="[valueItem.text ? 'text-info' : 'text-secondary']"
           >
-            <template
-              v-if="valueItem"
-            >
-              <div
-                :class="[valueItem.text ? 'text-info' : 'text-secondary', 'q-px-md q-py-sm']"
-                @click="state.enableEditForm = true"
-                v-text="valueItem.text || 'Empty'"
-              />
-              <q-menu
-                v-if="state.enableEditForm"
-                :offset="[-16, 0]"
-                :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
-                class="q-pa-md shadow-4"
-              >
-                <ValueEditor
-                  :default-text="valueItem.text"
-                  :key-id="keyId"
-                  :value-id="valueItem.id"
-                  :on-close="() => state.enableEditForm = false"
-                  :on-submit="editValue"
-                />
-              </q-menu>
-            </template>
-            <template
-              v-else
-            >
-              <div
-                class="text-secondary q-px-md q-py-sm"
-                @click="state.enableCreateForm = true"
-                v-text="'Empty'"
-              />
-              <q-menu
-                v-if="state.enableCreateForm"
-                :offset="[-16, 0]"
-                :style="anchor ? `width: ${anchor.clientWidth - 16}px`: ''"
-                class="q-pa-md shadow-4"
-              >
-                <ValueEditor
-                  :key-id="keyId"
-                  :language-id="language.id"
-                  :on-close="() => state.enableCreateForm = false"
-                  :on-submit="createValue"
-                />
-              </q-menu>
-            </template>
+            <div
+              class="cursor-pointer break-word q-mx-md q-py-sm"
+              @click="state.enableEditForm = true"
+              v-text="valueItem.text || 'Empty'"
+            />
+            <ValueEditor
+              v-if="state.enableEditForm"
+              :default-text="valueItem.text"
+              :key-id="keyId"
+              :value-id="valueItem.id"
+              :offset="-16"
+              :on-close="() => state.enableEditForm = false"
+              :on-submit="editValue"
+              :width="anchor ? anchor.clientWidth : 0"
+            />
+          </div>
+          <div
+            v-else
+            class="text-secondary"
+          >
+            <div
+              class="cursor-pointer break-word q-mx-md q-py-sm"
+              @click="state.enableCreateForm = true"
+              v-text="'Empty'"
+            />
+            <ValueEditor
+              v-if="state.enableCreateForm"
+              :key-id="keyId"
+              :language-id="language.id"
+              :offset="-16"
+              :on-close="() => state.enableCreateForm = false"
+              :on-submit="createValue"
+              :width="anchor ? anchor.clientWidth : 0"
+            />
           </div>
         </div>
       </div>
