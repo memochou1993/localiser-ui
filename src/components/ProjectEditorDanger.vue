@@ -17,10 +17,10 @@
             class="col-12 col-md-8"
           >
             <AppTextCaption
-              text="Delete this project"
+              :text="t('__WarningDeleteProjectTitle')"
             />
             <span
-              v-text="'Once you delete a project, there is no going back. Please be certain.'"
+              v-text="t('__WarningDeleteProjectContent')"
             />
           </div>
           <div
