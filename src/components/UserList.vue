@@ -29,47 +29,9 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n/index';
 import AppEmpty from './AppEmpty.vue';
 import UserItem from './UserItem.vue';
-
-const columns = [
-  {
-    name: 'name',
-    align: 'left',
-    headerStyle: '',
-    label: 'Name',
-    required: true,
-    sortable: false,
-    style: '',
-  },
-  {
-    name: 'email',
-    align: 'left',
-    headerStyle: '',
-    label: 'Email',
-    required: true,
-    sortable: false,
-    style: '',
-  },
-  {
-    name: 'role',
-    align: 'left',
-    headerStyle: '',
-    label: 'Role',
-    required: true,
-    sortable: false,
-    style: '',
-  },
-  {
-    name: 'action',
-    align: 'center',
-    headerStyle: 'width: 160px',
-    label: '',
-    required: true,
-    sortable: false,
-    style: 'width: 160px',
-  },
-];
 
 export default {
   name: 'UserList',
@@ -112,6 +74,45 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n();
+    const columns = [
+      {
+        name: 'name',
+        align: 'left',
+        headerStyle: '',
+        label: t('__ColumnName'),
+        required: true,
+        sortable: false,
+        style: '',
+      },
+      {
+        name: 'email',
+        align: 'left',
+        headerStyle: '',
+        label: t('__ColumnEmail'),
+        required: true,
+        sortable: false,
+        style: '',
+      },
+      {
+        name: 'role',
+        align: 'left',
+        headerStyle: '',
+        label: t('__ColumnRole'),
+        required: true,
+        sortable: false,
+        style: '',
+      },
+      {
+        name: 'action',
+        align: 'center',
+        headerStyle: 'width: 160px',
+        label: '',
+        required: true,
+        sortable: false,
+        style: 'width: 160px',
+      },
+    ];
     const filter = (l) => {
       const needle = props.needle.toLowerCase();
       return l.name.toLowerCase().includes(needle)
