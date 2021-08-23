@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import {
+  computed,
+} from 'vue';
 import { useI18n } from 'vue-i18n/index';
 import AppEmpty from './AppEmpty.vue';
 import LanguageItem from './LanguageItem.vue';
@@ -66,7 +69,7 @@ export default {
   },
   setup(props) {
     const { t } = useI18n();
-    const columns = [
+    const columns = computed(() => [
       {
         name: 'name',
         align: 'left',
@@ -94,7 +97,7 @@ export default {
         sortable: false,
         style: 'width: 160px',
       },
-    ];
+    ]);
     const filter = (l) => {
       const needle = props.needle.toLowerCase();
       return l.name.toLowerCase().includes(needle)
