@@ -12,7 +12,7 @@
         class="slim"
       >
         <template
-          v-for="(item, i) in items"
+          v-for="(item, i) in menuItems"
           :key="i"
         >
           <q-separator
@@ -37,6 +37,9 @@
 </template>
 
 <script>
+import {
+  computed,
+} from 'vue';
 import { useI18n } from 'vue-i18n/index';
 
 export default {
@@ -53,15 +56,15 @@ export default {
   },
   setup(props) {
     const { t } = useI18n();
-    const items = [
+    const menuItems = computed(() => [
       {
         name: t('__ButtonDeleteKey'),
         callback: () => props.onDeleteKey({ keyId: props.keyId }),
         separated: false,
       },
-    ];
+    ]);
     return {
-      items,
+      menuItems,
     };
   },
 };

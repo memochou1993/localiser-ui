@@ -66,9 +66,9 @@ export default {
     const state = reactive({
       users: null,
     });
-    const menuItems = [
+    const menuItems = computed(() => [
       { name: t('__TitleUsers'), to: { name: 'system.users' } },
-    ];
+    ]);
     const isLoaded = computed(() => !!state.users);
     (async () => {
       try {

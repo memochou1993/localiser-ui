@@ -72,10 +72,10 @@ export default {
     const state = reactive({
       users: null,
     });
-    const menuItems = [
+    const menuItems = computed(() => [
       { name: t('__TitleGeneral'), to: { name: 'user.profile' } },
       { name: t('__TitleSecurity'), to: { name: 'user.security' } },
-    ];
+    ]);
     const isLoaded = computed(() => !!state.users);
     (async () => {
       try {

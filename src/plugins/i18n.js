@@ -21,6 +21,7 @@ const i18n = createI18n({
 export const setLanguage = (locale) => {
   i18n.global.locale.value = locale;
   document.documentElement.lang = locale;
+  localStorage.setItem('locale', locale);
 };
 
 export const loadMessage = async (locale) => {

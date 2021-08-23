@@ -16,7 +16,6 @@
       />
       <TheHeaderViewMenu
         v-if="enableViewMenu"
-        :locale="locale"
         :user-name="userName"
         :user-role-code="userRoleCode"
       />
@@ -38,10 +37,6 @@ export default {
     enableViewMenu: {
       type: Boolean,
       default: false,
-    },
-    locale: {
-      type: String,
-      required: true,
     },
     onChangeLanguage: {
       type: Function,

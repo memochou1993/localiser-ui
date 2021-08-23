@@ -4,7 +4,7 @@
       class="slim"
     >
       <template
-        v-for="(item, i) in items"
+        v-for="(item, i) in menuItems"
         :key="i"
       >
         <q-separator
@@ -29,6 +29,9 @@
 
 <script>
 import {
+  computed,
+} from 'vue';
+import {
   useRouter,
 } from 'vue-router';
 import { useI18n } from 'vue-i18n/index';
@@ -44,7 +47,7 @@ export default {
   setup(props) {
     const router = useRouter();
     const { t } = useI18n();
-    const items = [
+    const menuItems = computed(() => [
       {
         name: t('__ButtonClearCache'),
         callback: props.onClearCache,
@@ -59,9 +62,9 @@ export default {
         },
         separated: false,
       },
-    ];
+    ]);
     return {
-      items,
+      menuItems,
     };
   },
 };

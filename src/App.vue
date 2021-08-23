@@ -4,7 +4,6 @@
   >
     <TheHeader
       :enable-view-menu="!!token"
-      :locale="locale"
       :on-change-language="(l) => changeLanguage(l)"
       :user-name="user?.name ?? ''"
       :user-role-code="user?.role.code ?? 0"
@@ -55,7 +54,6 @@ export default {
     const store = useStore();
     const setLocale = (locale) => {
       setLanguage(locale);
-      localStorage.setItem('locale', locale);
       store.commit('setLocale', locale);
     };
     (async () => {
@@ -66,16 +64,14 @@ export default {
       if (!i18n.global.availableLocales.includes(locale)) {
         await loadMessage(locale);
       }
-      if (localStorage.getItem('locale') !== locale) {
+      if (store.state.locale !== locale) {
         setLocale(locale);
       }
     };
-    const locale = computed(() => store.state.locale);
     const token = computed(() => store.state.token);
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
     return {
-      locale,
       token,
       user,
       confirmation,

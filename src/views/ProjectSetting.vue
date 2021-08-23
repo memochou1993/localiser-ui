@@ -79,11 +79,11 @@ export default {
       project: null,
       users: [],
     });
-    const menuItems = [
+    const menuItems = computed(() => [
       { name: t('__TitleGeneral'), to: { name: 'project.profile' } },
       { name: t('__TitleMembers'), to: { name: 'project.users' } },
       { name: t('__TitleLanguages'), to: { name: 'project.languages' } },
-    ];
+    ]);
     const isLoaded = computed(() => !!state.project);
     const { projectId } = route.params;
     (async () => {

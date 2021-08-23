@@ -10,7 +10,7 @@
         class="slim"
       >
         <template
-          v-for="(item, i) in items"
+          v-for="(item, i) in menuItems"
           :key="i"
         >
           <q-separator
@@ -36,18 +36,10 @@
 </template>
 
 <script>
-const items = [
-  {
-    name: 'English',
-    locale: 'en',
-    separated: false,
-  },
-  {
-    name: 'Chinese Traditional',
-    locale: 'zh_TW',
-    separated: false,
-  },
-];
+import {
+  computed,
+} from 'vue';
+import { useI18n } from 'vue-i18n/index';
 
 export default {
   name: 'TheHeaderLanguageMenu',
@@ -58,8 +50,21 @@ export default {
     },
   },
   setup() {
+    const { t } = useI18n();
+    const menuItems = computed(() => [
+      {
+        name: t('__LanguageEnglish'),
+        locale: 'en',
+        separated: false,
+      },
+      {
+        name: t('__LanguageTraditionalChinese'),
+        locale: 'zh_TW',
+        separated: false,
+      },
+    ]);
     return {
-      items,
+      menuItems,
     };
   },
 };
