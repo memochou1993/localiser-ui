@@ -91,7 +91,7 @@ export default {
       } catch (e) {
         q.notify({
           color: 'negative',
-          message: e?.response?.data?.message || e.statusText,
+          message: e?.response?.data?.message || e.statusText || e.message,
           timeout: 1000,
         });
       }
@@ -118,7 +118,7 @@ export default {
       } catch (e) {
         q.notify({
           color: 'negative',
-          message: e?.response?.data?.message || e.statusText,
+          message: e?.response?.data?.message || e.statusText || e.message,
           timeout: 1000,
         });
       }
