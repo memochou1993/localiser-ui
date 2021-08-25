@@ -16,8 +16,17 @@
           class="col-10"
         >
           <router-view
-            class="q-my-xl"
-          />
+            v-slot="{ Component }"
+          >
+            <transition
+              mode="in-out"
+            >
+              <component
+                :is="Component"
+                v-if="locale"
+              />
+            </transition>
+          </router-view>
         </div>
       </div>
     </q-page-container>
@@ -68,10 +77,12 @@ export default {
         setLocale(locale);
       }
     };
+    const locale = computed(() => store.state.locale);
     const token = computed(() => store.state.token);
     const user = computed(() => store.state.user);
     const confirmation = computed(() => store.state.confirmation);
     return {
+      locale,
       token,
       user,
       confirmation,
