@@ -60,7 +60,7 @@ export default {
           password: newPassword,
         });
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationPasswordUpdated'),
           timeout: 1000,

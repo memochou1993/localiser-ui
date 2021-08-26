@@ -119,7 +119,7 @@ export default {
         project.languages.push(data);
         props.onUpdateProject(project);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationLanguageCreated'),
           timeout: 1000,
@@ -148,7 +148,7 @@ export default {
         Object.assign(language, data);
         props.onUpdateProject(project);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationLanguageUpdated'),
           timeout: 1000,
@@ -172,7 +172,7 @@ export default {
         project.languages.splice(project.languages.findIndex((l) => l.id === languageId), 1);
         props.onUpdateProject(project);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationLanguageDeleted'),
           timeout: 1000,

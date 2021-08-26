@@ -123,7 +123,7 @@ export default {
         const { project } = props;
         props.onUpdateProject(Object.assign(project, data));
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationMemberAdded'),
           timeout: 1000,
@@ -150,7 +150,7 @@ export default {
         const { project } = props;
         props.onUpdateProject(Object.assign(project, data));
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationMemberRemoved'),
           timeout: 1000,

@@ -75,7 +75,7 @@ export default {
         users.splice(users.findIndex((u) => u.id === user.id), 1, user);
         props.onUpdateUsers(users);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationProfileUpdated'),
           timeout: 1000,

@@ -110,7 +110,7 @@ export default {
         const project = { ...data, languages };
         state.projects.unshift(project);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationProjectCreated'),
           timeout: 1000,

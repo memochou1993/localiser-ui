@@ -108,7 +108,7 @@ export default {
         Object.assign(project, data);
         props.onUpdateProject(project);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationProjectUpdated'),
           timeout: 1000,
@@ -130,7 +130,7 @@ export default {
         });
         props.onUpdateProject(null);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationProjectDeleted'),
           timeout: 1000,

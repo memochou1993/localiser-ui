@@ -170,7 +170,7 @@ export default {
           projectId: state.project.id,
         });
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationCacheCleared'),
           timeout: 1000,
@@ -229,7 +229,7 @@ export default {
         });
         state.keys.splice(state.keys.findIndex((k) => k.id === keyId), 1);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationKeyDeleted'),
           timeout: 1000,

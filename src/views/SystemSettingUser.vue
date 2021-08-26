@@ -127,7 +127,7 @@ export default {
         users.push(data);
         props.onUpdateUsers(users);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationUserCreated'),
           timeout: 1000,
@@ -160,7 +160,7 @@ export default {
         Object.assign(user, data);
         props.onUpdateUsers(users);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationUserUpdated'),
           timeout: 1000,
@@ -190,7 +190,7 @@ export default {
         Object.assign(user, { deleted_at: (new Date()).toISOString() });
         props.onUpdateUsers(users);
         q.notify({
-          color: 'info',
+          color: 'positive',
           group: false,
           message: t('__NotificationUserDeleted'),
           timeout: 1000,
