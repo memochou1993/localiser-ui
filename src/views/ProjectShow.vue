@@ -17,7 +17,7 @@
           class="row justify-between items-center my-12"
         >
           <div
-            v-if="state.project.allow('update-projects')"
+            v-if="state.project.allow('create-keys')"
             class="q-mr-sm"
           >
             <q-btn

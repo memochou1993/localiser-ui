@@ -10,8 +10,8 @@ const roles = [
     scope: Scope.System,
   },
   {
-    code: Role.Developer,
-    name: 'Developer',
+    code: Role.User,
+    name: 'User',
     scope: Scope.System,
   },
   {
@@ -22,6 +22,11 @@ const roles = [
   {
     code: Role.ProjectMaintainer,
     name: 'Maintainer',
+    scope: Scope.Project,
+  },
+  {
+    code: Role.ProjectReporter,
+    name: 'Reporter',
     scope: Scope.Project,
   },
   {
