@@ -89,8 +89,8 @@ export default {
       default: () => {},
     },
     userId: {
-      type: Number,
-      default: 0,
+      type: String,
+      required: true,
     },
     users: {
       type: Array,

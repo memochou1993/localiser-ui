@@ -54,16 +54,16 @@ export default {
       default: '',
     },
     keyId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     languageId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     valueId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     offset: {
       type: Number,

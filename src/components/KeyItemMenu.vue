@@ -46,7 +46,7 @@ export default {
   name: 'KeyItemMenu',
   props: {
     keyId: {
-      type: Number,
+      type: String,
       required: true,
     },
     onDeleteKey: {

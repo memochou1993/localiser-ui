@@ -131,8 +131,8 @@ export default {
       default: '',
     },
     languageId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     languages: {
       type: Array,

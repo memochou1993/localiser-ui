@@ -77,7 +77,7 @@ export default {
   },
   props: {
     keyId: {
-      type: Number,
+      type: String,
       required: true,
     },
     language: {

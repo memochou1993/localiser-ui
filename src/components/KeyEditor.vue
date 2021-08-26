@@ -86,8 +86,8 @@ export default {
       default: '',
     },
     keyId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     keys: {
       type: Array,

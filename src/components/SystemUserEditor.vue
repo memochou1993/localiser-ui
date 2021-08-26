@@ -177,8 +177,8 @@ export default {
       default: 0,
     },
     userId: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     users: {
       type: Array,
