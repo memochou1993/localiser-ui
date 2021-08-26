@@ -24,6 +24,7 @@
               <component
                 :is="Component"
                 v-if="locale"
+                class="q-my-xl"
               />
             </transition>
           </router-view>
