@@ -49,17 +49,17 @@ export default {
     const { t } = useI18n();
     const menuItems = computed(() => [
       {
-        name: t('__ButtonClearCache'),
-        callback: props.onClearCache,
-        separated: false,
-      },
-      {
         name: t('__ViewTitleProjectSettings'),
         callback: async () => {
           await router.push({
             name: 'project.profile',
           });
         },
+        separated: false,
+      },
+      {
+        name: t('__ButtonClearCache'),
+        callback: props.onClearCache,
         separated: false,
       },
     ]);
