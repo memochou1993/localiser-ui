@@ -112,10 +112,12 @@ export default {
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
+    const isUniqueName = (v) => v.trim().toLowerCase() === props.defaultName.trim().toLowerCase()
+      || !props.keys.some((k) => k.name.toLowerCase() === v.trim().toLowerCase());
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
-        (v) => (v.trim() === props.defaultName.trim() || !props.keys.some((k) => k.name === v.trim())) || t('__ValidationNameUnique'),
+        (v) => isUniqueName(v) || t('__ValidationNameUnique'),
       ],
     };
     const submit = async () => {

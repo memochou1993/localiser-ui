@@ -159,14 +159,18 @@ export default {
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
+    const isUniqueName = (v) => (v.trim().toLowerCase() === props.defaultName.trim().toLowerCase()
+      || !props.languages.some((l) => l.name.toLowerCase() === v.trim().toLowerCase()));
+    const isUniqueLocale = (v) => (v.trim().toLowerCase() === props.defaultLocale.trim().toLowerCase()
+      || !props.languages.some((l) => l.locale.toLowerCase() === v.trim().toLowerCase()));
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
-        (v) => (v.trim() === props.defaultName.trim() || !props.languages.some((l) => l.name === v.trim())) || t('__ValidationNameUnique'),
+        (v) => isUniqueName(v) || t('__ValidationNameUnique'),
       ],
       locale: [
         (v) => (v && !!v.trim()) || t('__ValidationLocaleRequired'),
-        (v) => (v.trim() === props.defaultLocale.trim() || !props.languages.some((l) => l.locale === v.trim())) || t('__ValidationLocaleUnique'),
+        (v) => isUniqueLocale(v) || t('__ValidationLocaleUnique'),
       ],
     };
     const onFilterName = (v, update) => {

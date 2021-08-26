@@ -207,6 +207,8 @@ export default {
     });
     const { dialogRef: dialog } = useDialogPluginComponent();
     const form = ref(null);
+    const isUniqueEmail = (v) => (v.trim().toLowerCase() === props.defaultEmail.trim().toLowerCase()
+      || !props.users.some((p) => p.email.toLowerCase() === v.trim().toLowerCase()));
     const rules = {
       name: [
         (v) => (v && !!v.trim()) || t('__ValidationNameRequired'),
@@ -214,7 +216,7 @@ export default {
       email: [
         (v) => (v && !!v.trim()) || t('__ValidationEmailRequired'),
         (v) => /^\S+@\S+\.\S+$/.test(v) || t('__ValidationEmailValid'),
-        (v) => (v.trim() === props.defaultEmail.trim() || !props.users.some((p) => p.email === v.trim())) || t('__ValidationEmailUnique'),
+        (v) => isUniqueEmail(v) || t('__ValidationEmailUnique'),
       ],
       password: [
         (v) => (v && !!v.trim()) || t('__ValidationPasswordRequired'),
