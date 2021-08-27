@@ -28,7 +28,7 @@
               v-text="valueItem.text || 'Empty'"
             />
             <ValueEditor
-              v-if="state.enableEditForm"
+              v-if="enableEditDialog && state.enableEditForm"
               :default-text="valueItem.text"
               :key-id="keyId"
               :value-id="valueItem.id"
@@ -48,7 +48,7 @@
               v-text="'Empty'"
             />
             <ValueEditor
-              v-if="state.enableCreateForm"
+              v-if="enableCreateDialog && state.enableCreateForm"
               :key-id="keyId"
               :language-id="language.id"
               :offset="-16"
@@ -76,6 +76,14 @@ export default {
     ValueEditor,
   },
   props: {
+    enableCreateDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditDialog: {
+      type: Boolean,
+      default: true,
+    },
     keyId: {
       type: String,
       required: true,

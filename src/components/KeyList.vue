@@ -13,7 +13,11 @@
         spaced
       />
       <KeyItem
-        :enable-key-menu="enableKeyMenu"
+        :enable-create-value-dialog="enableCreateValueDialog"
+        :enable-delete-key-button="enableDeleteKeyButton"
+        :enable-edit-dialog="enableEditKeyDialog"
+        :enable-edit-value-dialog="enableEditValueDialog"
+        :enable-menu="enableMenu"
         :key-item="key"
         :key-prefix="keyPrefix"
         :key-suffix="keySuffix"
@@ -43,7 +47,23 @@ export default {
     KeyItem,
   },
   props: {
-    enableKeyMenu: {
+    enableCreateValueDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableDeleteKeyButton: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditKeyDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditValueDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableMenu: {
       type: Boolean,
       default: true,
     },

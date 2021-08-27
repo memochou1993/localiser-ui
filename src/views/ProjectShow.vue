@@ -59,7 +59,11 @@
       </div>
       <KeyList
         v-if="isLoaded"
-        :enable-key-menu="state.project.allow('update-keys')"
+        :enable-create-value-dialog="state.project.allow('create-values')"
+        :enable-delete-key-button="state.project.allow('delete-keys')"
+        :enable-edit-value-dialog="state.project.allow('update-values')"
+        :enable-edit-key-dialog="state.project.allow('update-keys')"
+        :enable-menu="state.project.allow('update-keys')"
         :key-prefix="state.project.settings.keyPrefix"
         :key-suffix="state.project.settings.keySuffix"
         :keys="state.keys"

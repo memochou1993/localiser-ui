@@ -10,6 +10,8 @@
         spaced
       />
       <ValueItem
+        :enable-create-dialog="enableCreateDialog"
+        :enable-edit-dialog="enableEditDialog"
         :key-id="keyId"
         :language="language"
         :on-create-value="onCreateValue"
@@ -29,6 +31,14 @@ export default {
     ValueItem,
   },
   props: {
+    enableCreateDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditDialog: {
+      type: Boolean,
+      default: true,
+    },
     keyId: {
       type: String,
       required: true,

@@ -15,21 +15,25 @@
           v-for="(item, i) in menuItems"
           :key="i"
         >
-          <q-separator
-            v-show="item.separated"
-          />
-          <q-item
-            v-close-popup
-            class="dense"
-            clickable
-            @click="item.callback"
+          <template
+            v-if="item.enabled"
           >
-            <q-item-section>
-              <span
-                v-text="item.name"
-              />
-            </q-item-section>
-          </q-item>
+            <q-separator
+              v-show="item.separated"
+            />
+            <q-item
+              v-close-popup
+              class="dense"
+              clickable
+              @click="item.callback"
+            >
+              <q-item-section>
+                <span
+                  v-text="item.name"
+                />
+              </q-item-section>
+            </q-item>
+          </template>
         </template>
       </q-list>
     </q-menu>
@@ -45,6 +49,10 @@ import { useI18n } from 'vue-i18n/index';
 export default {
   name: 'KeyItemMenu',
   props: {
+    enableDeleteButton: {
+      type: Boolean,
+      default: true,
+    },
     keyId: {
       type: String,
       required: true,
@@ -61,6 +69,7 @@ export default {
         name: t('__ButtonDeleteKey'),
         callback: () => props.onDeleteKey({ keyId: props.keyId }),
         separated: false,
+        enabled: props.enableDeleteButton,
       },
     ]);
     return {

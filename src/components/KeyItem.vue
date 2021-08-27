@@ -15,7 +15,7 @@
             v-text="`${keyPrefix || ''}${keyItem.name}${keySuffix || ''}`"
           />
           <KeyEditor
-            v-if="state.enableEditForm"
+            v-if="enableEditDialog && state.enableEditForm"
             :default-name="keyItem.name"
             :key-id="keyItem.id"
             :keys="keys"
@@ -30,6 +30,8 @@
             class="full-width"
           >
             <ValueList
+              :enable-create-dialog="enableCreateValueDialog"
+              :enable-edit-dialog="enableEditValueDialog"
               :key-id="keyItem.id"
               :languages="languages"
               :on-create-value="onCreateValue"
@@ -42,7 +44,8 @@
           class="col-12 col-sm-1 flex justify-center items-center"
         >
           <KeyItemMenu
-            v-if="enableKeyMenu"
+            v-if="enableMenu"
+            :enable-delete-button="enableDeleteKeyButton"
             :key-id="keyItem.id"
             :on-delete-key="onDeleteKey"
           />
@@ -68,7 +71,23 @@ export default {
     ValueList,
   },
   props: {
-    enableKeyMenu: {
+    enableCreateValueDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableEditValueDialog: {
+      type: Boolean,
+      default: true,
+    },
+    enableDeleteKeyButton: {
+      type: Boolean,
+      default: true,
+    },
+    enableMenu: {
       type: Boolean,
       default: true,
     },
