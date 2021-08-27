@@ -10,7 +10,7 @@
           class="col-12 col-sm-3 flex justify-sm-end items-center"
         >
           <span
-            class="q-mx-md q-py-sm text-sm-right"
+            class="q-px-md q-py-sm text-sm-right"
             v-text="language.name"
           />
         </div>
@@ -23,7 +23,7 @@
             :class="[valueItem.text ? 'text-info' : 'text-secondary']"
           >
             <div
-              class="cursor-pointer break-word q-mx-md q-py-sm"
+              class="cursor-pointer break-word q-px-md q-py-sm"
               @click="state.enableEditForm = true"
               v-text="valueItem.text || 'Empty'"
             />
@@ -43,7 +43,7 @@
             class="text-secondary"
           >
             <div
-              class="cursor-pointer break-word q-mx-md q-py-sm"
+              class="cursor-pointer break-word q-px-md q-py-sm"
               @click="state.enableCreateForm = true"
               v-text="'Empty'"
             />

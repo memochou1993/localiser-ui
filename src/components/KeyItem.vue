@@ -10,7 +10,7 @@
           class="col-12 col-sm-3 flex items-center"
         >
           <div
-            class="text-info cursor-pointer break-word q-mx-md q-py-sm"
+            class="text-info cursor-pointer break-word q-px-md q-py-sm"
             @click="state.enableEditForm = true"
             v-text="`${keyPrefix || ''}${keyItem.name}${keySuffix || ''}`"
           />
