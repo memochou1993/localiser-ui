@@ -10,8 +10,8 @@
         spaced
       />
       <ValueItem
-        :enable-create-dialog="enableCreateDialog"
-        :enable-edit-dialog="enableEditDialog"
+        :enable-creator="enableCreator"
+        :enable-editor="enableEditor"
         :key-id="keyId"
         :language="language"
         :on-create-value="onCreateValue"
@@ -31,13 +31,13 @@ export default {
     ValueItem,
   },
   props: {
-    enableCreateDialog: {
+    enableCreator: {
       type: Boolean,
-      default: true,
+      required: true,
     },
-    enableEditDialog: {
+    enableEditor: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     keyId: {
       type: String,

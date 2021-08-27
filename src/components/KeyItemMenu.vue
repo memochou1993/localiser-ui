@@ -49,9 +49,9 @@ import { useI18n } from 'vue-i18n/index';
 export default {
   name: 'KeyItemMenu',
   props: {
-    enableDeleteButton: {
+    enableDestroyer: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     keyId: {
       type: String,
@@ -69,7 +69,7 @@ export default {
         name: t('__ButtonDeleteKey'),
         callback: () => props.onDeleteKey({ keyId: props.keyId }),
         separated: false,
-        enabled: props.enableDeleteButton,
+        enabled: props.enableDestroyer,
       },
     ]);
     return {
