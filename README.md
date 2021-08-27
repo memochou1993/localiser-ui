@@ -1,5 +1,7 @@
 # Localiser UI
 
+A self-hosted localization tool.
+
 ## Development
 
 Download the master branch.
