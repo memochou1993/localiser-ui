@@ -80,7 +80,7 @@ export default {
       users: [],
     });
     const menuItems = computed(() => [
-      { name: t('__TitleGeneral'), to: { name: 'project.profile' } },
+      { name: t('__TitleGeneral'), to: { name: 'project.settings' } },
       { name: t('__TitleMembers'), to: { name: 'project.users' } },
       { name: t('__TitleLanguages'), to: { name: 'project.languages' } },
     ]);

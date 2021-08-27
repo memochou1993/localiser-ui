@@ -58,11 +58,11 @@ const routes = [
     children: [
       {
         path: 'settings',
-        name: 'project.profile',
+        name: 'project.settings',
         component: () => import(/* webpackChunkName: "projectSettingProfile" */ '@/views/ProjectSettingProfile.vue'),
       },
       {
-        path: 'members',
+        path: 'users',
         name: 'project.users',
         component: () => import(/* webpackChunkName: "projectSettingUser" */ '@/views/ProjectSettingUser.vue'),
       },
