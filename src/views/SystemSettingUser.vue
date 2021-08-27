@@ -40,8 +40,8 @@
         </div>
       </div>
       <UserList
-        :enable-delete-button="me.can('delete-users')"
-        :enable-edit-button="me.can('update-users')"
+        :enable-destroyer="me.can('delete-users')"
+        :enable-editor="me.can('update-users')"
         :me="me"
         :needle="state.keyword"
         :on-delete-user="(data) => confirm({

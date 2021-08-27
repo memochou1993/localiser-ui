@@ -12,7 +12,8 @@
       #body="props"
     >
       <UserItem
-        :enable-delete-button="enableDeleteButton"
+        :enable-destroyer="enableDestroyer"
+        :enable-editor="enableEditor"
         :on-delete-user="onDeleteUser"
         :on-edit-user="onEditUser"
         :props="props"
@@ -43,11 +44,11 @@ export default {
     UserItem,
   },
   props: {
-    enableDeleteButton: {
+    enableDestroyer: {
       type: Boolean,
       required: true,
     },
-    enableEditButton: {
+    enableEditor: {
       type: Boolean,
       required: true,
     },

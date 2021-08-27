@@ -12,8 +12,8 @@
       #body="props"
     >
       <LanguageItem
-        :enable-delete-button="enableDeleteButton"
-        :enable-edit-button="enableEditButton"
+        :enable-destroyer="enableDestroyer"
+        :enable-editor="enableEditor"
         :languages="languages"
         :on-delete-language="onDeleteLanguage"
         :on-edit-language="onEditLanguage"
@@ -42,13 +42,13 @@ export default {
     LanguageItem,
   },
   props: {
-    enableDeleteButton: {
+    enableDestroyer: {
       type: Boolean,
-      default: true,
+      required: true,
     },
-    enableEditButton: {
+    enableEditor: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     languages: {
       type: Array,

@@ -27,7 +27,7 @@
             class="col-12 col-md-4 text-md-right"
           >
             <q-btn
-              :disable="!enableDeleteButton"
+              :disable="!enableSubmitButton"
               :label="t('__ButtonDeleteProject')"
               class="text-red q-my-md"
               no-caps
@@ -54,9 +54,9 @@ export default {
     AppTextCaption,
   },
   props: {
-    enableDeleteButton: {
+    enableSubmitButton: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     onSubmit: {
       type: Function,

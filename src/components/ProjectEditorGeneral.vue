@@ -123,7 +123,7 @@ export default {
     },
     enableSubmitButton: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     onSubmit: {
       type: Function,

@@ -30,7 +30,7 @@
         class="row"
       />
       <ProjectEditorDanger
-        :enable-delete-button="project.allow('delete-projects')"
+        :enable-submit-button="project.allow('delete-projects')"
         :on-submit="(data) => confirm({
           title: t('__ConfirmationTitle'),
           content: t('__ConfirmationDeleteProject'),

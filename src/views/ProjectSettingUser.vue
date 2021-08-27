@@ -41,8 +41,8 @@
         </div>
       </div>
       <UserList
-        :enable-delete-button="project.allow('update-projects')"
-        :enable-edit-button="project.allow('update-projects')"
+        :enable-destroyer="project.allow('update-projects')"
+        :enable-editor="project.allow('update-projects')"
         :me="me"
         :needle="state.keyword"
         :on-delete-user="(data) => confirm({

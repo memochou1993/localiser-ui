@@ -40,8 +40,8 @@
         </div>
       </div>
       <LanguageList
-        :enable-delete-button="project.allow('delete-languages')"
-        :enable-edit-button="project.allow('update-languages')"
+        :enable-destroyer="project.allow('delete-languages')"
+        :enable-editor="project.allow('update-languages')"
         :languages="project.languages"
         :needle="state.keyword"
         :on-delete-language="(data) => confirm({
