@@ -1,24 +1,27 @@
-# localiser-ui
+# Localiser UI
 
-## Project setup
+## Development
+
+Download the master branch.
+
+```BASH
+git clone git@github.com:memochou1993/localiser-ui.git
+```
+
+Copy `.env.example` to `.env`.
+
+```BASH
+cp .env.example .env
+```
+
+Install the dependencies.
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+Start a development server.
+
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
