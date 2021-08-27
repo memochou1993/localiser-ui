@@ -5,9 +5,8 @@
     flat
     style="min-height: 400px"
   >
-    <span
-      class="text-caption"
-      v-text="t('__AppNoData')"
+    <q-img
+      class="logo"
     />
   </q-card>
 </template>

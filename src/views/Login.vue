@@ -1,6 +1,7 @@
 <template>
   <div
-    class="layout row justify-center items-center"
+    id="layout"
+    class="row justify-center items-center"
   >
     <div
       class="col-12 col-sm-10 col-md-6"
@@ -13,8 +14,7 @@
           style="height: 400px;"
         >
           <q-img
-            class="col-6 gt-xs"
-            src="https://cdn.quasar.dev/img/parallax2.jpg"
+            class="col-6 gt-xs logo"
           />
           <q-card-section
             class="col-12 col-sm-6 q-pa-lg"
@@ -151,6 +151,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.layout
+#layout
   height: calc(100vh - 58px - 48px * 2)
 </style>
