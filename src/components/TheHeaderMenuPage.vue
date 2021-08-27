@@ -55,7 +55,7 @@ import {
 } from '@/constants';
 
 export default {
-  name: 'TheHeaderViewMenu',
+  name: 'TheHeaderMenuPage',
   props: {
     userName: {
       type: String,

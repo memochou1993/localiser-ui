@@ -11,11 +11,11 @@
           v-text="'Localiser'"
         />
       </q-toolbar-title>
-      <TheHeaderLanguageMenu
+      <TheHeaderMenuLanguage
         :on-change-language="onChangeLanguage"
       />
-      <TheHeaderViewMenu
-        v-if="enableViewMenu"
+      <TheHeaderMenuPage
+        v-if="enablePageMenu"
         :user-name="userName"
         :user-role-code="userRoleCode"
       />
@@ -24,17 +24,17 @@
 </template>
 
 <script>
-import TheHeaderViewMenu from './TheHeaderViewMenu.vue';
-import TheHeaderLanguageMenu from './TheHeaderLanguageMenu.vue';
+import TheHeaderMenuLanguage from './TheHeaderMenuLanguage.vue';
+import TheHeaderMenuPage from './TheHeaderMenuPage.vue';
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderViewMenu,
-    TheHeaderLanguageMenu,
+    TheHeaderMenuLanguage,
+    TheHeaderMenuPage,
   },
   props: {
-    enableViewMenu: {
+    enablePageMenu: {
       type: Boolean,
       default: false,
     },

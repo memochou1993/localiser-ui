@@ -3,7 +3,7 @@
     view="hhh lpr fff"
   >
     <TheHeader
-      :enable-view-menu="!!token"
+      :enable-page-menu="!!token"
       :on-change-language="(l) => changeLanguage(l)"
       :user-name="user?.name ?? ''"
       :user-role-code="user?.role.code ?? 0"

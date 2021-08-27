@@ -42,7 +42,7 @@ import {
 import { useI18n } from 'vue-i18n/index';
 
 export default {
-  name: 'TheHeaderLanguageMenu',
+  name: 'TheHeaderMenuLanguage',
   props: {
     onChangeLanguage: {
       type: Function,
