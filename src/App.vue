@@ -16,18 +16,9 @@
           class="col-10"
         >
           <router-view
-            v-slot="{ Component }"
-          >
-            <transition
-              mode="in-out"
-            >
-              <component
-                :is="Component"
-                v-if="locale"
-                class="q-my-xl"
-              />
-            </transition>
-          </router-view>
+            v-if="locale"
+            class="q-my-xl"
+          />
         </div>
       </div>
     </q-page-container>
