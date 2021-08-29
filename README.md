@@ -41,14 +41,14 @@ export const setLanguage = (locale) => {
 // load locale files
 export const loadMessage = async (locale) => {
   try {
-    // fetch remote files
+    // fetch from remote
     const message = await actions.project.fetchCachedValues({
       projectId: process.env.VUE_APP_API_PROJECT_ID,
       locale,
     });
     i18n.global.setLocaleMessage(locale, message);
   } catch {
-    // or import local files if server is down
+    // or import from local if server is down
     const message = await import(/* webpackChunkName: "locale-[request]" */ `@/assets/lang/${locale}.json`);
     i18n.global.setLocaleMessage(locale, message);
   }
