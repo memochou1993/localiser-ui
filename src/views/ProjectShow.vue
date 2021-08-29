@@ -170,10 +170,10 @@ export default {
     const confirm = (data) => store.commit('setConfirmation', data);
     const clearCache = async () => {
       try {
-        await actions.project.destroyCachedLanguages({
+        await actions.project.destroyLocales({
           projectId: state.project.id,
         });
-        await actions.project.destroyCachedValues({
+        await actions.project.destroyMessages({
           projectId: state.project.id,
         });
         q.notify({

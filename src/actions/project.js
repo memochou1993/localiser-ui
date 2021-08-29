@@ -78,30 +78,30 @@ const detachUser = ({
     .catch((e) => reject(e));
 });
 
-const fetchCachedLanguages = ({
+const fetchLocales = ({
   projectId,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .get(`/api/projects/${projectId}/cache/languages`)
+    .get(`/api/projects/${projectId}/locales`)
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
 });
 
-const destroyCachedLanguages = ({
+const destroyLocales = ({
   projectId,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .delete(`/api/projects/${projectId}/cache/languages`)
+    .delete(`/api/projects/${projectId}/locales`)
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
 });
 
-const fetchCachedValues = ({
+const fetchMessages = ({
   projectId,
   locale,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .get(`/api/projects/${projectId}/cache/values`, {
+    .get(`/api/projects/${projectId}/messages`, {
       params: {
         locale,
       },
@@ -110,11 +110,11 @@ const fetchCachedValues = ({
     .catch((e) => reject(e));
 });
 
-const destroyCachedValues = ({
+const destroyMessages = ({
   projectId,
 } = {}) => new Promise((resolve, reject) => {
   axios
-    .delete(`/api/projects/${projectId}/cache/values`)
+    .delete(`/api/projects/${projectId}/messages`)
     .then(({ data }) => resolve(data))
     .catch((e) => reject(e));
 });
@@ -127,8 +127,8 @@ export default {
   destroy,
   attachUser,
   detachUser,
-  fetchCachedLanguages,
-  destroyCachedLanguages,
-  fetchCachedValues,
-  destroyCachedValues,
+  fetchLocales,
+  destroyLocales,
+  fetchMessages,
+  destroyMessages,
 };

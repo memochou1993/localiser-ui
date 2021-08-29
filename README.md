@@ -42,7 +42,7 @@ export const setLanguage = (locale) => {
 export const loadMessage = async (locale) => {
   try {
     // fetch from remote
-    const message = await actions.project.fetchCachedValues({
+    const message = await actions.project.fetchMessages({
       projectId: process.env.VUE_APP_API_PROJECT_ID,
       locale,
     });
