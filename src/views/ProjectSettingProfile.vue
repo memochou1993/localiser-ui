@@ -14,6 +14,7 @@
         :default-name="project.name"
         :default-key-prefix="project.settings.keyPrefix"
         :default-key-suffix="project.settings.keySuffix"
+        :default-url="project.settings.url"
         :enable-submit-button="project.allow('update-projects')"
         :on-submit="editProject"
         :project-id="project.id"
@@ -91,6 +92,7 @@ export default {
       projectId,
       name,
       description,
+      url,
       keyPrefix,
       keySuffix,
     }) => {
@@ -100,6 +102,7 @@ export default {
           name,
           description,
           settings: {
+            url,
             keyPrefix,
             keySuffix,
           },

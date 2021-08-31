@@ -49,6 +49,21 @@
           class="q-pb-lg"
         >
           <AppTextCaption
+            :text="t('__InputProjectUrl')"
+            class="q-my-sm"
+          />
+          <q-input
+            v-model="state.url"
+            :model-value="state.url"
+            autocomplete="off"
+            borderless
+            dense
+          />
+        </div>
+        <div
+          class="q-pb-lg"
+        >
+          <AppTextCaption
             :text="t('__InputKeyPrefix')"
             class="q-my-sm"
           />
@@ -121,6 +136,10 @@ export default {
       type: String,
       default: '',
     },
+    defaultUrl: {
+      type: String,
+      default: '',
+    },
     enableSubmitButton: {
       type: Boolean,
       required: true,
@@ -139,6 +158,7 @@ export default {
     const state = reactive({
       name: props.defaultName,
       description: props.defaultDescription,
+      url: props.defaultUrl,
       keyPrefix: props.defaultKeyPrefix,
       keySuffix: props.defaultKeySuffix,
     });
@@ -156,6 +176,7 @@ export default {
         projectId: props.projectId,
         name: state.name,
         description: state.description,
+        url: state.url,
         keyPrefix: state.keyPrefix,
         keySuffix: state.keySuffix,
       });

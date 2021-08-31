@@ -45,7 +45,9 @@
               round
             />
             <ProjectMenu
+              :enable-visit-website-button="!!state.project.settings.url"
               :on-clear-cache="clearCache"
+              :on-visit-website="visitWebsite"
             />
           </div>
         </div>
@@ -168,6 +170,9 @@ export default {
       return null;
     })();
     const confirm = (data) => store.commit('setConfirmation', data);
+    const visitWebsite = () => {
+      window.open(state.project.settings.url, '_blank', 'noopener noreferrer');
+    };
     const clearCache = async () => {
       try {
         await actions.project.destroyLocales({
@@ -295,6 +300,7 @@ export default {
       state,
       isLoaded,
       confirm,
+      visitWebsite,
       clearCache,
       createKey,
       editKey,
