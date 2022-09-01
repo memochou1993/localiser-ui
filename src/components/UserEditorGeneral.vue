@@ -41,7 +41,6 @@
             :model-value="state.email"
             :rules="rules.email"
             autocomplete="off"
-            autofocus
             borderless
             dense
             type="email"
